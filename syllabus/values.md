@@ -50,7 +50,3 @@ Your mental health takes first priority above your academics. If you are feeling
 **Embrace uncertainty for growth.** This course spans a range of disciplines and exercises a diverse skillset, from math to programming to scientific reading and communication. You along with your peers bring a diverse set of experiences and perspectives. You may find that certain aspects of the course come naturally to you, while others are more challenging. Uncertainty may be uncomfortable, but it is also a natural part of the learning process and an opportunity for you to grow your own skills and understanding. My goal is to help you embrace this uncertainty *productively* and harness it for your own learning.
 
 **Stay on top of the material.** Every class will build on the previous class, and the assignments in the course are designed to layer on top of each other. It is important that you stay on top of the material, and that you ask questions when you are unsure about anything. To facilitate this, I will build in time for you to start the larger assignments together with your peers -- if something confuses you, this is will be the time to ask questions!
-
-## Acknowledgements
-
-This course website draws on Yaniv Yacoby's [Probabilistic Foundations of Machine Learning](https://mogu-lab.github.io/cs349-fall-2024/index.html) which is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
