@@ -1,0 +1,23 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+  - caption: Syllabus
+    chapters:
+      - file: syllabus/values.md
+      - file: syllabus/policies.md
+      - file: syllabus/schedule.md
+      - file: syllabus/office_hours.md
+
+  - caption: Worksheets
+    chapters:
+      - file: worksheets/ws1.ipynb
+  
+  # - caption: Projects
+  #   chapters:
+  #     - file: projects/proj1_random_experiment_solution.ipynb
+  #     - file: projects/proj2-observational-study.md
+  #     - file: projects/proj3-instrumental-variable.md
+  
