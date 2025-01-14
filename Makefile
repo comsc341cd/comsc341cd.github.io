@@ -7,5 +7,6 @@ clean:
 	jb clean .
 
 .PHONY: publish
-publish:
+publish: _build/html
 	ghp-import -n -p -f _build/html
+	

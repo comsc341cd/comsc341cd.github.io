@@ -22,6 +22,6 @@ You might have heard the phrase "correlation is not causation" - but then, what 
 
 This course is indebted to a number of fantastic, freely available online resources, including:
 
-- Yaniv Yacoby's [Probabilistic Foundations of Machine Learning](https://mogu-lab.github.io/cs349-fall-2024/index.html) which is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-- Brady Neal's [Introduction to Causal Inference](https://www.bradyneal.com/causal-inference-course)
-- Nick Huntington-Klein's [The Effect](https://theeffectbook.net/)
+- Yaniv Yacoby's [Probabilistic Foundations of Machine Learning](https://mogu-lab.github.io/cs349-fall-2024/index.html) which is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+- Brady Neal's [Introduction to Causal Inference](https://www.bradyneal.com/causal-inference-course) which is released under an [MIT license](https://github.com/bradyneal/causal-book-code/blob/master/LICENSE).
+- Nick Huntington-Klein's [The Effect](https://theeffectbook.net/).
