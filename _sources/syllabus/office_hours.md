@@ -2,5 +2,5 @@
 
 ```{admonition} TODO
 :class: warning
-Add office hours here.
+Office hours will be posted once the beginning of the semester surveys are complete!
 ```
