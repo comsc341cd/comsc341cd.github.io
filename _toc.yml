@@ -11,9 +11,9 @@ parts:
       - file: syllabus/schedule.md
       - file: syllabus/office_hours.md
 
-  - caption: Worksheets
-    chapters:
-      - file: worksheets/ws1.ipynb
+  # - caption: Worksheets
+  #   chapters:
+  #     - file: worksheets/ws1.ipynb
   
   # - caption: Projects
   #   chapters:
