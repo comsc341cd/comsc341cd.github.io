@@ -14,7 +14,8 @@ Make sure to save your work often, in case you get disconnected from the server.
 
 Once you are ready to submit your assignment, you'll need to submit the following files to [Gradescope](https://www.gradescope.com/courses/950344):
 
-
+- Your completed `.ipynb` notebook file, which you can download by going to `File -> Download`.
+- A `.py` file of your notebook's code, which you can download by going to `File -> Save and Export Notebook As -> Executable Script`.
 
 :::{tip}
 To make sure you've answered all questions, perform a search for `TODO` in your notebook!
