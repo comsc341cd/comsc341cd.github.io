@@ -7,9 +7,9 @@
 
 ## Communication
 
-**Office Hours**: Generally, answering questions about the assignments is much more efficient in person. As such, please ask questions about the assignments during office hours or lecture whenever possible.
+**Office Hours**: Generally, answering questions about the assignments is much more efficient in person. As such, please ask questions about the assignments during office hours or class whenever possible.
 
-**Ed Discussion**: We will primarily use Ed for discussion outside of lecture and office hours. I will also be using Ed to post announcements and other course updates. The system is highly catered to getting you help efficiently from classmates and the course staff. Rather than emailing, we encourage you to post your questions on Ed. 
+**Ed Discussion**: We will primarily use Ed for discussion outside of class and office hours. I will also be using Ed to post announcements and other course updates. The system is highly catered to getting you help efficiently from classmates and the course staff. Rather than emailing, we encourage you to post your questions on Ed. 
 
 **Gradescope**: We will use Gradescope for all assignment submissions. For assignments that have a autograder, you will be able to see your score and feedback immediately, and there will be no submission limit. Thus, it is in your best interest to submit early and often!
 
@@ -23,7 +23,7 @@ Wherever possible, assignments will have their overall point value attached to t
 
 ### Worksheets: 30%
 
-These are guided assignments that are "lightly graded" -- the bulk of the grade is based on good faith effort and completion. The worksheets are designed to help you practice material from lecture and prepare for the projects. 
+These are guided assignments that are "lightly graded" -- the bulk of the grade is based on good faith effort and completion. The worksheets are designed to help you practice material from class and prepare for the projects. 
 
 ### Projects: 30%
 
@@ -41,9 +41,9 @@ The final project will be an open-ended assignment that will allow you to explor
 
 As discussed in the [Course Values](course_success) page, participation is a key component of this course. Active participation includes:
 
-- Attending lectures prepared.
-- Asking questions in lecture, office hours, and on Ed. **All questions are good questions!**
-- Answering questions. Your answers don't have to be right!
+- Attending classes prepared.
+- Asking questions in class, office hours, and on Ed. **All questions are good questions!**
+- Answering questions. **Your answers don't have to be right!**
 - Participating in class activities.
 - Completing feedback surveys, Over the course of the semester, I will check in to ask what is going well for you, what difficulties you are encountering, and what could be adjusted to improve your learning experience.
 - Respectful engagement with your peers and the course staff.
@@ -54,7 +54,7 @@ Attendance is required for this course. However, I understand that unexpected si
 
 ## Late Policy
 
-**Worksheets**: Because the worksheets are designed as jumping off points for lecture, I expect them to be completed on time. Thus there are **no late days** for worksheets. Again, they will be largely graded on good faith effort, so it is in your best interest to stay on top of them and submit every worksheet.
+**Worksheets**: Because the worksheets are designed as jumping off points for class, I expect them to be completed on time. Thus there are **no late days** for worksheets. Again, they will be largely graded on good faith effort, so it is in your best interest to stay on top of them and submit every worksheet.
 
 **Projects**: You will have **4 late days** for the projects over the course of the semester. They may be used for any reason and you do not need to ask permission to use them, as I will track the number of late days being used as indicated in your submission. You can ask me at any point during the semester for the number of late days you have remaining. After these late days have expired, you will lose 10% of the assignment's value for each day that it is late. 
 
