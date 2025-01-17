@@ -1,4 +1,4 @@
-# Working on and Submitting Assignments
+# Submitting Assignments
 
 # Working on Assignments
 
