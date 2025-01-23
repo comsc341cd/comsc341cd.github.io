@@ -1,6 +1,6 @@
-# Submitting Assignments
+# How to Run and Submit
 
-# Working on Assignments
+# Running Assignments
 
 The computing platform we will be using this semester is a [shared JupyterHub instance](https://comsc341cd-hub-sp.mtholyoke.edu) running on campus. You will be able to access this server from anywhere on campus using your MHC credentials. If you are off-campus, you'll need to connect to the MHC VPN -- instructions on how to do so are [linked here](https://asklits.mtholyoke.edu/TDClient/50/Portal/KB/ArticleDet?ID=281). If you have any trouble connecting to the server or run into issues while on the server, please reach out to me!
 

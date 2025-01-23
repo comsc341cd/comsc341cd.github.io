@@ -56,11 +56,13 @@ Attendance is required for this course. However, I understand that unexpected si
 
 **Worksheets**: Because the worksheets are designed as jumping off points for class, I expect them to be completed on time. Thus there are **no late days** for worksheets. Again, they will be largely graded on good faith effort, so it is in your best interest to stay on top of them and submit every worksheet.
 
-**Projects**: You will have **4 late days** for the projects over the course of the semester. They may be used for any reason and you do not need to ask permission to use them, as I will track the number of late days being used as indicated in your submission. You can ask me at any point during the semester for the number of late days you have remaining. After these late days have expired, you will lose 10% of the assignment's value for each day that it is late. 
+**Projects**: You will have **4 late days** for the projects over the course of the semester. They may be used for any reason and you do not need to ask permission to use them, as I will track the number of late days being used as indicated in your submission. You can ask me at any point during the semester for the number of late days you have remaining. These late days may not be used for the final project. After these late days have expired, you will lose 10% of the assignment's value for each day that it is late. 
 
 Extensions will be given in the event of extenuating circumstances, such as illness or an unexpected emergency. If this is the case, please reach out to me as soon as possible so we can work together on a plan and timeline for any make-up work. 
 
 ## Equipment
+
+**Pencil/Pen**: We will sometimes be doing pencil-and-paper exercises in class. You can use any pen or pencil you have.
 
 **Laptop**: You will need a laptop for this course. We will be using Jupyter notebooks for all assignments as well as a centralized JupyterHub for the course, which is a cloud-based service for running Jupyter notebooks. If you don't have a laptop, you may borrow one from [LITS](https://lits.mtholyoke.edu/materials/borrowing-renewing). If you have any issues here, please let me know.
 
