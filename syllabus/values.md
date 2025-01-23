@@ -1,4 +1,4 @@
-# Course Goals and Values 
+# Goals and Values 
 
 ```{contents}
 :local:
