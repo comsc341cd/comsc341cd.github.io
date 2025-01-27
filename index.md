@@ -16,7 +16,7 @@ You might have heard the phrase "correlation is not causation" - but then, what 
 
 - Instructor: [Tony Liu](https://tliutony.github.io) (he/him)
     - Office: Clapp 207
-- Teaching Assistant: to be announced!
+- Teaching Assistant: Bhargavi Patil (she/her)
 
 ## Acknowledgements
 
