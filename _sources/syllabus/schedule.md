@@ -43,7 +43,7 @@ In general, the due dates for assignments are as follows:
     <br>![](https://img.shields.io/badge/Released:-2ca02c) WS 2
     - <small>02/05</small>
     - <small>02/06</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes I</u></b>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b>
     - <small>02/07</small>
 
 *   
