@@ -24,7 +24,7 @@ In general, the due dates for assignments are as follows:
 *   
     - <small>01/27</small>
     - <small>01/28</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1440025/mod_resource/content/1/lec00-intro-starter.pdf)</li></ul>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1440025/mod_resource/content/1/lec00-intro-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1442123/mod_resource/content/1/lec00-intro.pdf)</li><li>[Activity 0 solutions](https://docs.google.com/document/d/1lOVX3dLcllmNyfnN7H98i64lX9DY9jigX6ZsH36V6oU/edit?usp=sharing)</li></ul>
     ![](https://img.shields.io/badge/Released:-2ca02c) [WS 1](ws1)
     <br>![](https://img.shields.io/badge/Released:-2ca02c) [Survey 1](https://www.gradescope.com/courses/950344/assignments/5680811)
 
@@ -43,7 +43,7 @@ In general, the due dates for assignments are as follows:
     <br>![](https://img.shields.io/badge/Released:-2ca02c) WS 2
     - <small>02/05</small>
     - <small>02/06</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes I</u></b>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b>
     - <small>02/07</small>
 
 *   
