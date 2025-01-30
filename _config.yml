@@ -40,4 +40,4 @@ sphinx:
 launch_buttons:
   jupyterhub_url: "https://comsc341cd-hub-sp.mtholyoke.edu"
 
-only_build_toc_files: true
+only_build_toc_files: false
