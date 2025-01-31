@@ -30,7 +30,7 @@ In general, the due dates for assignments are as follows:
 
     - <small>01/29</small><br>![](https://img.shields.io/badge/Office%20Hours:-ff7f0e) Tony 3-5pm
     - <small>01/30</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Simpson's Paradox</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1443157/mod_resource/content/1/lec01-simpsons-starter.pdf)</li><li>[Activity 1](activity1)</li></ul>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Simpson's Paradox</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1443157/mod_resource/content/1/lec01-simpsons-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1444180/mod_resource/content/1/lec01-simpsons.pdf)</li><li>[Activity 1](activity1)</li><li>[Activity 1 solutions](activity1_solution)</li></ul>
     
     - <small>01/31</small>
 
