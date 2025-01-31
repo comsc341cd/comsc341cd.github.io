@@ -23,7 +23,7 @@ Wherever possible, assignments will have their overall point value attached to t
 
 ### Worksheets: 30%
 
-These are guided assignments that are "lightly graded" -- the bulk of the grade is based on good faith effort and completion. The worksheets are designed to help you practice material from class and prepare for the projects. 
+These are guided assignments that are "lightly graded" -- the bulk of the grade is based on good faith effort and completion. The worksheets are designed to help you practice material from class and prepare for the projects. There will be six worksheets over the course of the semester, worth 5% each.
 
 ### Projects: 30%
 
@@ -72,7 +72,7 @@ Extensions will be given in the event of extenuating circumstances, such as illn
 - From epidemiology: [Causal Inference: What If](https://miguelhernan.org/s/hernanrobins_WhatIf_2jan25.pdf) by Miguel Hernán and Jamie Robins
 - From machine learning: [Introduction to Causal Inference](https://www.bradyneal.com/Introduction_to_Causal_Inference-Dec17_2020-Neal.pdf) by Brady Neal
 - From computational social science: [The Effect](https://theeffectbook.net/index.html) by Nick Huntington-Klein
-- From statistics: [A First Course in Causal Inference](https://arxiv.org/abs/2305.18793) by Peng  Ding
+- From statistics: [A First Course in Causal Inference](https://arxiv.org/abs/2305.18793) by Peng Ding
 
 ## Academic Integrity and Collaboration
 
