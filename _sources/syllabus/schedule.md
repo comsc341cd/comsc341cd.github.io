@@ -5,10 +5,29 @@
 As this is a new course, the schedule may change throughout the semester to best accommodate your learning!
 ```
 
-In general, the due dates for assignments are as follows:
+## Due Dates
+
+In general, the due dates for assignments are as follows unless otherwise specified:
 
 - Worksheets: due at 11:55pm on **Mondays**
 - Projects: due at 11:55pm on **Thursdays**
+
+## Topics
+
+A list of topics we will cover can be found below. Note that topics may be subject to change.
+
+- Potential Outcomes 
+- Causal Graphs
+- Identification and Estimation
+- Randomized Experiments
+- Observational Studies
+- Instrumental Variables
+- Regression Discontinuities
+- Difference-in-Differences
+- Synthetic Controls
+- Causal Machine Learning
+
+---
 
 :::{list-table}
 :header-rows: 1
