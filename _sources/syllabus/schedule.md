@@ -54,14 +54,14 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>01/31</small>
 
 *   
-    - <small>02/03</small>
+    - <small>02/03</small><br>![](https://img.shields.io/badge/Office%20Hours:-ff7f0e) Bhargavi 6-7pm
     <br>![](https://img.shields.io/badge/Due:-d62728) [WS 1](ws1)
     <br>![](https://img.shields.io/badge/Due:-d62728) [Survey 1](https://www.gradescope.com/courses/950344/assignments/5680811)
     
     - <small>02/04</small>
     <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes I</u></b>
     <br>![](https://img.shields.io/badge/Released:-2ca02c) WS 2
-    - <small>02/05</small>
+    - <small>02/05</small><br>![](https://img.shields.io/badge/Office%20Hours:-ff7f0e) Bhargavi 6-7pm
     - <small>02/06</small>
     <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b>
     - <small>02/07</small>
