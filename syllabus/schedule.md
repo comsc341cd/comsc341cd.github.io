@@ -59,7 +59,8 @@ A list of topics we will cover can be found below. Note that topics may be subje
     <br>![](https://img.shields.io/badge/Due:-d62728) [Survey 1](https://www.gradescope.com/courses/950344/assignments/5680811)
     
     - <small>02/04</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes I</u></b>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1446144/mod_resource/content/1/lec02-potential-outcomes-starter.pdf
+)</li></ul>
     <br>![](https://img.shields.io/badge/Released:-2ca02c) WS 2
     - <small>02/05</small><br>![](https://img.shields.io/badge/Office%20Hours:-ff7f0e) Bhargavi 6-7pm
     - <small>02/06</small>
