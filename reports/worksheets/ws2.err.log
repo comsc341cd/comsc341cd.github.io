@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "/Users/tliu/Github/comsc341-cd/venv/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/tliu/Github/comsc341-cd/venv/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tliu/Github/comsc341-cd/venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tliu/.pyenv/versions/3.11.10/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/tliu/Github/comsc341-cd/venv/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/tliu/Github/comsc341-cd/venv/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/tliu/Github/comsc341-cd/venv/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def generate_observed_df(po_df, treatments):
+    """
+    Generates a dataframe of realized outcomes from a ground truth table of potential outcomes and treatment assignments.
+    The unobserved potential outcomes are set to np.nan.
+    
+    Args:
+        po_df (pd.DataFrame): a dataframe of potential outcomes with columns 'Y0' and 'Y1'
+        treatments (pd.Series): a series of treatment assignments with the same length as po_df
+
+    Returns:
+        pd.DataFrame: a dataframe of realized outcomes with columns 'T', 'Y0', 'Y1', and 'Y'
+    """
+    assert po_df.shape[0] == treatments.shape[0], "The number of rows in po_df and treatments must match"
+    
+    # TODO your code here
+    observed_df = po_df.copy()
+
+    return observed_df
+
+# Generate some simple test data, matching the example above
+treatments = pd.Series([0, 1, 0, 1])
+po_df = pd.DataFrame({'Y0': [1, 1, 1, 0], 'Y1': [1, 0, 0, 0]})
+observed_df = generate_observed_df(po_df, treatments)
+assert 'Y' in observed_df.columns, "The observed dataframe does not have a 'Y' column"
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAssertionError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[29], line 24[0m
+[1;32m     22[0m po_df [38;5;241m=[39m pd[38;5;241m.[39mDataFrame({[38;5;124m'[39m[38;5;124mY0[39m[38;5;124m'[39m: [[38;5;241m1[39m, [38;5;241m1[39m, [38;5;241m1[39m, [38;5;241m0[39m], [38;5;124m'[39m[38;5;124mY1[39m[38;5;124m'[39m: [[38;5;241m1[39m, [38;5;241m0[39m, [38;5;241m0[39m, [38;5;241m0[39m]})
+[1;32m     23[0m observed_df [38;5;241m=[39m generate_observed_df(po_df, treatments)
+[0;32m---> 24[0m [38;5;28;01massert[39;00m [38;5;124m'[39m[38;5;124mY[39m[38;5;124m'[39m [38;5;129;01min[39;00m observed_df[38;5;241m.[39mcolumns, [38;5;124m"[39m[38;5;124mThe observed dataframe does not have a [39m[38;5;124m'[39m[38;5;124mY[39m[38;5;124m'[39m[38;5;124m column[39m[38;5;124m"[39m
+
+[0;31mAssertionError[0m: The observed dataframe does not have a 'Y' column
+
