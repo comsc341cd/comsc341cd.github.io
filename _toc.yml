@@ -18,6 +18,7 @@ parts:
   - caption: Worksheets
     chapters:
       - file: worksheets/ws1.ipynb
+      - file: worksheets/ws2.ipynb
   
   # - caption: Projects
   #   chapters:
