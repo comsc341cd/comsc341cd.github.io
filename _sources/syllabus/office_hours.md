@@ -1,11 +1,6 @@
 (office_hours)=
 # Office Hours
 
-```{admonition} TODO
-:class: warning
-Office hours information will be posted once the beginning of the semester surveys are complete!
-```
-
 ### Bhargavi (she/her): Kendade 304
 
 - Mondays: 6-7pm
@@ -13,4 +8,8 @@ Office hours information will be posted once the beginning of the semester surve
 
 ### Tony (he/him): Clapp 207
 
-- To be announced!
+- Tuesdays: 2-3pm, 5-6pm
+- Wednesdays: 5-6pm
+- Thursdays: 1-2pm
+
+If these times don't work for you, please reach out via Ed or email and I'd be happy to set up a time.
