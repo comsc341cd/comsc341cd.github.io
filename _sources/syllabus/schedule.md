@@ -69,7 +69,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>02/10</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 4-5pm (Zoom)</li><li>Bhargavi 6-7pm</li></ul>
     ![](https://img.shields.io/badge/Due:-d62728) [WS 2](ws2)
     
-    - <small>02/11</small> <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1446144/mod_resource/content/1/lec02-potential-outcomes-starter.pdf)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>
+    - <small>02/11</small> <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1446853/mod_resource/content/3/lec03-potential-outcomes-ii-starter.pdf)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>
     ![](https://img.shields.io/badge/Released:-2ca02c) WS 3
     
     - <small>02/12</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 3:30-4:30pm</li><li>Bhargavi 6-7pm</li></ul>
