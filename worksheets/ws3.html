@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Worksheet 3 📊 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'worksheets/ws3';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Worksheet 2 🐼" href="ws2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/worksheets/ws3.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/worksheets/ws3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Worksheet 3 📊</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 3 📊</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-and-matplotlib-1-5-pts">1. Seaborn and Matplotlib [1.5 pts]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-technique-1-pt">2. The bootstrap technique [1 pt]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-interactivity-1-pt">3. Adding interactivity [1 pt]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-roadmap-cintron-et-al-2021-1-pt">4. Causal roadmap: Cintron et al. 2021 [1 pt]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-0-5-pts">5. Reflection [0.5 pts]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="worksheet-3">
+<span id="ws3"></span><h1>Worksheet 3 📊<a class="headerlink" href="#worksheet-3" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Visualization and the bootstrap</p>
+<p class="attribution">—TODO your name here</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here</p></li>
+</ul>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="learning-objectives">
+<h1>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Become familiar with <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> for visualizing data</p></li>
+<li><p>Learn to use <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> for creating interactive plots</p></li>
+<li><p>Develop an intuition for bootstrap sampling</p></li>
+<li><p>Read and reflect on a real-world case study using the causal roadmap</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="seaborn-and-matplotlib-1-5-pts">
+<h1>1. Seaborn and Matplotlib [1.5 pts]<a class="headerlink" href="#seaborn-and-matplotlib-1-5-pts" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html#quick-start">matplotlib</a> and <a class="reference external" href="https://seaborn.pydata.org/tutorial/introduction.html">seaborn</a> are two of the most popular libraries for creating visualizations in Python, with seaborn being a higher-level library built on top of matplotlib. We’ll use seaborn whenever possible, but to have the greatest degree of contol over your visualizations, it is important to also understand the fundamentals of matplotlib.</p>
+<p>We’ll explore both libraries in this worksheet through an exploration of the <a class="reference external" href="https://www.gapminder.org/">Gapminder</a> dataset of GDP and life expectancy across countries.</p>
+<p>The following official resources are good starting references for both libraries. Read through the sections as indicated in the reading notes below.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html#quick-start">matplotlib quick start</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial/function_overview.html">seaborn plotting overview</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial/data_structure.html">seaborn data structures</a></p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Reading notes</p>
+<ul class="simple">
+<li><p>If you are new to matplotlib, I would suggest reading “A simple example,” “Parts of a figure,” and “Coding style” sections of the matplotlib quickstart, trying out the code examples in a cell below, and using the rest of the guide as reference for when you need to customize your plots.</p>
+<ul>
+<li><p>In particular, the “Coding style” section is useful for understanding matplotlib examples that differ based on whether they are using the “object-oriented” or “pyplot” approach.</p></li>
+</ul>
+</li>
+<li><p>From the seaborn plotting overview, we will primarily be using axes-level functions as opposed to the figure-level functions in order for more seamless integration with the matplotlib API.</p>
+<ul>
+<li><p>Also note that the seaborn axes-level function examples use the object-oriented approach to matplotlib where figure <code class="docutils literal notranslate"><span class="pre">f</span></code> and axes <code class="docutils literal notranslate"><span class="pre">axs</span></code> objects are explicitly created.</p></li>
+</ul>
+</li>
+<li><p>From the seaborn data structures reference: the “Long-form vs. wide-form data” section will be most useful. The data we will be working with in the course will primarily be in the “long” format, where each variable is a column and each observation is a row. Thus we’ll frequently be using the <code class="docutils literal notranslate"><span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">hue</span></code> parameters in our seaborn functions.</p></li>
+</ul>
+</div>
+<p>First let’s import both seaborn and matplotlib using their standard import idioms along with pandas and numpy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># standard import aliases for seaborn and matplotlib</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># TODO try out code examples in the documentation here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll load in the gapminder dataset of GDP and life expectancy across countries. Below are dsecriptions of the columns in the dataset:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span></code> - The country</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continent</span></code> - The continent the country is in</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">year</span></code> - The year data was collected. Ranges from 1952 to 2007 in increments of 5 years</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lifeExp</span></code> - Life expectancy at birth, in years</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop</span></code> - Population</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> - GDP per capita (US$, inflation-adjusted)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the gapminder dataset and peek at its columns</span>
+<span class="n">gapminder_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/gapminder.csv&quot;</span><span class="p">)</span>
+<span class="n">gapminder_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>1.1.</strong> Provide an example of a <strong>causal</strong> question that could be asked with the variables in the dataset.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The gapminder dataset is an example where we have multiple observations per sample over time, as opposed to having a single observation per sample. We’ll learn about causal study designs that can be used to handle time series data in the second half of the course.</p>
+</div>
+<p>Seaborn has tight integration with pandas, which allows us to use pandas to filter and manipulate the data before passing it to seaborn. Let’s generate a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html#seaborn.scatterplot">sns.scatterplot</a> of GDP per capita vs. life expectancy in the year 2007.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select out the data for the year 2007</span>
+<span class="n">gapminder_2007_df</span> <span class="o">=</span> <span class="n">gapminder_df</span><span class="p">[</span><span class="n">gapminder_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2007</span><span class="p">]</span>
+
+<span class="c1"># Notice how we can use the `data` parameter to pass in the dataframe, and the `x` and `y` parameters to specify the columns to plot.</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gapminder_2007_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GDP per capita vs. life expectancy in 2007&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;GDP per capita (USD)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Life expectancy (years)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a7a571f347e64016ad4bfa0f3c0554590842bb6122610f293de9d1c44689d61f.png" src="../_images/a7a571f347e64016ad4bfa0f3c0554590842bb6122610f293de9d1c44689d61f.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Be sure to follow the basics of good figure design when creating your plots, which includes having a title, axis labels with units, and a legend.</p>
+</div>
+<p>Additionally, many seaborn plots take a <code class="docutils literal notranslate"><span class="pre">hue</span></code> parameter, which allows us to group the plots by a column in our dataframe and color them differently – this is analogous to the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation in pandas. Let’s color the points by continent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The alpha parameter controls the transparency of the points, which is useful for seeing overlapping data.</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gapminder_2007_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;continent&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GDP per capita vs. life expectancy in 2007&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;GDP per capita (USD)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Life expectancy (years)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a83e7a82adf9270eea9bb3c4da5bd58b3b2080381560a82abc7a082a71498baa.png" src="../_images/a83e7a82adf9270eea9bb3c4da5bd58b3b2080381560a82abc7a082a71498baa.png" />
+</div>
+</div>
+<p>This pattern of passing in a dataframe via <code class="docutils literal notranslate"><span class="pre">data</span></code>, specifying the columns to plot via <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> is common across seaborn functions.</p>
+<p><strong>1.2.</strong> Generate a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.lineplot.html#seaborn.lineplot">sns.lineplot</a> of life expectancy over time for three countries of your choice, where the lines are colored by country.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+
+<span class="c1"># three countries to plot</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll also frequently visualize the shape or distribution of a variable through histograms or kernel density estimates (kde plots). Seaborn again provides convenient functions for this.</p>
+<p>Let’s again look at the 2007 data, but now examine the distribution of life expectancy for three continents through a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.histplot.html">sns.histplot</a>. Here the y-axis will be the frequency of data points in a discrete number of bins. Experiment with the <code class="docutils literal notranslate"><span class="pre">bins</span></code> parameter, which controls the number of bins to use in the histogram, to see how it affects the ease of visualizing the different distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">continent_2007_df</span> <span class="o">=</span> <span class="n">gapminder_2007_df</span><span class="p">[</span><span class="n">gapminder_2007_df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;Africa&#39;</span><span class="p">])]</span>
+<span class="c1"># Notes that we only need to specify the x parameter, as the y-axis data count</span>
+<span class="c1"># TODO experiment with the lower and higher values of the bins parameter. </span>
+<span class="c1"># Do different settings make it easier or harder to see the shape of the distribution?</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">continent_2007_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;continent&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of Life Expectancy in 2007: Asia, Europe, Africa&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Life Expectancy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b17a7bd6333ff2f64ab3fabf2f1d6dae90a098849dd5c1204a86e25ae4885483.png" src="../_images/b17a7bd6333ff2f64ab3fabf2f1d6dae90a098849dd5c1204a86e25ae4885483.png" />
+</div>
+</div>
+<p>It is a little difficult to see the shape of the distribution with the bins overlaid on top of each other, so let’s use a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html">sns.kdeplot</a> to produce an another view on the data. KDE plots visualize the distribution of observations, much like a histogram, but apply a smoothing transformation to make the shape of the distribution easier to see.</p>
+<p><strong>1.3.</strong> Create a kde plot for the life expectancy of the three continents below, using the same parameters as the histogram above, except omit the <code class="docutils literal notranslate"><span class="pre">bins</span></code> parameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>1.4.</strong> Briefly describe differences that you observe between the distributions of life expectancy for the three continents. Some questions to consider:</p>
+<ul class="simple">
+<li><p>Around what values are the peaks of the distributions (central tendency)?</p></li>
+<li><p>Do some of the distributions seem more or less spread out than others (variability)?</p></li>
+<li><p>Do any of the distributions seem to have multiple peaks (multimodality)?</p></li>
+<li><p>Do any of the distributions seem to have “tails” where there are fewer observations at relatively extreme values for the continent?</p></li>
+</ul>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>1.5</strong> We’ve explored two of the three types of <a class="reference external" href="https://seaborn.pydata.org/tutorial.html#plotting-functions">plotting functions</a> that seaborn provides:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial/relational.html">Visualizing statistical relationships</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial/distributions.html">Visualizing distributions of data</a></p></li>
+</ul>
+<p>Let’s now explore the third type of plotting function in an more open-ended way. Pick a seaborn plotting function that can be used to visualize categorical data, linked below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://seaborn.pydata.org/tutorial/categorical.html">Visualizing categorical data</a></p></li>
+</ul>
+<p>In your response, briefly describe the functionality of the plotting function you chose, and give an <strong>descriptive</strong> question that you could answer with the plot. Then, generate a plot of your choice using the function, and describe what the plot is revealing about the data.</p>
+<ul class="simple">
+<li><p>Categorical variables in the dataset:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">year</span></code> (can be used as a categorical variable, depending on the question we want to ask!)</p></li>
+</ul>
+</li>
+<li><p>Continuous variables in the dataset:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lifeExp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your categorical plot code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-bootstrap-technique-1-pt">
+<h1>2. The bootstrap technique [1 pt]<a class="headerlink" href="#the-bootstrap-technique-1-pt" title="Link to this heading">#</a></h1>
+<p>Here, we’ll explore the bootstrap technique, which is a powerful technique for helping us quantify uncertainty in any <strong>estimates</strong> we produce from our data.</p>
+<p>The goal whenever we’re producing an estimate from our data is to learn something about the underyling population from which our data was sampled. These statistics, like the estimated expectations we’ve been calculating, tell us something about the population. For example, suppose we’re healthcare policy analysts trying to understand the average cholesterol levels in the US adult population. In an ideal world, we would measure the cholesterol level of every person in the US – but that is not practical. Instead, we collect a smaller sample of people, and calculate the average cholesterol level in our sample. Here, we’ll be re-using the NHANES dataset from last worksheet as our cholesterol sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nhanes.load</span> <span class="kn">import</span> <span class="n">load_NHANES_data</span>
+
+<span class="n">nhanes_df</span> <span class="o">=</span> <span class="n">load_NHANES_data</span><span class="p">()</span>
+
+<span class="c1"># filter to adults, and only include those with a valid cholesterol measurement</span>
+<span class="n">cholesterol_df</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="p">[</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;AgeInYearsAtScreening&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">]</span>
+<span class="n">cholesterol_df</span> <span class="o">=</span> <span class="n">cholesterol_df</span><span class="p">[</span><span class="n">cholesterol_df</span><span class="p">[</span><span class="s1">&#39;TotalCholesterolMgdl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()][[</span><span class="s1">&#39;AgeInYearsAtScreening&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCholesterolMgdl&#39;</span><span class="p">]]</span>
+
+<span class="n">cholesterol_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5176, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since our sample of roughly 5,000 people is just one of many different samples that could have been collected, there will be some variability in the estimates we get from different samples. We’d like to quantify this variability to understand how much uncertainty there is in our estimate.</p>
+<p>The problem is that we only have one sample. As a thought experiment however, we can imagine running our data collection process many times, each time collecting a sample of the same size from the same population. Then, we could calculate the estimate we’re interested in – here, the mean cholesterol level in U.S. adults – for each of these samples, and look at the distribution of these estimates. This distribution of estimates is called the <strong>sampling distribution</strong> of the estimate, and the shape of the sampling distribution tells us about the uncertainty in our estimate.</p>
+<p>This thought experiment is where the bootstrap technique comes in. The bootstrap helps us understand how much our estimates might vary if we had collected different samples from the same population. To do this, we use the following procedure:</p>
+<ol class="arabic simple">
+<li><p>We treat our sample as if it represents the whole population</p></li>
+<li><p>We create many new <strong>bootstrap samples</strong> by randomly selecting from our data <strong>with replacement</strong> (e.g. the same observation can be selected multiple times)</p></li>
+<li><p>For each bootstrap sample, we calculate our estimate of interest (e.g. the mean cholesterol level)</p></li>
+<li><p>By looking at how this estimate varies across our bootstrap samples, we can estimate our uncertainty.</p></li>
+</ol>
+<p>As long as we generate enough bootstrap samples (which we can easily do with modern simulation tools and computing power), the bootstrap sampling distribution will give us a good approximation of the true sampling distribution of the estimate. Let’s begin by taking a look at the estimated expectation of cholesterol in our sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average cholesterol in our sample: </span><span class="si">{</span><span class="n">cholesterol_df</span><span class="p">[</span><span class="s1">&#39;TotalCholesterolMgdl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mg/dL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average cholesterol in our sample: 186.9 mg/dL
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll implement step 2 of the bootstrap technique above. Pandas has a convenient <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html">df.sample method</a> that we can use to generate bootstrap samples.</p>
+<p>The following call will generate a single bootstrap sample of a dataframe:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># frac=1 means we&#39;re generating a sample of the same size as the original dataframe</span>
+<span class="c1"># replace=True means we&#39;re sampling with replacement</span>
+<span class="n">bootstrap_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>2.1.</strong> Complete the function below that generates bootstrap samples of a dataframe, returning them as a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_bootstrap_dfs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_bootstraps</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bootstraps the dataframe `n_bootstraps` times, where each bootstrap sample is the same number of rows as the original dataframe.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): the dataframe to bootstrap</span>
+<span class="sd">        n_bootstraps (int): the number of bootstraps to generate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[pd.DataFrame]: a list of bootstrapped dataframes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bootstrap_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># TODO your code here</span>
+
+    <span class="k">return</span> <span class="n">bootstrap_dfs</span>
+
+<span class="c1"># Create a simple dataframe to test</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;review_scores&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+                   <span class="s1">&#39;review_text&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;I liked it&#39;</span><span class="p">,</span> <span class="s1">&#39;It was awful&#39;</span><span class="p">,</span> <span class="s1">&#39;Bland&#39;</span><span class="p">,</span> <span class="s1">&#39;Pretty good&#39;</span><span class="p">]})</span>
+
+<span class="n">bootstrap_dfs</span> <span class="o">=</span> <span class="n">generate_bootstrap_dfs</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">bootstrap_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;Each bootstrap sample should be the same size as the original dataframe&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">22</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;review_scores&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+<span class="g g-Whitespace">     </span><span class="mi">19</span>                    <span class="s1">&#39;review_text&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;I liked it&#39;</span><span class="p">,</span> <span class="s1">&#39;It was awful&#39;</span><span class="p">,</span> <span class="s1">&#39;Bland&#39;</span><span class="p">,</span> <span class="s1">&#39;Pretty good&#39;</span><span class="p">]})</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">bootstrap_dfs</span> <span class="o">=</span> <span class="n">generate_bootstrap_dfs</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">22</span> <span class="k">assert</span> <span class="n">bootstrap_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;Each bootstrap sample should be the same size as the original dataframe&quot;</span>
+
+<span class="ne">IndexError</span>: list index out of range
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate 5000 bootstrap samples of the cholesterol dataframe, may take 10-15 seconds to run</span>
+<span class="c1"># TODO your code here</span>
+<span class="n">bootstrap_cholesterol_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2.2.</strong> Next, we’ll perform step 3 of the bootstrap technique above, calculating the estimated expectation (mean) cholesterol level for each bootstrap sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_bootstrap_means</span><span class="p">(</span><span class="n">bootstrap_dfs</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the mean of a column for each bootstrap sample in a list of dataframes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        bootstrap_dfs (list[pd.DataFrame]): a list of bootstrapped dataframes</span>
+<span class="sd">        column (str): the column to calculate the mean of</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[float]: a list of means (estimated expectations)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+<span class="n">bootstrap_cholesterol_means</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then visualize the shape of our bootstrap sampling distribution. Create a <code class="docutils literal notranslate"><span class="pre">sns.histplot</span></code> of the bootstrap means below, where the <code class="docutils literal notranslate"><span class="pre">x</span></code> parameter is the list of bootstrap means and the <code class="docutils literal notranslate"><span class="pre">kde</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to visualize the shape of the distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You’ll notice that the sampling distribution is approximately bell-shaped (Normal distribution), which is a property of the bootstrap sampling distribution when the original sample is large and representative of the population. This then allows us to use the bootstrap sampling distribution to understand how much uncertainty there is in our estimate of average cholesterol level in the U.S. adult population. We can do this visually by inspecting the spread of the distribution above, and we can also quantify this by computing <strong>confidence intervals</strong> on our estimate.</p>
+<p>You will typically see 95% confidence intervals reported in research papers. The 95% confidence interval tells us that if we repeated our sampling process many times and computed a 95% confidence interval each time, 95% of those intervals would contain the true population average cholesterol level.</p>
+<p><strong>2.3</strong>. To compute the 95% confidence interval, we can take the 2.5th and 97.5th percentiles of the bootstrap sampling distribution via <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.percentile.html">np.percentile</a>. Determine the 2.5th and 97.5th percentiles of the bootstrap cholesterol means below, using the <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">q</span></code> parameters of <code class="docutils literal notranslate"><span class="pre">np.percentile</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+<span class="c1"># NOTE: the percentile function takes percentiles in the range [0, 100], not fractions</span>
+<span class="n">lower_ci</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">upper_ci</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average cholesterol level in U.S. adults: </span><span class="si">{</span><span class="n">cholesterol_df</span><span class="p">[</span><span class="s1">&#39;TotalCholesterolMgdl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mg/dL&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% Confidence Interval: [</span><span class="si">{</span><span class="n">lower_ci</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">upper_ci</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">] mg/dL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The narrower the confidence interval, the more precise our estimate is (decreased uncertainty and variance). One secondary goal we have when designing and analyzing studies is to make our estimates as precise as possible. The most straightforward way to do this is to increase our sample size – but collecting more data is not often not practical! We’ll explore how sample size affects the precision of our estimates in the next section.</p>
+<div class="note admonition">
+<p class="admonition-title">Takeaways</p>
+<p>The bootstrap is a powerful technique that helps us understand uncertainty in our estimates by simulating what would happen if we could collect many different samples from the population:</p>
+<ul class="simple">
+<li><p>Instead of collecting new samples (which is often not possible), we create new samples by resampling from our existing data</p></li>
+<li><p>By looking at how our estimates vary across these bootstrap samples, we can understand how much uncertainty exists in our original estimate</p></li>
+<li><p>This gives us practical tools like confidence intervals without requiring complex mathematical derivations</p></li>
+<li><p>The wider the range of values we see in our bootstrap samples, the more uncertainty we have in our estimate</p></li>
+</ul>
+<p>This is just a high-level overview of the bootstrap for the purposes of this course, and we’ve skipped over many theoretical properties and details. If you’re interested in learning more, let me know and I can recommend some resources!</p>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="adding-interactivity-1-pt">
+<h1>3. Adding interactivity [1 pt]<a class="headerlink" href="#adding-interactivity-1-pt" title="Link to this heading">#</a></h1>
+<p>In this section, we’ll learn how to make our visualizations interactive using <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code>. These dynamic widgets can help us build intuition about how different parameters affect our analysis.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> library functionality is extensive, but for our visualizations it will be sufficient for us to use the <code class="docutils literal notranslate"><span class="pre">interact</span></code>/<code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> decorators to add interactivity without too much extra code. Read about the interact functionality below, focusing on the first three sections: “Basic <code class="docutils literal notranslate"><span class="pre">interact</span></code>,” “Fixing arguments using <code class="docutils literal notranslate"><span class="pre">fixed</span></code>”, and “Widget abbreviations”.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/examples/Using%20Interact.html">Using Interact</a></p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Reading Notes</p>
+<ul class="simple">
+<li><p>I suggest reading the “Basic <code class="docutils literal notranslate"><span class="pre">interact</span></code>,” “Fixing arguments using <code class="docutils literal notranslate"><span class="pre">fixed</span></code>”, and “Widget abbreviations” sections, and leaving the rest for reference as they contain extra functionality that aren’t as relevant to our purposes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> behaves the exact same way as <code class="docutils literal notranslate"><span class="pre">interact</span></code>, except that it requires the user to manually update the widget value by clicking on it. In all the examples below, we’ll use <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> so that the widget values are not updated automatically as we change the parameters.</p></li>
+<li><p>The most concise usage of <code class="docutils literal notranslate"><span class="pre">interact</span></code>/<code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> is to use them as decorators, which will automatically create a widget for each parameter in the function. You can read more about Python decorators at <a class="reference external" href="https://www.learnpython.org/en/Decorators">this link</a>, but for our purposes it is sufficient to know that we can use them to add interactivity to our functions by mirroring the parameter names in our plotting functions.</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># standard imports for ipywidgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interact_manual</span><span class="p">,</span> <span class="n">fixed</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="c1"># TODO can try out code examples in the documentation here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now use the <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> decorator to add interactivity to our bootstrap exploration. The parameters passed to the decorator will provide a dropdown menu for each parameter in the function in the widget, which you can see in the examplewidget below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate a list of sample fractions to use for the dropdown menu</span>
+<span class="n">sample_fracs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="c1"># the parameter name in the function is the same as the parameter name in the decorator</span>
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">sample_frac</span><span class="o">=</span><span class="n">sample_fracs</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">print_subsample_mean</span><span class="p">(</span><span class="n">sample_frac</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculating mean cholesterol of a random subsample of </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_frac</span><span class="o">*</span><span class="n">cholesterol_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2"> people&quot;</span><span class="p">)</span>
+
+    <span class="n">subsample</span> <span class="o">=</span> <span class="n">cholesterol_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="n">sample_frac</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average cholesterol level in U.S. adults: </span><span class="si">{</span><span class="n">subsample</span><span class="p">[</span><span class="s1">&#39;TotalCholesterolMgdl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mg/dL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3.1</strong> Complete the function below that displays the bootstrap sampling distribution of cholesterol levels for a given sample fraction. How does the spread of the sampling distribution change as we change the sample size? Do our estimates become more or less precise as we increase the sample size?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact_manual</span><span class="p">(</span><span class="n">sample_frac</span><span class="o">=</span><span class="n">sample_fracs</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_bootstrap_sampling_distribution</span><span class="p">(</span><span class="n">sample_frac</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculating mean cholesterol from a subsample of </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">sample_frac</span><span class="o">*</span><span class="n">cholesterol_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2"> people&quot;</span><span class="p">)</span>
+
+    <span class="n">TODO</span> <span class="n">your</span> <span class="n">code</span> <span class="n">here</span><span class="p">:</span> <span class="n">feel</span> <span class="n">free</span> <span class="n">to</span> <span class="n">copy</span> <span class="ow">and</span> <span class="n">paste</span> <span class="kn">from</span> <span class="nn">earlier</span> <span class="n">parts</span> <span class="n">of</span> <span class="n">the</span> <span class="n">worksheet</span>
+
+    <span class="n">subsample</span> <span class="n">the</span> <span class="n">cholesterol</span> <span class="n">dataframe</span>
+    <span class="n">subsample_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># generate bootstrap samples from the subsampled dataframe</span>
+    <span class="c1"># NOTE: you can use n_bootstraps=1000 to speed up the simulation</span>
+    <span class="n">bootstrap_dfs</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># calculate the bootstrap means</span>
+    <span class="n">bootstrap_cholesterol_means</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Print the subsample mean and confidence interval</span>
+    <span class="n">lower_ci</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">upper_ci</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average cholesterol level in U.S. adults: </span><span class="si">{</span><span class="n">subsample_df</span><span class="p">[</span><span class="s1">&#39;TotalCholesterolMgdl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mg/dL&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% Confidence Interval: [</span><span class="si">{</span><span class="n">lower_ci</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">upper_ci</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">] mg/dL&quot;</span><span class="p">)</span>
+
+    <span class="c1"># plot the bootstrap sampling distribution using sns.histplot</span>
+    
+    <span class="c1"># NOTE: this fixes the x-axis limits to be the same for all plots, making it easier to compare</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">182</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3.2.</strong> Next, let’s add interactivity to one of the gapminder plots we created earlier. Select one of the plots we created in question 1 and add interactivity with two parameters to your widget.</p>
+<p>Some suggested parameters for <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> are listed given below as well. Describe your choices for the parameters and state another <strong>descriptive</strong> question that your widget can help answer. For example, “How does the relationship between GDP and life expectancy vary across the two selected countries in the year 2007?”</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can use these decorator parameters as a starting point, but feel free to change them</span>
+
+<span class="c1"># all unique countries in the gapminder dataset</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">gapminder_df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># all unique continents in the gapminder dataset</span>
+<span class="n">continents</span> <span class="o">=</span> <span class="n">gapminder_df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># all unique years in the gapminder dataset</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">gapminder_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># TODO your code here</span>
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">param1</span><span class="o">=</span><span class="n">countries</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="n">countries</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">interactive_gapminder_plot</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="causal-roadmap-cintron-et-al-2021-1-pt">
+<h1>4. Causal roadmap: Cintron et al. 2021 [1 pt]<a class="headerlink" href="#causal-roadmap-cintron-et-al-2021-1-pt" title="Link to this heading">#</a></h1>
+<p>Read <a class="reference external" href="https://www.evidenceforaction.org/roadmap-causal-inference">“A Roadmap for Causal Inference” by Cintron et al. 2021</a> and answer the following questions:</p>
+<div class="admonition-reading-notes admonition">
+<p class="admonition-title">Reading notes</p>
+<ul class="simple">
+<li><p>Note on how the steps of the causal roadmap are broken out a bit more granularly than we’ve been discussing in class:</p>
+<ul>
+<li><p>Their steps 1-2 are our “prior knowledge” step</p></li>
+<li><p>Their step 3 is our “question” step</p></li>
+<li><p>Their steps 4-5 are our “design” step</p></li>
+</ul>
+</li>
+<li><p>The key identification statement is at the end of step 1:</p></li>
+</ul>
+<blockquote>
+<div><p>A critical component of the assumed causal model is that neighborhoods receiving greening were selected effectively randomly from among those that were eligible for the program; eligibility was determined by the average income of neighborhood residents; and receiving greening was otherwise unrelated to characteristics of neighborhood residents.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>For a more technical walkthrough of the Causal Roadmap, see <a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4077670/">Petersen and van der Laan 2015: Causal Models and Learning from Data</a></p></li>
+</ul>
+</div>
+<p><strong>4.1.</strong> State what the measured treatment <span class="math notranslate nohighlight">\(T\)</span> and outcome <span class="math notranslate nohighlight">\(Y\)</span> are in the study – be as specific as possible.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>4.2</strong> Draw the causal graph that was detailed step 1 of the Causal Roadmap, with <strong>two</strong> of the their listed potential confounders present. Give each node a variable name (e.g. <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(C_1\)</span>, <span class="math notranslate nohighlight">\(C_2\)</span>) and indicate what each variable represents.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="tip admonition">
+<p class="admonition-title">Submission note</p>
+<p>For this question, you can either hand-draw the graph on paper and submit a photo or use an online tool of your choice. Please make sure the image is submitted as a separate file on Gradescope.</p>
+<p><strong>Note:</strong> due to the snow day, we haven’t discussed how to formally draw causal graphs yet. You can use the examples from the slides so far as a reference, and the graph does not need to be perfect – this will prime us for class on Tuesday when we’ll be discussing causal graphs in more detail.</p>
+</div>
+<p><strong>4.3</strong> Are there any potential confounders (either in the authors’ list or ones you can think of) that may be difficult to measure? Briefly comment on why measuring them may be hard.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>4.4</strong> Looking towards the interpretation of the greenery study, what population would the results be applicable to? E.g. would it be generalizable to all neighborhoods in the United States, or would it be a more specific subset?</p>
+<p><strong>Your Response</strong>: TODO</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reflection-0-5-pts">
+<h1>5. Reflection [0.5 pts]<a class="headerlink" href="#reflection-0-5-pts" title="Link to this heading">#</a></h1>
+<p><strong>5.1</strong> How much time outside of class did it take you to complete this worksheet?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>5.2</strong> What is one thing you have a better understanding of after completing this worksheet and going through the class content this week? This could be about the concepts, the reading, or the code.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>5.3</strong> What questions or points of confusion do you have about the material covered covered in the past week of class?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don’t forget to check that all of the TODOs are filled in before you submit!</p>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Free data from World Bank via <a class="reference external" href="http://Gapminder.org">Gapminder.org</a>, <a class="reference external" href="https://www.gapminder.org/free-material/">CC-BY-4.0 license</a>. Read more at <a class="reference external" href="https://www.gapminder.org/data/">https://www.gapminder.org/data/</a></p></li>
+<li><p>Gapminder data cleaned and organized via the <a class="reference external" href="https://github.com/causaldata">causaldata</a> package, produced by Nick Huntington-Klein.</p></li>
+<li><p>Intuition for explaining the bootstrap from Zach Duey’s blog post, <a class="reference external" href="https://zduey.github.io/posts/applying-nonparametric-bootstrap.html">Applying Nonparametric Bootstrap</a></p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./worksheets"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ws2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Worksheet 2 🐼</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 3 📊</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-and-matplotlib-1-5-pts">1. Seaborn and Matplotlib [1.5 pts]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-technique-1-pt">2. The bootstrap technique [1 pt]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-interactivity-1-pt">3. Adding interactivity [1 pt]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-roadmap-cintron-et-al-2021-1-pt">4. Causal roadmap: Cintron et al. 2021 [1 pt]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-0-5-pts">5. Reflection [0.5 pts]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
