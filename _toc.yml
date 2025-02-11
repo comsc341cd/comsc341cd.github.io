@@ -19,6 +19,7 @@ parts:
     chapters:
       - file: worksheets/ws1.ipynb
       - file: worksheets/ws2.ipynb
+      - file: worksheets/ws3.ipynb
   
   # - caption: Projects
   #   chapters:
