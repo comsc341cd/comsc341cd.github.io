@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -510,7 +510,7 @@ T = \begin{cases}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\widehat{\text{ATE}} = E[Y(1) - Y(0)] \xrightarrow[]{\text{Identification}} \; &amp;E[Y | T=1] - E[Y | T=0]\\
+\text{ATE} = E[Y(1) - Y(0)] \xrightarrow[]{\text{Identification}} \; &amp;E[Y | T=1] - E[Y | T=0]\\
 E[Y | T=1] - E[Y | T=0] \; \xrightarrow[]{\text{Estimation}} \; &amp;\hat{E}[Y | T=1] - \hat{E}[Y | T=0]\\ 
 =&amp;\hat{P}(\text{voted='Yes'} \mid \text{treatment='Neighbors'})  - \hat{P}(\text{voted='Yes'} \mid \text{treatment='Civic Duty'})
 \end{align*}
