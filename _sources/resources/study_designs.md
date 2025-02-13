@@ -17,7 +17,7 @@
     - <ul><li>Consistency</li><li>No interference</li></ul>
 
 *
-    - **Assumptions ensured by design**
+    - **Assumptions ensured**
     - <ul><li>Exchangeability</li></ul>
 
 *
