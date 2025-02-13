@@ -69,12 +69,14 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>02/10</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 4-5pm (Zoom)</li><li>Bhargavi 6-7pm</li></ul>
     ![](https://img.shields.io/badge/Due:-d62728) [WS 2](ws2)
     
-    - <small>02/11</small> <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b><ul style="margin-top:-1em;"><li>[[Starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1447880/mod_resource/content/1/lec03-potential-outcomes-ii-starter-updated.pdf)</li><li>[[Complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1448069/mod_resource/content/1/lec03-potential-outcomes-ii.pdf)</li><li>[Activity 3](activity3)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>
+    - <small>02/11</small> <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1447880/mod_resource/content/1/lec03-potential-outcomes-ii-starter-updated.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1448069/mod_resource/content/1/lec03-potential-outcomes-ii.pdf)</li><li>[Activity 3](activity3)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>
     ![](https://img.shields.io/badge/Released:-2ca02c) [WS 3](ws3)
     
     - <small>02/12</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 3:30-4:30pm</li><li>Bhargavi 6-7pm</li></ul>
-    - <small>02/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Estimation and Stratification</u></b><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 1-2pm</li></ul>
+    - <small>02/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Estimation</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1448412/mod_resource/content/1/lec04-estimation-bootstrap-starter.pdf)</li><li>[[starter] plotting demo](plotting_demo)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>
     - <small>02/14</small>
+
+
 
 *   
     - <small>02/17</small>
