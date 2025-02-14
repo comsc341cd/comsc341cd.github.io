@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Causal Study Designs &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Causal Catalog &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -57,7 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'resources/study_designs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'resources/catalog';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Worksheet 1 🎲" href="../worksheets/ws1.html" />
@@ -183,7 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="submit.html">How to Run and Submit</a></li>
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Study Designs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Catalog</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
 <ul class="nav bd-sidenav">
@@ -263,7 +263,7 @@
       
       
       
-      <li><a href="../_sources/resources/study_designs.md" target="_blank"
+      <li><a href="../_sources/resources/catalog.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -347,7 +347,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Causal Study Designs</h1>
+    <h1>Causal Catalog</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -357,8 +357,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-studies-to-come">More studies to come!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#study-designs">Study Designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-studies-to-come">More studies to come!</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -370,10 +373,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="causal-study-designs">
-<span id="study-designs"></span><h1>Causal Study Designs<a class="headerlink" href="#causal-study-designs" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="causal-catalog">
+<span id="catalog"></span><h1>Causal Catalog<a class="headerlink" href="#causal-catalog" title="Link to this heading">#</a></h1>
+<!-- ```{contents}
+:local:
+:depth: 1
+``` 
+-->
+<section id="study-designs">
+<h2>Study Designs<a class="headerlink" href="#study-designs" title="Link to this heading">#</a></h2>
 <section id="randomized-experiments">
-<h2>Randomized Experiments<a class="headerlink" href="#randomized-experiments" title="Link to this heading">#</a></h2>
+<h3>Randomized Experiments<a class="headerlink" href="#randomized-experiments" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"></th>
@@ -390,7 +400,7 @@ document.write(`
 </td>
 </tr>
 <tr class="row-even"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Average treatment effect: ATE</li></ul>
+<td><ul><li>Average treatment effect (ATE)</li></ul>
 </td>
 </tr>
 </tbody>
@@ -403,8 +413,10 @@ document.write(`
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>- <br> - <br> -</p></td>
-<td><p>- <br> - <br> -</p></td>
+<tr class="row-even"><td><ul><li>Not having to worry about confounders</li><li>Ability to make causal inferences!</li><li>No bias due to confounding</li><li>Exchangeability is guaranteed</li><li>Easier to generalize results</li></ul>
+</td>
+<td><ul><li>Expensive 💰and time consuming ⏰</li><li>Giving people a placebo :(</li><li>Hard to maintain randomness completely</li><li>Ethical constraints</li><li>May be difficult to get a large number of participants</li><li>Compliance/human aspect of reacting to treatment</li><li>Not feasible in a lot of scenarios</li></ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -412,7 +424,8 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="more-studies-to-come">
-<h2>More studies to come!<a class="headerlink" href="#more-studies-to-come" title="Link to this heading">#</a></h2>
+<h3>More studies to come!<a class="headerlink" href="#more-studies-to-come" title="Link to this heading">#</a></h3>
+</section>
 </section>
 </section>
 
@@ -480,8 +493,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-studies-to-come">More studies to come!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#study-designs">Study Designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-studies-to-come">More studies to come!</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
