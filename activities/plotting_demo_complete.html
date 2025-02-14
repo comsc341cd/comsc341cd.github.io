@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -450,14 +450,11 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">goose_samples</span><span class="o">.</span><span class="n">shape</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">goose_samples</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">goose_samples</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Count&#39;&gt;
-</pre></div>
-</div>
 <img alt="../_images/f096efd8e453a143e9f66b276e826021f24102824bf418d750e32c96d5d35e32.png" src="../_images/f096efd8e453a143e9f66b276e826021f24102824bf418d750e32c96d5d35e32.png" />
 </div>
 </div>
@@ -468,14 +465,11 @@ document.write(`
 
 <span class="c1"># in reality, we don&#39;t have access to the &quot;true&quot; distribution, which is why it&#39;s commented out</span>
 <span class="c1">#sns.histplot(goose_samples)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">goose_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">goose_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x1263f9950&gt;
-</pre></div>
-</div>
 <img alt="../_images/39703f0717db3983aacd33bb6ff175d1d9157ed5f557e5380db80572dfe23775.png" src="../_images/39703f0717db3983aacd33bb6ff175d1d9157ed5f557e5380db80572dfe23775.png" />
 </div>
 </div>
@@ -500,14 +494,11 @@ document.write(`
 <span class="c1"># as our n_bootstraps increase, we&#39;re able to see the spread of the estimate</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">bootstrap_means</span><span class="p">)</span>
 <span class="c1"># fix the xaxis</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8.0, 12.0)
-</pre></div>
-</div>
 <img alt="../_images/01ea958c0dbed41827187a4acda81f6e52059d2aa154e988827f03533cc2adcf.png" src="../_images/01ea958c0dbed41827187a4acda81f6e52059d2aa154e988827f03533cc2adcf.png" />
 </div>
 </div>
