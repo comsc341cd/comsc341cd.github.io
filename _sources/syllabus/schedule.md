@@ -5,13 +5,6 @@
 As this is a new course, the schedule may change throughout the semester to best accommodate your learning!
 ```
 
-## Due Dates
-
-In general, the due dates for assignments are as follows unless otherwise specified:
-
-- Worksheets: due at 11:55pm on **Mondays**
-- Projects: due at 11:55pm on **Thursdays**
-
 ## Topics
 
 A list of topics we will cover can be found below. Note that topics may be subject to change.
@@ -80,37 +73,32 @@ A list of topics we will cover can be found below. Note that topics may be subje
 *   
     - <small>02/17</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Bhargavi 6-7pm</li></ul>![](https://img.shields.io/badge/Due:-d62728) [WS 3](ws3)
 
-    - <small>02/18</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) Project 1
+    - <small>02/18</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1449635/mod_resource/content/1/lec05-causal-graphs-i-starter.pdf)</li><li>[Coding demo starter](lec5_live)</li><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>
     
     - <small>02/19</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 5-6pm</li><li>Bhargavi 6-7pm</li></ul>
 
-    - <small>02/20</small>
+    - <small>02/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II/Stratification</u></b><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 1-2pm</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) Project 1
     - <small>02/21</small>
 
 *   
     - <small>02/24</small>
     - <small>02/25</small>
-    <br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
     - <small>02/26</small>
     - <small>02/27</small>
-    <br>![](https://img.shields.io/badge/Due:-d62728) Project 1
     - <small>02/28</small>
 
 *   
-    - <small>03/03</small>
-    <br>![](https://img.shields.io/badge/Due:-d62728) WS 4
-    - <small>03/04</small>
-    <br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
+    - <small>03/03</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 1
+    - <small>03/04</small><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
     - <small>03/05</small>
     - <small>03/06</small>
     - <small>03/07</small>
 
 *   
-    - <small>03/10</small>
-    - <small>03/11</small>
+    - <small>03/10</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 4
+    - <small>03/11</small><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
     - <small>03/12</small>
     - <small>03/13</small>
-    <br>![](https://img.shields.io/badge/Due:-d62728) Project 2
     - <small>03/14</small>
 
 *   
@@ -120,6 +108,14 @@ A list of topics we will cover can be found below. Note that topics may be subje
     -
     - 
     - 
+
+*   
+    - <small>03/24</small>   
+    - <small>03/25</small>
+    - <small>03/26</small>
+    - <small>03/27</small>
+    - <small>03/28</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2
+
 :::
 
 <!--
