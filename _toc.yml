@@ -21,6 +21,11 @@ parts:
       - file: worksheets/ws1.ipynb
       - file: worksheets/ws2.ipynb
       - file: worksheets/ws3.ipynb
+
+  - caption: Worksheet Solutions
+    chapters:
+      - file: worksheets/ws1_solution.ipynb
+      - file: worksheets/ws2_solution.ipynb
   
   # - caption: Projects
   #   chapters:

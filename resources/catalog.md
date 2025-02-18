@@ -49,7 +49,6 @@
 
 ---
 
-### More studies to come!
-
+### More designs to come!
 
 
