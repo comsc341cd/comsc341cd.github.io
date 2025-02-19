@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -221,7 +221,6 @@
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">WS 2 Solution 🐼</a></li>
-
 
 
 
@@ -421,7 +420,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-inference-as-a-missing-data-problem-1-pt">3. Causal inference as a missing data problem [1 pt]</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-1-pt">4. Reflection [1 pt]</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
 </ul>
 
             </nav>
@@ -1985,238 +1983,6 @@ You may sometimes hear that “association is causation, in a randomized experim
 <h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
 <p>Portions of this worksheet are adapted from Bhargavi’s study notes on pandas. This worksheet also uses Russ Poldrack’s <a class="reference external" href="https://github.com/poldrack/nhanes">nhanes package</a>, which processes the NHANES dataset into a convenient pandas dataframe.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="notes">
-<h1>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h1>
-<p>Pandas topics left off:</p>
-<ul class="simple">
-<li><p>merge</p></li>
-<li><p>apply</p></li>
-</ul>
-<ul class="simple">
-<li><p>Have students implement pandas code in the autograder, for generating the realized potential outcomes</p>
-<ul>
-<li><p>indexing and slicing, handling missing values</p></li>
-</ul>
-</li>
-<li><p>some math practice with law of total expectation, and independence derivations</p></li>
-<li><p>a statistical notion of “independence”</p></li>
-<li><p>exercise where students calculate E[Y(1)] and E[Y(0)], compare it to E[Y|T=1] and E[Y|T=0], and when they are equal/unequal</p></li>
-<li><p>If need more practice, can analyze the education level in NHANES</p></li>
-<li><p>Could be interesting to revisit the NHANES dataset in a few weeks, and have students try to draw DAGs for the health questions</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">nhanes_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1StCancerWhatKindWasIt&#39;,
- &#39;60SecHr30SecHr2&#39;,
- &#39;60SecPulse30SecPulse2&#39;,
- &#39;Age1StCancerMcq230ADiagnosed&#39;,
- &#39;AgeFirstFedFormuladays&#39;,
- &#39;AgeFirstFedMilkdays&#39;,
- &#39;AgeInMonthsAtScreening0To24Mos&#39;,
- &#39;AgeInYearsAtScreening&#39;,
- &#39;AgeStartedOtherFoodbeverage&#39;,
- &#39;AgeStartedSmokingCigarettesRegularly&#39;,
- &#39;AgeStoppedBreastfeedingdays&#39;,
- &#39;AgeStoppedReceivingFormuladays&#39;,
- &#39;AgeWhenFirstToldYouHadDiabetes&#39;,
- &#39;AgeWhenToldYouHadAStroke&#39;,
- &#39;AgeWhenToldYouHadHeartAttack&#39;,
- &#39;AlcoholGm_DR1TOT&#39;,
- &#39;AlcoholGm_DR2TOT&#39;,
- &#39;AnnualFamilyIncome&#39;,
- &#39;AnnualHouseholdIncome&#39;,
- &#39;AttendKindergartenThruHighSchool&#39;,
- &#39;AvgCigarettesdayDuringPast30Days&#39;,
- &#39;BloodCadmiumUgl&#39;,
- &#39;BloodLeadUgdl&#39;,
- &#39;BloodManganeseUgl&#39;,
- &#39;BloodMercuryTotalUgl&#39;,
- &#39;BloodSeleniumUgl&#39;,
- &#39;BodyMassIndexKgm2&#39;,
- &#39;CarbohydrateGm_DR1TOT&#39;,
- &#39;CarbohydrateGm_DR2TOT&#39;,
- &#39;CholesterolMg_DR1TOT&#39;,
- &#39;CholesterolMg_DR2TOT&#39;,
- &#39;CigarettesSmokedPerDay&#39;,
- &#39;CommunitygovernmentMealsDelivered&#39;,
- &#39;CoveredByHealthInsurance&#39;,
- &#39;CurrentSelfreportedHeightInches&#39;,
- &#39;CurrentSelfreportedWeightPounds&#39;,
- &#39;DaysSmokedCigarettesLast5Days&#39;,
- &#39;DaysSmokedCigsDuringPast30Days&#39;,
- &#39;DaysUsedMarijuanaOrHashishmonth&#39;,
- &#39;DaysUsedMethamphetaminemonth&#39;,
- &#39;DiabeticDiet&#39;,
- &#39;DiastolicBloodPres1StRdgMmHg&#39;,
- &#39;DiastolicBloodPres2NdRdgMmHg&#39;,
- &#39;DiastolicBloodPres3RdRdgMmHg&#39;,
- &#39;DietaryFiberGm_DR1TOT&#39;,
- &#39;DietaryFiberGm_DR2TOT&#39;,
- &#39;DifficultyManagingMoney&#39;,
- &#39;DifficultyTheseProblemsHaveCaused&#39;,
- &#39;DirectHdlcholesterolMgdl&#39;,
- &#39;DoYouNowSmokeCigarettes&#39;,
- &#39;DoctorEverSaidYouHadArthritis&#39;,
- &#39;DoctorToldYouHaveDiabetes&#39;,
- &#39;EatMealsAtCommunityseniorCenter&#39;,
- &#39;EducationLevelAdults20&#39;,
- &#39;EducationLevelChildrenyouth619&#39;,
- &#39;EnergyKcal_DR1TOT&#39;,
- &#39;EnergyKcal_DR2TOT&#39;,
- &#39;EverBeenInRehabilitationProgram&#39;,
- &#39;EverBeenToldYouHaveAsthma&#39;,
- &#39;EverBreastfedOrFedBreastmilk&#39;,
- &#39;EverToldDoctorHadTroubleSleeping&#39;,
- &#39;EverToldHaveHealthRiskForDiabetes&#39;,
- &#39;EverToldYouHadAStroke&#39;,
- &#39;EverToldYouHadCancerOrMalignancy&#39;,
- &#39;EverToldYouHadHeartAttack&#39;,
- &#39;EverToldYouHavePrediabetes&#39;,
- &#39;EverUseAnyFormOfCocaine&#39;,
- &#39;EverUsedCocaineheroinmethamphetamine&#39;,
- &#39;EverUsedHeroin&#39;,
- &#39;EverUsedMarijuanaOrHashish&#39;,
- &#39;EverUsedMethamphetamine&#39;,
- &#39;ExperienceConfusionmemoryProblems&#39;,
- &#39;FamilyHistory&#39;,
- &#39;FeelingBadAboutYourself&#39;,
- &#39;FeelingDownDepressedOrHopeless&#39;,
- &#39;FeelingTiredOrHavingLittleEnergy&#39;,
- &#39;Gender&#39;,
- &#39;GeneralHealthCondition&#39;,
- &#39;Glycohemoglobin&#39;,
- &#39;HaveDifficultyDoingErrandsAlone&#39;,
- &#39;HaveDifficultyDressingOrBathing&#39;,
- &#39;HaveLittleInterestInDoingThings&#39;,
- &#39;HaveSeriousDifficultyConcentrating&#39;,
- &#39;HaveSeriousDifficultyHearing&#39;,
- &#39;HaveSeriousDifficultySeeing&#39;,
- &#39;HaveSeriousDifficultyWalking&#39;,
- &#39;HeardOfMyPlate&#39;,
- &#39;HowHealthyIsTheDiet&#39;,
- &#39;HowLongWereYouAbleToStopSmoking&#39;,
- &#39;HowOftenAddSaltToFoodAtTable&#39;,
- &#39;HowOftenDoYouFeelDepressed&#39;,
- &#39;HowOftenDoYouFeelWorriedOrAnxious&#39;,
- &#39;HowOftenDoYouSnore&#39;,
- &#39;HowOftenDrankMilkAge1317&#39;,
- &#39;HowOftenDrankMilkAge1835&#39;,
- &#39;HowOftenDrankMilkAge512&#39;,
- &#39;HowOftenFeelOverlySleepyDuringDay&#39;,
- &#39;LookedUpMyPlateOnInternet&#39;,
- &#39;LowCarbohydrateDiet&#39;,
- &#39;LowFatlowCholesterolDiet&#39;,
- &#39;LowSaltlowSodiumDiet&#39;,
- &#39;MainFoodShopper&#39;,
- &#39;MainMealPlannerpreparer&#39;,
- &#39;MaritalStatus&#39;,
- &#39;MinutesSedentaryActivity&#39;,
- &#39;ModerateRecreationalActivities&#39;,
- &#39;ModerateWorkActivity&#39;,
- &#39;MovingOrSpeakingSlowlyOrTooFast&#39;,
- &#39;OfAdults60YearsOrOlderInHh&#39;,
- &#39;OfChildren5YearsOrYoungerInHh&#39;,
- &#39;OfChildren617YearsOldInHh&#39;,
- &#39;OfDaysUsedCocainemonth&#39;,
- &#39;OfDaysUsedHeroinmonth&#39;,
- &#39;OfFrozenMealspizzaInPast30Days&#39;,
- &#39;OfMealsFromFastFoodOrPizzaPlace&#39;,
- &#39;OfMealsNotHomePrepared&#39;,
- &#39;OfReadytoeatFoodsInPast30Days&#39;,
- &#39;OfTimesweekGetSchoolBreakfast&#39;,
- &#39;OfTimesweekGetSchoolLunch&#39;,
- &#39;OnSpecialDiet&#39;,
- &#39;Past30DayMilkProductConsumption&#39;,
- &#39;PhysicalMentalEmotionalLimitations&#39;,
- &#39;PoorAppetiteOrOvereating&#39;,
- &#39;ProteinGm_DR1TOT&#39;,
- &#39;ProteinGm_DR2TOT&#39;,
- &#39;RacehispanicOrigin&#39;,
- &#39;RacehispanicOriginWNhAsian&#39;,
- &#39;RatioOfFamilyIncomeToPoverty&#39;,
- &#39;RecumbentLengthCm&#39;,
- &#39;RegularMilkUse5TimesPerWeek&#39;,
- &#39;SchoolBreakfastFreereducedfullPrice&#39;,
- &#39;SchoolLunchFreeReducedOrFullPrice&#39;,
- &#39;SchoolServeCompleteBreakfastEachDay&#39;,
- &#39;SchoolServesSchoolLunches&#39;,
- &#39;ServedActiveDutyInUsArmedForces&#39;,
- &#39;SharedFoodShoppingDuty&#39;,
- &#39;SharedMealPlanningpreparingDuty&#39;,
- &#39;SleepHoursWeekdaysOrWorkdays&#39;,
- &#39;SmokedAtLeast100CigarettesInLife&#39;,
- &#39;SmokedTobaccoLast5Days&#39;,
- &#39;StandingHeightCm&#39;,
- &#39;SummerProgramMealFreereducedPrice&#39;,
- &#39;SystolicBloodPres1StRdgMmHg&#39;,
- &#39;SystolicBloodPres2NdRdgMmHg&#39;,
- &#39;SystolicBloodPres3RdRdgMmHg&#39;,
- &#39;TakeDiabeticPillsToLowerBloodSugar&#39;,
- &#39;TakeMedicationForDepression&#39;,
- &#39;TakeMedicationForTheseFeelings&#39;,
- &#39;TakingInsulinNow&#39;,
- &#39;ThoughtYouWouldBeBetterOffDead&#39;,
- &#39;TimesLost10LbsOrMoreToLoseWeight&#39;,
- &#39;TimesStoppedSmokingCigarettes&#39;,
- &#39;TotalCholesterolMgdl&#39;,
- &#39;TotalFatGm_DR1TOT&#39;,
- &#39;TotalFatGm_DR2TOT&#39;,
- &#39;TotalMonounsaturatedFattyAcidsGm_DR1TOT&#39;,
- &#39;TotalMonounsaturatedFattyAcidsGm_DR2TOT&#39;,
- &#39;TotalNumberOfPeopleInTheFamily&#39;,
- &#39;TotalNumberOfPeopleInTheHousehold&#39;,
- &#39;TotalPercentFat&#39;,
- &#39;TotalPolyunsaturatedFattyAcidsGm_DR1TOT&#39;,
- &#39;TotalPolyunsaturatedFattyAcidsGm_DR2TOT&#39;,
- &#39;TotalSaturatedFattyAcidsGm_DR1TOT&#39;,
- &#39;TotalSaturatedFattyAcidsGm_DR2TOT&#39;,
- &#39;TotalSugarsGm_DR1TOT&#39;,
- &#39;TotalSugarsGm_DR2TOT&#39;,
- &#39;TriedMyPlatePlan&#39;,
- &#39;TriedToLoseWeightInPastYear&#39;,
- &#39;TriedToQuitSmoking&#39;,
- &#39;TroubleConcentratingOnThings&#39;,
- &#39;TroubleSleepingOrSleepingTooMuch&#39;,
- &#39;TrunkFatG&#39;,
- &#39;TrunkPercentFat&#39;,
- &#39;TunaEatenDuringPast30Days&#39;,
- &#39;TypeOfMilkFirstFed1Milk&#39;,
- &#39;TypeOfMilkFirstFed2Milk&#39;,
- &#39;TypeOfMilkFirstFedFatFreeMilk&#39;,
- &#39;TypeOfMilkFirstFedOther&#39;,
- &#39;TypeOfMilkFirstFedSoyMilk&#39;,
- &#39;TypeOfMilkFirstFedWholeMilk&#39;,
- &#39;UnitOfMeasureDayweekmonthyear_2_SMQ&#39;,
- &#39;UsedAnyTobaccoProductLast5Days&#39;,
- &#39;UsualSleepTimeOnWeekdaysOrWorkdays&#39;,
- &#39;UsualWakeTimeOnWeekdaysOrWorkdays&#39;,
- &#39;VigorousRecreationalActivities&#39;,
- &#39;VigorousWorkActivity&#39;,
- &#39;WaistCircumferenceCm&#39;,
- &#39;WalkOrBicycle&#39;,
- &#39;WeightKg&#39;,
- &#39;WeightLosslowCalorieDiet&#39;,
- &#39;WhatWasYourLastA1CLevel&#39;,
- &#39;YouDrink1FatMilk&#39;,
- &#39;YouDrink2FatMilk&#39;,
- &#39;YouDrinkAnotherTypeOfMilk&#39;,
- &#39;YouDrinkFatFreeskimMilk&#39;,
- &#39;YouDrinkSoyMilk&#39;,
- &#39;YouDrinkWholeOrRegularMilk&#39;,
- &#39;age_category&#39;,
- &#39;bmi&#39;,
- &#39;country&#39;,
- &#39;is_adult&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2287,7 +2053,6 @@ You may sometimes hear that “association is causation, in a randomized experim
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-inference-as-a-missing-data-problem-1-pt">3. Causal inference as a missing data problem [1 pt]</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-1-pt">4. Reflection [1 pt]</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
 </ul>
 
   </nav></div>
