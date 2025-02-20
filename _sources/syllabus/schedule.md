@@ -81,10 +81,10 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>02/21</small>
 
 *   
-    - <small>02/24</small>
-    - <small>02/25</small>
-    - <small>02/26</small>
-    - <small>02/27</small>
+    - <small>02/24</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Bhargavi 6-7pm</li></ul>
+    - <small>02/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>
+    - <small>02/26</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 5-6pm</li><li>Bhargavi 6-7pm</li></ul>
+    - <small>02/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 1-2pm</li></ul>
     - <small>02/28</small>
 
 *   
