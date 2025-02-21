@@ -1,0 +1,1340 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 1 👶 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/proj1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="WS 2 Solution 🐼" href="../worksheets/ws2_solution.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1_solution.html">WS 1 Solution 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2_solution.html">WS 2 Solution 🐼</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 1 👶</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/projects/proj1.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/projects/proj1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 1 👶</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents-and-rubric">Table of Contents and Rubric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-submit">How to submit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-imports">Notebook imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-means">1. Difference-in-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-diff-in-means">1.1. Implement <code class="docutils literal notranslate"><span class="pre">diff_in_means</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-stratified-diff-in-means">1.2. Implement <code class="docutils literal notranslate"><span class="pre">stratified_diff_in_means</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-efficiency-of-difference-in-means-estimators">2. Exploring the efficiency of difference-in-means estimators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-widget">2.1 Interactive widget</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">2.2 Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-infant-health-and-development-program">3. The Infant Health and Development Program</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-knowledge-and-causal-question">3.1 Prior Knowledge and Causal Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-design">3.2 Study Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-and-cleaning-the-data">3.3 Visualizing and cleaning the data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-utility-functions">4. Bootstrap utility functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-and-interpretation">5 Estimation and Interpretation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-means-estimation">5.1 Difference-in-means estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2 Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">6. Reflection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extensions">7. Optional extensions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-1">
+<span id="proj1"></span><h1>Project 1 👶<a class="headerlink" href="#project-1" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Randomized Experiments</p>
+<p class="attribution">—TODO your name here</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here.</p></li>
+</ul>
+</div>
+<p>In this project, we will conduct our first causal study start to finish by examining the Infant Health and Development Program (IHDP) dataset, which is a classic dataset in the causal inference literature.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Practice following the causal roadmap with a real-world dataset.</p></li>
+<li><p>Explore the benefits of stratification in a randomized experiment.</p></li>
+<li><p>Translate mathematical quantities into code by implementing two difference-in-means estimators.</p></li>
+<li><p>Exercise your data manipulation and visualization skills with real and simulated data.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project is due <strong>Monday 3/3 at 11:55pm.</strong></p>
+</div>
+</section>
+<section id="table-of-contents-and-rubric">
+<h2>Table of Contents and Rubric<a class="headerlink" href="#table-of-contents-and-rubric" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Points</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#difference-in-means"><span class="xref myst">Math to code: difference-in-means implementation</span></a></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exploring-the-efficiency-of-difference-in-means-estimators"><span class="xref myst">Interactivity: stratified vs unstratified estimators</span></a></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#causal-study-design-ihdp"><span class="xref myst">Causal question and study design: IHDP</span></a></p></td>
+<td><p>2.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bootstrap Utilities</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#causal-estimation-and-interpretation-ihdp-analysis"><span class="xref myst">Estimation and interpretation: IHDP analysis</span></a></p></td>
+<td><p>2.5</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#reflection"><span class="xref myst">Reflection</span></a></p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>10 pts</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Grading guidelines</p>
+<p>The course projects offer an opportunity to practice the full causal inference workflow, from building estimators and formulating questions to conducting analyses and communicating your findings effectively. Here are some guidelines on how to approach the project:</p>
+<ul class="simple">
+<li><p>Like the worksheets, a portion of points will be autograded – feel free to submit as many times as you want to check your code’s correctness!</p></li>
+<li><p>For visualizations:</p>
+<ul>
+<li><p>Help your reader understand your findings through visually clear figures</p></li>
+<li><p>Label your axes, provide legends when appropriate, and add figure titles to provide context</p></li>
+</ul>
+</li>
+<li><p>For written responses:</p>
+<ul>
+<li><p>Support your ideas with specific evidence from your analysis or prior knowledge</p></li>
+<li><p>Write concisely but clearly – one-word/one-phrase answers usually don’t give enough space to show what you’ve learned</p></li>
+</ul>
+</li>
+</ul>
+<p>If you’re uncertain about any portion of the project, please do come to office hours, TA hours, or reach out on Ed!</p>
+</div>
+</section>
+<section id="how-to-submit">
+<h2>How to submit<a class="headerlink" href="#how-to-submit" title="Link to this heading">#</a></h2>
+<p>Like our worksheets, follow the instructions on the course website to submit your completed <code class="docutils literal notranslate"><span class="pre">proj1.ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">proj1.py</span></code> files, along with your causal graph image for the Infant Health and Development Program analysis.</p>
+</section>
+<section id="notebook-imports">
+<h2>Notebook imports<a class="headerlink" href="#notebook-imports" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interact_manual</span><span class="p">,</span> <span class="n">fixed</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="difference-in-means">
+<h2>1. Difference-in-means<a class="headerlink" href="#difference-in-means" title="Link to this heading">#</a></h2>
+<p>We begin by simulating a randomized experiment, where there are the following variables:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T\)</span>: the binary intervention of interest</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span>: the outcome of interest</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span>: a binary variable that affects the outcome of interest, which we will refer to as a <strong>covariate</strong></p></li>
+</ul>
+<p>We provide the following code for simulating a random experiment with a binary treatment <span class="math notranslate nohighlight">\(T\)</span> and binary covariate <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sim_random_exp</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">covariate_effect</span><span class="o">=</span><span class="mf">3.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate a random experiment with a binary treatment and covariate.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): the number of samples to simulate</span>
+<span class="sd">        treatment_effect (float): the magnitude of the effect of the treatment on the outcome</span>
+<span class="sd">        covariate_effect (float): the magnitude of the effect of the covariate on the outcome</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Y (np.ndarray): the observed outcome</span>
+<span class="sd">        T (np.ndarray): the binary  treatment assignment</span>
+<span class="sd">        X (np.ndarray): the binary covariate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Generate potential outcomes</span>
+    <span class="n">Y0</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">Y1</span> <span class="o">=</span> <span class="n">Y0</span> <span class="o">+</span> <span class="n">treatment_effect</span>
+
+    <span class="c1"># Randomly assign treatment</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="p">)</span>
+
+    <span class="c1"># Create a binary covariate that affects the outcome</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="c1"># Generate the observed outcome</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">T</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Y1</span><span class="p">,</span> <span class="n">Y0</span><span class="p">)</span> <span class="o">+</span> <span class="n">covariate_effect</span><span class="o">*</span><span class="n">X</span>
+
+    <span class="k">return</span> <span class="n">Y</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">covariate_effect</span></code> is the magnitude of the effect of the covariate on the outcome  – the larger the value, the stronger the effect of the covariate on the outcome.</p>
+</div>
+<p>Under a randomized experiment study design, we are able to <strong>identify</strong> the average treatment effect (<span class="math notranslate nohighlight">\(ATE\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+ATE = E[Y(1) - Y(0)] \; \xrightarrow[]{\text{Identification}} \; E[Y | T = 1] - E[Y | T = 0]
+\]</div>
+<p>We can then <strong>estimate</strong> the causal effect by taking the difference in means between the treated and control groups, which is known as the <strong>difference-in-means</strong> estimator:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+E[Y | T=1] - E[Y | T=0] \; \xrightarrow[]{\text{Estimation}} \; &amp;\hat{E}[Y | T=1] - \hat{E}[Y | T=0] \\
+= &amp;\frac{1}{n_1} \sum_{i=1}^{n} \mathbb{I}(T_i = 1) Y_i - \frac{1}{n_0} \sum_{i=1}^{n} \mathbb{I}(T_i = 0) Y_i
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n_1\)</span> is the number of samples in the treatment group, and <span class="math notranslate nohighlight">\(n_0\)</span> is the number of samples in the control group. That is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+n_0 = \sum_{i=1}^{n} \mathbb{I}(T_i = 0)\\
+n_1 = \sum_{i=1}^{n} \mathbb{I}(T_i = 1)
+\end{split}\]</div>
+<section id="implement-diff-in-means">
+<h3>1.1. Implement <code class="docutils literal notranslate"><span class="pre">diff_in_means</span></code><a class="headerlink" href="#implement-diff-in-means" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">diff_in_means</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the difference in means between the treatment and control groups.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Y (np.ndarray or pd.Series): the observed outcome</span>
+<span class="sd">        T (np.ndarray or pd.Series): the binary treatment assignment</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: the difference in means estimate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;Y and T must have the same shape&quot;</span>
+    
+    <span class="c1"># TODO your code here</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">test_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">test_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">diff_in_means</span><span class="p">(</span><span class="n">test_Y</span><span class="p">,</span> <span class="n">test_T</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Feel free to add more tests</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">20</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">test_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">test_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">diff_in_means</span><span class="p">(</span><span class="n">test_Y</span><span class="p">,</span> <span class="n">test_T</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="c1"># Feel free to add more tests</span>
+
+<span class="ne">AssertionError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implement-stratified-diff-in-means">
+<h3>1.2. Implement <code class="docutils literal notranslate"><span class="pre">stratified_diff_in_means</span></code><a class="headerlink" href="#implement-stratified-diff-in-means" title="Link to this heading">#</a></h3>
+<p>We saw in class that if we want to include a covariate in our analysis, we can analogously compute the difference in means between the treated and control groups, but now conditioning on the covariate.</p>
+<p>We implement this here as a <strong>stratified difference-in-means</strong> estimator, which we call <span class="math notranslate nohighlight">\(\widehat{ATE}_\text{stratified}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{ATE}_\text{stratified} = \sum^K_{k=1} \frac{n_k}{n} \widehat{ATE}_k
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> are the total number of strata, <span class="math notranslate nohighlight">\(n_k\)</span> is the number of samples in stratum <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(\widehat{ATE}_k\)</span> is the difference-in-means estimator for stratum <span class="math notranslate nohighlight">\(k\)</span>. This is saying that we’re computing the difference in means for each stratum, and then taking a weighted average of the stratum-level estimates, where the weights are the proportion of samples in each stratum. <span class="math notranslate nohighlight">\(\widehat{ATE}_k\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{ATE}_k = \frac{1}{n_{k1}} \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 1) Y_i - \frac{1}{n_{k0}} \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0) Y_i
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(n_{k1}\)</span> is the number of samples in the treatment group for stratum <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(n_{k0}\)</span> is the number of samples in the control group for stratum <span class="math notranslate nohighlight">\(k\)</span>. That is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+n_{k1} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 1)\\
+n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
+\end{split}\]</div>
+<p>We’ll be implementing this estimator for the case when <span class="math notranslate nohighlight">\(X\)</span> is binary so there are only two strata, <span class="math notranslate nohighlight">\(k \in \{0, 1\}\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Hint</p>
+<p>While these equations may look a bit complicated, notice that each individual summation term in <span class="math notranslate nohighlight">\(\widehat{ATE}_k\)</span> is just a mean of the outcome for a given subset of the data. In particular, in our case where <span class="math notranslate nohighlight">\(X\)</span> is binary:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\frac{1}{n_{11}} \sum_{i=1}^{n} \mathbb{I}(X_i = 1 \text{ and } T_i = 1) Y_i\)</span> is the mean of the outcome when <span class="math notranslate nohighlight">\(X=1\)</span> and <span class="math notranslate nohighlight">\(T=1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{1}{n_{10}} \sum_{i=1}^{n} \mathbb{I}(X_i = 1 \text{ and } T_i = 0) Y_i\)</span> is the mean of the outcome when <span class="math notranslate nohighlight">\(X=1\)</span> and <span class="math notranslate nohighlight">\(T=0\)</span></p></li>
+<li><p>and analogously for <span class="math notranslate nohighlight">\(X=0\)</span></p></li>
+</ul>
+<p>You can then use numpy’s boolean indexing to compute the means for each stratum.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">diff_in_means_stratified</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the difference in means stratified by binary covariate X.</span>
+
+<span class="sd">    NOTE: stratified difference in means may be undefined if strata are empty.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Y (np.ndarray or pd.Series): the observed outcome</span>
+<span class="sd">        T (np.ndarray or pd.Series): the binary treatment assignment</span>
+<span class="sd">        X (np.ndarray or pd.Series): the binary covariate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: the difference in means estimate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># TODO your code here</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">test_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">test_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">diff_in_means_stratified</span><span class="p">(</span><span class="n">test_Y</span><span class="p">,</span> <span class="n">test_T</span><span class="p">,</span> <span class="n">test_X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Feel free to add more tests</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exploring-the-efficiency-of-difference-in-means-estimators">
+<h2>2. Exploring the efficiency of difference-in-means estimators<a class="headerlink" href="#exploring-the-efficiency-of-difference-in-means-estimators" title="Link to this heading">#</a></h2>
+<section id="interactive-widget">
+<h3>2.1 Interactive widget<a class="headerlink" href="#interactive-widget" title="Link to this heading">#</a></h3>
+<p>Next, complete the <code class="docutils literal notranslate"><span class="pre">gen_experiment_results</span></code> function to simulate <code class="docutils literal notranslate"><span class="pre">n_experiments</span></code> random experiments and compute the difference-in-means and stratified difference-in-means estimates.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The function declaration below uses the <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> syntax to pass additional keyword arguments to the <code class="docutils literal notranslate"><span class="pre">sim_random_exp</span></code> function. This is a useful way to write functions that are flexible and can take in different sets of arguments. For more information on the <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> syntax, see this <a class="reference external" href="https://realpython.com/python-kwargs-and-args/">tutorial</a>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_experiment_results</span><span class="p">(</span><span class="n">n_experiments</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulates n_experiments random experiments and computes the difference-in-means and stratified difference-in-means estimators.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_experiments (int): the number of experiments to simulate</span>
+<span class="sd">        **kwargs: additional keyword arguments to pass directly `sim_random_exp`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: a dataframe with the results of the experiments in each row</span>
+<span class="sd">        </span>
+<span class="sd">        The dataframe should have two columns:</span>
+<span class="sd">        - diff_in_means: the difference in means estimator</span>
+<span class="sd">        - diff_in_means_stratified: the stratified difference in means estimator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">experiment_results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;diff_in_means&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;diff_in_means_stratified&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_experiments</span><span class="p">):</span>
+        <span class="c1"># TODO pass **kwargs to sim_random_exp to return Y, T, X</span>
+
+        <span class="c1"># TODO populate the experiment_results dictionary</span>
+
+    <span class="c1"># Converts dictionary to dataframe with keys as column names</span>
+    <span class="n">exp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">experiment_results</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">exp_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">gen_experiment_results</span></code> function, create a manual interactive widget that plots the both the stratified and unstratified difference-in-means for a range of covariate effects. Specifically, you should:</p>
+<ul class="simple">
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> decorator to the <code class="docutils literal notranslate"><span class="pre">plot_experiment_simulations</span></code> function</p></li>
+<li><p>Create a slider for the <span class="math notranslate nohighlight">\(X\)</span> variable effect that can take values between 0 and 6</p></li>
+<li><p>Fix the number of experiments to 10000, see the <a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/examples/Using%20Interact.html#fixing-arguments-using-fixed">tutorial reference on ipywidgets</a> from Worksheet 3</p></li>
+<li><p>Call the <code class="docutils literal notranslate"><span class="pre">gen_experiment_results</span></code> function with the given number of experiments and covariate effect</p></li>
+<li><p>Plot a histogram of the difference-in-means, unstratified and stratified for a given covariate effect: this should be a <strong>single plot with two histograms on top of each other</strong>, which can be achieved using <code class="docutils literal notranslate"><span class="pre">sns.histplot</span></code></p></li>
+<li><p>Additionally, plot the true difference in means as a vertical line on the same figure, which can be achieved using <code class="docutils literal notranslate"><span class="pre">plt.axvline</span></code>. The default treatment effect is <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to follow good figure design practices by adding a legend, title, and axis labels.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO add interact_manual decorator</span>
+<span class="k">def</span> <span class="nf">plot_experiment_simulations</span><span class="p">(</span><span class="n">num_experiments</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">covariate_effect</span><span class="o">=</span><span class="mf">3.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the both the stratified and unstratified difference-in-means </span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num_experiments (int): the number of experiments to simulate</span>
+<span class="sd">        covariate_effect (float): the covariate effect to use in the experiments</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None, but shows the plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretation">
+<h3>2.2 Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading">#</a></h3>
+<p>Recall our discussions of the <strong>variance</strong> of causal effect estimators:</p>
+<ul class="simple">
+<li><p><strong>Variance</strong>: how much do the estimates for a given experiment vary? We can visually inspect this by looking at how “spread out” the histogram is.</p></li>
+</ul>
+<p>In addition to variance, researchers may also be interested in the statistical bias of an estimator:</p>
+<ul class="simple">
+<li><p><strong>Bias</strong>: how far off is the mean estimate off from the true value? We can visually inspect this by looking at where the histogram is “centered.” If the histogram is centered around the true value, then the estimator is unbiased, and if the histogram is not centered around the true value, then the estimator is said to be biased.</p></li>
+</ul>
+<p>Play around with the widget you created above, testing out different covariate effect values.</p>
+<ol class="arabic simple">
+<li><p>What do you observe about the bias of the unstratified and stratified estimators? Is either biased?</p></li>
+<li><p>What do you observe about the variance of the unstratified and stratified estimators? Researchers sometime call estimators with lower variance to be <strong>more efficient</strong>. Is there an estimator that appears to be more efficient?</p></li>
+<li><p>What happens to the relative variance of the two estimators when you set the covariate effect to 0? Why does this occur?</p></li>
+</ol>
+<p><strong>TODO</strong> your responses here:</p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="the-infant-health-and-development-program">
+<h2>3. The Infant Health and Development Program<a class="headerlink" href="#the-infant-health-and-development-program" title="Link to this heading">#</a></h2>
+<p>Let’s now dive into analyzing a real-world study: the Infant Health and Development Program (IHDP). The IHDP was a randomized experiment conducted in the 1980s to evaluate the effectiveness of an early intervention program for low-birthweight, prematurely born infants.</p>
+<section id="prior-knowledge-and-causal-question">
+<h3>3.1 Prior Knowledge and Causal Question<a class="headerlink" href="#prior-knowledge-and-causal-question" title="Link to this heading">#</a></h3>
+<p>Read the following resources on the IHDP study:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://policyforchildren.org/wp-content/uploads/2013/08/IHDP-Final-5.11.10.pdf">IHDP policy memo</a></p></li>
+<li><p><a class="reference external" href="https://www.jpeds.com/article/S0022-3476(05)80896-0/pdf">Brooks-Gunn et al. 1991</a>, pages 350-352</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Reading Notes</p>
+<ul class="simple">
+<li><p><strong>Content warning</strong>: the reading contains the term “mental retardation,” which was commonly used in medical and policy discussions at the time but is now outdated and harmful. Today, the term “intellectual disability” is preferred and is used medically and <a class="reference external" href="https://www.specialolympics.org/stories/news/rosas-law-signed-into-law-by-president-obama">federally</a>.</p></li>
+<li><p>The Brooks-Gunn et al. 1991 paper contains minute details about the study recruitment and data collection process. Don’t worry about understanding every aspect of the study, but try to get a sense of the overall experimental design and the baseline characteristics reported in Table 1.</p></li>
+<li><p>The original methods mention stratification by both birthweight and clinical site in the study design. Because the probability of treatment is the same for all stratified groups, both the stratified difference-in-means and unstratified difference-in-means are valid estimators. For the purposes of this project, we will analyze the efficiency of estimators that <strong>post-stratify</strong> by other covariates.</p></li>
+</ul>
+</div>
+<p>Answer the following questions:</p>
+<ol class="arabic simple">
+<li><p>The outcome of interest we will be analyzing is the <strong>Stanford-Binet Intelligence Scale score</strong> (IQ) at an age of 36 months (3 years), and our causal quantity is the <strong>average treatment effect (ATE)</strong> on the child’s IQ score. Describe what causal question we are trying to answer in this dataset in terms of the causal quantity we are trying to identify.</p></li>
+<li><p>State what <span class="math notranslate nohighlight">\(Y(1)\)</span> and <span class="math notranslate nohighlight">\(Y(0)\)</span> are in your own words given the treatment and outcome of the study.</p></li>
+</ol>
+<p><strong>TODO</strong> your responses here:</p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+</ol>
+</section>
+<section id="study-design">
+<h3>3.2 Study Design<a class="headerlink" href="#study-design" title="Link to this heading">#</a></h3>
+<p>Next, let’s load the IHDP dataset and look at the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ihdp_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;~/COMSC341-CD/data/ihdp_real.csv&#39;</span><span class="p">)</span>
+<span class="n">ihdp_raw</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 50 total columns in the dataframe, but we will only use the following columns for the project:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bw</span></code>: birth weight in grams</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">momage</span></code>: mother’s age in years</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nnhealth</span></code>: neonatal health index, higher scores indicate better health</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">momwhite</span></code>: binary indicator for maternal ethnicity: 1 if white, 0 otherwise</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code>: outcome: Stanford-Binet IQ score at 36 months</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">treat</span></code>: binary treatment assignment</p></li>
+</ul>
+<p>Our study design is a randomized experiment, and we will assume that all of the assumptions that are needed to identify the average treatment effect hold. Answer the following questions:</p>
+<ol class="arabic simple">
+<li><p>Suppose that our data did not come from a randomized experiment, and families were able to choose whether or not to participate in the intervention. Select two of the four variables listed above that you think may confound the relationship between the treatment and outcome, and explain why.</p></li>
+</ol>
+<p><strong>Your response:</strong> TODO</p>
+<ol class="arabic simple" start="2">
+<li><p>Given the two variables you selected in the previous question, treatment, and outcome, draw a DAG with these four variables if this data were not collected from a randomized experiment. Give each node a variable name (e.g. <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(C_1\)</span>, <span class="math notranslate nohighlight">\(C_2\)</span>) and indicate what each variable represents.</p></li>
+</ol>
+<p>TODO draw your DAG</p>
+<ol class="arabic simple" start="3">
+<li><p>Draw the modified DAG from the previous question under the scenario where the treatment is randomized.</p></li>
+</ol>
+<p>TODO draw your DAG</p>
+<div class="tip admonition">
+<p class="admonition-title">Submission note</p>
+<p>For this question, you can either hand-draw the graphs on paper and submit a photo or use an online tool of your choice. Please make sure the image is submitted as a separate file on Gradescope.</p>
+</div>
+</section>
+<section id="visualizing-and-cleaning-the-data">
+<h3>3.3 Visualizing and cleaning the data<a class="headerlink" href="#visualizing-and-cleaning-the-data" title="Link to this heading">#</a></h3>
+<p>Let’s next ensure that the baseline characteristics are balanced between the treatment and control groups. Complete the <code class="docutils literal notranslate"><span class="pre">baseline_stats</span></code> function below to verify that the <code class="docutils literal notranslate"><span class="pre">bw</span></code>, <code class="docutils literal notranslate"><span class="pre">momage</span></code>, <code class="docutils literal notranslate"><span class="pre">nnhealth</span></code>, and <code class="docutils literal notranslate"><span class="pre">momwhite</span></code> characteristics are balanced and roughly match the values reported in Table 1 of Brooks-Gunn et al 1991.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>It is possible to complete this operation in one line by using pandas <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> + <code class="docutils literal notranslate"><span class="pre">agg()</span></code></p></li>
+<li><p>Since <code class="docutils literal notranslate"><span class="pre">momwhite</span></code> is coded as a binary variable, the mean will be the proportion of <code class="docutils literal notranslate"><span class="pre">momwhite</span> <span class="pre">=</span> <span class="pre">1</span></code> in the sample.</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">baseline_stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariate</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the mean and standard deviation of a covariate </span>
+<span class="sd">    for the treatment and control groups.</span>
+<span class="sd">    Assumes that the treatment indicator column is named `treat`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): the dataframe to compute the baseline stats</span>
+<span class="sd">        covariate (str): the name of the covariate to compute the baseline stats</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: a grouped dataframe with the mean and standard deviation </span>
+<span class="sd">            of the covariate for the treatment and control groups</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+
+<span class="c1"># display(baseline_stats(ihdp_raw, &#39;bw&#39;))</span>
+<span class="c1"># display(baseline_stats(ihdp_raw, &#39;momage&#39;))</span>
+<span class="c1"># display(baseline_stats(ihdp_raw, &#39;nnhealth&#39;))</span>
+<span class="c1"># display(baseline_stats(ihdp_raw, &#39;momwhite&#39;))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Beyond having similar mean and standard deviation, an implication of exchangeability is that the treatment and control groups should have a similar <em>distribution</em> of covariates. We can inspect this by plotting the (cumulative) distribution of the covariates for the treatment and control groups and visually inspecting whether the two distributions are similar.</p>
+<p>Let’s verify this is the case for our continuous variables <code class="docutils literal notranslate"><span class="pre">bw</span></code>, <code class="docutils literal notranslate"><span class="pre">momage</span></code>, and <code class="docutils literal notranslate"><span class="pre">nnhealth</span></code>, using a distribution plot via <code class="docutils literal notranslate"><span class="pre">sns.kdeplot</span></code>. Specfically, complete the <code class="docutils literal notranslate"><span class="pre">plot_covariate_distribution</span></code> function below by generating a kde plot with:</p>
+<ul class="simple">
+<li><p>the covariate on the x-axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">treat</span></code> as the hue</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ihdp_df</span></code> as the data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common_norm=False</span></code> to ensure that the y-axis is on the same scale for both the treatment and control groups</p></li>
+<li><p><strong>optional</strong>: <code class="docutils literal notranslate"><span class="pre">cumulative=True</span></code> to plot the cumulative distribution, to make the curves easier to compare</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the statistically curious: a natural hypothesis to test here is whether the two datasets come from the same distribution, which can be done using a <a class="reference external" href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">two-sample Kolmogorov-Smirnov test</a>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_covariate_distribution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariate</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the (optionally cumulative) distribution of a covariate for the treatment and control groups.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): the dataframe to plot the covariate distribution</span>
+<span class="sd">        covariate (str): the name of the covariate to plot</span>
+<span class="sd">        title (str): the title of the plot</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None, but shows the covariate cumulative distribution plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#plot_covariate_distribution(ihdp_raw, &#39;bw&#39;, &#39;TODO title&#39;)</span>
+<span class="c1">#plot_covariate_distribution(ihdp_raw, &#39;momage&#39;, &#39;TODO title&#39;)</span>
+<span class="c1">#plot_covariate_distribution(ihdp_raw, &#39;nnhealth&#39;, &#39;TODO title&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our outcome is <code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code>, which are the infant’s IQ score at 36 months. However, there are some missing values in the <code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code> column, so we need to drop the rows that do not have the outcome.</p>
+<p>Complete the <code class="docutils literal notranslate"><span class="pre">load_and_clean_ihdp_data</span></code> function below, and then run the cell to load the cleaned dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_and_clean_ihdp_data</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the IHDP dataset, selecting the columns of interest and dropping the rows that do not have the outcome.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: the cleaned IHDP dataset with the following columns selected:</span>
+<span class="sd">            bw: birth weight in grams</span>
+<span class="sd">            momage: mother&#39;s age in years</span>
+<span class="sd">            iqsb.36: IQ score at 36 months</span>
+<span class="sd">            nnhealth: neonatal health index</span>
+<span class="sd">            momwhite: binary indicator for maternal ethnicity: 1 if white, 0 otherwise</span>
+<span class="sd">            treat: binary treatment assignment</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ihdp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="c1"># TODO your code here</span>
+
+    <span class="k">assert</span> <span class="n">ihdp_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ihdp_df</span><span class="p">[</span><span class="s1">&#39;iqsb.36&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ihdp_df</span>
+
+<span class="n">ihdp_clean</span> <span class="o">=</span> <span class="n">load_and_clean_ihdp_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bootstrap-utility-functions">
+<h2>4. Bootstrap utility functions<a class="headerlink" href="#bootstrap-utility-functions" title="Link to this heading">#</a></h2>
+<p>Since we only have one real dataset, we cannot generate a distribution of the difference-in-means estimator over multiple experiments. However, we can use bootstrapping to generate a distribution of the difference-in-means estimator.</p>
+<p>As we saw in worksheet 3 and in class, bootstrapping is a powerful technique that allows us to generate a sampling distribution over <em>any</em> estimator by resampling the data with replacement. Copy your <code class="docutils literal notranslate"><span class="pre">bootstrap_dfs</span></code> function from Worksheet 3 below, which takes in a dataframe and returns a list of bootstrapped dataframes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_dfs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_bootstraps</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bootstraps the dataframe `n_bootstraps` times.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): the dataframe to bootstrap</span>
+<span class="sd">        n_bootstraps (int): the number of bootstraps to generate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[pd.DataFrame]: a list of bootstrapped dataframes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll write a utility function to compute the bootstrapped confidence interval given a list of bootstrap values, similar to how we did in Worksheet 3.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function takes in an alpha level of 0.05 by default, which corresponds to a 95% confidence interval. However, this implementation allows for any alpha level to be used, e.g. for 90% or 99% confidence intervals.</p>
+<p>Also note that while the <code class="docutils literal notranslate"><span class="pre">np.percentile</span></code> function takes in a percentage between 0 and 100, the <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameter is a proportion between 0 and 1. Be sure to convert to correct units!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_ci</span><span class="p">(</span><span class="n">bootstrap_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the confidence interval using the percentile method.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        bootstrap_values (list[float]): the bootstrapped values</span>
+<span class="sd">        alpha (float): the significance level, defaults to 0.05</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[float]: the confidence interval [lower, upper]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimation-and-interpretation">
+<h2>5 Estimation and Interpretation<a class="headerlink" href="#estimation-and-interpretation" title="Link to this heading">#</a></h2>
+<section id="difference-in-means-estimation">
+<h3>5.1 Difference-in-means estimation<a class="headerlink" href="#difference-in-means-estimation" title="Link to this heading">#</a></h3>
+<p>We’ll now want to apply our difference-in-means estimators to the IHDP dataset. In order to use our stratified difference-in-means estimator, we need to binarize the continuous covariates we are analyzing. Complete the following <code class="docutils literal notranslate"><span class="pre">binarize_covariate</span></code> function, which creates a new binary covariate that is 1 if the covariate is greater than the cutpoint, and 0 otherwise.</p>
+<p>Then, apply the <code class="docutils literal notranslate"><span class="pre">binarize_covariate</span></code> function to the <code class="docutils literal notranslate"><span class="pre">momage</span></code> and <code class="docutils literal notranslate"><span class="pre">nnhealth</span></code> covariates:</p>
+<ul class="simple">
+<li><p>using a cutpoint of 22 years for <code class="docutils literal notranslate"><span class="pre">momage</span></code></p></li>
+<li><p>using a cutpoint of 100 for <code class="docutils literal notranslate"><span class="pre">nnhealth</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binarize_covariate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariate</span><span class="p">,</span> <span class="n">cutpoint</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a new binary covariate that is 1 if the covariate is greater than the cutpoint, and 0 otherwise.</span>
+<span class="sd">    Updates the dataframe in place with a new column named `{covariate}_bin`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): the dataframe to update</span>
+<span class="sd">        covariate (str): the name of the covariate to binarize</span>
+<span class="sd">        cutpoint (float): the cutpoint to use for binarization</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: the updated dataframe with the new binary covariate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
+<span class="k">assert</span> <span class="n">binarize_covariate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;A_bin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}))</span>
+
+<span class="c1"># TODO call binarize_covariate on the `momage` and `nnhealth` covariates</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, let’s compute our results. For the following difference-in-means estimators:</p>
+<ul class="simple">
+<li><p>unstratified difference-in-means estimator for the <code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code> outcome</p></li>
+<li><p>stratified difference-in-means estimator for the <code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code> outcome, binarized by <code class="docutils literal notranslate"><span class="pre">momage</span></code></p></li>
+<li><p>stratified difference-in-means estimator for the <code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code> outcome, binarized by <code class="docutils literal notranslate"><span class="pre">nnhealth</span></code></p></li>
+<li><p>stratified difference-in-means estimator for the <code class="docutils literal notranslate"><span class="pre">iqsb.36</span></code> outcome, binarized by <code class="docutils literal notranslate"><span class="pre">momwhite</span></code></p></li>
+</ul>
+<p>Compute and report the following in the markdown table below (up to two decimal places):</p>
+<ul class="simple">
+<li><p>the estimate for the difference-in-means estimator, <strong>using the cleaned dataset</strong> (not a bootstrap sample).</p></li>
+<li><p>the bootstrapped 95% confidence interval (CI) for the difference-in-means estimator</p></li>
+<li><p>the length of the confidence interval, which is the difference between the upper and lower bounds of the confidence interval</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See the comments in the code cell below for guidance on how you might want to organize your analysis, and feel free to create helper functions to organize your code. You do not have to follow the comments exactly, they are just a suggestion!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO get point estimates using the cleaned dataset</span>
+<span class="n">point_estimates</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;unstratified&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;stratified_nnhealth&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;stratified_momage&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;stratified_momwhite&quot;</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="c1"># TODO generate bootstrap dataframes</span>
+
+<span class="c1"># TODO create a structure to store difference-in-means results</span>
+
+<span class="c1"># TODO compute difference-in-means for each bootstrapped dataframe</span>
+
+<span class="c1"># TODO report the results for each estimator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estimator</p></th>
+<th class="head"><p>Effect</p></th>
+<th class="head"><p>95% CI</p></th>
+<th class="head"><p>Length of CI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Difference-in-means</p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+</tr>
+<tr class="row-odd"><td><p>Difference-in-means stratified by <code class="docutils literal notranslate"><span class="pre">nnhealth_bin</span></code></p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+</tr>
+<tr class="row-even"><td><p>Difference-in-means stratified by <code class="docutils literal notranslate"><span class="pre">momage_bin</span></code></p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+</tr>
+<tr class="row-odd"><td><p>Difference-in-means stratified by <code class="docutils literal notranslate"><span class="pre">momwhite</span></code></p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id1">
+<h3>5.2 Interpretation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Finally, let’s interpret the results.</p>
+<ol class="arabic simple">
+<li><p>Do any of the estimators appear to disagree with the others in terms of the estimate? Which estimator produces the shortest confidence interval?</p></li>
+<li><p>Based on your analysis, what conclusions can you draw about the average treatment effect of the intervention? Does it improve or worsen the outcome?</p></li>
+<li><p>Discuss any ethical/design considerations of the experimental setup you noticed (~1-2 paragraphs). You can refer back to our discussion of these challenges from class and the study design described in the reading. Some questions you could consider:</p></li>
+</ol>
+<ul class="simple">
+<li><p>At the time the study was designed, do you think there was genuine uncertainty about the effectiveness of the intervention? Why might researchers have considered the intervention promising but unproven?</p></li>
+<li><p>What do you notice about how infants were recruited into the study? Are they representative of the overall U.S. population of underweight newborns?</p></li>
+<li><p>Is the selected outcome appropriate for evaluating the intervention’s impact? What are some other outcomes that could be used to evaluate the intervention?</p></li>
+</ul>
+<p><strong>TODO</strong> your responses here:</p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</section>
+</section>
+<section id="reflection">
+<h2>6. Reflection<a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>How much time did you spend on this assignment?</p></li>
+<li><p>Were there any parts of the assignment that you found particularly challenging?</p></li>
+<li><p>What is one thing you have a better understanding of after completing this assignment and going through the class content?</p></li>
+<li><p>Do you have any follow-up questions about concepts that you’d like to explore further?</p></li>
+</ol>
+<p><strong>TODO</strong> your responses here:</p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</section>
+<section id="optional-extensions">
+<h2>7. Optional extensions<a class="headerlink" href="#optional-extensions" title="Link to this heading">#</a></h2>
+<p>If you’d like, here are some optional extensions you can explore and implement:</p>
+<ul class="simple">
+<li><p>Our stratified estimator currently only works for stratifying on binary variables. A natural extension would be to modify our <code class="docutils literal notranslate"><span class="pre">diff_in_means_stratified</span></code> function to work for multiple strata.</p></li>
+<li><p>Once our stratified difference in means estimate is extended to support multiple strata, we can explore the trade-off between using more or fewer strata for continuous variables, and seeing how this affects the variance of our estimator. This can be done by using the <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code> function to bin the covariate into a discrete number of bins.</p></li>
+<li><p>Another benefit of a randomized experiment is that we can use them to study multiple outcomes. Brooks-Gunn et al. 1991 mention that the IQ score only provide a global estimate of cognitive function, and so also conduct analysis on the Peabody Picture Vocabulary Test (PPVT) which assesses vocabulary. We can follow the causal roadmap again to analyze this outcome, represented as the <code class="docutils literal notranslate"><span class="pre">ppvt.imp</span></code> column in the IHDP dataset.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../worksheets/ws2_solution.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">WS 2 Solution 🐼</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents-and-rubric">Table of Contents and Rubric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-submit">How to submit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-imports">Notebook imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-means">1. Difference-in-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-diff-in-means">1.1. Implement <code class="docutils literal notranslate"><span class="pre">diff_in_means</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-stratified-diff-in-means">1.2. Implement <code class="docutils literal notranslate"><span class="pre">stratified_diff_in_means</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-efficiency-of-difference-in-means-estimators">2. Exploring the efficiency of difference-in-means estimators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-widget">2.1 Interactive widget</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">2.2 Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-infant-health-and-development-program">3. The Infant Health and Development Program</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-knowledge-and-causal-question">3.1 Prior Knowledge and Causal Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#study-design">3.2 Study Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-and-cleaning-the-data">3.3 Visualizing and cleaning the data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-utility-functions">4. Bootstrap utility functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-and-interpretation">5 Estimation and Interpretation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-means-estimation">5.1 Difference-in-means estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2 Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">6. Reflection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extensions">7. Optional extensions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
