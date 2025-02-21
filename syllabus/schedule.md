@@ -77,7 +77,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     
     - <small>02/19</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 5-6pm</li><li>Bhargavi 6-7pm</li></ul>
 
-    - <small>02/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II/Stratification</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1450240/mod_resource/content/1/lec06-causal-graphs-ii-stratification-starter.pdf)</li><li>[live code starter](lec6_live)</li><li>[Activity 5](https://docs.google.com/document/d/1J3rDQe0ZX8Xs7PAoFr2DEJO7MY4McnPx8waUP0UvfkQ/edit?usp=sharing)</ul><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) Project 1
+    - <small>02/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II/Stratification</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1450240/mod_resource/content/1/lec06-causal-graphs-ii-stratification-starter.pdf)</li><li>[live code starter](lec6_live)</li><li>[Activity 5](https://docs.google.com/document/d/1J3rDQe0ZX8Xs7PAoFr2DEJO7MY4McnPx8waUP0UvfkQ/edit?usp=sharing)</ul><br><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Project 1](proj1)
     - <small>02/21</small>
 
 *   
@@ -88,7 +88,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>02/28</small>
 
 *   
-    - <small>03/03</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 1
+    - <small>03/03</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 1](proj1)
     - <small>03/04</small><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
     - <small>03/05</small>
     - <small>03/06</small>

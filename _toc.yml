@@ -27,9 +27,9 @@ parts:
       - file: worksheets/ws1_solution.ipynb
       - file: worksheets/ws2_solution.ipynb
   
-  # - caption: Projects
-  #   chapters:
-  #     - file: projects/proj1_random_experiment_solution.ipynb
+  - caption: Projects
+    chapters:
+      - file: projects/proj1.ipynb
   #     - file: projects/proj2-observational-study.md
   #     - file: projects/proj3-instrumental-variable.md
   
