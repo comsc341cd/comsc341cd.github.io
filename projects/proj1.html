@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
@@ -737,7 +738,8 @@ n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_experiment_results</span><span class="p">(</span><span class="n">n_experiments</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Simulates n_experiments random experiments and computes the difference-in-means and stratified difference-in-means estimators.</span>
+<span class="sd">    Simulates n_experiments random experiments and computes the difference-in-means</span>
+<span class="sd">    and stratified difference-in-means estimators.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        n_experiments (int): the number of experiments to simulate</span>
@@ -816,7 +818,7 @@ n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
 <ol class="arabic simple">
 <li><p>What do you observe about the bias of the unstratified and stratified estimators? Is either biased?</p></li>
 <li><p>What do you observe about the variance of the unstratified and stratified estimators? Researchers sometime call estimators with lower variance to be <strong>more efficient</strong>. Is there an estimator that appears to be more efficient?</p></li>
-<li><p>What happens to the relative variance of the two estimators when you set the covariate effect to 0? Why does this occur?</p></li>
+<li><p>What happens to the relative variance of the two estimators when you set the covariate effect to 0, and why you think this occurs?</p></li>
 </ol>
 <p><strong>TODO</strong> your responses here:</p>
 <ol class="arabic simple">
