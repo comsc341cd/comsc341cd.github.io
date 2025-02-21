@@ -1,0 +1,11 @@
+/* Keep odd rows color */
+tr.row-odd,
+tr.row-odd:hover {
+    background-color: rgb(255, 255, 255) !important;  /* white */
+}
+
+/* Keep even rows color */
+tr.row-even,
+tr.row-even:hover {
+    background-color: rgb(247, 247, 247) !important;  /* light gray */
+}
