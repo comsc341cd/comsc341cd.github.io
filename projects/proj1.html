@@ -836,6 +836,10 @@ n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
 <p>Let’s now dive into analyzing a real-world study: the Infant Health and Development Program (IHDP). The IHDP was a randomized experiment conducted in the 1980s to evaluate the effectiveness of an early intervention program for low-birthweight, prematurely born infants.</p>
 <section id="prior-knowledge-and-causal-question">
 <h3>3.1 Prior Knowledge and Causal Question<a class="headerlink" href="#prior-knowledge-and-causal-question" title="Link to this heading">#</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Content warning</p>
+<p>The reading contains the term “mental retardation,” which was commonly used in medical and policy discussions at the time but is now outdated and harmful. Today, the term “intellectual disability” is preferred and is used medically and <a class="reference external" href="https://www.specialolympics.org/stories/news/rosas-law-signed-into-law-by-president-obama">federally</a>.</p>
+</div>
 <p>Read the following resources on the IHDP study:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://policyforchildren.org/wp-content/uploads/2013/08/IHDP-Final-5.11.10.pdf">IHDP policy memo</a></p></li>
@@ -844,7 +848,6 @@ n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
 <div class="note admonition">
 <p class="admonition-title">Reading Notes</p>
 <ul class="simple">
-<li><p><strong>Content warning</strong>: the reading contains the term “mental retardation,” which was commonly used in medical and policy discussions at the time but is now outdated and harmful. Today, the term “intellectual disability” is preferred and is used medically and <a class="reference external" href="https://www.specialolympics.org/stories/news/rosas-law-signed-into-law-by-president-obama">federally</a>.</p></li>
 <li><p>The Brooks-Gunn et al. 1991 paper contains minute details about the study recruitment and data collection process. Don’t worry about understanding every aspect of the study, but try to get a sense of the overall experimental design and the baseline characteristics reported in Table 1.</p></li>
 <li><p>The original methods mention stratification by both birthweight and clinical site in the study design. Because the probability of treatment is the same for all stratified groups, both the stratified difference-in-means and unstratified difference-in-means are valid estimators. For the purposes of this project, we will analyze the efficiency of estimators that <strong>post-stratify</strong> by other covariates.</p></li>
 </ul>
@@ -979,7 +982,8 @@ n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_and_clean_ihdp_data</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Loads the IHDP dataset, selecting the columns of interest and dropping the rows that do not have the outcome.</span>
+<span class="sd">    Loads the IHDP dataset, selecting the columns of interest and dropping the </span>
+<span class="sd">    rows that do not have the outcome.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        pd.DataFrame: the cleaned IHDP dataset with the following columns selected:</span>
@@ -1069,8 +1073,9 @@ n_{k0} = \sum_{i=1}^{n} \mathbb{I}(X_i = k \text{ and } T_i = 0)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binarize_covariate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariate</span><span class="p">,</span> <span class="n">cutpoint</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a new binary covariate that is 1 if the covariate is greater than the cutpoint, and 0 otherwise.</span>
-<span class="sd">    Updates the dataframe in place with a new column named `{covariate}_bin`</span>
+<span class="sd">    Creates a new binary covariate that is 1 if the covariate is greater </span>
+<span class="sd">    than the cutpoint, and 0 otherwise.</span>
+<span class="sd">    Updates the dataframe with a new column named `{covariate}_bin`</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        df (pd.DataFrame): the dataframe to update</span>
