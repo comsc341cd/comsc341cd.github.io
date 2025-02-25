@@ -60,6 +60,10 @@ Attendance is required for this course. However, I understand that unexpected si
 
 Extensions will be given in the event of extenuating circumstances, such as illness or an unexpected emergency. If this is the case, please reach out to me as soon as possible so we can work together on a plan and timeline for any make-up work. 
 
+## Resubmissions
+
+The three projects (not including the final project) will have the option to be resubmitted up to one time each. To do a resubmission, in addition with revising your project you will need to reach out to me to set up a time to discuss the changes you made. Resubmissions can be done up to two weeks after the original assignment has been returned, and will be eligible for up to half of the total points deducted from the original submission.
+
 ## Equipment
 
 **Pencil/Pen**: We will sometimes be doing pencil-and-paper exercises in class. You can use any pen or pencil you have.
