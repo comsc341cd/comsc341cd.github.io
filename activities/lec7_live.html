@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 1: Jupyter and NumPy &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Lecture 7 live coding &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
@@ -60,7 +60,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity1';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/lec7_live';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -287,7 +287,7 @@
       
       
       
-      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity1.ipynb&branch=main" target="_blank"
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/lec7_live.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -318,7 +318,7 @@
       
       
       
-      <li><a href="../_sources/activities/activity1.ipynb" target="_blank"
+      <li><a href="../_sources/activities/lec7_live.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -402,7 +402,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 1: Jupyter and NumPy</h1>
+    <h1>Lecture 7 live coding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -412,8 +412,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replicating-the-combined-contingency-table">1. Replicating the combined contingency table</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-tables-for-small-and-large-stones">2. Contingency tables for small and large stones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-total-expectation">Law of Total Expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-argument-unpacking">Keyword argument unpacking</a></li>
 </ul>
             </nav>
         </div>
@@ -425,172 +425,260 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-1-jupyter-and-numpy">
-<span id="activity1"></span><h1>Activity 1: Jupyter and NumPy<a class="headerlink" href="#activity-1-jupyter-and-numpy" title="Link to this heading">#</a></h1>
-<p><strong>2025-01-30</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-7-live-coding">
+<span id="lec7-live"></span><h1>Lecture 7 live coding<a class="headerlink" href="#lecture-7-live-coding" title="Link to this heading">#</a></h1>
+<p><strong>2025-02-25</strong></p>
 <hr class="docutils" />
+<section id="law-of-total-expectation">
+<h2>Law of Total Expectation<a class="headerlink" href="#law-of-total-expectation" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy</span>
-<span class="c1"># the &#39;as&#39; allows us to use np as a shorthand for numpy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="replicating-the-combined-contingency-table">
-<h2>1. Replicating the combined contingency table<a class="headerlink" href="#replicating-the-combined-contingency-table" title="Link to this heading">#</a></h2>
-<p>We can replicate the calculations we previously did by hand using numpy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#                               Y=1  Y=0</span>
-<span class="n">contingency_overall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">273</span><span class="p">,</span> <span class="mi">77</span><span class="p">],</span>  <span class="c1"># T=1</span>
-                               <span class="p">[</span><span class="mi">289</span><span class="p">,</span> <span class="mi">61</span><span class="p">]])</span> <span class="c1"># T=0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed for reproducibility</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">10000</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Accessing the contingency table can be done by indexing <code class="docutils literal notranslate"><span class="pre">array[row,</span> <span class="pre">column]</span></code>. The <code class="docutils literal notranslate"><span class="pre">:</span></code> operator is used to select all rows or columns.</p>
+<p>Suppose we’re looking at average coffee prices globally over two types of coffee beans: Arabica and Robusta.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = \begin{cases}
+1 &amp; \text{if coffee is Arabica} \\
+0 &amp; \text{if coffee is Robusta}
+\end{cases}
+\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select the first row, second column</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">contingency_overall</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # generate a random variable X with 80% arabica and 20% robusta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
+<span class="c1"># # generate a random variable X with 80% arabica and 20% robusta</span>
+<span class="c1"># X = rng.choice([1, 0], size=n_samples, p=[0.8, 0.2])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(Y\)</span> be the price of coffee in dollars per pound.</p>
+<p>Arabica prices are higher, on average:
+$<span class="math notranslate nohighlight">\(
+Y \sim \begin{cases}
+\mathcal{N}(4.5, \;0.75^2) &amp; \text{if coffee is Arabica} \\
+\mathcal{N}(2.0, \;0.25^2) &amp; \text{if coffee is Robusta}
+\end{cases}
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Y from two normal distributions</span>
+
+<span class="c1"># Create dataframe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
+<span class="c1"># # Create Y from two normal distributions</span>
+<span class="c1"># Y = np.where(</span>
+<span class="c1">#     X == 1,</span>
+<span class="c1">#     rng.normal(loc=4.5, scale=0.75, size=n_samples),</span>
+<span class="c1">#     rng.normal(loc=2, scale=0.25, size=n_samples)</span>
+<span class="c1"># )</span>
+
+<span class="c1"># # create dataframe</span>
+<span class="c1"># coffee_df = pd.DataFrame({</span>
+<span class="c1">#     &#39;is_arabica&#39;: X,</span>
+<span class="c1">#     &#39;price&#39;: Y</span>
+<span class="c1"># })</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Law of Total Expectation is generally stated as:</p>
+<div class="math notranslate nohighlight">
+\[
+E[Y] = E[E[Y|X]]
+\]</div>
+<p>“The expected value of Y equals the expected value of the conditional expectation of Y given X”</p>
+<p><strong>Idea</strong>: we take the average of conditional means of Y given X over all possible values of X.</p>
+<p>For binary X, this expands to:</p>
+<div class="math notranslate nohighlight">
+\[
+E[Y] = E[Y|X=1]P(X=1) + E[Y|X=0]P(X=0)
+\]</div>
+<p><span class="math notranslate nohighlight">\(E[E[Y|X]]\)</span> means we:</p>
+<ol class="arabic simple">
+<li><p>First compute the conditional means of <span class="math notranslate nohighlight">\(Y\)</span> for each value of <span class="math notranslate nohighlight">\(X\)</span></p></li>
+<li><p>Then take the weighted average of these conditional means, weighted by how often each <span class="math notranslate nohighlight">\(X\)</span> occurs</p></li>
+</ol>
+</div>
+<p>Let’s now verify the Law of Total Expectation with our coffee data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the simple mean of Y</span>
+<span class="n">actual_mean</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># compute the conditional means</span>
+
+<span class="c1"># calculate the weighted average of conditional means</span>
+<span class="n">law_of_total_expectation</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="c1"># select the second column</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">contingency_overall</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># select the first row</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">contingency_overall</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual mean price: $</span><span class="si">{:.2f}</span><span class="s2">/lb&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">actual_mean</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Law of total expectation: $</span><span class="si">{:.2f}</span><span class="s2">/lb&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">law_of_total_expectation</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77
-[77 61]
-[273  77]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual mean price: $0.00/lb
+Law of total expectation: $0.00/lb
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the marginal probability of Y=1</span>
-<span class="c1"># TODO your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
+<span class="c1"># # compute the simple mean of Y</span>
+<span class="c1"># actual_mean = coffee_df[&#39;price&#39;].mean()</span>
+
+<span class="c1"># # compute the conditional means</span>
+<span class="c1"># p_arabica = np.mean(coffee_df[&#39;is_arabica&#39;])</span>
+<span class="c1"># mean_price_arabica = coffee_df[coffee_df[&#39;is_arabica&#39;] == 1][&#39;price&#39;].mean()</span>
+<span class="c1"># mean_price_robusta = coffee_df[coffee_df[&#39;is_arabica&#39;] == 0][&#39;price&#39;].mean()</span>
+
+<span class="c1"># # calculate the weighted average of conditional means</span>
+<span class="c1"># law_of_total_expectation = (mean_price_arabica * p_arabica + </span>
+<span class="c1">#                            mean_price_robusta * (1 - p_arabica))</span>
+
+
+<span class="c1"># print(&quot;Actual mean price: ${:.2f}/lb&quot;.format(actual_mean))</span>
+<span class="c1"># print(&quot;Law of Total Expectation: ${:.2f}/lb&quot;.format(law_of_total_expectation))</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can also visualize the distribution of the prices by species:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Computer the conditional probability of Y=1 given T=1</span>
-<span class="c1"># TODO your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
+<span class="c1"># plt.figure(figsize=(10, 6))</span>
+<span class="c1"># sns.kdeplot(data=coffee_df, x=&#39;price&#39;, hue=&#39;is_arabica&#39;)</span>
+<span class="c1"># plt.axvline(actual_mean, color=&#39;black&#39;, linestyle=&#39;--&#39;, </span>
+<span class="c1">#             label=&#39;Overall mean&#39;)</span>
+<span class="c1"># plt.axvline(mean_price_arabica, color=&#39;orange&#39;, linestyle=&#39;--&#39;, </span>
+<span class="c1">#             label=&#39;Mean price: Arabica&#39;)</span>
+<span class="c1"># plt.axvline(mean_price_robusta, color=&#39;blue&#39;, linestyle=&#39;--&#39;, </span>
+<span class="c1">#             label=&#39;Mean price: Robusta&#39;)</span>
+<span class="c1"># plt.xlabel(&#39;Price ($/lb)&#39;)</span>
+<span class="c1"># plt.ylabel(&#39;Density&#39;)</span>
+<span class="c1"># plt.title(&#39;Distribution of Coffee Prices by Species&#39;)</span>
+<span class="c1"># plt.legend()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Computer the conditional probability of Y=1 given T=0</span>
-<span class="c1"># TODO your code here</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Things to notice:</p>
+<ul class="simple">
+<li><p>The overall mean (black dashed line) must fall between the two conditional means</p></li>
+<li><p>It’s pulled closer to the Arabica mean because there’s more Arabica (80%)</p></li>
+<li><p>The area under each curve represents the relative frequency of each type</p></li>
+</ul>
 </div>
-</div>
-</div>
-<p><strong>Optional extension</strong>: if you’re already comfortable with the coding environment, you can explore the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html">np.sum</a> documentation, particularly the <code class="docutils literal notranslate"><span class="pre">axis</span></code> parameter, to see how you can equivalently compute these probabilities without slicing out the rows or columns.</p>
 </section>
 <hr class="docutils" />
-<section id="contingency-tables-for-small-and-large-stones">
-<h2>2. Contingency tables for small and large stones<a class="headerlink" href="#contingency-tables-for-small-and-large-stones" title="Link to this heading">#</a></h2>
-<p>Below are the contingency tables for the two cases, stored as numpy arrays:</p>
+<section id="keyword-argument-unpacking">
+<h2>Keyword argument unpacking<a class="headerlink" href="#keyword-argument-unpacking" title="Link to this heading">#</a></h2>
+<p>By prefixing a dictionary with <code class="docutils literal notranslate"><span class="pre">**</span></code>, you can unpack the dictionary into keyword arguments.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contingency table for C=0, large stones</span>
-<span class="c1">#                          Y=1  Y=0</span>
-<span class="n">contingency_C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">192</span><span class="p">,</span> <span class="mi">71</span><span class="p">],</span> <span class="c1"># T=1</span>
-                          <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">25</span><span class="p">]])</span> <span class="c1"># T=0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
+<span class="c1"># def add(a, b):</span>
+<span class="c1">#     return a + b</span>
 
-<span class="c1"># contingency table for C=1, small stones</span>
-<span class="c1">#                          Y=1  Y=0</span>
-<span class="n">contingency_C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">81</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="c1"># T=1</span>
-                          <span class="p">[</span><span class="mi">234</span><span class="p">,</span> <span class="mi">36</span><span class="p">]])</span> <span class="c1"># T=0</span>
+<span class="c1"># d = {&#39;a&#39;: 1, &#39;b&#39;: 2}</span>
 
-<span class="c1"># prints (number of rows, number of columns)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">contingency_C0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># add(**d)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">**</span></code> operator can also be used in the function definition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
+<span class="c1"># def key_print(**kwargs):</span>
+<span class="c1">#     # we see that the type of kwargs is dict</span>
+<span class="c1">#     print(type(kwargs))</span>
+<span class="c1">#     print(kwargs)</span>
+
+<span class="c1">#     for k, v in kwargs.items():</span>
+<span class="c1">#         print(&quot;key: &quot;, k)</span>
+<span class="c1">#         print(&quot;value: &quot;, v)</span>
+
+<span class="c1"># card_ranks = {&quot;J&quot;: 11, &quot;Q&quot;: 12, &quot;K&quot;: 13, &quot;A&quot;: 1}</span>
+<span class="c1"># key_print(**card_ranks)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.format">str.format()</a> method as an example of keyword argument unpacking.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can verify that the two contingency tables are consistent with the overall contingency table:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this returns a numpy array of booleans of whether each element in the two arrays are equal</span>
-<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">contingency_C0</span> <span class="o">+</span> <span class="n">contingency_C1</span><span class="p">,</span> <span class="n">contingency_overall</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ True,  True],
-       [ True,  True]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Compute the expected value of <span class="math notranslate nohighlight">\(Y\)</span> given <span class="math notranslate nohighlight">\(T=1\)</span> and <span class="math notranslate nohighlight">\(T=0\)</span> for the case of large stones (<span class="math notranslate nohighlight">\(C=0\)</span>).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code</span>
-<span class="n">EY_given_T1_C0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">EY_given_T0_C0</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method_descriptor:
 
-<span class="c1"># the f-string allows us to insert the value of the variable into the string</span>
-<span class="c1"># and the :.2f allows us to round the value to 2 decimal places</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated expected value of Y given T=1 and C=0: </span><span class="si">{</span><span class="n">EY_given_T1_C0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated expected value of Y given T=0 and C=0: </span><span class="si">{</span><span class="n">EY_given_T0_C0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated expected value of Y given T=1 and C=0: 0.00
-Estimated expected value of Y given T=0 and C=0: 0.00
+format(...) unbound builtins.str method
+    S.format(*args, **kwargs) -&gt; str
+    
+    Return a formatted version of S, using substitutions from args and kwargs.
+    The substitutions are identified by braces (&#39;{&#39; and &#39;}&#39;).
 </pre></div>
 </div>
 </div>
 </div>
-<p>Which treatment appears to be more successful in the large stone case (<span class="math notranslate nohighlight">\(C=0\)</span>)?</p>
-<p><strong>Your response:</strong> TODO</p>
-<p>Now let’s compute the expected value of <span class="math notranslate nohighlight">\(Y\)</span> given <span class="math notranslate nohighlight">\(T=1\)</span> and <span class="math notranslate nohighlight">\(T=0\)</span> for the case of small stones (<span class="math notranslate nohighlight">\(C=1\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code</span>
-<span class="n">EY_given_T1_C1</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">EY_given_T0_C1</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># the f-string allows us to insert the value of the variable into the string</span>
-<span class="c1"># and the :.2f allows us to round the value to 2 decimal places</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated expected value of Y given T=1 and C=1: </span><span class="si">{</span><span class="n">EY_given_T1_C1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated expected value of Y given T=0 and C=1: </span><span class="si">{</span><span class="n">EY_given_T0_C1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># can give keyword args</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In this game, </span><span class="si">{card}</span><span class="s2"> is rank </span><span class="si">{value}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated expected value of Y given T=1 and C=1: 0.00
-Estimated expected value of Y given T=0 and C=1: 0.00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In this game, A is rank 14
 </pre></div>
 </div>
 </div>
 </div>
-<p>Which treatment appears to be more successful in the small stone case (<span class="math notranslate nohighlight">\(C=1\)</span>)?</p>
-<p><strong>Your response:</strong> TODO</p>
-<p>Note that we’ve split out the contingency tables for each stone case, but what we’re effectively doing is computing the following conditional expectations:</p>
-<div class="math notranslate nohighlight">
-\[E[Y\;|\;T=t, C=c]\]</div>
-<p>which we read as “the expected value of <span class="math notranslate nohighlight">\(Y\)</span> given <span class="math notranslate nohighlight">\(T\)</span> set to <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(C\)</span> set to <span class="math notranslate nohighlight">\(c\)</span>”.</p>
 </section>
 </section>
 
@@ -640,8 +728,8 @@ Estimated expected value of Y given T=0 and C=1: 0.00
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replicating-the-combined-contingency-table">1. Replicating the combined contingency table</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-tables-for-small-and-large-stones">2. Contingency tables for small and large stones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-total-expectation">Law of Total Expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-argument-unpacking">Keyword argument unpacking</a></li>
 </ul>
   </nav></div>
 
