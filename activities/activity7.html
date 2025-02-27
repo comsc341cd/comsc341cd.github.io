@@ -462,7 +462,6 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 <li><p><code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>: categorical variable corresponding to the urbanicity of the school the student attends, e.g. urban, suburban, rural</p></li>
 </ul>
 </section>
-<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="part-1">
 <h1>Part 1<a class="headerlink" href="#part-1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
@@ -491,7 +490,6 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 </div>
 </div>
 </section>
-<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="part-2">
 <h1>Part 2<a class="headerlink" href="#part-2" title="Link to this heading">#</a></h1>
 <p>Next, let’s see if there are any positivity violations. We can do this by grouping over the covariiats plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
@@ -561,7 +559,6 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 <p>Does the number of rows you found in part 2 match this?</p>
 <p><strong>Your response</strong>: TODO</p>
 </section>
-<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="part-3">
 <h1>Part 3<a class="headerlink" href="#part-3" title="Link to this heading">#</a></h1>
 <p>Ideally we’d like to control for as many confounders as possible, let’s now add <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> to our list of covariates, making a total of 4 confounders.</p>
@@ -574,7 +571,6 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 </div>
 </div>
 </div>
-<hr class="docutils" />
 <p><strong>Optional extra</strong>: if we actually want to see the bins that are missing, we can generate a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html">pivot_table</a> of the counts, and then identify the bins that are missing in either the control or treatment group.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -600,7 +596,6 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 </div>
 </div>
 </section>
-<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="references">
 <h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
 <ul class="simple">
