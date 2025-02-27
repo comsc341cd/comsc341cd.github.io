@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Activity 7: Positivity in Observational Studies &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity7';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1_solution.html">WS 1 Solution 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2_solution.html">WS 2 Solution 🐼</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity7.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/activities/activity7.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Activity 7: Positivity in Observational Studies</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity in Observational Studies</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-7-positivity-in-observational-studies">
+<span id="activity7"></span><h1>Activity 7: Positivity in Observational Studies<a class="headerlink" href="#activity-7-positivity-in-observational-studies" title="Link to this heading">#</a></h1>
+<p><strong>2025-02-27</strong></p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s load the data</span>
+<span class="n">learning_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/learning_mindset.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This selected portion of the National Study of Learning Mindsets dataset is not truly randomized, so we’ll need to adjust for confounding.</p>
+<p>The columns we will look at are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: stud
+ent Likert scale response to a fixed mindset survey question prior to the intervention: “You have a certain amount of intelligence, and you really can’t do much to change it” (1, strongly disagree; 7, strongly agree)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>: whether the student would be the first in their family to attend college (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>: student’s self-reported gender</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>: categorical variable corresponding to the urbanicity of the school the student attends, e.g. urban, suburban, rural</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-1">
+<h1>Part 1<a class="headerlink" href="#part-1" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s first consider the variables in <code class="docutils literal notranslate"><span class="pre">covariates</span></code> as <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>. These seem to be reasonable potential confounders to control for. If we take the same strategy as we have done with the kidney stone dataset, we’ll need to bin on the confounders and compute treatment effects for each bin.</p>
+<p>However, as we’ve seen today, we also need to be careful about positivity violations. First, let’s compute the total number of bins we need to create if we want to control for these two covariates.</p>
+<p>We can do this by using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.nunique.html">pd.Series.nunique</a> to get the number of unique values for each covariate and then multiplying them together. This is like taking a cross product over the all possible values of each variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO calculate the total number of bins </span>
+<span class="n">total_bins</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total number of bins: </span><span class="si">{</span><span class="n">total_bins</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total number of bins: 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2">
+<h1>Part 2<a class="headerlink" href="#part-2" title="Link to this heading">#</a></h1>
+<p>Next, let’s see if there are any positivity violations. We can do this by grouping over the covariiats plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
+<p>To generate the per-bin counts, we perform a <code class="docutils literal notranslate"><span class="pre">groupby(all_cols,</span> <span class="pre">as_index=False)</span></code> over the intervention and all combinations of the other columns, and the check the <code class="docutils literal notranslate"><span class="pre">ngroups</span></code> attribute of the resulting groupby object. How many groups are there?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by the intervention column and the two covariates</span>
+<span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">group_count</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ngroups</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Group by the intervention column and the two covariates</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">group_count</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ngroups</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/frame.py:9183,</span> in <span class="ni">DataFrame.groupby</span><span class="nt">(self, by, axis, level, as_index, sort, group_keys, observed, dropna)</span>
+<span class="g g-Whitespace">   </span><span class="mi">9180</span> <span class="k">if</span> <span class="n">level</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">by</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">9181</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;You have to supply one of &#39;by&#39; and &#39;level&#39;&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">9183</span> <span class="k">return</span> <span class="n">DataFrameGroupBy</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">9184</span>     <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9185</span>     <span class="n">keys</span><span class="o">=</span><span class="n">by</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9186</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9187</span>     <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9188</span>     <span class="n">as_index</span><span class="o">=</span><span class="n">as_index</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9189</span>     <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9190</span>     <span class="n">group_keys</span><span class="o">=</span><span class="n">group_keys</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9191</span>     <span class="n">observed</span><span class="o">=</span><span class="n">observed</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9192</span>     <span class="n">dropna</span><span class="o">=</span><span class="n">dropna</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9193</span> <span class="p">)</span>
+
+<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1329,</span> in <span class="ni">GroupBy.__init__</span><span class="nt">(self, obj, keys, axis, level, grouper, exclusions, selection, as_index, sort, group_keys, observed, dropna)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1326</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span> <span class="o">=</span> <span class="n">dropna</span>
+<span class="g g-Whitespace">   </span><span class="mi">1328</span> <span class="k">if</span> <span class="n">grouper</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1329</span>     <span class="n">grouper</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">get_grouper</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1330</span>         <span class="n">obj</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1331</span>         <span class="n">keys</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1332</span>         <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1333</span>         <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1334</span>         <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1335</span>         <span class="n">observed</span><span class="o">=</span><span class="kc">False</span> <span class="k">if</span> <span class="n">observed</span> <span class="ow">is</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span> <span class="k">else</span> <span class="n">observed</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1336</span>         <span class="n">dropna</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dropna</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1337</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1339</span> <span class="k">if</span> <span class="n">observed</span> <span class="ow">is</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1340</span>     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">ping</span><span class="o">.</span><span class="n">_passed_categorical</span> <span class="k">for</span> <span class="n">ping</span> <span class="ow">in</span> <span class="n">grouper</span><span class="o">.</span><span class="n">groupings</span><span class="p">):</span>
+
+<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/groupby/grouper.py:1071,</span> in <span class="ni">get_grouper</span><span class="nt">(obj, key, axis, level, sort, observed, validate, dropna)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1068</span>     <span class="n">groupings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ping</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1070</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groupings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1071</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No group keys passed!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1072</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groupings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1073</span>     <span class="n">groupings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Grouping</span><span class="p">(</span><span class="n">Index</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)))</span>
+
+<span class="ne">ValueError</span>: No group keys passed!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we need each bin to have both control and treatment units in order to have a valid comparison, the total number of groups should be equal to <strong>2 times the total number of bins possible</strong> for there to be no positivity violations.</p>
+<p>Does the number of rows you found in part 2 match this?</p>
+<p><strong>Your response</strong>: TODO</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-3">
+<h1>Part 3<a class="headerlink" href="#part-3" title="Link to this heading">#</a></h1>
+<p>Ideally we’d like to control for as many confounders as possible, let’s now add <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> to our list of covariates, making a total of 4 confounders.</p>
+<p>Repeat the analysis above with the new set of covariates. Do we see positivity violations with the new set of covariates?</p>
+<p><strong>Your response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here for part 3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Optional extra</strong>: if we actually want to see the bins that are missing, we can generate a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html">pivot_table</a> of the counts, and then identify the bins that are missing in either the control or treatment group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_df</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+<span class="c1"># Create a pivot table to show counts by intervention and bins</span>
+<span class="n">bin_pivot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">count_df</span><span class="p">,</span> 
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">,</span> <span class="s1">&#39;school_urbanicity&#39;</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;intervention&#39;</span><span class="p">],</span>
+    <span class="n">values</span><span class="o">=</span><span class="s1">&#39;intervention&#39;</span><span class="p">,</span>
+    <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Display information about the pivot table</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bins with no control units:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bin_pivot</span><span class="p">[</span><span class="n">bin_pivot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bins with no treatment units:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bin_pivot</span><span class="p">[</span><span class="n">bin_pivot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Yeager, D. S. et al. (2019). A national experiment reveals where a growth mindset improves achievement. Nature.</p></li>
+<li><p>Athey, S., &amp; Wager, S. (2019). Estimating treatment effects with causal forests: An application. Observational studies.</p></li>
+<li><p>Facure, M. (2023). Causal Inference for the Brave and the True.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./activities"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity in Observational Studies</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
