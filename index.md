@@ -25,3 +25,5 @@ This course is indebted to a number of fantastic, freely available online resour
 - Yaniv Yacoby's [Probabilistic Foundations of Machine Learning](https://mogu-lab.github.io/cs349-fall-2024/index.html) which is under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 - Brady Neal's [Introduction to Causal Inference](https://www.bradyneal.com/causal-inference-course).
 - Nick Huntington-Klein's [The Effect](https://theeffectbook.net/).
+- Scott Cunningham's [Causal Inference: The Mixtape](https://mixtape.scunning.com/).
+- Peng Ding's [A First Course in Causal Inference](https://arxiv.org/abs/2305.18793).
