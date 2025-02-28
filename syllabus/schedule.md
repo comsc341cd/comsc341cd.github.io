@@ -89,7 +89,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
     - <small>02/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b><ul style="margin-top:-1em;"><li>
     [[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1451616/mod_resource/content/1/lec08-observational-studies-ii-starter.pdf
-)</li><li>[Activity 7](activity7)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>
+)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1451702/mod_resource/content/1/lec08-observational-studies-ii.pdf)</li><li>[Activity 7](activity7)</li></ul>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>
     - <small>02/28</small>
 
 *   
