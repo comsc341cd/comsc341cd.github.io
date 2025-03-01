@@ -93,17 +93,21 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>02/28</small>
 
 *   
-    - <small>03/03</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 1](proj1)
-    - <small>03/04</small><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
-    - <small>03/05</small>
-    - <small>03/06</small>
+    - <small>03/03</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Bhargavi 6-7pm</li></ul><br>![](https://img.shields.io/badge/Due:-d62728) [Project 1](proj1)
+
+    - <small>03/04</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><ul style="margin-top:-1em;"></ul><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 2-3pm</li><li>Tony 5-6pm</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
+
+    - <small>03/05</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 5-6pm</li><li>Bhargavi 6-7pm</li></ul>
+
+    - <small>03/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><ul style="margin-top:-1em;"></ul><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>
+    
     - <small>03/07</small>
 
 *   
     - <small>03/10</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 4
-    - <small>03/11</small><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
+    - <small>03/11</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
     - <small>03/12</small>
-    - <small>03/13</small>
+    - <small>03/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments</u></b>
     - <small>03/14</small>
 
 *   
