@@ -20,56 +20,19 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 # Group by the intervention column and the two covariates
 all_cols = []
-group_count = learning_df.groupby(all_cols, as_index=False).ngroups
+#group_count = learning_df.groupby(all_cols, as_index=False).ngroups
+
 
 print(f"Number actual groups among the bins for {all_cols}: {group_count}")
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[5], line 3[0m
-[1;32m      1[0m [38;5;66;03m# Group by the intervention column and the two covariates[39;00m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[6], line 6[0m
 [1;32m      2[0m all_cols [38;5;241m=[39m []
-[0;32m----> 3[0m group_count [38;5;241m=[39m [43mlearning_df[49m[38;5;241;43m.[39;49m[43mgroupby[49m[43m([49m[43mall_cols[49m[43m,[49m[43m [49m[43mas_index[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m[38;5;241m.[39mngroups
-[1;32m      5[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mNumber actual groups among the bins for [39m[38;5;132;01m{[39;00mall_cols[38;5;132;01m}[39;00m[38;5;124m: [39m[38;5;132;01m{[39;00mgroup_count[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m      3[0m [38;5;66;03m#group_count = learning_df.groupby(all_cols, as_index=False).ngroups[39;00m
+[0;32m----> 6[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mNumber actual groups among the bins for [39m[38;5;132;01m{[39;00mall_cols[38;5;132;01m}[39;00m[38;5;124m: [39m[38;5;132;01m{[39;00m[43mgroup_count[49m[38;5;132;01m}[39;00m[38;5;124m"[39m)
 
-File [0;32m~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/frame.py:9183[0m, in [0;36mDataFrame.groupby[0;34m(self, by, axis, level, as_index, sort, group_keys, observed, dropna)[0m
-[1;32m   9180[0m [38;5;28;01mif[39;00m level [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m by [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[1;32m   9181[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124m"[39m[38;5;124mYou have to supply one of [39m[38;5;124m'[39m[38;5;124mby[39m[38;5;124m'[39m[38;5;124m and [39m[38;5;124m'[39m[38;5;124mlevel[39m[38;5;124m'[39m[38;5;124m"[39m)
-[0;32m-> 9183[0m [38;5;28;01mreturn[39;00m [43mDataFrameGroupBy[49m[43m([49m
-[1;32m   9184[0m [43m    [49m[43mobj[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m
-[1;32m   9185[0m [43m    [49m[43mkeys[49m[38;5;241;43m=[39;49m[43mby[49m[43m,[49m
-[1;32m   9186[0m [43m    [49m[43maxis[49m[38;5;241;43m=[39;49m[43maxis[49m[43m,[49m
-[1;32m   9187[0m [43m    [49m[43mlevel[49m[38;5;241;43m=[39;49m[43mlevel[49m[43m,[49m
-[1;32m   9188[0m [43m    [49m[43mas_index[49m[38;5;241;43m=[39;49m[43mas_index[49m[43m,[49m
-[1;32m   9189[0m [43m    [49m[43msort[49m[38;5;241;43m=[39;49m[43msort[49m[43m,[49m
-[1;32m   9190[0m [43m    [49m[43mgroup_keys[49m[38;5;241;43m=[39;49m[43mgroup_keys[49m[43m,[49m
-[1;32m   9191[0m [43m    [49m[43mobserved[49m[38;5;241;43m=[39;49m[43mobserved[49m[43m,[49m
-[1;32m   9192[0m [43m    [49m[43mdropna[49m[38;5;241;43m=[39;49m[43mdropna[49m[43m,[49m
-[1;32m   9193[0m [43m[49m[43m)[49m
-
-File [0;32m~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1329[0m, in [0;36mGroupBy.__init__[0;34m(self, obj, keys, axis, level, grouper, exclusions, selection, as_index, sort, group_keys, observed, dropna)[0m
-[1;32m   1326[0m [38;5;28mself[39m[38;5;241m.[39mdropna [38;5;241m=[39m dropna
-[1;32m   1328[0m [38;5;28;01mif[39;00m grouper [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[0;32m-> 1329[0m     grouper, exclusions, obj [38;5;241m=[39m [43mget_grouper[49m[43m([49m
-[1;32m   1330[0m [43m        [49m[43mobj[49m[43m,[49m
-[1;32m   1331[0m [43m        [49m[43mkeys[49m[43m,[49m
-[1;32m   1332[0m [43m        [49m[43maxis[49m[38;5;241;43m=[39;49m[43maxis[49m[43m,[49m
-[1;32m   1333[0m [43m        [49m[43mlevel[49m[38;5;241;43m=[39;49m[43mlevel[49m[43m,[49m
-[1;32m   1334[0m [43m        [49m[43msort[49m[38;5;241;43m=[39;49m[43msort[49m[43m,[49m
-[1;32m   1335[0m [43m        [49m[43mobserved[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mobserved[49m[43m [49m[38;5;129;43;01mis[39;49;00m[43m [49m[43mlib[49m[38;5;241;43m.[39;49m[43mno_default[49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[43mobserved[49m[43m,[49m
-[1;32m   1336[0m [43m        [49m[43mdropna[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdropna[49m[43m,[49m
-[1;32m   1337[0m [43m    [49m[43m)[49m
-[1;32m   1339[0m [38;5;28;01mif[39;00m observed [38;5;129;01mis[39;00m lib[38;5;241m.[39mno_default:
-[1;32m   1340[0m     [38;5;28;01mif[39;00m [38;5;28many[39m(ping[38;5;241m.[39m_passed_categorical [38;5;28;01mfor[39;00m ping [38;5;129;01min[39;00m grouper[38;5;241m.[39mgroupings):
-
-File [0;32m~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/groupby/grouper.py:1071[0m, in [0;36mget_grouper[0;34m(obj, key, axis, level, sort, observed, validate, dropna)[0m
-[1;32m   1068[0m     groupings[38;5;241m.[39mappend(ping)
-[1;32m   1070[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(groupings) [38;5;241m==[39m [38;5;241m0[39m [38;5;129;01mand[39;00m [38;5;28mlen[39m(obj):
-[0;32m-> 1071[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mNo group keys passed![39m[38;5;124m"[39m)
-[1;32m   1072[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(groupings) [38;5;241m==[39m [38;5;241m0[39m:
-[1;32m   1073[0m     groupings[38;5;241m.[39mappend(Grouping(Index([], dtype[38;5;241m=[39m[38;5;124m"[39m[38;5;124mint[39m[38;5;124m"[39m), np[38;5;241m.[39marray([], dtype[38;5;241m=[39mnp[38;5;241m.[39mintp)))
-
-[0;31mValueError[0m: No group keys passed!
+[0;31mNameError[0m: name 'group_count' is not defined
 

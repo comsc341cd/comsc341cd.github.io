@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 7: Positivity in Observational Studies &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 7: Positivity and regression in Yeager et al. 2019 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
@@ -408,7 +408,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 7: Positivity in Observational Studies</h1>
+    <h1>Activity 7: Positivity and regression in Yeager et al. 2019</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -418,10 +418,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity in Observational Studies</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity and regression in Yeager et al. 2019</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-imbalance-in-covariates">Part 1: Imbalance in covariates</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-examining-positivity">Part 2: Examining positivity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.3</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-regression-for-adjustment-estimation">Part 3: Regression for adjustment estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extra">Optional extra</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 
@@ -435,9 +448,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-7-positivity-in-observational-studies">
-<span id="activity7"></span><h1>Activity 7: Positivity in Observational Studies<a class="headerlink" href="#activity-7-positivity-in-observational-studies" title="Link to this heading">#</a></h1>
-<p><strong>2025-02-27</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-7-positivity-and-regression-in-yeager-et-al-2019">
+<span id="activity7"></span><h1>Activity 7: Positivity and regression in Yeager et al. 2019<a class="headerlink" href="#activity-7-positivity-and-regression-in-yeager-et-al-2019" title="Link to this heading">#</a></h1>
+<p><strong>2025-03-04</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -453,25 +466,166 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s load the data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and examine the data</span>
 <span class="n">learning_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/learning_mindset.csv&quot;</span><span class="p">)</span>
+<span class="n">learning_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>schoolid</th>
+      <th>intervention</th>
+      <th>achievement_score</th>
+      <th>success_expect</th>
+      <th>ethnicity</th>
+      <th>gender</th>
+      <th>frst_in_family</th>
+      <th>school_urbanicity</th>
+      <th>school_mindset</th>
+      <th>school_achievement</th>
+      <th>school_ethnic_minority</th>
+      <th>school_poverty</th>
+      <th>school_size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>76</td>
+      <td>1</td>
+      <td>0.277359</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>76</td>
+      <td>1</td>
+      <td>-0.449646</td>
+      <td>4</td>
+      <td>12</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>76</td>
+      <td>1</td>
+      <td>0.769703</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>76</td>
+      <td>1</td>
+      <td>-0.121763</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>76</td>
+      <td>1</td>
+      <td>1.526147</td>
+      <td>6</td>
+      <td>4</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>This selected portion of the National Study of Learning Mindsets dataset is not truly randomized, so we’ll need to adjust for confounding.</p>
 <p>The columns we will look at are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: stud
-ent Likert scale response to a fixed mindset survey question prior to the intervention: “You have a certain amount of intelligence, and you really can’t do much to change it” (1, strongly disagree; 7, strongly agree)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: student prior mindset about their ability to succeed in school (higher values indicate a stronger belief in their ability to succeed)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>: whether the student would be the first in their family to attend college (1) or not (0)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>: student’s self-reported gender</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>: categorical variable corresponding to the urbanicity of the school the student attends, e.g. urban, suburban, rural</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">achievement_score</span></code>: the student’s future grade achievement, standardized such that 0 is the mean and it has a standard deviation of 1</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-1">
-<h1>Part 1<a class="headerlink" href="#part-1" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-imbalance-in-covariates">
+<h1>Part 1: Imbalance in covariates<a class="headerlink" href="#part-1-imbalance-in-covariates" title="Link to this heading">#</a></h1>
+<p>In this vesrion of the dataset we are anlayzing, there appear to be some differences in the distribution of covariates between the treatment and control groups where participants have different probabilities of receiving the intervention.</p>
+<section id="id1">
+<h2>1.1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Perform two separate <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operations to compute the mean of <code class="docutils literal notranslate"><span class="pre">intervention</span></code>, grouping by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code></p></li>
+</ul>
+<p>What do you observe? Are certain groups of students more or less likely to receive the growth mindset video? Keep in mind that <code class="docutils literal notranslate"><span class="pre">intervention=1</span></code> corresponds to the growth mindset video intervention.</p>
+<p><strong>Your response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO perform two separate groupby operations</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-examining-positivity">
+<h1>Part 2: Examining positivity<a class="headerlink" href="#part-2-examining-positivity" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">]</span>
@@ -479,8 +633,10 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 </div>
 </div>
 </div>
-<p>Let’s first consider the variables in <code class="docutils literal notranslate"><span class="pre">covariates</span></code> as <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>. These seem to be reasonable potential confounders to control for. If we take the same strategy as we have done with the kidney stone dataset, we’ll need to bin on the confounders and compute treatment effects for each bin.</p>
-<p>However, as we’ve seen today, we also need to be careful about positivity violations. First, let’s compute the total number of bins we need to create if we want to control for these two covariates.</p>
+<section id="id2">
+<h2>2.1<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Now that we’ve seeen some potential confounding in <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>, let’s try to control for them. If we take the same strategy as we have done before with stratification, we’ll need to bin on the confounders and compute treatment effects for each bin.</p>
+<p>However, we also need to be careful about positivity violations. First, let’s compute the total number of bins we need to create if we want to control for these two covariates.</p>
 <p>We can do this by using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.nunique.html">pd.Series.nunique</a> to get the number of unique values for each covariate and then multiplying them together. This is like taking a cross product over the all possible values of each variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -498,15 +654,16 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-2">
-<h1>Part 2<a class="headerlink" href="#part-2" title="Link to this heading">#</a></h1>
-<p>Next, let’s see if there are any positivity violations. We can do this by grouping over the covariiats plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
+<section id="id3">
+<h2>2.2<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Next, let’s check if positivity holds. We can do this by grouping over the covariiats plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
 <p>To generate the per-bin counts, we perform a <code class="docutils literal notranslate"><span class="pre">groupby(all_cols,</span> <span class="pre">as_index=False)</span></code> over the intervention and all combinations of the other columns, and the check the <code class="docutils literal notranslate"><span class="pre">ngroups</span></code> attribute of the resulting groupby object. How many groups are there?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by the intervention column and the two covariates</span>
 <span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">group_count</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ngroups</span>
+<span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
+
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -514,72 +671,100 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Group by the intervention column and the two covariates</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">group_count</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ngroups</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/frame.py:9183,</span> in <span class="ni">DataFrame.groupby</span><span class="nt">(self, by, axis, level, as_index, sort, group_keys, observed, dropna)</span>
-<span class="g g-Whitespace">   </span><span class="mi">9180</span> <span class="k">if</span> <span class="n">level</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">by</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">9181</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;You have to supply one of &#39;by&#39; and &#39;level&#39;&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">9183</span> <span class="k">return</span> <span class="n">DataFrameGroupBy</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">9184</span>     <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9185</span>     <span class="n">keys</span><span class="o">=</span><span class="n">by</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9186</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9187</span>     <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9188</span>     <span class="n">as_index</span><span class="o">=</span><span class="n">as_index</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9189</span>     <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9190</span>     <span class="n">group_keys</span><span class="o">=</span><span class="n">group_keys</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9191</span>     <span class="n">observed</span><span class="o">=</span><span class="n">observed</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9192</span>     <span class="n">dropna</span><span class="o">=</span><span class="n">dropna</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9193</span> <span class="p">)</span>
-
-<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1329,</span> in <span class="ni">GroupBy.__init__</span><span class="nt">(self, obj, keys, axis, level, grouper, exclusions, selection, as_index, sort, group_keys, observed, dropna)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1326</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span> <span class="o">=</span> <span class="n">dropna</span>
-<span class="g g-Whitespace">   </span><span class="mi">1328</span> <span class="k">if</span> <span class="n">grouper</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1329</span>     <span class="n">grouper</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">get_grouper</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1330</span>         <span class="n">obj</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1331</span>         <span class="n">keys</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1332</span>         <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1333</span>         <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1334</span>         <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1335</span>         <span class="n">observed</span><span class="o">=</span><span class="kc">False</span> <span class="k">if</span> <span class="n">observed</span> <span class="ow">is</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span> <span class="k">else</span> <span class="n">observed</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1336</span>         <span class="n">dropna</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dropna</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1337</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1339</span> <span class="k">if</span> <span class="n">observed</span> <span class="ow">is</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1340</span>     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">ping</span><span class="o">.</span><span class="n">_passed_categorical</span> <span class="k">for</span> <span class="n">ping</span> <span class="ow">in</span> <span class="n">grouper</span><span class="o">.</span><span class="n">groupings</span><span class="p">):</span>
-
-<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/pandas/core/groupby/grouper.py:1071,</span> in <span class="ni">get_grouper</span><span class="nt">(obj, key, axis, level, sort, observed, validate, dropna)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1068</span>     <span class="n">groupings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ping</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1070</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groupings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1071</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No group keys passed!&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1072</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groupings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1073</span>     <span class="n">groupings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Grouping</span><span class="p">(</span><span class="n">Index</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)))</span>
-
-<span class="ne">ValueError</span>: No group keys passed!
+<span class="ne">NameError</span>: name &#39;group_count&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <p>Since we need each bin to have both control and treatment units in order to have a valid comparison, the total number of groups should be equal to <strong>2 times the total number of bins possible</strong> for there to be no positivity violations.</p>
-<p>Does the number of rows you found in part 2 match this?</p>
+<p>Does the number of groups you found in 2.1 match this?</p>
 <p><strong>Your response</strong>: TODO</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-3">
-<h1>Part 3<a class="headerlink" href="#part-3" title="Link to this heading">#</a></h1>
-<p>Ideally we’d like to control for as many confounders as possible, let’s now add <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> to our list of covariates, making a total of 4 confounders.</p>
+<section id="id4">
+<h2>2.3<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Ideally we’d like to control for as many confounders as possible to make conditional exchangeability more plausible. Let’s now add <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> to our list of covariates, making a total of 4 confounders.</p>
 <p>Repeat the analysis above with the new set of covariates. Do we see positivity violations with the new set of covariates?</p>
 <p><strong>Your response</strong>: TODO</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here for part 3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here </span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Optional extra</strong>: if we actually want to see the bins that are missing, we can generate a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html">pivot_table</a> of the counts, and then identify the bins that are missing in either the control or treatment group.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-regression-for-adjustment-estimation">
+<h1>Part 3: Regression for adjustment estimation<a class="headerlink" href="#part-3-regression-for-adjustment-estimation" title="Link to this heading">#</a></h1>
+<p>In Parts 1 and 2, we observed covariate imbalances and potential positivity violations when trying to use stratification for adjustment. Let’s now use regression as an alternative approach for estimating the causal effect while controlling for confounders.</p>
+<section id="id5">
+<h2>3.1<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>Regression can be used to estimate causal effects when we have conditional exchangeability. If we assume that we have measured all confounders and included them in our regression model, then the coefficient on the treatment variable can be interpreted as the average treatment effect (ATE).</p>
+<p>Let’s first import the <a class="reference external" href="https://www.statsmodels.org/stable/api.html#formulas">statsmodels formula API</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># canonical import for the formula API</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, let’s fit a naive regression model that doesn’t adjust for any confounders. We’ll use the following formula:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;outcome ~ 1 + treatment&#39;</span>
+</pre></div>
+</div>
+<p>This formula tells statsmodels to fit a model where the outcome is regressed on the treatment variable and the intercept (1). We then pass that string to the <code class="docutils literal notranslate"><span class="pre">smf.ols</span></code> function, along with the data and the model formula:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The parameter estimates are stored in the <code class="docutils literal notranslate"><span class="pre">params</span></code> attribute of the model object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+</div>
+<p>Fit a naive regression model on the <code class="docutils literal notranslate"><span class="pre">intervention</span></code> and <code class="docutils literal notranslate"><span class="pre">achievement_score</span></code> variables. What is the fitted coefficient for <code class="docutils literal notranslate"><span class="pre">intervention</span></code>?</p>
+<p><strong>Your response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO fit a naive rgression model and check the params attribute</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>3.2<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Next, let’s fit a model that adjusts for the confounders we identified in Part 1.</p>
+<p>We can do this by adding the confounders to the formula:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;outcome ~ 1 + treatment + confounder1 + confounder2&#39;</span>
+</pre></div>
+</div>
+<p>How does the coefficient on <code class="docutils literal notranslate"><span class="pre">intervention</span></code> change when we adjust for the confounders?</p>
+<p><strong>Your response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO fit a model that adjusts for the confounders and check the params attribute</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We’ll have more opportunities to practice with statsmodels and linear regression in Worksheet 4!</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-extra">
+<h1>Optional extra<a class="headerlink" href="#optional-extra" title="Link to this heading">#</a></h1>
+<p>if we actually want to see the bins that are missing, we can generate a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html">pivot_table</a> of the counts, and then identify the bins that are missing in either the control or treatment group.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_df</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
@@ -659,10 +844,23 @@ ent Likert scale response to a fixed mindset survey question prior to the interv
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity in Observational Studies</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity and regression in Yeager et al. 2019</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-imbalance-in-covariates">Part 1: Imbalance in covariates</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-examining-positivity">Part 2: Examining positivity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.3</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-regression-for-adjustment-estimation">Part 3: Regression for adjustment estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extra">Optional extra</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 
