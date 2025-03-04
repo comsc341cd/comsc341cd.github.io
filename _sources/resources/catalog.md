@@ -49,6 +49,28 @@
 
 ---
 
-### More designs to come!
+### Observational Studies
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+*
+    -
+    -
+
+*   
+    - **Assumptions needed**
+    - <ul><li>Consistency</li><li>No interference</li><li>Conditional exchangeability / unconfoundedness</li><li>Positivity</li></ul>
+
+*
+    - **Assumptions ensured**
+    - <ul><li>None 😞</li></ul>
+
+*
+    - **Causal quantities identified**
+    - <ul><li>Average treatment effect (ATE)</li></ul>
+
+:::
 
 
