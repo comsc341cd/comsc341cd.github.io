@@ -99,7 +99,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
     - <small>03/05</small><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul style="margin-top:-1em;"><li>Tony 5-6pm</li><li>Bhargavi 6-7pm</li></ul>
 
-    - <small>03/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453102/mod_resource/content/1/lec10-propensity-scores-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453178/mod_resource/content/1/lec10-propensity-scores.pdf)</li><li>[Activity 8](activity8)</li><li>[Activity 8 Solution](activity8_solution)</li></ul><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>
+    - <small>03/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453102/mod_resource/content/1/lec10-propensity-scores-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453178/mod_resource/content/1/lec10-propensity-scores.pdf)</li><li>[Activity 8](activity8)</li><li>[Activity 8 solutions](activity8_solution)</li></ul><br>![](https://img.shields.io/badge/Office%20Hours-ff7f0e)<ul><li>Tony 1-2pm</li></ul>
     
     - <small>03/07</small>
 
