@@ -1,0 +1,994 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Activity 8 Solution: Extrapolation, overlap, and propensity scores &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"b4b2688a43fc435ca99baa3c68e6bff9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1d3137ab5a8247aea5875e03e560f3fd": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_66194d4fa7934ca3b6d4420a42fea38a", "IPY_MODEL_3094f38d739d43c1865ab8b68f93a3de", "IPY_MODEL_72c8f3f4fb184bbe8ee00eecc6765bda"], "layout": "IPY_MODEL_b4b2688a43fc435ca99baa3c68e6bff9", "tabbable": null, "tooltip": null}}, "40d706565c3f40d19710a2601da7402e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "78f163072962460db93e661282a37571": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "66194d4fa7934ca3b6d4420a42fea38a": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "p_treat", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_40d706565c3f40d19710a2601da7402e", "max": 1.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_78f163072962460db93e661282a37571", "tabbable": null, "tooltip": null, "value": 0.0}}, "3177c5881e2b4a7e8d57bdf128b38ea2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e01c215b496e481f943ac40398ff604a": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "3094f38d739d43c1865ab8b68f93a3de": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Interact", "disabled": false, "icon": "", "layout": "IPY_MODEL_3177c5881e2b4a7e8d57bdf128b38ea2", "style": "IPY_MODEL_e01c215b496e481f943ac40398ff604a", "tabbable": null, "tooltip": null}}, "f03e2d2b66c84072a4daaea72215731a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "72c8f3f4fb184bbe8ee00eecc6765bda": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_f03e2d2b66c84072a4daaea72215731a", "msg_id": "", "outputs": [], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity8_solution';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1_solution.html">WS 1 Solution 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2_solution.html">WS 2 Solution 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3_solution.html">WS 3 Solution 📊</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity8_solution.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/activities/activity8_solution.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Activity 8 Solution: Extrapolation, overlap, and propensity scores</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 8 Solution: Extrapolation, overlap, and propensity scores</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-distribution-of-covariates-under-true-randomization">Part 1: Distribution of covariates under true randomization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-a-propensity-score">Part 2: Fitting a Propensity Score</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-scores-for-exploring-covariate-distribution">Part 3: Propensity scores for exploring covariate distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-propensity-scores-as-a-balancer">Part 4: Propensity scores as a balancer</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-8-solution-extrapolation-overlap-and-propensity-scores">
+<span id="activity8-solution"></span><h1>Activity 8 Solution: Extrapolation, overlap, and propensity scores<a class="headerlink" href="#activity-8-solution-extrapolation-overlap-and-propensity-scores" title="Link to this heading">#</a></h1>
+<p><strong>2025-03-06</strong></p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-distribution-of-covariates-under-true-randomization">
+<h1>Part 1: Distribution of covariates under true randomization<a class="headerlink" href="#part-1-distribution-of-covariates-under-true-randomization" title="Link to this heading">#</a></h1>
+<p>On Tuesday we saw that the <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> covariate was associated with the intervention. What should the distribution of <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> look like under true randomization (coin flips)? And does it matter if the coin flips are “biased” (not 50% heads, 50% tails)?</p>
+<p>First, let’s simulate a distribution of <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> under true randomization. Begin by generating some data that represents <code class="docutils literal notranslate"><span class="pre">success_expect</span></code>, which takes on integer values between 1 and 7. Use the <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html">rng.choice</a> function to generate 10,000 samples from a uniform distribution over the integers 1 through 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># sim_success_expect = TODO call rng.choice with the a and size parameters</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">sim_success_expect</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, generate random treatment assignments for each sample using the <code class="docutils literal notranslate"><span class="pre">rng.choice</span></code> function. For now, assume the probability of treatment is 0.5, that is:</p>
+<div class="math notranslate nohighlight">
+\[ 
+P(T=1) = 0.5 
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_treat</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># p needs to be a list of probabilities for each outcome: [0, 1]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p_treat</span><span class="p">,</span> <span class="n">p_treat</span><span class="p">]</span>
+<span class="c1"># sim_treat = TODO call rng.choice with the a, size, and p parameters</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">sim_treat</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now plot the distribution of treatment for each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level. We’ll do this by creating a dataframe with the two columns <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code>, and then using sns.barplot to plot the distribution of <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code> for each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level.</p>
+<p>Call <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.barplot.html">sns.barplot</a> with the x and y parameters set to <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code>, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;sim_success_expect&#39;</span><span class="p">:</span> <span class="n">sim_success_expect</span><span class="p">,</span> 
+    <span class="s1">&#39;sim_treat&#39;</span><span class="p">:</span> <span class="n">sim_treat</span>
+<span class="p">})</span>
+
+<span class="c1"># TODO sns.barplot</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;sim_success_expect&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sim_treat&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">sim_df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">p_treat</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True probability of treatment&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x126fef910&gt;
+</pre></div>
+</div>
+<img alt="../_images/eb93bc24cd384772ea9219302a970bac5f93f7faa36a2bf43d9d44dea6995f37.png" src="../_images/eb93bc24cd384772ea9219302a970bac5f93f7faa36a2bf43d9d44dea6995f37.png" />
+</div>
+</div>
+<p>The black vertical lines on each bar represnt a bootstrapped confidence interval for the proportion of treatment in each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level. On your plot above, add a horizontal line using <code class="docutils literal notranslate"><span class="pre">plt.axhline</span></code> at <code class="docutils literal notranslate"><span class="pre">y=p_treat</span></code> to represent the true probability of treatment. The observed probability of treatment shouldn’t deviate significantly from the true probability of treatment for any of the <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> values.</p>
+<p>Finally, let’s explore different different probabilities of treatment. Copy your code from the above three cells that created your barplot into the <code class="docutils literal notranslate"><span class="pre">plot_treatment_distribution</span></code> function below, and add an <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> decorator that lets you change <code class="docutils literal notranslate"><span class="pre">p_treat</span></code>.</p>
+<p>Does the probability of treatment change the distribution of treated units among the <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> values? Briefly comment on why/why not.</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com​/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO an interact_manual</span>
+<span class="k">def</span> <span class="nf">plot_treatment_distribution</span><span class="p">(</span><span class="n">p_treat</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+
+<span class="c1"># make this a slider, either fomulation works</span>
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">p_treat</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="c1">#@interact_manual(p_treat=widgets.FloatSlider(value=0.5, min=0, max=1, step=0.1))</span>
+<span class="k">def</span> <span class="nf">plot_treatment_distribution</span><span class="p">(</span><span class="n">p_treat</span><span class="p">):</span>
+    <span class="c1">### BEGIN SOLUTION</span>
+    <span class="n">sim_success_expect</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="c1"># p needs to be a list of probabilities for each outcome: [0, 1]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p_treat</span><span class="p">,</span> <span class="n">p_treat</span><span class="p">]</span>
+    <span class="n">sim_treat</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="n">sim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;sim_success_expect&#39;</span><span class="p">:</span> <span class="n">sim_success_expect</span><span class="p">,</span> 
+    <span class="s1">&#39;sim_treat&#39;</span><span class="p">:</span> <span class="n">sim_treat</span>
+    <span class="p">})</span>
+
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;sim_success_expect&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sim_treat&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">sim_df</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">p_treat</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1d3137ab5a8247aea5875e03e560f3fd"}</script></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-fitting-a-propensity-score">
+<h1>Part 2: Fitting a Propensity Score<a class="headerlink" href="#part-2-fitting-a-propensity-score" title="Link to this heading">#</a></h1>
+<p>Let’s now estimate a propensity score for the learning mindsets data. As a reminder from Tuesday’s lecture, the columns we’ll look at are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: student prior mindset about their ability to succeed in school (higher values indicate a stronger belief in their ability to succeed)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>: whether the student would be the first in their family to attend college (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>: student’s self-reported gender</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>: categorical variable corresponding to the urbanicity of the school the student attends, e.g. urban, suburban, rural</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">achievement_score</span></code>: the student’s future grade achievement, standardized such that 0 is the mean and it has a standard deviation of 1</p></li>
+</ul>
+<p>The way we’ll do this is by fitting a logistic regression model, which allows us estimate the following:</p>
+<div class="math notranslate nohighlight">
+\[
+P(T=1 \mid X) = E[T \mid X] = e(X)
+\]</div>
+<p>Like with linear regression, this can extend to multiple covariates, such as:</p>
+<div class="math notranslate nohighlight">
+\[
+P(T=1 \mid X_1, X_2, X_3, X_4) = E[T \mid X_1, X_2, X_3, X_4]
+\]</div>
+<p>In statmodels, we just need to specify the formula string <code class="docutils literal notranslate"><span class="pre">'T</span> <span class="pre">~1</span> <span class="pre">+</span> <span class="pre">X1</span> <span class="pre">+</span> <span class="pre">X2</span> <span class="pre">+</span> <span class="pre">X3</span> <span class="pre">+</span> <span class="pre">X4'</span></code> and pass the dataframe to <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> instead of <code class="docutils literal notranslate"><span class="pre">smf.ols</span></code> to fit a logistic regression model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;T ~ 1 + X1 + X2 + X3 + X4&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Fit a propensity score model predicting <code class="docutils literal notranslate"><span class="pre">intervention</span></code> and our four covariates from Tuesday’s lecture (<code class="docutils literal notranslate"><span class="pre">success_expect</span></code>, <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>, <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>).</p>
+<p>One additional consideration is that <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> are categorical variables. We can indicate to <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> that these variables are categorical by wrapping the variables in <code class="docutils literal notranslate"><span class="pre">C()</span></code> in the formula string. For example, if we wanted to fit a model with <code class="docutils literal notranslate"><span class="pre">X1</span></code> and <code class="docutils literal notranslate"><span class="pre">X2</span></code> as categorical variables, we would write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;T ~ 1 + C(X1) + C(X2) + X3 + X4&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the learning_mindset data again</span>
+<span class="n">learning_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/learning_mindset.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO fit a propensity score model</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="c1">#propensity_model = smf.logit(formula=formula, data=learning_df).fit()</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;intervention ~ 1 + success_expect + frst_in_family + C(school_urbanicity) + C(gender)&#39;</span>
+<span class="n">propensity_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">learning_df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.628017
+         Iterations 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then add the predicted propensity scores as a column to analyze along with the rest of the data. Run the cell below to generate predicted propensity scores and add them to the learning_df:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_propensity_scores</span> <span class="o">=</span> <span class="n">propensity_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">learning_df</span><span class="p">)</span>
+<span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_propensity_scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A quick check for whether we’ve fit the propensity score correctly is to verify that the average propensity score is equal to the probability of treatment in the dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_treat</span> <span class="o">=</span> <span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;intervention&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">p_treat</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="s2">&quot;The average propensity score is not equal to the probability of treatment&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Propensity score give us a lot of flexibility in visualizing confounding issues. For example, we can generate the same barplot we made in part 1 with <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> on the x-axis, but with the <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code> on the y-axis for our <code class="docutils literal notranslate"><span class="pre">learning_df</span></code> dataset.</p>
+<p>What do you observe about the relationship between <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code>?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO a barplot of success_expect vs propensity_score</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">learning_df</span><span class="p">)</span>
+<span class="c1"># call out the precision in the confounding that we&#39;re able to see vs just plotting the raw intervention</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;success_expect&#39;, ylabel=&#39;propensity_score&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/70e60a67eb43b0298e4f01e4e84eb8905e8a81cf8079141b9b9bef24bb27cec5.png" src="../_images/70e60a67eb43b0298e4f01e4e84eb8905e8a81cf8079141b9b9bef24bb27cec5.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-propensity-scores-for-exploring-covariate-distribution">
+<h1>Part 3: Propensity scores for exploring covariate distribution<a class="headerlink" href="#part-3-propensity-scores-for-exploring-covariate-distribution" title="Link to this heading">#</a></h1>
+<p>In Project 1, we plotted the distribution of covariates of treated and control units to visually verify that the covariates were balanced between the two groups.</p>
+<p>The propensity score is a convenient way check whether <strong>all</strong> the covariates we want to control for are balanced between the two groups.</p>
+<p>Run the cell below to fit a propensity score model for our simulated data from Part 1. Then plot the distribution of propensity scores for the treated and control units by creating a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html">sns.kdeplot</a> with the x-axis as the <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code> and the hue as the <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code> variable – optionally setting <code class="docutils literal notranslate"><span class="pre">cumulative=True</span></code> to plot the cumulative distribution. The distributions should approximately match since we simulated a randomized experiment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_propensity_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;sim_treat ~ 1 + sim_success_expect&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">sim_df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">sim_propensity_scores</span> <span class="o">=</span> <span class="n">sim_propensity_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sim_df</span><span class="p">)</span>
+<span class="n">sim_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim_propensity_scores</span>
+
+<span class="c1"># TODO kdeplot</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">sim_df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;sim_treat&#39;</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.693081
+         Iterations 3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;propensity_score&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/d96d1457b7ba08c46bd013b72032e379b40a088ae910eb65cfa20b44e69438d9.png" src="../_images/d96d1457b7ba08c46bd013b72032e379b40a088ae910eb65cfa20b44e69438d9.png" />
+</div>
+</div>
+<p>Now, create the same plot for our <code class="docutils literal notranslate"><span class="pre">learning_df</span></code> dataset, setting the hue to <code class="docutils literal notranslate"><span class="pre">intervention</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code>.</p>
+<p>Differences in the distributions suggest that the covariates are not balanced between the two groups – in other words, there is confounding among the covariates we’ve included in the propensity score model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">learning_df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;intervention&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;propensity_score&#39;, ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/d2b976e07ff640c8d4449c0eaf354190ba663548aaba303e406ac2449ec2c6eb.png" src="../_images/d2b976e07ff640c8d4449c0eaf354190ba663548aaba303e406ac2449ec2c6eb.png" />
+</div>
+</div>
+<p>This type of density plot of the propensity score also allows us to check positivity – if there are regions of the propensity score where there are only treated or only control units, then there is a positivity violation.</p>
+<p>Does there appear to be any obvious regions where there are only treated or only control units? What about regions where there are few treated or control units?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-4-propensity-scores-as-a-balancer">
+<h1>Part 4: Propensity scores as a balancer<a class="headerlink" href="#part-4-propensity-scores-as-a-balancer" title="Link to this heading">#</a></h1>
+<p>Now that we have the propensity score distilling high-dimensional covariates into a single number, binning the data by the propensity score becomes a viable strategy for balancing the covariates.</p>
+<p>Run the cell below to bin the data by the propensity score using the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">pd.cut</a> function, producing a new column <code class="docutils literal notranslate"><span class="pre">propensity_score_bin</span></code> in the <code class="docutils literal notranslate"><span class="pre">learning_df</span></code> dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_bins</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score_bin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">)</span>
+
+<span class="c1"># view the bins created by pd.cut</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score_bin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0.287, 0.329], (0.245, 0.287], (0.329, 0.371], (0.371, 0.412], (0.203, 0.245]]
+Categories (5, interval[float64, right]): [(0.203, 0.245] &lt; (0.245, 0.287] &lt; (0.287, 0.329] &lt; (0.329, 0.371] &lt; (0.371, 0.412]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, perform a groupby with <code class="docutils literal notranslate"><span class="pre">by='[propensity_score_bin',</span> <span class="pre">'intervention']</span></code>, and calculate the mean of the given columns on the grouped data.</p>
+<p>Are there any of the columns that are significantly different between the <span class="math notranslate nohighlight">\(T=1\)</span> and <span class="math notranslate nohighlight">\(T=0\)</span> groups for each propensity score bin? If so, how do you interpret this?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO group by propensity score bin and intervention, and calculate the mean of the columns on the grouped data</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">,</span> <span class="s1">&#39;school_urbanicity&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;achievement_score&#39;</span><span class="p">]</span>
+
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">balance_df</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;propensity_score_bin&#39;</span><span class="p">,</span> <span class="s1">&#39;intervention&#39;</span><span class="p">])[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1">### END SOLUTION</span>
+
+<span class="n">balance_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/92/j4ms2q355sv0n3q55bgv_hwm0000gn/T/ipykernel_99928/3562701198.py:5: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  balance_df = learning_df.groupby([&#39;propensity_score_bin&#39;, &#39;intervention&#39;])[columns].mean()
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>success_expect</th>
+      <th>frst_in_family</th>
+      <th>school_urbanicity</th>
+      <th>gender</th>
+      <th>achievement_score</th>
+    </tr>
+    <tr>
+      <th>propensity_score_bin</th>
+      <th>intervention</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">(0.203, 0.245]</th>
+      <th>0</th>
+      <td>1.966667</td>
+      <td>0.988889</td>
+      <td>2.294444</td>
+      <td>1.766667</td>
+      <td>-0.855587</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.950000</td>
+      <td>0.983333</td>
+      <td>2.516667</td>
+      <td>1.816667</td>
+      <td>-0.671004</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.245, 0.287]</th>
+      <th>0</th>
+      <td>4.013749</td>
+      <td>0.957837</td>
+      <td>2.274977</td>
+      <td>1.726856</td>
+      <td>-0.766884</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.984694</td>
+      <td>0.954082</td>
+      <td>2.283163</td>
+      <td>1.709184</td>
+      <td>-0.434164</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.287, 0.329]</th>
+      <th>0</th>
+      <td>5.213038</td>
+      <td>0.876008</td>
+      <td>2.446909</td>
+      <td>1.530242</td>
+      <td>-0.258401</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.270698</td>
+      <td>0.883369</td>
+      <td>2.436285</td>
+      <td>1.521238</td>
+      <td>0.164735</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.329, 0.371]</th>
+      <th>0</th>
+      <td>5.704668</td>
+      <td>0.278133</td>
+      <td>2.444226</td>
+      <td>1.445209</td>
+      <td>0.077631</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.706571</td>
+      <td>0.274527</td>
+      <td>2.454545</td>
+      <td>1.452745</td>
+      <td>0.489200</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.371, 0.412]</th>
+      <th>0</th>
+      <td>6.533793</td>
+      <td>0.180690</td>
+      <td>2.706207</td>
+      <td>1.110345</td>
+      <td>0.722760</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6.500000</td>
+      <td>0.148148</td>
+      <td>2.696759</td>
+      <td>1.097222</td>
+      <td>1.194055</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./activities"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 8 Solution: Extrapolation, overlap, and propensity scores</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-distribution-of-covariates-under-true-randomization">Part 1: Distribution of covariates under true randomization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-a-propensity-score">Part 2: Fitting a Propensity Score</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-scores-for-exploring-covariate-distribution">Part 3: Propensity scores for exploring covariate distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-propensity-scores-as-a-balancer">Part 4: Propensity scores as a balancer</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
