@@ -571,7 +571,7 @@ E[Y | T=t, X=x] = \beta_0 + \beta_1 t + \beta_2 x
 <p>Let’s take a look at how to use statsmodels to fit a line to some data. We’ll load in the same gapminder data from Worksheet 3 and fit a line to the relationship between life expectancy and GDP per capita for countries in Europe in 2007.</p>
 <section id="id1">
 <h3>1.1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>First, let’s select the data for Europe in 2007 and visualize the relationship between life expectancy <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code> and GDP per capita <code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> using a scatter plot. The data should roughly follow a linear relationship, with some spread:</p>
+<p>First, let’s select the data <strong>for Europe in 2007</strong> and visualize the relationship between life expectancy <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code> and GDP per capita <code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> using a scatter plot. The data should roughly follow a linear relationship, with some spread:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gapminder_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/gapminder.csv&quot;</span><span class="p">)</span>
@@ -643,7 +643,7 @@ E[Y | T=t, X=x] = \beta_0 + \beta_1 t + \beta_2 x
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">sns.lineplot()</span></code> function to plot the fitted line, passing in the <code class="docutils literal notranslate"><span class="pre">x_values</span></code> and <code class="docutils literal notranslate"><span class="pre">y_values</span></code> as the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> arguments respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO plot the original data and the fitted line</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO plot your selected data for Europe in 2007 and the fitted line</span>
 </pre></div>
 </div>
 </div>
