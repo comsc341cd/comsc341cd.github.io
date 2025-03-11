@@ -32,6 +32,9 @@ parts:
   - caption: Projects
     chapters:
       - file: projects/proj1.ipynb
+      - file: projects/proj2.md
+        sections:
+        - file: projects/proj2_functions.ipynb
   #     - file: projects/proj2-observational-study.md
   #     - file: projects/proj3-instrumental-variable.md
   

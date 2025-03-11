@@ -105,9 +105,13 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>03/10</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 4](ws4)<br>![](https://img.shields.io/badge/Due:-d62728) [Survey 2](https://www.gradescope.com/courses/950344/assignments/5883758/)
-    - <small>03/11</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
+
+
+
+
+    - <small>03/11</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453901/mod_resource/content/1/lec11-matching-starter.pdf)</li><li>[Activity 9](activity9)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Project 2](proj2)
     - <small>03/12</small>
-    - <small>03/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments</u></b>
+    - <small>03/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational study wrap-up</u></b>
     - <small>03/14</small>
 
 *   
@@ -120,10 +124,53 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>03/24</small>   
-    - <small>03/25</small>
+    - <small>03/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Final Project
     - <small>03/26</small>
-    - <small>03/27</small>
-    - <small>03/28</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2
+    - <small>03/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
+    - <small>03/28</small>
+
+*   
+    - <small>03/31</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2   
+    - <small>04/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b>
+    - <small>04/02</small>
+    - <small>04/03</small><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 3
+    - <small>04/04</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 5
+
+
+*   
+    - <small>04/07</small><br>![](https://img.shields.io/badge/Due:-d62728) Final Project proposal   
+    - <small>04/08</small>
+    - <small>04/09</small>
+    - <small>04/10</small>
+    - <small>04/11</small>
+
+*   
+    - <small>04/14</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 3
+    - <small>04/15</small><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 6
+    - <small>04/16</small>
+    - <small>04/17</small>
+    - <small>04/18</small>
+
+*   
+    - <small>04/21</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 6
+    - <small>04/22</small>
+    - <small>04/23</small>
+    - <small>04/24</small>
+    - <small>04/25</small><br>![](https://img.shields.io/badge/Due:-d62728) Final Project checkpoint
+
+*   
+    - <small>04/28</small>
+    - <small>04/29</small><br> BOOM: no class
+    - <small>04/30</small>
+    - <small>05/01</small>
+    - <small>05/02</small>
+
+*   
+    - <small>05/05</small>
+    - <small>05/06</small>
+    - <small>05/07</small>
+    - <small>05/08</small>
+    - <small>05/09</small><br>![](https://img.shields.io/badge/Due:-d62728) Final Project
 
 :::
 
