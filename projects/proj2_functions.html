@@ -1,0 +1,1404 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 2 Part 1: Functions &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/proj2_functions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Project 2 👥" href="proj2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1_solution.html">WS 1 Solution 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2_solution.html">WS 2 Solution 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3_solution.html">WS 3 Solution 📊</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="proj1.html">Project 1 👶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proj2.html">Project 2 👥</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/projects/proj2_functions.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/projects/proj2_functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 2 Part 1: Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 2 Part 1: Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-table-of-contents-and-rubric">Part 1 Table of Contents and Rubric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-imports">Notebook imports</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-score-matching">1. Propensity Score Matching</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trimming-and-inverse-probability-weighting-ipw">2. Trimming and Inverse Probability Weighting (IPW)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#love-plots-for-visualizing-covariate-balance">3. Love plots for visualizing covariate balance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-2-part-1-functions">
+<span id="proj2-functions"></span><h1>Project 2 Part 1: Functions<a class="headerlink" href="#project-2-part-1-functions" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Observational Studies</p>
+<p class="attribution">—TODO your name here</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here</p></li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You’ll notice that the non-function cells of this notebook are contained in a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block. This indicates to Jupyter that the code should only be run when the file is executed directly, not when it is imported as a module. This will make importing your functions easier in Part 2. If you write additional tests or cells that are not functions, make sure to add them within a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block as well.</p>
+</div>
+<section id="part-1-table-of-contents-and-rubric">
+<h2>Part 1 Table of Contents and Rubric<a class="headerlink" href="#part-1-table-of-contents-and-rubric" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Points</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Propensity score matching</p></td>
+<td><p>2.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Math to code: inverse probability weighting and trimming</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Visualization: Love plots for covariate balance</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total</p></td>
+<td><p>5 pts</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="notebook-imports">
+<h2>Notebook imports<a class="headerlink" href="#notebook-imports" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="propensity-score-matching">
+<h1>1. Propensity Score Matching<a class="headerlink" href="#propensity-score-matching" title="Link to this heading">#</a></h1>
+<p>One of the observational study estimators we’ll implement is the propensity score matching approach we discussed in class. We’ll start by implementing a function for estimating the propensity score. This method should resemble the one you wrote in <a class="reference internal" href="../worksheets/ws4.html#ws4"><span class="std std-ref">Worksheet 4</span></a>, except now we’re fitting a logistic regression model via <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> instead of a linear regression model and returning the predicted propensity scores instead of the model object.</p>
+<p>The predicted propensity scores can be accessed via the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method of the model object, which takes a dataframe as an argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generates predictions, assuming the model was previously fit with a dataframe called df</span>
+<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also refer to <a class="reference internal" href="../activities/activity8.html#activity8"><span class="std std-ref">Activity 8</span></a> for the syntax for creating a logistic regression model in <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_propensity_score</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">covariates</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fits a propensity score model using the covariates and treatment assignment.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the covariates and treatment assignment.</span>
+<span class="sd">        treatment (str): The name of the treatment variable.</span>
+<span class="sd">        covariates (list[str]): The list of covariates to include in the propensity score model.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series: A series of the fitted propensity scores.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test fit_propensity_score ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+    <span class="n">test_preds</span> <span class="o">=</span> <span class="n">fit_propensity_score</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">test_preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">test_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;The predictions should have the same number of elements as the input dataframe&quot;</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for fit_propensity_score passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">test_preds</span> <span class="o">=</span> <span class="n">fit_propensity_score</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">])</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="k">assert</span> <span class="n">test_preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">test_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;The predictions should have the same number of elements as the input dataframe&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for fit_propensity_score passed!&quot;</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;shape&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll implement <strong>pair matching without replacement</strong> using a greedy algorithm.</p>
+<p>This is the most complicated estimator we’ll implement in this project, so it is broken into two functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select_closest_control_unit</span></code>: selects the closest control unit to the given treated propensity score/</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">greedy_pair_match</span></code>: builds a pair matched dataframe for the treated units.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are comments in the function stubs that provide a suggested implementation, as well as assert statements that you can use to test your code. The assert statements are not exhaustive, so I recommend adding more of your own tests while developing your code, and submitting to the autograder to check for correctness.</p>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">select_closest_control_unit</span></code>, we’ll need to calculate the absolute difference in propensity scores between the treated and control units, find the row in the <code class="docutils literal notranslate"><span class="pre">control_df</span></code> that has the minimum distance, and drop that row from the <code class="docutils literal notranslate"><span class="pre">control_df</span></code>. The following functions will be useful:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.absolute.html">np.abs</a>: calculates the absolute value of an array or pd.Series</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.idxmin.html">df[‘column’].idxmin()</a>: finds the index of the row with the minimum value in given <code class="docutils literal notranslate"><span class="pre">'column'</span></code>, which can be used to find the row with the minimum distance</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html">df.drop(index=idx)</a>: drops the row with the index specified by <code class="docutils literal notranslate"><span class="pre">idx</span></code> – this should be the index produced by your call to <code class="docutils literal notranslate"><span class="pre">idxmin()</span></code></p></li>
+</ul>
+<p>Below is a demonstration of the <code class="docutils literal notranslate"><span class="pre">idxmin()</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code> functions. Feel free to use this as a reference in your implementation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># generate a test dataframe</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">]})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The test dataframe is: &quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+
+    <span class="c1"># find the index of the row with the minimum value in the &#39;X1&#39; column</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;X1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The row index with the minimum value in the &#39;X1&#39; column is: &quot;</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+    <span class="c1"># drop the row with the index specified by `idx`</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The dataframe after dropping the row with the index specified by idx is: &quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The test dataframe is: 
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>c</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>e</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The row index with the minimum value in the &#39;X1&#39; column is:  1
+The dataframe after dropping the row with the index specified by idx is: 
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>c</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>e</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_closest_control_unit</span><span class="p">(</span><span class="n">control_df</span><span class="p">,</span> <span class="n">prop_score_treated</span><span class="p">,</span> <span class="n">prop_score_col</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Selects the closest control unit to the given treated propensity score.</span>
+
+<span class="sd">    Returns a tuple with two elements:</span>
+<span class="sd">    - the first element is a pd.Series with a single row that corresponds to the control unit that is closest to the treated unit.</span>
+<span class="sd">    - the second element is a pd.DataFrame with the remaining control units.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        control_df (pd.DataFrame): The dataframe containing the control units.</span>
+<span class="sd">        prop_score_treated (float): The propensity score of the treated unit.</span>
+<span class="sd">        prop_score_col (str): The name of the propensity score column, default is &#39;propensity_score&#39;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (pd.Series, pd.DataFrame): A tuple of the matched control unit row and the remaining control units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">closest_control_row</span> <span class="o">=</span> <span class="kc">None</span> 
+    <span class="n">control_df</span> <span class="o">=</span> <span class="n">control_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="c1"># TODO your code here</span>
+
+    <span class="c1"># Calculate the absolute difference in propensity scores, store in a new column called &#39;distance&#39;</span>
+
+    <span class="c1"># The closest control unit is the one with the minimum distance</span>
+
+    <span class="c1"># Drop the matched control unit from the pool</span>
+
+    <span class="c1"># Return the matched control unit and the remaining control units</span>
+    <span class="k">return</span> <span class="n">closest_control_unit</span><span class="p">,</span> <span class="n">control_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test cases for select_closest_control_unit ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="s1">&#39;treatment&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]})</span>
+
+    <span class="c1"># test select_closest_control_unit with no caliper</span>
+    <span class="n">sel_row</span><span class="p">,</span> <span class="n">updated_df</span> <span class="o">=</span> <span class="n">select_closest_control_unit</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">prop_score_treated</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">sel_row</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;The closest control unit should have the propensity score of 0.1&quot;</span>
+    <span class="k">assert</span> <span class="n">updated_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;There should be 2 control units remaining&quot;</span>
+
+    <span class="c1"># These tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for select_closest_control_unit passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The overall approach to implementing this matching procedure is given in the following pseudocode:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>For every treated unit t:
+    Select the closest control unit c 
+    Add (t, c) to the matched units list
+    Remove c from the pool of control units
+
+Return the matched units list as a dataframe
+</pre></div>
+</div>
+<p>This process is “greedy” because we always select the closest control unit within the caliper distance for each treated unit, without considering the possibility of that control unit being a better match for another treated unit. For example, suppose the first treated unit we process has a propensity score of 0.1, and the closest control unit has a propensity score of 0.2. We make that match, and then move on to the next treated unit. However, there may be another treated unit later on in our dataset with a propensity score of 0.19 that would have been a better match for the control unit with a propensity score of 0.2.</p>
+<p>Your implementation should make use of the following pandas functions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iterrows.html">df.iterrows()</a> to iterate through the treated units</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html">df.sort_values()</a> to sort the dataframe by a given column, which speeds up the matching process</p></li>
+</ul>
+<p>Below is a demonstration of the <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code> and <code class="docutils literal notranslate"><span class="pre">sort_values()</span></code> methods, which you can use as a reference in your implementation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># generate a test dataframe</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The test dataframe is: &quot;</span><span class="p">)</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]})</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+
+    <span class="c1"># sort the dataframe by the X1 column</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;X1&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The test dataframe sorted by the X1 column is: &quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+
+    <span class="c1"># uncomment to iterate through the dataframe</span>
+    <span class="c1"># for index, row in test_df.iterrows():</span>
+    <span class="c1">#     print(f&quot;The row at index {index} is: &quot;)</span>
+    <span class="c1">#     print(row)</span>
+
+    <span class="c1">#     # we can also access particular columns of the row</span>
+    <span class="c1">#     print(f&quot;The value of X1 is: {row[&#39;X1&#39;]}&quot;)</span>
+    <span class="c1">#     print()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The test dataframe is: 
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>c</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The test dataframe sorted by the X1 column is: 
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>c</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">greedy_pair_match</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">prop_score_col</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements a greedy pair matching estimator without replacement.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the covariates and treatment assignment.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable column, assumed to be binary</span>
+<span class="sd">        prop_score_col (str): The name of the propensity score column, default is &#39;propensity_score&#39;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: A new dataframe of the matched data, which should have the same columns as the input dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># TODO your code here</span>
+    
+    <span class="c1"># Sort the dataframe by the propensity score to make the matching faster</span>
+
+    <span class="c1"># Separate out the treated and control units</span>
+
+    <span class="c1"># Iterate through the treated units and call the select_closest_control_unit </span>
+    <span class="c1"># to find the closest control unit</span>
+
+    <span class="c1"># add both the matched treated and control units to the matched_units_list</span>
+
+    <span class="c1"># Create a dataframe from the matched_units_list</span>
+    <span class="n">matched_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">matched_units_list</span><span class="p">)</span>
+
+    <span class="c1"># Drop the distance column to clean up the dataframe</span>
+    <span class="n">matched_df</span> <span class="o">=</span> <span class="n">matched_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Return the matched dataframe</span>
+    <span class="k">return</span> <span class="n">matched_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test cases for greedy_pair_match ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">],</span> 
+                            <span class="s1">&#39;treatment&#39;</span><span class="p">:</span>        <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>    <span class="mi">1</span><span class="p">,</span>    <span class="mi">1</span><span class="p">]})</span>
+    <span class="n">matched_df</span> <span class="o">=</span> <span class="n">greedy_pair_match</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">treat_col</span><span class="o">=</span><span class="s1">&#39;treatment&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">matched_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;There should be 2 matched pairs, for a total of 4 rows&quot;</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for greedy_pair_match passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-optional-reading admonition">
+<p class="admonition-title">Optional reading</p>
+<p>If you’d like to see additional discussion of this matching implementation, you can refer to the “Propensity Score Matching” section of the <a class="reference external" href="https://www.tandfonline.com/doi/pdf/10.1080/00273171.2011.568786">Austin 2011</a> paper from Worksheet 4, beginning on page 405 with “The analysis of a propensity score…”</p>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="trimming-and-inverse-probability-weighting-ipw">
+<h1>2. Trimming and Inverse Probability Weighting (IPW)<a class="headerlink" href="#trimming-and-inverse-probability-weighting-ipw" title="Link to this heading">#</a></h1>
+<p>As we saw in <a class="reference external" href="https://moodle.mtholyoke.edu/pluginfile.php/1453178/mod_resource/content/1/lec10-propensity-scores.pdf">class</a>, sometimes there are regions of the propensity score distribution where there is no overlap between the treated and control units, or where there are very few units in either the treated or control group. To address potential positivity violations, we can trim the propensity score distribution to only include the units with propensity scores within a certain range. Implement the <code class="docutils literal notranslate"><span class="pre">trim_dataframe</span></code> function below to do this. Recall from <a class="reference internal" href="../worksheets/ws2.html#ws2"><span class="std std-ref">Worksheet 2</span></a> how we can use logical indexing in pandas to select the rows of the dataframe that meet a certain condition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trim_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">prop_score_col</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Trims the dataframe to only include the units with propensity scores within a certain range.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe to trim.</span>
+<span class="sd">        prop_score_col (str): The name of the propensity score column, default is &#39;propensity_score&#39;</span>
+<span class="sd">        lower_bound (float): The lower bound of the propensity score range, default is 0.05</span>
+<span class="sd">        upper_bound (float): The upper bound of the propensity score range, default is 0.95</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: The trimmed dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># TODO your code here</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test cases for trim_dataframe ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># test where no trimming is needed</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">]})</span>
+    <span class="n">trimmed_df</span> <span class="o">=</span> <span class="n">trim_dataframe</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">prop_score_col</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">trimmed_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">test_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;No units are trimmed, so the dataframe should not change&quot;</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for trim_dataframe passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another approach to estimate causal effects in observational data is to use the propensity score to assign different weights to the units. The intuition is to weight the units by the inverse of their propensity score so that treated and control units are balanced based on their likelihood of being treated. Hence, this method is known as <strong>inverse probability weighting</strong> (IPW).</p>
+<p>We perform this weighting to estimate the average treatment effect on the treated (ATT) by updating the outcome variable <span class="math notranslate nohighlight">\(Y\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{i, \text{IPW}} = w_i \times Y_i
+\]</div>
+<p>With the weights <span class="math notranslate nohighlight">\(w_i\)</span> given by:</p>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{T_i - e_i}{1 - e_i}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_i\)</span> is the treatment assignment for unit <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(e_i\)</span> is the propensity score for unit <span class="math notranslate nohighlight">\(i\)</span>. The ATT estimate is then given by the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{ATT}_{\text{IPW}} = \frac{1}{n_1} \sum_{i=1}^n Y_{i, \text{IPW}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(n_1\)</span> is the number of treated units, that is: <span class="math notranslate nohighlight">\(n_1 = \sum_{i=1}^n T_i\)</span>.</p>
+<p>Implement the <code class="docutils literal notranslate"><span class="pre">ipw_att</span></code> function below to perform this weighted estimation of the ATT.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Because of the way numpy and pandas handle columns and arrays and how you can subtract constants from pandas columns, you should be able to perform this weighting by directly translating the formulas above into code.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ipw_att</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">outcome_col</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">prop_score_col</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs inverse probability weighting to estimate the ATT.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the data to be weighted</span>
+<span class="sd">        outcome_col (str): The name of the outcome variable column</span>
+<span class="sd">        treat_col (str): The name of the treatment variable column</span>
+<span class="sd">        prop_score_col (str): The name of the propensity score column, default is &#39;propensity_score&#39;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The ATT estimate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># TODO your code here</span>
+
+    <span class="c1"># calculate the weights based on the formula above</span>
+
+    <span class="c1"># calculate the IPW weighted outcome</span>
+
+    <span class="c1"># calculate the ATT estimate</span>
+
+    <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test ipw_outcome ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+                            <span class="s1">&#39;treatment&#39;</span><span class="p">:</span>        <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">],</span>
+                            <span class="s1">&#39;outcome&#39;</span><span class="p">:</span>          <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span>   <span class="mi">2</span><span class="p">]})</span>
+    <span class="n">est_att</span> <span class="o">=</span> <span class="n">ipw_att</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">outcome_col</span><span class="o">=</span><span class="s1">&#39;outcome&#39;</span><span class="p">,</span> <span class="n">treat_col</span><span class="o">=</span><span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="n">prop_score_col</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">est_att</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">),</span> <span class="s2">&quot;The estimated ATT should be 2 - (0.2 / (1 - 0.2)) = 1.75&quot;</span>
+    
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for ipw_att passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="love-plots-for-visualizing-covariate-balance">
+<h1>3. Love plots for visualizing covariate balance<a class="headerlink" href="#love-plots-for-visualizing-covariate-balance" title="Link to this heading">#</a></h1>
+<p>A popular visualization for assessing covariate balance before and after matching is called a “Love” plot, originally proposed by researcher Thomas E. Love. Below is an example of a Love plot from <a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2443408/">Ahmed et al. 2006</a>, where propensity score matching was used to balance the covariate distributions in a study of the effect of diuretic drugs on heart failure:</p>
+<p><img alt="" src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/2338/2443408/dcccccef4c4e/nihms-10609-f0001.jpg" /></p>
+<p>The y-axis shows all of the covariates that the authors included in their propensity score model, while the x-axis shows the <strong>standardized difference</strong> between the treated and control units for each covariate. The open circles represent the original, unmatched data, while the solid diamonds represent the data after propensity score matching was applied. If the matching process does a good job of balancing the treated and control units, the standardized differences should approach 0 for all of the covariates. A rule of thumb in practice is that the absolute value of the standardized differences should be less than 0.1 for all of the covariates in order to have good balance, which is also indicated by the vertical line in their plot.</p>
+<p>We’ll implement a function for generating love plots for our subsequent analyses. The first step is to calculate the standardized difference <span class="math notranslate nohighlight">\(d_X\)</span> for a given covariate <span class="math notranslate nohighlight">\(X\)</span>, which is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+d_X = \frac{\hat{E}[X \mid T=1] - \hat{E}[X \mid T=0]} { \large \sqrt{\frac{\hat{V}[X \mid T=1] + \hat{V}[X \mid T=0]} {2}}}
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\hat{E}[X \mid T=1]\)</span> is the estimated expectation (mean) of the covariate <span class="math notranslate nohighlight">\(X\)</span> for the treated units and <span class="math notranslate nohighlight">\(\hat{V}[X \mid T=1]\)</span> is the estimated variance of the covariate <span class="math notranslate nohighlight">\(X\)</span> for the treated units. The math here can be translated into code through the use of the following pandas and numpy functions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html">np.sqrt</a>: computes the square root of an array or pd.Series</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.mean.html">df[‘column’].mean()</a>: computes the mean of the values in <code class="docutils literal notranslate"><span class="pre">'column'</span></code></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.var.html">df[‘column’].var()</a>: computes the estimated variance of the values in <code class="docutils literal notranslate"><span class="pre">'column'</span></code></p></li>
+</ul>
+<p>Implement the <code class="docutils literal notranslate"><span class="pre">standardized_difference</span></code> function below to calculate the standardized difference for a given covariate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standardized_difference</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariate</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the standardized difference for a given covariate between treated and control units.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the data to be analyzed</span>
+<span class="sd">        covariate (str): The name of the covariate to analyze</span>
+<span class="sd">        treat_col (str): The name of the treatment variable column</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The standardized difference for the given covariate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+
+    <span class="c1"># Calculate the mean and variance of the covariate for the treated and control units</span>
+
+    <span class="c1"># Calculate the standardized difference</span>
+    <span class="n">std_diff</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">return</span> <span class="n">std_diff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test standardized_difference ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test1_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;covariate&#39;</span><span class="p">:</span>        <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+                            <span class="s1">&#39;treatment&#39;</span><span class="p">:</span>        <span class="p">[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">]})</span>
+    <span class="n">std_diff</span> <span class="o">=</span> <span class="n">standardized_difference</span><span class="p">(</span><span class="n">test1_df</span><span class="p">,</span> <span class="s1">&#39;covariate&#39;</span><span class="p">,</span> <span class="s1">&#39;treatment&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">std_diff</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;The standardized difference should be 2&quot;</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for standardized_difference passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll implement a function for building a dataframe of standardized differences for plotting, <code class="docutils literal notranslate"><span class="pre">std_diff_dataframe()</span></code>. The function will take in two dataframes, one for matched data and one for unmatched data, as well as a list of covariates.</p>
+<p>The function will then calculate the standardized differences for a given covariate and return a dataframe with the standardized differences for each covariate, as well as a column indicating whether that standardized difference is for the matched or unmatched data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resulting dataframe will be in “long” format to make it easier to pass into seaborn. For example, if we have two covariates <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span>, the dataframe will have 4 rows and 3 columns, one for each combination of covariate and data source (matched vs unmatched), looking something like this:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>covariate</p></th>
+<th class="head"><p>std_diff</p></th>
+<th class="head"><p>data_source</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X_1\)</span></p></td>
+<td><p>0.1</p></td>
+<td><p>matched</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(X_1\)</span></p></td>
+<td><p>0.5</p></td>
+<td><p>unmatched</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X_2\)</span></p></td>
+<td><p>0.05</p></td>
+<td><p>matched</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(X_2\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>unmatched</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">std_diff_dataframe</span><span class="p">(</span><span class="n">matched_df</span><span class="p">,</span> <span class="n">unmatched_df</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">covariates</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds a dataframe of standardized differences for plotting.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        matched_df (pd.DataFrame): The dataframe containing the matched data</span>
+<span class="sd">        unmatched_df (pd.DataFrame): The dataframe containing the unmatched data</span>
+<span class="sd">        treat_col (str): The name of the treatment variable column</span>
+<span class="sd">        covariates (list): A list of the covariates to calculate the standardized differences for</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: A dataframe of standardized differences in the long format described above with columns:</span>
+<span class="sd">        - covariate: the covariate name</span>
+<span class="sd">        - std_diff: the standardized difference</span>
+<span class="sd">        - data_source: the source of the data (matched or unmatched)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+
+    <span class="c1"># create a dataframe with the covariate, the standardized difference for the matched data</span>
+    <span class="n">matched_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;covariate&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;std_diff&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;data_source&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># populate the dictionary with the standardized differences for each covariate</span>
+    
+    <span class="c1"># create a dataframe from the dictionary for the matched data</span>
+    <span class="n">matched_std_diffs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">matched_dict</span><span class="p">)</span>
+
+    <span class="c1"># repeat the process for the unmatched data</span>
+    <span class="n">unmatched_std_diffs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="c1"># concatenate the two dataframes</span>
+    <span class="n">std_diff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">matched_std_diffs</span><span class="p">,</span> <span class="n">unmatched_std_diffs</span><span class="p">])</span>
+
+    <span class="c1"># return the concatenated dataframe</span>
+    <span class="k">return</span> <span class="n">std_diff_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### test cases for std_diff_dataframe ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unmatched_test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">],</span>
+                                    <span class="s1">&#39;X2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+                                    <span class="s1">&#39;treatment&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+    <span class="n">matched_test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">],</span>
+                                    <span class="s1">&#39;X2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+                                    <span class="s1">&#39;treatment&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+    <span class="n">covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">]</span>
+    <span class="n">std_diff_df</span> <span class="o">=</span> <span class="n">std_diff_dataframe</span><span class="p">(</span><span class="n">unmatched_df</span><span class="o">=</span><span class="n">unmatched_test_df</span><span class="p">,</span> <span class="n">matched_df</span><span class="o">=</span><span class="n">matched_test_df</span><span class="p">,</span> <span class="n">treat_col</span><span class="o">=</span><span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="n">covariates</span><span class="o">=</span><span class="n">covariates</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">std_diff_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;There should be 4 rows in the dataframe since there are two covariates&quot;</span>
+    
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts and test cases is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for std_diff_dataframe passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we’ll implement a function for generating love plots called <code class="docutils literal notranslate"><span class="pre">build_love_plot()</span></code>. It will take as a parameter the dataframe of standardized differences generated from <code class="docutils literal notranslate"><span class="pre">std_diff_dataframe</span></code> as well as an <code class="docutils literal notranslate"><span class="pre">ax</span></code> object from matplotlib, writing an <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.stripplot.html">sns.stripplot</a> to the given axis. Passing in the <code class="docutils literal notranslate"><span class="pre">ax</span></code> object will allow us to customize the plot as we’d like even after generating it. The strip plot is similar to a scatter plot, but it allows for categorical data on one axis. It will also draw vertical lines at the values 0.1 and -0.1 to indicate the rule-of-thumb threshold for good balance. Specifically, call <code class="docutils literal notranslate"><span class="pre">sns.stripplot</span></code> with the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: the dataframe of standardized differences</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: the standardized difference</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: the covariate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hue</span></code>: the data source</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jitter</span></code>: False, since we don’t want to jitter the points</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code>: 8 to make the points larger</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ax</span></code>: the axis to plot the love plot on</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order</span></code>: a list of the covariate names, sorted by the unmatched data’s standardized difference. This will make the plot more informative by ordering the covariates by how imbalanced they are in the unmatched data.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">order</span></code> parameter can be set by filtering the standardized difference dataframe to only include the unmatched data, sorting by the standardized difference, and then setting the <code class="docutils literal notranslate"><span class="pre">order</span></code> parameter to the resulting <code class="docutils literal notranslate"><span class="pre">'covariate'</span></code> column.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Our love plot will look slightly different than the example from Ahmed et al. 2006, since we are not taking the absolute value of the standardized difference. This retains the sign of the standardized difference, which gives us more information about the direction of the imbalances in the unmatched data.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_love_plot</span><span class="p">(</span><span class="n">std_diff_df</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds a love plot from a dataframe of standardized differences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        std_diff_df (pd.DataFrame): The dataframe of standardized differences</span>
+<span class="sd">        ax (matplotlib.axes.Axes): The axis to plot the love plot on</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        matplotlib.axes.Axes: The axis with the love plot plotted</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+
+    <span class="c1"># generate a list of the covariates sorted by the unmatched data&#39;s standardized difference to pass into the `order` parameter</span>
+
+    <span class="c1"># plot the stripplot with the given parameters</span>
+
+    <span class="c1"># draw the vertical lines at 0.1 and -0.1</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you sort the covariates by the unmatched data’s standardized difference, then the test code below will generate a plot looking something like the one below:</p>
+<p><img alt="" src="../_images/proj2_example_love.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### test figure for build_love_plot ####</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_std_diff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;covariate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">,</span> <span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;std_diff&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+                                    <span class="s1">&#39;data_source&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;matched&#39;</span><span class="p">,</span> <span class="s1">&#39;matched&#39;</span><span class="p">,</span> <span class="s1">&#39;matched&#39;</span><span class="p">,</span> <span class="s1">&#39;unmatched&#39;</span><span class="p">,</span> <span class="s1">&#39;unmatched&#39;</span><span class="p">,</span> <span class="s1">&#39;unmatched&#39;</span><span class="p">]})</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">build_love_plot</span><span class="p">(</span><span class="n">test_std_diff_df</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Test Love Plot&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Standardized Difference&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Covariate&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, 1.0)
+</pre></div>
+</div>
+<img alt="../_images/cde2a1a91f87bcff3067acc86de505dc7aeb67434a721497574de5e5ab4ed7f3.png" src="../_images/cde2a1a91f87bcff3067acc86de505dc7aeb67434a721497574de5e5ab4ed7f3.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<p>This project uses Nick Huntington-Klein’s <code class="docutils literal notranslate"><span class="pre">causaldata</span></code> package, which provides convenient access to the Lalonde dataset, and is based on Chapter 5 of Scott Cunningham’s <a class="reference external" href="https://mixtape.scunning.com/">Causal Inference: The Mixtape</a> as well as <a class="reference external" href="https://arxiv.org/abs/2406.00827">Imbens and Xu 2024: Lalonde (1986) after Nearly Four Decades: Lessons Learned</a>.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="proj2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project 2 👥</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 2 Part 1: Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-table-of-contents-and-rubric">Part 1 Table of Contents and Rubric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-imports">Notebook imports</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-score-matching">1. Propensity Score Matching</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trimming-and-inverse-probability-weighting-ipw">2. Trimming and Inverse Probability Weighting (IPW)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#love-plots-for-visualizing-covariate-balance">3. Love plots for visualizing covariate balance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
