@@ -52,4 +52,4 @@ If you're uncertain about any portion of the project, please do come to office h
 
 - [**Part 1: Functions**](proj2_functions)
 
-- **Part 2: Analysis**
+- [**Part 2: Analysis**](proj2_analysis)
