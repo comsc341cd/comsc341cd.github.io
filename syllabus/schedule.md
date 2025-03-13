@@ -109,9 +109,10 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 
 
-    - <small>03/11</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453901/mod_resource/content/1/lec11-matching-starter.pdf)</li><li>[Activity 9](activity9)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Project 2](proj2)
+    - <small>03/11</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453901/mod_resource/content/1/lec11-matching-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1453939/mod_resource/content/1/lec11-matching.pdf)</li><li>[Activity 9](activity9)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Project 2](proj2)
     - <small>03/12</small>
-    - <small>03/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational study wrap-up</u></b>
+
+    - <small>03/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational study wrap-up</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1454275/mod_resource/content/1/lec12-observational_study_wrapup-starter.pdf)</li></ul>
     - <small>03/14</small>
 
 *   

@@ -35,6 +35,7 @@ parts:
       - file: projects/proj2.md
         sections:
         - file: projects/proj2_functions.ipynb
+        - file: projects/proj2_analysis.ipynb
   #     - file: projects/proj2-observational-study.md
   #     - file: projects/proj3-instrumental-variable.md
   
