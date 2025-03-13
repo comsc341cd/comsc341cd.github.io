@@ -510,13 +510,13 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="propensity-score-matching">
 <h1>1. Propensity Score Matching<a class="headerlink" href="#propensity-score-matching" title="Link to this heading">#</a></h1>
-<p>One of the observational study estimators we’ll implement is the propensity score matching approach we discussed in class. We’ll start by implementing a function for estimating the propensity score. This method should resemble the one you wrote in <a class="reference internal" href="../worksheets/ws4.html#ws4"><span class="std std-ref">Worksheet 4</span></a>, except now we’re fitting a logistic regression model via <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> instead of a linear regression model and returning the predicted propensity scores instead of the model object.</p>
+<p>One of the observational study estimators we’ll implement is the propensity score matching approach we discussed in class. We’ll start by implementing a function for estimating the propensity score. This method should resemble the one you wrote in <a class="reference external" href="https://comsc341cd.github.io/worksheets/ws4.html">Worksheet 4</a>, except now we’re fitting a logistic regression model via <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> instead of a linear regression model and returning the predicted propensity scores instead of the model object.</p>
 <p>The predicted propensity scores can be accessed via the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method of the model object, which takes a dataframe as an argument:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generates predictions, assuming the model was previously fit with a dataframe called df</span>
 <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can also refer to <a class="reference internal" href="../activities/activity8.html#activity8"><span class="std std-ref">Activity 8</span></a> for the syntax for creating a logistic regression model in <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<p>You can also refer to <a class="reference external" href="https://comsc341cd.github.io/activities/activity8_solution.html#activity8-solution">Activity 8</a> for the syntax for creating a logistic regression model in <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_propensity_score</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">covariates</span><span class="p">):</span>
