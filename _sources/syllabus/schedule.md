@@ -125,16 +125,16 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>03/24</small>   
-    - <small>03/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Final Project
+    - <small>03/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments I</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Final Project
     - <small>03/26</small>
-    - <small>03/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
+    - <small>03/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments II</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
     - <small>03/28</small>
 
 *   
     - <small>03/31</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2   
-    - <small>04/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b>
+    - <small>04/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4)<b><u>Instrumental Variables I</u></b>
     - <small>04/02</small>
-    - <small>04/03</small><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 3
+    - <small>04/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 3
     - <small>04/04</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 5
 
 
