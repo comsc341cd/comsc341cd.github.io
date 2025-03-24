@@ -28,7 +28,7 @@ parts:
       - file: worksheets/ws1_solution.ipynb
       - file: worksheets/ws2_solution.ipynb
       - file: worksheets/ws3_solution.ipynb 
-  
+      - file: worksheets/ws4_solution.ipynb
   - caption: Projects
     chapters:
       - file: projects/proj1.ipynb
