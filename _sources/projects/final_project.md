@@ -51,9 +51,7 @@ The final report will be submitted in the form of a [Jupyter Book article](https
 
 Jupyter Books use [Myst Markdown](https://myst-parser.readthedocs.io/en/latest/), which is a variant of Markdown that allows for additional featues like references, call out boxes, and interactive widgets. Project 3 will give you initial experience with the Jupyter Book + Myst Markdown format, which you can then build on for your final project.
 
-# Example Resources
-
-## Potential dataset sources
+# Example resources
 
 ### The "Add Health" dataset
 
