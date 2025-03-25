@@ -125,7 +125,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>03/24</small>   
-    - <small>03/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments I</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) [Final Project](final_proj)
+    - <small>03/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments I</u></b><ul style="margin-top:-1em;"><li>[Activity 10](activity10)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Final Project](final_proj)
     - <small>03/26</small>
     - <small>03/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments II</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
     - <small>03/28</small>
