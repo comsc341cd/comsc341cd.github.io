@@ -89,7 +89,7 @@ ICPSR is the Inter-university Consortium for Political and Social Research, and 
 
 ### Opportunity Insights
 
-Opportunity Insights is a research organization that studies the impact of social programs on economic mobility, and also maintain a [public data repository](https://opportunityinsights.org/data/). 
+Opportunity Insights is a research organization that studies the impact of social programs on economic mobility, and also maintains a [public data repository](https://opportunityinsights.org/data/). 
 
 ## Jupyter Book articles
 
