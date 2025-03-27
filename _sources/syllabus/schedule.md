@@ -127,7 +127,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>03/24</small>   
     - <small>03/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Vectorization, Ethics, Final Project</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1455405/mod_resource/content/1/lec13-quasiexperiments-i-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1455466/mod_resource/content/1/lec13-vectorization-ethics-final.pdf)</li><li>[Activity 10](activity10)</li><li>[Activity 10 solutions](activity10_solution)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Final Project](final_proj)
     - <small>03/26</small>
-    - <small>03/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
+    - <small>03/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-Experiments</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1455902/mod_resource/content/1/lec14-quasiexperiments-i-starter.pdf)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
     - <small>03/28</small>
 
 *   
