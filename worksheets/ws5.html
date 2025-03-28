@@ -1164,17 +1164,20 @@ Y_{\text{above}} = \beta_0 + \beta_1 R, \quad \text{ for data where } R &gt; 0.5
         <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">periods</span>
     <span class="p">})</span>
 
-<span class="k">def</span> <span class="nf">estimate_did</span><span class="p">(</span><span class="n">did_df</span><span class="p">,</span> <span class="n">pre_period</span><span class="p">,</span> <span class="n">post_period</span><span class="p">,</span> <span class="n">y_treat_col</span><span class="o">=</span><span class="s1">&#39;Y_treat&#39;</span><span class="p">,</span> <span class="n">y_control_col</span><span class="o">=</span><span class="s1">&#39;Y_control&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">estimate_did</span><span class="p">(</span><span class="n">did_df</span><span class="p">,</span> <span class="n">pre_period</span><span class="p">,</span> <span class="n">post_period</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Estimate the difference-in-differences (DiD) between the treated and control groups for the given pre- and post-periods.</span>
+<span class="sd">    </span>
+<span class="sd">    Assumes the following columns in did_df:</span>
+<span class="sd">        - time</span>
+<span class="sd">        - Y_treat</span>
+<span class="sd">        - Y_control</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        did_df (pd.DataFrame): DataFrame containing the data</span>
 <span class="sd">        pre_period (int): The pre-treatment period</span>
 <span class="sd">        post_period (int): The post-treatment period</span>
-<span class="sd">        y_treat_col (str): The column name for the treated group outcomes, defaults to &#39;Y_treat&#39;</span>
-<span class="sd">        y_control_col (str): The column name for the control group outcomes, defaults to &#39;Y_control&#39;</span>
-
+<span class="sd">    </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        float: The difference-in-differences estimate</span>
 <span class="sd">    &quot;&quot;&quot;</span>
