@@ -22,6 +22,7 @@ parts:
       - file: worksheets/ws2.ipynb
       - file: worksheets/ws3.ipynb
       - file: worksheets/ws4.ipynb
+      - file: worksheets/ws5.ipynb
 
   - caption: Worksheet Solutions
     chapters:
