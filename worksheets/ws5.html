@@ -455,7 +455,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 5 🌱</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-causal-systems-0-5-pts">1. Simulating causal systems [0.5 pts]</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-single-confounder-0-5-pt">1.1 simulating a single confounder [0.5 pt]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-single-confounder-0-5-pt">1.1 Simulating a single confounder [0.5 pt]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables-1-5-pts">2. Instrumental variables [1.5 pts]</a><ul class="visible nav section-nav flex-column">
@@ -577,7 +577,7 @@ document.write(`
 </div>
 <p>Notice in the above code that <span class="math notranslate nohighlight">\(T\)</span> “causes” <span class="math notranslate nohighlight">\(Y\)</span> because the value of <span class="math notranslate nohighlight">\(Y\)</span> depends on the value of <span class="math notranslate nohighlight">\(T\)</span>. We can think of <span class="math notranslate nohighlight">\(T\)</span> as fully randomized because it doesn’t depend on any other variables in the system.</p>
 <section id="simulating-a-single-confounder-0-5-pt">
-<h2>1.1 simulating a single confounder [0.5 pt]<a class="headerlink" href="#simulating-a-single-confounder-0-5-pt" title="Link to this heading">#</a></h2>
+<h2>1.1 Simulating a single confounder [0.5 pt]<a class="headerlink" href="#simulating-a-single-confounder-0-5-pt" title="Link to this heading">#</a></h2>
 <p>Let’s begin by building a simulation of a 3 variable DAG with a single confounder:</p>
 <p><img alt="" src="../_images/ws5_confounder.png" /></p>
 <p>This simulation will look very similar to the randomized experiment simulation code above, except that we will make <span class="math notranslate nohighlight">\(T\)</span> dependent on <span class="math notranslate nohighlight">\(X\)</span>.</p>
@@ -800,13 +800,17 @@ Complete the <code class="docutils literal notranslate"><span class="pre">two_st
         <span class="n">iv_df</span> <span class="o">=</span> <span class="n">sim_iv</span><span class="p">()</span>
 
         <span class="c1"># TODO compute the causal effect estimate from the naive regression</span>
+        <span class="n">naive_estimates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span>
 
         <span class="c1"># TODO compute the causal effect estimate from the two-stage least squares estimator</span>
+        <span class="n">iv_estimates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span>
 
     <span class="c1"># The true effect is 1 for the default parameters</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Effect&#39;</span><span class="p">)</span>
 
     <span class="c1"># TODO plot histograms of IV estimates and naive estimates</span>
+
+    
     
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1242,12 +1246,14 @@ Y_{\text{above}} = \beta_0 + \beta_1 R, \quad \text{ for data where } R &gt; 0.5
     
     <span class="k">if</span> <span class="n">show_counterfactual</span><span class="p">:</span>
         <span class="n">Y_counterfactual</span> <span class="o">=</span> <span class="n">did_df</span><span class="p">[</span><span class="s1">&#39;Y_treat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="c1"># TODO modify Y_counterfactual to be the counterfactual trend by subtracting the treatment effect at t=3</span>
+        <span class="c1"># Creates the ounterfactual trend by subtracting the treatment effect at t=3</span>
+        <span class="n">Y_counterfactual</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-=</span> <span class="n">treatment_effect</span>
 
         <span class="c1"># TODO plot Y_counterfactual against time using markers=&#39;o&#39; and ls=&#39;--&#39; for dotted lines</span>
 
     
-    <span class="c1"># TODO plot the specified line segment labelled &quot;DiD estimate&quot;</span>
+    <span class="c1"># TODO plot the specified line segment at t=3, labelled &quot;DiD estimate&quot;</span>
+    <span class="c1"># plt.plot((3, 3), (TODO, TODO), label=&#39;DiD estimate&#39;)</span>
 
     <span class="c1"># Plots the treatment event as a vertical line</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
@@ -1400,7 +1406,7 @@ Y_{\text{above}} = \beta_0 + \beta_1 R, \quad \text{ for data where } R &gt; 0.5
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 5 🌱</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-causal-systems-0-5-pts">1. Simulating causal systems [0.5 pts]</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-single-confounder-0-5-pt">1.1 simulating a single confounder [0.5 pt]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-single-confounder-0-5-pt">1.1 Simulating a single confounder [0.5 pt]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables-1-5-pts">2. Instrumental variables [1.5 pts]</a><ul class="visible nav section-nav flex-column">
