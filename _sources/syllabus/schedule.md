@@ -134,8 +134,8 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>03/31</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 2](proj2)   
     - <small>04/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1456554/mod_resource/content/1/lec15-instrumental-variables-i-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1456609/mod_resource/content/1/lec15-instrumental-variables-i.pdf)</li><li>[Activity 11](https://docs.google.com/document/d/1_zjnaVAZwdJ6tU8QG4lGoAjsEF9T5EzhMcpUrb88CMU/edit?usp=sharing)</li></ul>
     - <small>04/02</small>  
-    - <small>04/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1457011/mod_resource/content/1/lec16-instrumental-variables-ii-starter.pdf)</li><li>[Activity 12](activity12)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) Project 3
-    - <small>04/04</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 5](ws5)<br>Extended to **4/06**
+    - <small>04/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1457011/mod_resource/content/1/lec16-instrumental-variables-ii-starter.pdf)</li><li>[Activity 12](activity12)</li></ul>
+    - <small>04/04</small><br>![](https://img.shields.io/badge/Released:-2ca02c) [Project 3](proj3)<br>![](https://img.shields.io/badge/Due:-d62728) [WS 5](ws5)<br>Extended to **4/06**
 
 
 *   
@@ -146,8 +146,8 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>04/11</small>
 
 *   
-    - <small>04/14</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 3
-    - <small>04/15</small><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 6
+    - <small>04/14</small>
+    - <small>04/15</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 3](proj3)<br>![](https://img.shields.io/badge/Released:-2ca02c) WS 6
     - <small>04/16</small>
     - <small>04/17</small>
     - <small>04/18</small>
