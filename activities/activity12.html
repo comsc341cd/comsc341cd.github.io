@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
@@ -651,17 +651,17 @@ document.write(`
 </section>
 <section id="id3">
 <h2>2.3<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>From the beginning of lecture, we saw that under linear outcomes, the ATE is identified in the <strong>exact</strong> same way as the LATE:</p>
+<p>From lecture last time we saw that under linear outcomes, the ATE is identified in the <strong>exact</strong> same way as the LATE:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{ATE} = \frac{E[Y|Z=1] - E[Y|Z=0]}{E[T|Z=1] - E[T|Z=0]}
 \]</div>
-<p>Researchers often choose whether to interpret their instrumental variable results as a LATE or ATE. Give an interpretation of the ATE and the LATE you computed in 2.2 within the context of the smart thermostat study:</p>
+<p>Researchers often choose whether to interpret their instrumental variable results as a LATE or ATE:</p>
 <ul class="simple">
-<li><p>ATE: <span class="math notranslate nohighlight">\(E[Y(1)] - E[Y(0)]\)</span>: <strong>TODO</strong></p></li>
-<li><p>LATE: <span class="math notranslate nohighlight">\(E[Y(1) - Y(0) | \text{compliers}]\)</span>: <strong>TODO</strong></p></li>
+<li><p>ATE: <span class="math notranslate nohighlight">\(E[Y(1) - Y(0)]\)</span></p></li>
+<li><p>LATE: <span class="math notranslate nohighlight">\(E[Y(1) - Y(0) \mid \text{compliers}]\)</span></p></li>
 </ul>
-<p>Which causal quantity seems more useful? Feel free to discuss with folks around you.</p>
+<p>Which causal quantity seems more useful in the context of the smart thermostat study? Feel free to discuss with folks around you.</p>
 <p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
 </section>
 </section>

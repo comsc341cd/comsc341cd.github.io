@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
@@ -474,7 +474,7 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences">4. Difference-in-differences</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-simulation-0-5-pts">4.1 Difference-in-differences simulation [0.5 pts]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-parallel-trends-widget-0-5-pts">4.1 Difference-in-differences parallel trends widget [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-parallel-trends-widget-0-5-pts">4.2 Difference-in-differences parallel trends widget [0.5 pts]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="visible nav section-nav flex-column">
@@ -1207,7 +1207,7 @@ Y_{\text{above}} = \beta_0 + \beta_1 R, \quad \text{ for data where } R &gt; 0.5
 </div>
 </section>
 <section id="difference-in-differences-parallel-trends-widget-0-5-pts">
-<h2>4.1 Difference-in-differences parallel trends widget [0.5 pts]<a class="headerlink" href="#difference-in-differences-parallel-trends-widget-0-5-pts" title="Link to this heading">#</a></h2>
+<h2>4.2 Difference-in-differences parallel trends widget [0.5 pts]<a class="headerlink" href="#difference-in-differences-parallel-trends-widget-0-5-pts" title="Link to this heading">#</a></h2>
 <p>Complete the widget below plotting the DiD data by filling in the TODOs and plotting a vertical line segment corresponding to the DiD estimate, where the first coordinate is <span class="math notranslate nohighlight">\((3, \;Y_{\text{treat, } t=3})\)</span> and the second coordinate is <span class="math notranslate nohighlight">\((3, \;Y_{\text{treat, } t=3} - \delta_{DiD} )\)</span>.</p>
 <p>To plot arbitrary line segments, we can use <code class="docutils literal notranslate"><span class="pre">plt.plot((x1,</span> <span class="pre">x2),</span> <span class="pre">(y1,</span> <span class="pre">y2))</span></code> to show a line segment between the points <span class="math notranslate nohighlight">\((x1, y1)\)</span> and <span class="math notranslate nohighlight">\((x2, y2)\)</span>. For example:</p>
 <div class="cell docutils container">
@@ -1428,7 +1428,7 @@ Y_{\text{above}} = \beta_0 + \beta_1 R, \quad \text{ for data where } R &gt; 0.5
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences">4. Difference-in-differences</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-simulation-0-5-pts">4.1 Difference-in-differences simulation [0.5 pts]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-parallel-trends-widget-0-5-pts">4.1 Difference-in-differences parallel trends widget [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-parallel-trends-widget-0-5-pts">4.2 Difference-in-differences parallel trends widget [0.5 pts]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="visible nav section-nav flex-column">
