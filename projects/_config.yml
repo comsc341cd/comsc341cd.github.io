@@ -1,0 +1,7 @@
+title: 'Project 3 Analysis 💉'
+author: 'Test'
+home_page_in_navbar: false
+# Optionally uncomment this if you want to use a custom theme
+# sphinx:
+#   config:
+#     html_theme: sphinx_rtd_theme
