@@ -140,7 +140,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>04/07</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final Project proposal](final_proposal)   
-    - <small>04/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression Discontinuities I </u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1457690/mod_resource/content/1/lec17-regression-discontinuities-i-starter.pdf)</li><li>[Activity 13](activity13)</li></ul>
+    - <small>04/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression Discontinuities I </u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1457690/mod_resource/content/1/lec17-regression-discontinuities-i-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1457788/mod_resource/content/1/lec17-regression-discontinuities-i.pdf)</li><li>[Activity 13](activity13)</li></ul>
     - <small>04/09</small>
     - <small>04/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression Discontinuities II</u></b>
     - <small>04/11</small>
