@@ -476,7 +476,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-regression-discontinuity-design-estimation">1. Fuzzy regression discontinuity design estimation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-data-preparation-0-5-pts">1.1 FRDD data preparation [0.5 pts]</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-case-study-mortgage-subsidies-and-homeownership-1-pt">1.2 FRDD case study: mortgage subsidies and homeownership [1 pt]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-role-prompting-1-pt">1.3 LLM role prompting [1 pt]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-roleplay-prompting-1-pt">1.3 LLM roleplay prompting [1 pt]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-implementation">2. Difference-in-differences implementation</a><ul class="visible nav section-nav flex-column">
@@ -733,9 +733,9 @@ X_2 = (1-Z) \cdot (R - c)
 <p>The estimate using a bandwidth of 6 should be that the local average treatment effect at the cutoff for being a veteran increases the probability of homeownership by 37.7%, with a p-value of about 0.01.</p>
 </div>
 </section>
-<section id="llm-role-prompting-1-pt">
-<h2>1.3 LLM role prompting [1 pt]<a class="headerlink" href="#llm-role-prompting-1-pt" title="Link to this heading">#</a></h2>
-<p>One effective way to get better results from LLMs is through <strong>role prompting</strong>: giving the model a specific role and context to work within. This is similar to how we might ask a person to “think like a ______” or “explain this to me like I’m 5”.</p>
+<section id="llm-roleplay-prompting-1-pt">
+<h2>1.3 LLM roleplay prompting [1 pt]<a class="headerlink" href="#llm-roleplay-prompting-1-pt" title="Link to this heading">#</a></h2>
+<p>One effective way to get better results from LLMs is through <strong>roleplay prompting</strong>: giving the model a specific role and context to work within. This is similar to how we might ask a person to “think like a ______” or “explain this to me like I’m 5”.</p>
 <p>First, try asking an LLM (like Claude or ChatGPT) to help you interpret the FRDD results we just obtained, using the following basic prompt:</p>
 <blockquote>
 <div><p>I’ve just run a fuzzy regression discontinuity design analysis on the effect of veteran status on homeownership rates. The running variable is birth months relative to eligibility to serve in the Korean War and World War II. The local average treatment effect estimate is [TODO insert estimate here] with a p-value of [TODO insert p-value here]. Can you help me interpret these results?</p>
@@ -751,7 +751,7 @@ X_2 = (1-Z) \cdot (R - c)
 <li><p>TODO</p></li>
 </ul>
 </li>
-<li><p>Role prompt:</p>
+<li><p>Roleplay prompt:</p>
 <ul>
 <li><p>TODO</p></li>
 </ul>
@@ -760,12 +760,12 @@ X_2 = (1-Z) \cdot (R - c)
 <p><strong>2.</strong> How did the LLM’s explanations of causal design concepts compare to our own discussions of them in class? Which prompt provided the more useful and contextually appropriate explanation?</p>
 <p><strong>Your response</strong>: TODO</p>
 <ol class="arabic simple" start="3">
-<li><p>Another aspect of using LLMs to keep in mind is that they are stochastic – the same prompt may give different responses each time. Open another new chat with the LLM and ask the role prompt question again. Does the LLM omit or provide more information compared to its first response?</p></li>
+<li><p>Another aspect of using LLMs to keep in mind is that they are stochastic – the same prompt may give different responses each time. Open another new chat with the LLM and ask the roleplay prompt question again. Does the LLM omit or provide more information compared to its first response?</p></li>
 </ol>
 <p><strong>Your response</strong>: TODO</p>
 <div class="admonition-optional-explorations admonition">
 <p class="admonition-title">Optional explorations</p>
-<p>You can additionally experiment with the stability of LLM responses by asking the same question but replacing the role prompt with a different role e.g., “political scientist,” “economist,” “computer scientist,” or “cat”.</p>
+<p>You can additionally experiment with the stability of LLM responses by asking the same question but replacing the roleplay prompt with a different role e.g., “political scientist,” “economist,” “computer scientist,” or “cat”.</p>
 </div>
 </section>
 </section>
@@ -1066,7 +1066,7 @@ Y = \beta_{\text{group}} + \beta_{\text{time}} + \beta_1 T + \epsilon
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-regression-discontinuity-design-estimation">1. Fuzzy regression discontinuity design estimation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-data-preparation-0-5-pts">1.1 FRDD data preparation [0.5 pts]</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-case-study-mortgage-subsidies-and-homeownership-1-pt">1.2 FRDD case study: mortgage subsidies and homeownership [1 pt]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-role-prompting-1-pt">1.3 LLM role prompting [1 pt]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-roleplay-prompting-1-pt">1.3 LLM roleplay prompting [1 pt]</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-implementation">2. Difference-in-differences implementation</a><ul class="visible nav section-nav flex-column">
