@@ -147,7 +147,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>04/14</small>
-    - <small>04/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1463053/mod_resource/content/1/lec19-diff-in-diff-i-starter.pdf)</li><li>[Activity 14](activity14)</li></ul>![](https://img.shields.io/badge/Due:-d62728) [Project 3](proj3)<br>![](https://img.shields.io/badge/Released:-2ca02c) WS 6
+    - <small>04/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1463053/mod_resource/content/1/lec19-diff-in-diff-i-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1463114/mod_resource/content/1/lec19-diff-in-diff-i.pdf)</li><li>[Activity 14](activity14)</li></ul>![](https://img.shields.io/badge/Due:-d62728) [Project 3](proj3)<br>![](https://img.shields.io/badge/Released:-2ca02c) [WS 6](ws6)
     - <small>04/16</small>
     - <small>04/17</small>
     - <small>04/18</small>

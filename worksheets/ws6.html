@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Worksheet 6 🤖 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'worksheets/ws6';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="WS 1 Solution 🎲" href="ws1_solution.html" />
+    <link rel="prev" title="Worksheet 5 🌱" href="ws5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws5.html">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Worksheet 6 🤖</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ws1_solution.html">WS 1 Solution 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws2_solution.html">WS 2 Solution 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws3_solution.html">WS 3 Solution 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws4_solution.html">WS 4 Solution 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws5_solution.html">WS 5 Solution 🌱</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj3.html">Project 3 💉</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/final_project.html">Final Project 🌍</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/worksheets/ws6.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/worksheets/ws6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Worksheet 6 🤖</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 6 🤖</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#linearmodels-lms"><code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> (LMs)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-models-llms">Large Language Models (LLMs)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-regression-discontinuity-design-estimation">1. Fuzzy regression discontinuity design estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-data-preparation-0-5-pts">1.1 FRDD data preparation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-case-study-mortgage-subsidies-and-homeownership-1-pt">1.2 FRDD case study: mortgage subsidies and homeownership [1 pt]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-role-prompting-1-pt">1.3 LLM role prompting [1 pt]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-implementation">2. Difference-in-differences implementation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diff-in-diff-data-preparation-0-5-pts">2.1. Diff-in-diff data preparation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diff-in-diff-case-study-organ-donation-0-5-pts">2.2 Diff-in-diff case study: organ donation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-chain-of-thought-prompting-0-5-pts">2.3 LLM chain of thought prompting [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">3. Reflection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-usage-0-5-pts">3.1 LLM usage [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worksheet-reflections-0-5-pts">3.2 Worksheet reflections [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="worksheet-6">
+<span id="ws6"></span><h1>Worksheet 6 🤖<a class="headerlink" href="#worksheet-6" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> with Large Language Models</p>
+<p class="attribution">—TODO your name here</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here</p></li>
+</ul>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="learning-objectives">
+<h1>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Gain experience using <code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> package to perform quasi-experiment estimation</p></li>
+<li><p>Explore how LLMs can be integrated into your workflow for data analysis</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="linearmodels-lms">
+<h1><code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> (LMs)<a class="headerlink" href="#linearmodels-lms" title="Link to this heading">#</a></h1>
+<p>Throughout the semester, we have been building estimators for different causal study designs from the ground up, translating mathematical formulas into code using <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. The reason why we’ve taken this approach is to get a strong conceptual foundation on how the different estimators work.</p>
+<p>In practice, there exist many packages in both R and Python that implement causal inference methods for us. Most applied researchers, policymakers, and scientists use these off-the-shelf packages to perform estimation. We’ll take a look at one such package in Python, <code class="docutils literal notranslate"><span class="pre">linearmodels</span></code>, to help us perform estimation in the fuzzy regression discontinuity design and difference-in-differences designs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A key advantage that R has over Python is that cutting-edge causal inference methods tend to be implemented in R first, though Python support is now catching up. As a data scientist, it is useful to be familiar with both languages and computing environments to be able to use the best tool for the job.</p>
+</div>
+<p><a class="reference external" href="https://bashtage.github.io/linearmodels/">linearmodels</a> is modeled to resemble the syntax and structure of <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, but with some extensions for direct support of panel data and instrumental variable models. See the user guides below for more details on how to use the linearmodels package:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bashtage.github.io/linearmodels/iv/index.html">Instrumental variable estimation</a></p></li>
+<li><p><a class="reference external" href="https://bashtage.github.io/linearmodels/panel/index.html">Panel data model estimation</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="large-language-models-llms">
+<h1>Large Language Models (LLMs)<a class="headerlink" href="#large-language-models-llms" title="Link to this heading">#</a></h1>
+<p>In this worksheet, we’ll also explore how to integrate Large Language Models (LLMs) into a data analysis workflow. These tools are transforming how we approach programming and data science, offering powerful support in code generation and problem-solving. However, their effectiveness depends entirely on our ability to engage with them mindfully. While LLMs can be valuable assistants, they are not replacements for our own understanding and critical thinking. These models, despite their impressive capabilities, can generate (often confidently!) incorrect or misleading output. In order to use LLMs effectively, we need to understand when and how to effectively incorporate their assistance and critically evaluate their suggestions.</p>
+<p>For this worksheet, you are allowed to consult an LLM in the indicated sections. Some options to use include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://chatgpt.com/">ChatGPT</a> by OpenAI</p></li>
+<li><p><a class="reference external" href="https://claude.ai/">Claude</a> by Anthropic</p></li>
+<li><p><a class="reference external" href="https://gemini.google.com/">Gemini</a> by Google</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fuzzy-regression-discontinuity-design-estimation">
+<h1>1. Fuzzy regression discontinuity design estimation<a class="headerlink" href="#fuzzy-regression-discontinuity-design-estimation" title="Link to this heading">#</a></h1>
+<p>As we discussed in the <a class="reference external" href="https://moodle.mtholyoke.edu/pluginfile.php/1458227/mod_resource/content/1/lec18-regression-discontinuities-ii.pdf">RDD II lecture</a>, the fuzzy regression discontinuity design can be treated as if it were a instrumental variable design, where given a running variable <span class="math notranslate nohighlight">\(R\)</span> and a cutoff <span class="math notranslate nohighlight">\(c\)</span>, we can define an instrument <span class="math notranslate nohighlight">\(Z\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+Z = \mathbb{I}(R \geq c)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the cutoff value for the running variable <span class="math notranslate nohighlight">\(R\)</span>. We additionally define two additional covariates <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+X_1 = Z \cdot (R - c)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+X_2 = (1-Z) \cdot (R - c)
+\]</div>
+<p>The fuzzy regression discontinuity design can then be estimated using a two-stage least squares (TSLS) regression, where we regress the outcome <span class="math notranslate nohighlight">\(Y\)</span> on the instrument <span class="math notranslate nohighlight">\(Z\)</span> and the covariates <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span>, using data only within the bandwidth <span class="math notranslate nohighlight">\(b\)</span> of the cutoff <span class="math notranslate nohighlight">\(c\)</span>: <span class="math notranslate nohighlight">\(R \in [c-b, c+b]\)</span>.</p>
+<section id="frdd-data-preparation-0-5-pts">
+<h2>1.1 FRDD data preparation [0.5 pts]<a class="headerlink" href="#frdd-data-preparation-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Complete the function below to prepare a dataframe for fuzzy regression discontinuity design estimation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prepare_frdd_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treatment_col</span><span class="p">,</span> <span class="n">outcome_col</span><span class="p">,</span> <span class="n">running_col</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">bandwidth</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepare a dataframe for fuzzy regression discontinuity design estimation. Specifically:</span>
+
+<span class="sd">    1. selects the data within the bandwidth of the cutoff</span>
+<span class="sd">    2. creates the instrument Z as an indicator for whether the running variable is &gt;= cutoff</span>
+<span class="sd">    3. creates the covariates X1 and X2 as:</span>
+<span class="sd">        - X1 = Z * (R - c)</span>
+<span class="sd">        - X2 = (1-Z) * (R - c)</span>
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input data frame containing the variables.</span>
+<span class="sd">        treatment_col (str): The name of the treatment variable.</span>
+<span class="sd">        outcome_col (str): The name of the outcome variable.</span>
+<span class="sd">        running_col (str): The name of the running variable.</span>
+<span class="sd">        cutoff (float): The cutoff value for the running variable.</span>
+<span class="sd">        bandwidth (float): The bandwidth for the fuzzy regression discontinuity design.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: A dataframe with the selected data, the instrument Z, and the covariates X1 and X2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">frdd_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># TODO select the data within the bandwidth of the cutoff</span>
+
+    <span class="c1"># TODO create the instrument Z</span>
+
+    <span class="c1"># TODO create covariates X1 and X2</span>
+
+    <span class="k">return</span> <span class="n">frdd_df</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Creates a simple dataset for testing</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="p">})</span>
+    <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">bandwidth</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="n">frdd_df</span> <span class="o">=</span> <span class="n">prepare_frdd_data</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">bandwidth</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have 3 rows, where the running variable is between 1 and 3&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;Z&#39;</span> <span class="ow">in</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have a column for the instrument Z&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;X1&#39;</span> <span class="ow">in</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have a column for the covariate X1&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;X2&#39;</span> <span class="ow">in</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have a column for the covariate X2&quot;</span>
+
+    <span class="c1"># feel free to add more tests!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">44</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="n">frdd_df</span> <span class="o">=</span> <span class="n">prepare_frdd_data</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">bandwidth</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">44</span> <span class="k">assert</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have 3 rows, where the running variable is between 1 and 3&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="k">assert</span> <span class="s1">&#39;Z&#39;</span> <span class="ow">in</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have a column for the instrument Z&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="k">assert</span> <span class="s1">&#39;X1&#39;</span> <span class="ow">in</span> <span class="n">frdd_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;The dataframe should have a column for the covariate X1&quot;</span>
+
+<span class="ne">AssertionError</span>: The dataframe should have 3 rows, where the running variable is between 1 and 3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="frdd-case-study-mortgage-subsidies-and-homeownership-1-pt">
+<h2>1.2 FRDD case study: mortgage subsidies and homeownership [1 pt]<a class="headerlink" href="#frdd-case-study-mortgage-subsidies-and-homeownership-1-pt" title="Link to this heading">#</a></h2>
+<p>Let’s now apply the fuzzy regression discontinuity design to a dataset studying the effects of mortgage subsidies on homeownership (<a class="reference external" href="https://www.nber.org/system/files/working_papers/w17166/w17166.pdf">Fetter 2013</a>).</p>
+<ul class="simple">
+<li><p><strong>Prior knowledge/policy question</strong>: The U.S. has been experiencing a housing affordability and ownership crisis since the mid 2000s, so policymakers have been interested in the effects of potential federal intervention in the housing market. In the mid 1900s, the U.S. goverment provided mortgage subsidies to military veterans of the Korean War and World War II. We can use veteran status and eligibility to serve in the U.S. military to provide historical evidence on the effects of goverment subsidies on homeownership rates.</p></li>
+<li><p><strong>Causal question</strong>: How does military veteran status of the Korean War and World War II affect homeownership rates (by way of the mortgage subsidies given to veterans)?</p></li>
+<li><p><strong>Running variable</strong>: birth months relative to eligibility to serve in the U.S. military during the Korean War and World War II</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">qob_minus_kw</span></code> in the data</p></li>
+</ul>
+</li>
+<li><p><strong>Cutoff</strong>: end of both the Korean War (1953) and World War II (1945)</p>
+<ul>
+<li><p>this has been normalized to 0 in the data, <code class="docutils literal notranslate"><span class="pre">cutoff</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Treatment</strong>: Whether or not an individual was a veteran</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">vet_wwko</span></code> in the data</p></li>
+</ul>
+</li>
+<li><p><strong>Outcome</strong>: homeownership rate</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">home_ownership</span></code> in the data: 1 if they own a home, 0 otherwise</p></li>
+</ul>
+</li>
+</ul>
+<p>This data lends itself to a fuzzy regression discontinuity design, where we can expect a discontinuous shift in veteran status at the end of the Korean War and World War II. However, it is not a sharp discontinuity because not all individuals eligible to serve in the U.S. military during those wars actually served.</p>
+<p>Following the same process as <a class="reference external" href="https://comsc341cd.github.io/activities/activity13_solution.html#activity13-solution">Activity 13</a>, bin the running variable (<code class="docutils literal notranslate"><span class="pre">qob_minus_kw</span></code>) and then creating a point plot of the bins against the treatment (<code class="docutils literal notranslate"><span class="pre">vet_wwko</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mortgage_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/veteran_mortgages.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># TODO bin the running variable with 25 bins, labels=False</span>
+<span class="c1">#mortgage_df[&#39;running_bin&#39;] = None</span>
+
+<span class="c1"># TODO plot the point plot of the bins against the treatment, with linestyle=&#39;none&#39;</span>
+<span class="c1">#sns.pointplot(TODO)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="c1"># convert xticks to the same units as the original running variable</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">24</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Months relative to eligibility to serve in the Korean War&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click this once you’ve completed the plot)</p>
+<p>You should observe that there isn’t quite an obvious “jump” in veteran status at the cutoff, due to the many factors that could influence whether a person serves in the military (and thus becomes a veteran) outside of the running variable. However, there should be a nearly horizontal trend line for people born before the eligibility cutoff, which then drops drastically as the data get closer to the cutoff before levelling off again.</p>
+</div>
+<p>Instead of manually implementing the two-stage least squares (TSLS) regression like we’ve done in the past, we can use linearmodels’ <a class="reference external" href="https://bashtage.github.io/linearmodels/iv/iv/linearmodels.iv.model.IV2SLS.html#linearmodels.iv.model.IV2SLS">IV2SLS</a> to estimate the fuzzy regression discontinuity design. The formula based syntax for IV2SLS is very similar to that of <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. The new piece of syntax is that linearmodels expects a block <code class="docutils literal notranslate"><span class="pre">'[T</span> <span class="pre">~</span> <span class="pre">Z]'</span></code> in the string to specify the relationship between the treatment and instrument. For example, to fully specify the fuzzy regression discontinuity design regression, we would use the following formula:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frdd_formula</span> <span class="o">=</span> <span class="s1">&#39;Y ~ 1 + X1 + X2 + [T ~ Z]&#39;</span>
+</pre></div>
+</div>
+<p>Fitting the model then looks as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.iv</span> <span class="kn">import</span> <span class="n">IV2SLS</span>
+
+<span class="n">iv_model</span> <span class="o">=</span> <span class="n">IV2SLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="n">frdd_formula</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">iv_results</span> <span class="o">=</span> <span class="n">iv_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Use linearmodels to estimate the LATE at the cutoff for the data, using a bandwidth of <span class="math notranslate nohighlight">\(b=6\)</span> and a cutoff of <span class="math notranslate nohighlight">\(c=0\)</span>. The <code class="docutils literal notranslate"><span class="pre">frdd_results.summary</span></code> will produce a lot of statistical output. The main number we want to look at is the estimate of the local average treatment effect (LATE) at the cutoff, which is given by the “Parameter” on the treatment variable, <code class="docutils literal notranslate"><span class="pre">vet_wwko</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.iv</span> <span class="kn">import</span> <span class="n">IV2SLS</span>
+
+<span class="c1"># TODO call prepare_frdd_data with the data, treatment_col, outcome_col, running_col, cutoff, bandwidth</span>
+<span class="n">frdd_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># TODO fit the IV2SLS model using the appropriate variables for the outcome, treatment, instrument, and X1, X2 covariates</span>
+<span class="n">frdd_formula</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># TODO call IV2SLS.from_formula with the formula=frdd_formula and the data=frdd_df</span>
+<span class="c1">#frdd_model = IV2SLS.from_formula(TODO)</span>
+<span class="c1">#frdd_results = frdd_model.fit()</span>
+<span class="c1">#print(frdd_results.summary)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click this once you’ve completed the linearmodels estimation)</p>
+<p>The estimate using a bandwidth of 6 should be that the local average treatment effect at the cutoff for being a veteran increases the probability of homeownership by 37.7%, with a p-value of about 0.01.</p>
+</div>
+</section>
+<section id="llm-role-prompting-1-pt">
+<h2>1.3 LLM role prompting [1 pt]<a class="headerlink" href="#llm-role-prompting-1-pt" title="Link to this heading">#</a></h2>
+<p>One effective way to get better results from LLMs is through <strong>role prompting</strong>: giving the model a specific role and context to work within. This is similar to how we might ask a person to “think like a ______” or “explain this to me like I’m 5”.</p>
+<p>First, try asking an LLM (like Claude or ChatGPT) to help you interpret the FRDD results we just obtained, using the following basic prompt:</p>
+<blockquote>
+<div><p>I’ve just run a fuzzy regression discontinuity design analysis on the effect of veteran status on homeownership rates. The running variable is birth months relative to eligibility to serve in the Korean War and World War II. The local average treatment effect estimate is [TODO insert estimate here] with a p-value of [TODO insert p-value here]. Can you help me interpret these results?</p>
+</div></blockquote>
+<p>Next, open up a new chat with the LLM (so that there is no previous history from your last prompt) and try the same question but with a role prompt sentence at the beginning:</p>
+<blockquote>
+<div><p>You are an experienced data scientist specializing in causal inference methods. I’ve just run a fuzzy regression discontinuity design…</p>
+</div></blockquote>
+<p><strong>1.</strong> Summarize any causal design considerations discussed in each response: for example, does the response mention assumptions like continuity and monotonicity, or discuss compliance?</p>
+<ul class="simple">
+<li><p>Basic:</p>
+<ul>
+<li><p>TODO</p></li>
+</ul>
+</li>
+<li><p>Role prompt:</p>
+<ul>
+<li><p>TODO</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>2.</strong> How did the LLM’s explanations of causal design concepts compare to our own discussions of them in class? Which prompt provided the more useful and contextually appropriate explanation?</p>
+<p><strong>Your response</strong>: TODO</p>
+<ol class="arabic simple" start="3">
+<li><p>Another aspect of using LLMs to keep in mind is that they are stochastic – the same prompt may give different responses each time. Open another new chat with the LLM and ask the role prompt question again. Does the LLM omit or provide more information compared to its first response?</p></li>
+</ol>
+<p><strong>Your response</strong>: TODO</p>
+<div class="admonition-optional-explorations admonition">
+<p class="admonition-title">Optional explorations</p>
+<p>You can additionally experiment with the stability of LLM responses by asking the same question but replacing the role prompt with a different role e.g., “political scientist,” “economist,” “computer scientist,” or “cat”.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="difference-in-differences-implementation">
+<h1>2. Difference-in-differences implementation<a class="headerlink" href="#difference-in-differences-implementation" title="Link to this heading">#</a></h1>
+<section id="diff-in-diff-data-preparation-0-5-pts">
+<h2>2.1. Diff-in-diff data preparation [0.5 pts]<a class="headerlink" href="#diff-in-diff-data-preparation-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Complete the function below to prepare a dataset for diff-in-diff analysis. In particular, we need to:</p>
+<ul>
+<li><p>create a binary column for <code class="docutils literal notranslate"><span class="pre">post_treatment</span></code> given the time period</p>
+<ul class="simple">
+<li><p>For example, if the dataset has 3 time periods <span class="math notranslate nohighlight">\(t=1, 2, 3\)</span> and the treatment is applied at time step 2.5, then the rows with <span class="math notranslate nohighlight">\(t=3\)</span> should be <code class="docutils literal notranslate"><span class="pre">post_treatment</span> <span class="pre">=</span> <span class="pre">1</span></code> and the rest should be <code class="docutils literal notranslate"><span class="pre">post_treatment</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+</ul>
+</li>
+<li><p>create a binary column <code class="docutils literal notranslate"><span class="pre">treated</span></code> which is 1 if the unit is in the treated group AND is after the treatment.</p>
+<ul>
+<li><p>For example, from our traffic law case study in <a class="reference external" href="https://comsc341cd.github.io/activities/activity14.html#activity14">Activity 14</a>, the <code class="docutils literal notranslate"><span class="pre">treated</span></code> column is created by checking if a row has <code class="docutils literal notranslate"><span class="pre">town</span> <span class="pre">==</span> <span class="pre">&quot;South</span> <span class="pre">Hadley&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">post_treatment</span> <span class="pre">==</span> <span class="pre">1</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>town</p></th>
+<th class="head"><p>time</p></th>
+<th class="head"><p>outcome</p></th>
+<th class="head"><p>post_treatment</p></th>
+<th class="head"><p>treated</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>South Hadley</p></td>
+<td><p>1</p></td>
+<td><p>100</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>South Hadley</p></td>
+<td><p>2</p></td>
+<td><p>90</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>South Hadley</p></td>
+<td><p>3</p></td>
+<td><p>70</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hadley</p></td>
+<td><p>1</p></td>
+<td><p>80</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Hadley</p></td>
+<td><p>2</p></td>
+<td><p>70</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hadley</p></td>
+<td><p>3</p></td>
+<td><p>60</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</li>
+<li><p>set the index of the dataframe to be the unit and time variables</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prepare_did_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">unit_col</span><span class="p">,</span> <span class="n">time_col</span><span class="p">,</span> <span class="n">outcome_col</span><span class="p">,</span> <span class="n">treated_group</span><span class="p">,</span> <span class="n">treatment_time</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepare a dataframe for difference-in-differences analysis.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        data (pd.DataFrame): The input data frame containing the variables.</span>
+<span class="sd">        unit_col (str): The name of the unit variable.</span>
+<span class="sd">        time_col (str): The name of the time variable.</span>
+<span class="sd">        outcome_col (str): The name of the outcome variable.</span>
+<span class="sd">        treated_group (str): The name of the treated group.</span>
+<span class="sd">        treatment_time (int): The time period when the treatment is applied.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: A dataframe with the treatment indicator, post-treatment indicator, and treatment status.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">did_df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># TODO generate the post_treatment column based on the treatment_time</span>
+    
+    <span class="c1"># TODO generate the treated column based on post_treatment and treated_group</span>
+
+    <span class="c1"># TODO set the index of the dataframe to be [unit_col, time_col]</span>
+
+    <span class="k">return</span> <span class="n">did_df</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">traffic_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;town&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;Hadley&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="s1">&#39;outcome&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">did_df</span> <span class="o">=</span> <span class="n">prepare_did_data</span><span class="p">(</span><span class="n">traffic_df</span><span class="p">,</span> <span class="s1">&#39;town&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;outcome&#39;</span><span class="p">,</span> <span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">did_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;town&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="s2">&quot;The index of the dataframe should be [unit_col, time_col]&quot;</span>
+    <span class="k">assert</span> <span class="n">did_df</span><span class="p">[</span><span class="s1">&#39;post_treatment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;The post_treatment column should be 1 for time &gt;= 2.5&quot;</span>
+    <span class="k">assert</span> <span class="n">did_df</span><span class="p">[</span><span class="s1">&#39;treated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;The treated column should be 1 for South Hadley and post_treatment == 1&quot;</span>
+
+    <span class="c1"># feel free to add more tests!</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diff-in-diff-case-study-organ-donation-0-5-pts">
+<h2>2.2 Diff-in-diff case study: organ donation [0.5 pts]<a class="headerlink" href="#diff-in-diff-case-study-organ-donation-0-5-pts" title="Link to this heading">#</a></h2>
+<p>We’ll complete estimation of the organ donation case study from class using linearmodels.</p>
+<p>The estimation process for a difference-in-differences design also utilizes linear regression, but now we have covariates that account for both the “group” a unit is in (treated vs control) as well as time:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_{\text{group}} + \beta_{\text{time}} + \beta_1 T + \epsilon
+\]</div>
+<p>Like the previous cases where we used linear regression, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the estimate of our causal quantity, the average treatment efect on the treated (ATT).</p>
+<p>Notice how the two new <span class="math notranslate nohighlight">\(\beta\)</span> coefficients correspond to the two <strong>indices</strong> we discussed in the <a class="reference external" href="https://moodle.mtholyoke.edu/pluginfile.php/1463114/mod_resource/content/1/lec19-diff-in-diff-i.pdf">diff-in-diff I</a> lecture for panel data. Since these two beta coefficients do not have additional <span class="math notranslate nohighlight">\(X\)</span> covariates they are multiplied with, they are kept constant or “fixed” within groups, and across time. This regression is thus often referred to as a “two-way fixed effects” model.</p>
+<p>To fit this model, we use linearmodels’ <a class="reference external" href="https://bashtage.github.io/linearmodels/panel/panel/linearmodels.panel.model.PanelOLS.html#linearmodels.panel.model.PanelOLS">PanelOLS</a> model.</p>
+<p>This model expects a dataframe with a multi-index, where the first level is the unit and the second level is the time period. Then, to fit the regression specified above, we would use the following formula:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">did_formula</span> <span class="o">=</span> <span class="s1">&#39;outcome ~ EntityEffects + TimeEffects + treated&#39;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">EntityEffects</span></code> and <code class="docutils literal notranslate"><span class="pre">TimeEffects</span></code> are special keywords that tell the model to include the unit and time fixed effects, respectively. We would then fit the model as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PanelOLS</span>
+
+<span class="n">did_model</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="n">did_formula</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">did_results</span> <span class="o">=</span> <span class="n">did_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-statistical-aside admonition">
+<p class="admonition-title">Statistical aside</p>
+<p>We pass <code class="docutils literal notranslate"><span class="pre">cov_type='clustered'</span></code> to the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method to account for the fact that the data is “clustered” by the unit (in other words, the data is not independent within each unit), which will reduce the variance of our estimate.</p>
+</div>
+<p>For our organ donation case study, use linearmodels to estimate the ATT for California, with the following parameters:</p>
+<ul class="simple">
+<li><p>outcome_col: <code class="docutils literal notranslate"><span class="pre">Rate</span></code></p></li>
+<li><p>unit_col: <code class="docutils literal notranslate"><span class="pre">State</span></code></p></li>
+<li><p>time_col: <code class="docutils literal notranslate"><span class="pre">Quarter_Num</span></code></p></li>
+<li><p>treated_group: <code class="docutils literal notranslate"><span class="pre">California</span></code></p></li>
+<li><p>treatment_time: <code class="docutils literal notranslate"><span class="pre">3.5</span></code></p></li>
+</ul>
+<p>Like with the fuzzy regression discontinuity design, the <code class="docutils literal notranslate"><span class="pre">did_results.summary</span></code> will produce a lot of statistical output. The main number we want to look at is the estimate of the ATT, which is given by the “Parameter” on the treatment variable, <code class="docutils literal notranslate"><span class="pre">treated</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PanelOLS</span>
+
+<span class="n">organ_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/organ_donations.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># TODO call prepare_did_data with the appropriate parameters</span>
+
+
+<span class="c1"># TODO fit the model using the appropriate variables for the outcome, treatment, and covariates</span>
+<span class="c1">#did_formula = &#39;&#39;</span>
+<span class="c1"># did_model = PanelOLS.from_formula(TODO)</span>
+<span class="c1"># did_results = did_model.fit(cov_type=&#39;clustered&#39;)</span>
+<span class="c1"># print(did_results.summary)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click this once you’ve completed the linearmodels estimation)</p>
+<p>The ATT estimate using a treatment time of 3.5 for using active choice over opt-in questions in California should be a reduction in the rate of organ donations by 2.25%, with a p-value of &lt;0.01.</p>
+</div>
+</section>
+<section id="llm-chain-of-thought-prompting-0-5-pts">
+<h2>2.3 LLM chain of thought prompting [0.5 pts]<a class="headerlink" href="#llm-chain-of-thought-prompting-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Another effective prompting technique is <strong>chain of thought</strong> prompting, where we break down a complex task into smaller, more manageable pieces. This helps the LLM reason through the problem more systematically, similar to how a person might work through a problem step by step.</p>
+<p><strong>1.</strong> Complete the following prompt, filling out the TODOs by providing descriptions of the steps:</p>
+<blockquote>
+<div><p>Can you help me conduct a difference-in-differences analysis on organ donation data in Python? Let’s break this down step by step.</p>
+<ol class="arabic simple">
+<li><p>First: TODO description of what the <code class="docutils literal notranslate"><span class="pre">prepare_did_data</span></code> method should do – you can provide a signature and a description of the method.</p></li>
+<li><p>Next: apply the <code class="docutils literal notranslate"><span class="pre">prepare_did_data</span></code> method to the organ donation data, called <code class="docutils literal notranslate"><span class="pre">organ_df</span></code>. TODO description of the data – you should tell the LLM what the names of all of the relevant columns are.</p></li>
+<li><p>Finally: TODO description of what the linearmodels <code class="docutils literal notranslate"><span class="pre">PanelOLS</span></code> model should do for diff-in-diff analysis.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>2.</strong> Paste the code the LLM generates based on your prompt in the cell below and run it. Does it replicate the results from above? Does it generate any unnecessary or incorrect code?</p>
+<p><strong>Your response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO paste the code generated by the LLM here, and run it</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reflection">
+<h1>3. Reflection<a class="headerlink" href="#reflection" title="Link to this heading">#</a></h1>
+<section id="llm-usage-0-5-pts">
+<h2>3.1 LLM usage [0.5 pts]<a class="headerlink" href="#llm-usage-0-5-pts" title="Link to this heading">#</a></h2>
+<p><strong>1.</strong> In this worksheet, we used LLMs to help with both code generation and interpretation of results. We took specific care to structure prompts appropriately and to provide the LLM with the correct context. What does this tell you about the importance of understanding the underlying concepts even when using LLMs?</p>
+<p><strong>Your response</strong>: TODO</p>
+<p><strong>2.</strong> The LLM responses you received were likely different from what your classmates received, even with the same prompts. How does this variability affect how you might use LLMs in your future work? What strategies might you use to handle this uncertainty?</p>
+<p><strong>Your response</strong>: TODO</p>
+</section>
+<section id="worksheet-reflections-0-5-pts">
+<h2>3.2 Worksheet reflections [0.5 pts]<a class="headerlink" href="#worksheet-reflections-0-5-pts" title="Link to this heading">#</a></h2>
+<p><strong>1.</strong> How much time did it take you to complete this worksheet?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>2.</strong> What is one thing you have a better understanding of after completing this worksheet and going through the class content this week? This could be about the concepts, the reading, or the code.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>3.</strong> What questions or points of confusion do you have about the material covered covered in the past week of class?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don’t forget to check that all of the TODOs are filled in before you submit!</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<p>This worksheet builds off principles from Anthropic’s <a class="reference external" href="https://github.com/anthropics/prompt-eng-interactive-tutorial">Prompt Engineering Tutorial</a> and uses data from Nick Huntington-Klein’s <a class="reference external" href="https://github.com/NickCH-K/causaldata">causaldata</a> package.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./worksheets"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ws5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Worksheet 5 🌱</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ws1_solution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">WS 1 Solution 🎲</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 6 🤖</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#linearmodels-lms"><code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> (LMs)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#large-language-models-llms">Large Language Models (LLMs)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-regression-discontinuity-design-estimation">1. Fuzzy regression discontinuity design estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-data-preparation-0-5-pts">1.1 FRDD data preparation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frdd-case-study-mortgage-subsidies-and-homeownership-1-pt">1.2 FRDD case study: mortgage subsidies and homeownership [1 pt]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-role-prompting-1-pt">1.3 LLM role prompting [1 pt]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-implementation">2. Difference-in-differences implementation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diff-in-diff-data-preparation-0-5-pts">2.1. Diff-in-diff data preparation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diff-in-diff-case-study-organ-donation-0-5-pts">2.2 Diff-in-diff case study: organ donation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-chain-of-thought-prompting-0-5-pts">2.3 LLM chain of thought prompting [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">3. Reflection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-usage-0-5-pts">3.1 LLM usage [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worksheet-reflections-0-5-pts">3.2 Worksheet reflections [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
