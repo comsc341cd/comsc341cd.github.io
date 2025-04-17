@@ -228,6 +228,14 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws6.html">Worksheet 6 🤖</a></li>
+
+
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
 <ul class="nav bd-sidenav">
@@ -464,6 +472,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 14: Panel data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 
@@ -767,6 +776,31 @@ document.write(`
 <li><p><a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p></li>
 </ul>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-3">
+<h1>Part 3<a class="headerlink" href="#part-3" title="Link to this heading">#</a></h1>
+<p>We just discussed the following formula for using regression to compute a difference-in-differences estimate:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_1 (\text{treated group}) + \beta_2 (\text{after treatment}) + \beta_3 (\text{treated group} \times \text{after treatment}) + \epsilon
+\]</div>
+<p>Write the formula in terms of the variables in the <code class="docutils literal notranslate"><span class="pre">organ_df</span></code> dataframe we created in part 2. The outcome of interest is <code class="docutils literal notranslate"><span class="pre">Rate</span></code>, while the treated group is California.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># did_model = smf.ols(TODO)</span>
+<span class="c1"># did_results = did_model.fit()</span>
+<span class="c1"># print(did_results.params)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is your ATT estimate of the effect of active choice vs opt-in on California organ donation rates?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p></li>
+</ul>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
 <h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
 <p>This activity is derived from Nick Huntington-Klein’s analysis of Kessler and Roth (2014) in Chapter 18 of <a class="reference external" href="https://theeffectbook.net/">The Effect</a>.</p>
@@ -821,6 +855,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 14: Panel data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 
