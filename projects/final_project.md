@@ -17,9 +17,9 @@
 | Component | Points | Due Date |
 | --- | --- | --- |
 | [Proposal](final_proposal) | 3 | 04/07 |
-| Checkpoint | 5 | 4/25 |
+| [Checkpoint](final_checkpoint) | 5 | 4/25 |
 | Presentation and peer feedback | 5 | 5/01, 5/06 |
-| Final report and source code | 12 | 5/09 |
+| [Final report and source code](final_template) | 12 | 5/09 |
 
 # Final project approach
 

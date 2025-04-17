@@ -43,8 +43,6 @@ parts:
         sections:
         - file: projects/proj3_functions.ipynb
       - file: projects/final_project.md
-        sections:
-        - file: projects/final_proposal.ipynb
   #     - file: projects/proj2-observational-study.md
   #     - file: projects/proj3-instrumental-variable.md
   
