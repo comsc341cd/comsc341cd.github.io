@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Activity 15: Plotting and synthetic controls &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=a37d84e8" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity15';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws5.html">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws6.html">Worksheet 6 🤖</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheet Solutions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1_solution.html">WS 1 Solution 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2_solution.html">WS 2 Solution 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3_solution.html">WS 3 Solution 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4_solution.html">WS 4 Solution 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws5_solution.html">WS 5 Solution 🌱</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj3.html">Project 3 💉</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/final_project.html">Final Project 🌍</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity15.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/activities/activity15.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Activity 15: Plotting and synthetic controls</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 15: Plotting and synthetic controls</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-figure-customization">Part 1: figure customization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-merging-tables">Part 2: merging tables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-table"><code class="docutils literal notranslate"><span class="pre">customers</span></code> table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-table"><code class="docutils literal notranslate"><span class="pre">orders</span></code> table</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-synthetic-control">Part 3: synthetic control</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-15-plotting-and-synthetic-controls">
+<span id="activity15"></span><h1>Activity 15: Plotting and synthetic controls<a class="headerlink" href="#activity-15-plotting-and-synthetic-controls" title="Link to this heading">#</a></h1>
+<p><strong>2025-04-22</strong></p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">linearmodels</span> <span class="k">as</span> <span class="nn">lm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-figure-customization">
+<h1>Part 1: figure customization<a class="headerlink" href="#part-1-figure-customization" title="Link to this heading">#</a></h1>
+<p>Run the cell below to load the data. Our dataset has the following columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: the state name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">year</span></code>: the year</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retprice</span></code>: the retail price of cigarettes, covariate for building the synthetic control</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cigsale</span></code>: cigarette sales per capita: our outcome variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">california</span></code>: whether the state is California (treated group)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">after_treatment</span></code>: whether the year is after the year 1988 (when California implemented the Proposition 99 smoking tax)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cali_smoking</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;~/COMSC-341CD/data/cali_smoking.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Begin by visualizing the trends in cigarette sales per capita for California and the other states by calling <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.lineplot.html">sns.lineplot()</a> with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x='year'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y='cigsale'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hue='california'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data=cali_smoking</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the figure size to be 6x6 inches</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># TODO plot the line plot</span>
+<span class="c1">#sns.lineplot(TODO, ax=ax)</span>
+<span class="c1"># Sets the x-axis ticks to be every year in the dataset</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">cali_smoking</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="c1"># Add a vertical line at the year 1988, when Proposition 99 was implemented</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Proposition 99&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x125b7b2d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/9accabbda060a0796bda8e52f6d289ba4ecfcb276c259211c61a3f5ddc34ccb9.png" src="../_images/9accabbda060a0796bda8e52f6d289ba4ecfcb276c259211c61a3f5ddc34ccb9.png" />
+</div>
+</div>
+<p>You’ll notice that the x-axis labels are overlapping. A common solution to this is to rotate the labels so that they take up less horizontal space. You can do this by calling <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html">ax.set_xticklabels()</a> with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">labels=cali_smoking['year'].unique()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rotation=45</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ha='right'</span></code>, “horizontal alignment”</p></li>
+</ul>
+<p>The xtick labels are still too crowded, so we can additionaly adjust the figure size. The current figure dimensions are set via <code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code> to be 6x6 inches, so modifying the first element in the tuple will make the figure wider.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some additional optional styling that you can explore:</p>
+<ul class="simple">
+<li><p>hiding the upper and right graph spines:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>adding a grid:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># can set the axis to be &#39;both&#39;, &#39;x&#39;, or &#39;y&#39;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-merging-tables">
+<h1>Part 2: merging tables<a class="headerlink" href="#part-2-merging-tables" title="Link to this heading">#</a></h1>
+<p>A fundamental operation in data preparation is merging tables. Let’s first practice merging tables manually.</p>
+<p>Specifically, a <strong>left merge</strong> (or left join) combines two tables based on a common column (called a “key”). It keeps all rows from the left table (the first table) and adds matching information from the right table (the second table). If there’s no match in the right table, the columns from the right table will show as NULL (or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> in Python) in the result.</p>
+<section id="customers-table">
+<h2><code class="docutils literal notranslate"><span class="pre">customers</span></code> table<a class="headerlink" href="#customers-table" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>CustomerID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>City</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>John</p></td>
+<td><p>Boston</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Sarah</p></td>
+<td><p>New York</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Mike</p></td>
+<td><p>Chicago</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="orders-table">
+<h2><code class="docutils literal notranslate"><span class="pre">orders</span></code> table<a class="headerlink" href="#orders-table" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>CustomerID</p></th>
+<th class="head"><p>Product</p></th>
+<th class="head"><p>Amount</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Laptop</p></td>
+<td><p>1200</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Keyboard</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Monitor</p></td>
+<td><p>300</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Perform a left merge on the <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code> column, where the left table is <code class="docutils literal notranslate"><span class="pre">customers</span></code> and the right table is <code class="docutils literal notranslate"><span class="pre">orders</span></code>: the rows are combined according to key column in the left table.  Again, if there’s no match in the right table, the columns from the right table will show as NULL in the resulting merged table.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>CustomerID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>City</p></th>
+<th class="head"><p>Product</p></th>
+<th class="head"><p>Amount</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>John</p></td>
+<td><p>Boston</p></td>
+<td><p>TODO</p></td>
+<td><p>TODO</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Sarah</p></td>
+<td><p>New York</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Mike</p></td>
+<td><p>Chicago</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>What product (if any) did Sarah order?</p>
+<p><strong>Your response</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<p>The equivalent pandas operation uses <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html">pd.merge()</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform a left merge on the `CustomerID` column</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">customers</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">orders</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;CustomerID&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are other fundamental join table operations that performed in data preparation, often written in SQL:</p>
+<ul class="simple">
+<li><p>right join: only rows from the right table are combined</p></li>
+<li><p>inner join: only rows with matching keys in both tables are combined</p></li>
+<li><p>outer join: all rows from both tables are combined</p></li>
+</ul>
+<p>You can see the pandas documentation of <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/merging.html#merge-types">different merge operations</a> for more deatils and a comparison to SQL.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-synthetic-control">
+<h1>Part 3: synthetic control<a class="headerlink" href="#part-3-synthetic-control" title="Link to this heading">#</a></h1>
+<p>The synthetic control weights have already been computed, but need to be loaded in and merged with the California smoking data. Create the <code class="docutils literal notranslate"><span class="pre">cali_merged</span></code> dataframe by performing a <strong>left</strong> merge on the <code class="docutils literal notranslate"><span class="pre">state</span></code> column, where the left table is <code class="docutils literal notranslate"><span class="pre">cali_smoking</span></code> and the right table is <code class="docutils literal notranslate"><span class="pre">cali_weights</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cali_weights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;~/COMSC-341CD/data/cali_weights.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># TODO: perform a left merge on the `state` column to merge `cali_smoking` and `cali_weights`</span>
+<span class="c1">#cali_merged = pd.merge(TODO)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, select the non-california rows from the <code class="docutils literal notranslate"><span class="pre">cali_merged</span></code> dataframe and execute the following code which creates the synthetic control by computing the weighted average of the <code class="docutils literal notranslate"><span class="pre">cigsale</span></code> column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: select the non-california rows from the `cali_merged` dataframe using the &#39;california&#39; column</span>
+<span class="n">non_cali_data</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Creates the synthetic control by computing the weighted average of the `cigsale` outcome variable</span>
+<span class="n">synthetic_control</span> <span class="o">=</span> <span class="n">non_cali_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;cigsale&#39;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;synthetic_cigsale&#39;</span><span class="p">)</span>
+
+<span class="n">synthetic_control</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">non_cali_data</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Creates the synthetic control by computing the weighted average of the `cigsale` outcome variable</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">synthetic_control</span> <span class="o">=</span> <span class="n">non_cali_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;cigsale&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;synthetic_cigsale&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">synthetic_control</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;groupby&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot both california and synthetic control on the same plot using <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.lineplot.html">sns.lineplot()</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="c1"># TODO select the rows that correspond to California only</span>
+<span class="n">cali_only</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Plot california data only with x=&#39;year&#39;, y=&#39;cigsale&#39;</span>
+<span class="c1"># sns.lineplot(TODO, label=&#39;California&#39;, ax=ax)</span>
+
+<span class="c1"># Plot the synthetic control data with x=&#39;year&#39;, y=&#39;synthetic_cigsale&#39;</span>
+<span class="c1"># sns.lineplot(TODO, label=&#39;Synthetic California&#39;, ax=ax)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Proposition 99&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using pandas selection based on <code class="docutils literal notranslate"><span class="pre">'year'</span></code>,  <code class="docutils literal notranslate"><span class="pre">'cigsale'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'synthetic_cigsale'</span></code>, what is the difference in cigarette sales per capita between California and the synthetic control in the year 1995?</p>
+<p><strong>Your response</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO select the cigsale column for California in 1995 using the cali_only dataframe</span>
+<span class="n">cali_1995_cigsale</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># TODO select the synthetic_cigsale column for the synthetic control in 1995 using the synthetic_control dataframe</span>
+<span class="n">synthetic_1995_cigsale</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Compute the difference between the extracted values</span>
+<span class="c1"># print(cali_1995_cigsale.values[0] - synthetic_1995_cigsale.values[0])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<p>This activity is based off of the synthetic control chapter of Facure (2023): Causal Inference for the Brave and the True.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./activities"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 15: Plotting and synthetic controls</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-figure-customization">Part 1: figure customization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-merging-tables">Part 2: merging tables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-table"><code class="docutils literal notranslate"><span class="pre">customers</span></code> table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-table"><code class="docutils literal notranslate"><span class="pre">orders</span></code> table</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-synthetic-control">Part 3: synthetic control</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
