@@ -154,7 +154,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>04/21</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 6](ws6)
-    - <small>04/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Synthetic Control</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](TODO)</li></ul>
+    - <small>04/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Synthetic Control</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](TODO)</li><li>[Activity 15](activity15)</li></ul>
     - <small>04/23</small>
     - <small>04/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Machine Learning for Causality</u></b>
     - <small>04/25</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final Project checkpoint](checkpoint)
