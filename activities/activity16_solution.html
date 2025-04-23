@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Office Hours &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 16 Solution: Causal Trees &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -58,11 +58,9 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'syllabus/office_hours';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity16_solution';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to Run and Submit" href="../resources/submit.html" />
-    <link rel="prev" title="Schedule" href="schedule.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,6 +123,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -173,11 +173,11 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="values.html">Goals and Values</a></li>
-<li class="toctree-l1"><a class="reference internal" href="policies.html">Course Policies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="schedule.html">Schedule</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Office Hours</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -334,6 +334,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-hub-sp.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity16_solution.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -342,7 +373,7 @@
       
       
       
-      <li><a href="../_sources/syllabus/office_hours.md" target="_blank"
+      <li><a href="../_sources/activities/activity16_solution.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +383,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -413,9 +444,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -426,20 +455,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Office Hours</h1>
+    <h1>Activity 16 Solution: Causal Trees</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bhargavi-she-her-kendade-304">Bhargavi (she/her): Kendade 304</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tony-he-him-clapp-207">Tony (he/him): Clapp 207</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -449,25 +469,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="office-hours">
-<span id="id1"></span><h1>Office Hours<a class="headerlink" href="#office-hours" title="Link to this heading">#</a></h1>
-<section id="bhargavi-she-her-kendade-304">
-<h2>Bhargavi (she/her): Kendade 304<a class="headerlink" href="#bhargavi-she-her-kendade-304" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Mondays: 6-7pm</p></li>
-<li><p>Wednesdays: 6-7pm</p></li>
-</ul>
-</section>
-<section id="tony-he-him-clapp-207">
-<h2>Tony (he/him): Clapp 207<a class="headerlink" href="#tony-he-him-clapp-207" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Tuesdays: 2-3pm, 5-6pm</p></li>
-<li><p>Wednesdays: 5-6pm</p></li>
-<li><p>Thursdays: 1-2pm</p></li>
-</ul>
-<p>These times may be subject to change, please check the <a class="reference internal" href="schedule.html#schedule"><span class="std std-ref">schedule</span></a> and <a class="reference external" href="https://edstem.org/us/courses/71545/discussion">Ed</a> for the most up-to-date information.</p>
-<p>If these times don’t work for you, please reach out via Ed or email and I’d be happy to set up a time.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-16-solution-causal-trees">
+<span id="activity16-solution"></span><h1>Activity 16 Solution: Causal Trees<a class="headerlink" href="#activity-16-solution-causal-trees" title="Link to this heading">#</a></h1>
+<p><strong>2025-04-24</strong></p>
+<hr class="docutils" />
 </section>
 
     <script type="text/x-thebe-config">
@@ -483,7 +488,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./syllabus"
+            path: "./activities"
         },
         predefinedOutput: true
     }
@@ -500,46 +505,12 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="schedule.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Schedule</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../resources/submit.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">How to Run and Submit</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bhargavi-she-her-kendade-304">Bhargavi (she/her): Kendade 304</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tony-he-him-clapp-207">Tony (he/him): Clapp 207</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
