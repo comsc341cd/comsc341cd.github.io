@@ -156,7 +156,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>04/21</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 6](ws6)
     - <small>04/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Synthetic Control</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1464155/mod_resource/content/1/lec21-synthetic-control-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1464233/mod_resource/content/1/lec21-synthetic-control.pdf)</li><li>[Activity 15](activity15)</li><li>[Activity 15 solutions](activity15_solution)</li></ul>
     - <small>04/23</small>
-    - <small>04/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Machine Learning for Causality</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1464629/mod_resource/content/1/lec22-causal-ml-starter.pdf)</li><li>[Activity 16](activity16)</li></ul>
+    - <small>04/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Machine Learning for Causality</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1464629/mod_resource/content/1/lec22-causal-ml-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1464673/mod_resource/content/1/lec22-causal-ml.pdf)</li><li>[Activity 16](activity16)</li><li>[Activity 16 solutions](activity16_solution)</li></ul>
     - <small>04/25</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final Project checkpoint](checkpoint)
 
 *   

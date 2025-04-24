@@ -444,7 +444,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -460,6 +462,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 16 Solution: Causal Trees</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -473,6 +485,204 @@ document.write(`
 <span id="activity16-solution"></span><h1>Activity 16 Solution: Causal Trees<a class="headerlink" href="#activity-16-solution-causal-trees" title="Link to this heading">#</a></h1>
 <p><strong>2025-04-24</strong></p>
 <hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">econml.dml</span> <span class="kn">import</span> <span class="n">CausalForestDML</span>
+<span class="kn">from</span> <span class="nn">econml.cate_interpreter</span> <span class="kn">import</span> <span class="n">SingleTreeCateInterpreter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the cell below to load in the data. We have the following variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code>: age of the customer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">income</span></code>: income of the customer, in $100k</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">has_membership</span></code>: whether the customer has a membership to the online music platform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avg_hours</span></code>: average number of hours per week the customer has spent on the platform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demand</span></code>: outcome variable – sales of songs on the platform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: treatment (1 if the customer was given a discount, 0 otherwise)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;~/COMSC-341CD/data/customer_data.csv&#39;</span><span class="p">)</span>
+<span class="n">customer_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>has_membership</th>
+      <th>avg_hours</th>
+      <th>T</th>
+      <th>demand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>53</td>
+      <td>0.960863</td>
+      <td>1</td>
+      <td>1.834234</td>
+      <td>0</td>
+      <td>3.917117</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>54</td>
+      <td>0.732487</td>
+      <td>0</td>
+      <td>7.171411</td>
+      <td>0</td>
+      <td>11.585706</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>33</td>
+      <td>1.130937</td>
+      <td>0</td>
+      <td>5.351920</td>
+      <td>0</td>
+      <td>24.675960</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>34</td>
+      <td>0.929197</td>
+      <td>0</td>
+      <td>6.723551</td>
+      <td>0</td>
+      <td>6.361776</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>30</td>
+      <td>0.533527</td>
+      <td>1</td>
+      <td>2.448247</td>
+      <td>1</td>
+      <td>12.624123</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>A more robust variant of causal tree prediction is to fit multiple trees and take the average of the predictions. This is known as the causal forest, and it just like a random forest model in machine learning. This is implemented in EconML as the <a class="reference external" href="https://econml.azurewebsites.net/_autosummary/econml.dml.CausalForestDML.html">CausalForestDML</a> class. Initialize the model as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">causal_forest</span> <span class="o">=</span> <span class="n">CausalForestDML</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="c1"># use mean squared error as the loss function</span>
+                                <span class="n">honest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># use honest sample splitting</span>
+                                <span class="n">discrete_treatment</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># treatment is binary</span>
+                                <span class="p">)</span>
+</pre></div>
+</div>
+<p>Then call <code class="docutils literal notranslate"><span class="pre">causal_forest.fit()</span></code> with the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>: the features given by <code class="docutils literal notranslate"><span class="pre">customer_data[covariates]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: the treatment column given by <code class="docutils literal notranslate"><span class="pre">customer_data['T']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: the outcome column given by <code class="docutils literal notranslate"><span class="pre">customer_data['demand']</span></code></p></li>
+</ul>
+<p>The model may take ~1-2 minutes to fit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;has_membership&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_hours&#39;</span><span class="p">]</span>
+
+<span class="c1"># TODO initialize causal forest model</span>
+<span class="n">causal_forest</span> <span class="o">=</span> <span class="n">CausalForestDML</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="c1"># use mean squared error as the loss function</span>
+                                <span class="n">honest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># use honest sample splitting</span>
+                                <span class="n">discrete_treatment</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># treatment is binary</span>
+                                <span class="p">)</span>
+
+<span class="c1"># TODO fit the model with the appropriate parameters</span>
+<span class="n">causal_forest</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">customer_data</span><span class="p">[</span><span class="n">covariates</span><span class="p">],</span>
+                  <span class="n">T</span><span class="o">=</span><span class="n">customer_data</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">],</span>
+                  <span class="n">Y</span><span class="o">=</span><span class="n">customer_data</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;econml.dml.causal_forest.CausalForestDML at 0x32e33d1d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can then check the average treatment effect (ATE) via the  <code class="docutils literal notranslate"><span class="pre">causal_forest.ate_</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ATE: &quot;</span><span class="p">,</span> <span class="n">causal_forest</span><span class="o">.</span><span class="n">ate_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE:  [1.38800686]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click once you’ve completed the code)</p>
+<p>The ATE estimate you should get is around 1.35, which can be interpreted as: on average, giving a discount to a customer increases the number of songs purchased by 1.35.</p>
+</div>
+<p>Next, we’ll summarize the causal forest model into a single causal tree using the <a class="reference external" href="https://econml.azurewebsites.net/_autosummary/econml.cate_interpreter.SingleTreeCateInterpreter.html">SingleTreeCateInterpreter</a> class. Initialize the interpreter with the parameter <code class="docutils literal notranslate"><span class="pre">max_depth=2</span></code>.</p>
+<p>Then, call the <code class="docutils literal notranslate"><span class="pre">interpret()</span></code> method with the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cate_estimator</span></code>: our fitted causal forest model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>: the features given by <code class="docutils literal notranslate"><span class="pre">customer_data[covariates]</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO initialize the causal tree interpreter</span>
+<span class="n">cate_tree</span> <span class="o">=</span> <span class="n">SingleTreeCateInterpreter</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># TODO fit the interpreter with the causal forest model</span>
+<span class="n">cate_tree</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">causal_forest</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">customer_data</span><span class="p">[</span><span class="n">covariates</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;econml.cate_interpreter._interpreters.SingleTreeCateInterpreter at 0x1108a9ad0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, uncomment and run the cell below to plot the causal tree. According to the tree, which subgroup of customers buys the most product after being given a discount?</p>
+<p><strong>Your response</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resizes the plot to fit the causal tree</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">cate_tree</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feature_names</span><span class="o">=</span><span class="n">covariates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c19c25f854beff3007257f5a6d4e823388b6a30d9bb6e4f92662c2405afdf5ed.png" src="../_images/c19c25f854beff3007257f5a6d4e823388b6a30d9bb6e4f92662c2405afdf5ed.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<p>This activity uses tutorial code and data provided by the <a class="reference external" href="https://econml.azurewebsites.net/index.html">EconML package</a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -511,6 +721,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 16 Solution: Causal Trees</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
