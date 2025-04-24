@@ -653,16 +653,14 @@ P(\text{compliers}) = 1 - P(\text{never takers}) - P(\text{always takers})
 <span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="c1"># these tests are not exhaustive, so adding additional asserts is recommended</span>
 <span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for intent_to_treat passed!&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/numpy/_core/numeric.py:2461,</span> in <span class="ni">isclose</span><span class="nt">(a, b, rtol, atol, equal_nan)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2458</span>     <span class="n">y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2460</span> <span class="k">with</span> <span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">),</span> <span class="n">_no_nep50_warning</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">2461</span>     <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">less_equal</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">atol</span> <span class="o">+</span> <span class="n">rtol</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2462</span>               <span class="o">&amp;</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2463</span>               <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2464</span>     <span class="k">if</span> <span class="n">equal_nan</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2465</span>         <span class="n">result</span> <span class="o">|=</span> <span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nn">File ~/Github/comsc341-cd/venv/lib/python3.11/site-packages/numpy/core/numeric.py:2348,</span> in <span class="ni">isclose</span><span class="nt">(a, b, rtol, atol, equal_nan)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2345</span>     <span class="n">dt</span> <span class="o">=</span> <span class="n">multiarray</span><span class="o">.</span><span class="n">result_type</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2346</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">asanyarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2348</span> <span class="n">xfin</span> <span class="o">=</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2349</span> <span class="n">yfin</span> <span class="o">=</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2350</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">xfin</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">yfin</span><span class="p">):</span>
 
-<span class="ne">TypeError</span>: unsupported operand type(s) for -: &#39;NoneType&#39; and &#39;float&#39;
+<span class="ne">TypeError</span>: ufunc &#39;isfinite&#39; not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule &#39;&#39;safe&#39;&#39;
 </pre></div>
 </div>
 </div>
