@@ -6,8 +6,8 @@
 - 6 minutes per group
 - Format will be Google Slides to make transitions between groups easier
 - Sign up for a presentation slot [linked here](https://docs.google.com/spreadsheets/d/1sl4H-FZpdZxEXRPovYajXtZY7UwCduaavG1TpA-oiHc/edit?usp=sharing):
-    - 10 slots for 5/01 (Thu)
-    - 4 slots for 5/06 (Tue)
+    - 9 slots for 5/01 (Thu)
+    - 5 slots for 5/06 (Tue)
 
 
 ## Guidelines
