@@ -21,6 +21,35 @@
 | [Presentation and peer feedback](presentation) | 5 | 5/01, 5/06 |
 | [Final report and source code](final_template) | 12 | 5/09 |
 
+# Final report rubric
+
+
+
+| Component | Points |
+| --- | --- |
+| Reproducible source code and Jupyter Book article file | 1 |
+| Prior knowledge | 2 |
+| Causal question | 1 |
+| Design: study strategy | 1.5 |
+| Design: covariates | 1 |
+| Estimation | 2 |
+| Interpretation | 2 |
+| Unique deliverable | 1.5 |
+| Total | 12 |
+
+:::{admonition} Evaluation Guidelines
+:class: note
+
+Your final report will be evaluated on both completion and quality. Specifically, I'll be looking for:
+
+- A completed study that addresses each section of the [final report template](final_template)
+- Clear explanations of your design choices, assumptions, and results, supported by evidence from prior knowledge/literature and your analysis
+- Well-reasoned interpretation of your findings
+
+This is your opportunity to showcase your understanding of causal inference and communicate your study's findings to your readers. I'm looking for thoughtful consideration of your study rather than perfect design and estimation results. If you have any questions, please do reach out!
+
+:::
+
 # Final project approach
 
 All projects will follow the causal roadmap steps to take a study from start to finish:
