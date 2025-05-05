@@ -19,7 +19,7 @@
 | [Proposal](final_proposal) | 3 | 04/07 |
 | [Checkpoint](final_checkpoint) | 5 | 4/25 |
 | [Presentation and peer feedback](presentation) | 5 | 5/01, 5/06 |
-| [Final report and source code](final_template) | 12 | 5/09 |
+| [Final report and source code](final_template) | 12 | <s>5/09</s> 5/11 |
 
 # Final report rubric
 

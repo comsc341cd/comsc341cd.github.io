@@ -163,15 +163,15 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>04/28</small>
     - <small>04/29</small><br> BOOM: no class
     - <small>04/30</small>
-    - <small>05/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations</u></b>
+    - <small>05/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) [Survey 3](https://www.gradescope.com/courses/950344/assignments/6174489)
     - <small>05/02</small>
 
 *   
     - <small>05/05</small>
-    - <small>05/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations and wrap-up</u></b>
+    - <small>05/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations and wrap-up</u></b><ul style="margin-top:-1em;"><li>[presentation deck](https://docs.google.com/presentation/d/1DlqXjc1wUbUegXXVtj3_sKEaqwxHzZvyQu5Kh8CpeQ0/edit)</li><li>[peer feedback doc](https://docs.google.com/document/d/1-5fz-eqFMiqBylpRD787glIYSA_UaNZ0vCI67LIZco0/edit?tab=t.0#heading=h.d7pzcfz8crb1)</li></ul>![](https://img.shields.io/badge/Due:-d62728) [Survey 3](https://www.gradescope.com/courses/950344/assignments/6174489)
     - <small>05/07</small>
     - <small>05/08</small>
-    - <small>05/09</small><br>![](https://img.shields.io/badge/Due:-d62728) Final Project
+    - <small>05/09</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final Project](final_proj)<br>Extended to **5/11**
 
 :::
 
