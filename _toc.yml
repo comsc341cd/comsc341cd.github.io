@@ -8,9 +8,10 @@ parts:
     chapters:
       - file: syllabus/values.md
       - file: syllabus/policies.md
-      - file: syllabus/schedule.md
       - file: syllabus/office_hours.md
-
+      - file: syllabus/schedule.md
+      
+  # comment everything below for syllabus pdf compilation
   - caption: Resources
     chapters:
       - file: resources/submit.md

@@ -10,3 +10,7 @@ clean:
 publish:
 	make build
 	ghp-import -n -p -f _build/html
+
+.PHONY: pdf
+pdf:
+	jb build . --builder pdfhtml
