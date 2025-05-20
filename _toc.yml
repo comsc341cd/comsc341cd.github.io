@@ -16,6 +16,10 @@ parts:
       - file: resources/submit.md
       - file: resources/catalog.md
 
+  - caption: Activities
+    chapters:
+    - file: activities/activities.md
+
   - caption: Worksheets
     chapters:
       - file: worksheets/ws1.ipynb
@@ -25,13 +29,13 @@ parts:
       - file: worksheets/ws5.ipynb
       - file: worksheets/ws6.ipynb
       
-  - caption: Worksheet Solutions
-    chapters:
-      - file: worksheets/ws1_solution.ipynb
-      - file: worksheets/ws2_solution.ipynb
-      - file: worksheets/ws3_solution.ipynb 
-      - file: worksheets/ws4_solution.ipynb
-      - file: worksheets/ws5_solution.ipynb
+  # - caption: Worksheet Solutions
+  #   chapters:
+  #     - file: worksheets/ws1_solution.ipynb
+  #     - file: worksheets/ws2_solution.ipynb
+  #     - file: worksheets/ws3_solution.ipynb 
+  #     - file: worksheets/ws4_solution.ipynb
+  #     - file: worksheets/ws5_solution.ipynb
   - caption: Projects
     chapters:
       - file: projects/proj1.ipynb
