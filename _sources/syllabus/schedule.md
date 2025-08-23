@@ -2,7 +2,7 @@
 # Schedule
 
 ```{warning}
-As this is a new course, the schedule may change throughout the semester to best accommodate your learning!
+Schedule under construction, will be updated soon!
 ```
 
 ## Topics
@@ -33,7 +33,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - Thursday
     - Friday
 
-*   
+<!-- *   
     - <small>01/27</small>
     - <small>01/28</small>
     <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1440025/mod_resource/content/1/lec00-intro-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1442123/mod_resource/content/1/lec00-intro.pdf)</li><li>[Activity 0 solutions](https://docs.google.com/document/d/1lOVX3dLcllmNyfnN7H98i64lX9DY9jigX6ZsH36V6oU/edit?usp=sharing)</li></ul>
@@ -174,7 +174,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>05/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations and wrap-up</u></b><ul style="margin-top:-1em;"><li>[presentation deck](https://docs.google.com/presentation/d/1DlqXjc1wUbUegXXVtj3_sKEaqwxHzZvyQu5Kh8CpeQ0/edit)</li><li>[peer feedback doc](https://docs.google.com/document/d/1-5fz-eqFMiqBylpRD787glIYSA_UaNZ0vCI67LIZco0/edit?tab=t.0#heading=h.d7pzcfz8crb1)</li><li>[MHC course feedback form](https://moodle.mtholyoke.edu/mod/url/view.php?id=1057512)</li></ul>![](https://img.shields.io/badge/Due:-d62728) [Survey 3](https://www.gradescope.com/courses/950344/assignments/6174489)
     - <small>05/07</small>
     - <small>05/08</small>
-    - <small>05/09</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final Project](final_proj)<br>Extended to **5/11**
+    - <small>05/09</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final Project](final_proj)<br>Extended to **5/11** -->
 
 :::
 

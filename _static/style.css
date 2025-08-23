@@ -9,3 +9,10 @@ tr.row-even,
 tr.row-even:hover {
     background-color: rgb(247, 247, 247) !important;  /* light gray */
 }
+
+/* Hide the table of contents on print */
+@media print {
+    .bd-toc {
+        visibility: hidden;
+    }
+}

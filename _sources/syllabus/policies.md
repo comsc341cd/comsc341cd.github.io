@@ -23,7 +23,7 @@ Wherever possible, assignments will have their overall point value attached to t
 
 ### Worksheets: 30%
 
-These are guided assignments that are "lightly graded" -- the bulk of the grade is based on good faith effort and completion. The worksheets are designed to help you practice material from class and prepare for the projects. There will be six worksheets over the course of the semester, worth 5% each.
+These are guided assignments that are "lightly graded" -- the grade is based on autograded components as well asgood faith effort and completion. The worksheets are designed to help you practice material from class and prepare for the projects. There will be six worksheets over the course of the semester, worth 5% each.
 
 ### Projects: 30%
 
@@ -49,7 +49,7 @@ As discussed in the [Course Values](course_success) page, participation is a key
 - Respectful engagement with your peers and the course staff.
 
 ```{admonition} Attendance
-Attendance is required for this course. However, I understand that unexpected situations may arise. If you are unable to attend a class, please let me know as soon as possible. Together, we can figure out a way to proceed.
+Attendance is required for this course, including Friday lab days. However, I understand that unexpected situations may arise. If you are unable to attend a class, please let me know as soon as possible. Together, we can figure out a way to proceed.
 ```
 
 ## Late Policy
@@ -62,7 +62,7 @@ Extensions will be given in the event of extenuating circumstances, such as illn
 
 ## Resubmissions
 
-The three projects (not including the final project) will have the option to be resubmitted up to one time each. To do a resubmission, in addition with revising your project you will need to reach out to me to set up a time to discuss the changes you made. Resubmissions can be done up to two weeks after the original assignment has been returned, and will be eligible for up to half of the total points deducted from the original submission.
+The three projects (not including the final project) will have the option to be resubmitted up to one time each. To do a resubmission, in addition with revising your project you will need to reach out to me to set up a time to discuss the changes you made. Resubmissions can be done up to two weeks after the original assignment has been returned, and will be eligible for up to **half of the total points deducted** from the original submission.
 
 ## Equipment
 
