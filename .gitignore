@@ -172,5 +172,5 @@ cython_debug/
 
 _build/
 
-.DS_Store
+**/.DS_Store
 COMSC-341CD
