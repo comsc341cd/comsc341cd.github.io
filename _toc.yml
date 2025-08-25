@@ -21,10 +21,10 @@ parts:
   #   chapters:
   #   - file: activities/activities.md
 
-  # - caption: Worksheets
-  #   chapters:
-  #     - file: worksheets/ws1.ipynb
-  #     - file: worksheets/ws2.ipynb
+  - caption: Worksheets
+    chapters:
+      - file: worksheets/ws1.ipynb
+  #    - file: worksheets/ws2.ipynb
   #     - file: worksheets/ws3.ipynb
   #     - file: worksheets/ws4.ipynb
   #     - file: worksheets/ws5.ipynb
