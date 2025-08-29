@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
@@ -570,11 +570,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected value of a fair die roll is: 3.5
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let’s now compute the expected value of a roll of a fair 6-sided die where each outcome has a different probability. In the Seeing Theory widget, drag the slider for the true probability of 6 to 0.5. The probability of the other outcomes should change to 0.1 each to keep the sum of the probabilities at 1:</p>
 <p><img alt="" src="../_images/ws2_unfair_dice.png" /></p>
@@ -585,11 +580,6 @@ document.write(`
 <span class="n">expected_value</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The expected value of the modified die roll is: </span><span class="si">{</span><span class="n">expected_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected value of the modified die roll is: None
 </pre></div>
 </div>
 </div>
@@ -631,11 +621,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of heads: 497
-</pre></div>
-</div>
-</div>
 </div>
 <p>Once we have a sample of outcomes, we can <strong>estimate</strong> the expected value of the random variable by taking the mean of the sample. In a slight abuse of notation, we can denote the <strong>estimated expectation</strong> or <strong>sample mean</strong> as <span class="math notranslate nohighlight">\(\hat{E}[X]\)</span>, which averages over the <span class="math notranslate nohighlight">\(n\)</span> samples of the random variable <span class="math notranslate nohighlight">\(X\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -652,11 +637,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimated_expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">coin_flips</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated expectation of coin flips: </span><span class="si">{</span><span class="n">estimated_expectation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated expectation of coin flips: 0.497
 </pre></div>
 </div>
 </div>
@@ -762,11 +742,6 @@ n_0 = \sum_{i=1}^{n} \mathbb{I}(X_i = 0)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated conditional expectation of Y given X=0: 4.52863436123348
-</pre></div>
-</div>
-</div>
 </div>
 <p>We can also use numpy’s boolean indexing to filter out the values of <span class="math notranslate nohighlight">\(Y\)</span> where <span class="math notranslate nohighlight">\(X=0\)</span> and then take the mean:</p>
 <div class="cell docutils container">
@@ -781,12 +756,6 @@ n_0 = \sum_{i=1}^{n} \mathbb{I}(X_i = 0)
 <span class="n">conditional_expectation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Y_given_X0</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated conditional expectation of Y given X=0: </span><span class="si">{</span><span class="n">conditional_expectation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4994,)
-Estimated conditional expectation of Y given X=0: 4.52863436123348
 </pre></div>
 </div>
 </div>
