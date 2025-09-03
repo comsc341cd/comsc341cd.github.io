@@ -45,11 +45,11 @@ As discussed in the [Course Values](course_success) page, participation is a key
 - Asking questions in class, office hours, and on Ed. **All questions are good questions!**
 - Answering questions. **Your answers don't have to be right!**
 - Participating in class activities.
+- Engaging with your peers in your Friday pod groups.
 - Completing feedback surveys, Over the course of the semester, I will check in to ask what is going well for you, what difficulties you are encountering, and what could be adjusted to improve your learning experience.
-- Respectful engagement with your peers and the course staff.
 
 ```{admonition} Attendance
-Attendance is required for this course, including Friday lab days. However, I understand that unexpected situations may arise. If you are unable to attend a class, please let me know as soon as possible. Together, we can figure out a way to proceed.
+Attendance is required for this course, including the Friday fourth hour. However, I understand that unexpected situations may arise. If you are unable to attend a class, please let me know as soon as possible. Together, we can figure out a way to proceed.
 ```
 
 ## Late Policy
@@ -66,7 +66,7 @@ The three projects (not including the final project) will have the option to be 
 
 ## Equipment
 
-**Pencil/Pen**: We will sometimes be doing pencil-and-paper exercises in class. You can use any pen or pencil you have.
+**Pencil/Pen**: We will sometimes be doing pencil-and-paper exercises in class.
 
 **Laptop**: You will need a laptop for this course. We will be using Jupyter notebooks for all assignments as well as a centralized JupyterHub for the course, which is a cloud-based service for running Jupyter notebooks. If you don't have a laptop, you may borrow one from [LITS](https://lits.mtholyoke.edu/materials/borrowing-renewing). If you have any issues here, please let me know.
 
@@ -101,7 +101,7 @@ Large Language Model (LLM)-based assistants, like ChatGPT, Copilot, and Gemini a
 
 ```{admonition} LLM use
 :class: warning
-Thus, to make sure the use of LLMs do not compromise your learning experience, you may not use them to generate code for assignments, solve problems, or summarize assigned readings, *unless* the assignment explicitly allows the use of LLMs.
+Thus, to make sure the use of LLMs do not compromise your learning experience, you may not use them to generate code for assignments, solve problems, or summarize assigned readings, **unless** the assignment explicitly allows the use of LLMs.
 ```
 
 I consider violations of any of the above policies to be honor code violations. If you find yourself for whatever reason (stress, mental health, life circumstances, etc.) thinking about violating these policies, **please come talk to me before you do** -- I want to help you feel happy and proud of your learning and growth.
