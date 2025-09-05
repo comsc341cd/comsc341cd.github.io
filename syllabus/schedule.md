@@ -37,13 +37,13 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/01</small>
     - <small>09/02</small>
     - <small>09/03</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 0](https://moodle.mtholyoke.edu/pluginfile.php/1496605/mod_resource/content/3/lec00-intro-starter.pdf)</li></ul>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 0](https://moodle.mtholyoke.edu/pluginfile.php/1496605/mod_resource/content/3/lec00-intro-starter.pdf)</li><li>[[complete] slides 0](https://moodle.mtholyoke.edu/pluginfile.php/1496606/mod_resource/content/2/lec00-intro.pdf)</li><li>[Activity 0](https://docs.google.com/document/d/1VsU01agKaytKF6HWlmQ41NODTCg0CQDfB8XryP7OM1s/edit?usp=sharing)</li></ul>
     ![](https://img.shields.io/badge/Released:-2ca02c) [WS 1](ws1)
     <br>![](https://img.shields.io/badge/Released:-2ca02c) [Survey 1](https://www.gradescope.com/courses/1101874/assignments/6657718)
 
     - <small>09/04</small>
     - <small>09/05</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Coding setup</u></b>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Coding setup</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1506454/mod_resource/content/1/lab0.pdf)</li></ul>
 
 *   
     - <small>09/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Simpson's Paradox</u></b>
@@ -55,45 +55,48 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/11</small>
     - <small>09/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b>
 
+*   
+    - <small>09/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b>
+    - <small>09/16</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 2
+    - <small>09/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Estimation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 3
+    - <small>09/18</small>
+    - <small>09/19</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Plotting</u></b>
+
+
+*   
+    - <small>09/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b>
+
+    - <small>09/23</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 3
+    - <small>09/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II</u></b>
+    - <small>09/25</small>
+    - <small>09/26</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 1
+
+
+*   
+    - <small>09/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b>
+    - <small>09/30</small>
+    - <small>10/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b>
+    - <small>10/02</small>
+    - <small>10/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b>
+
+*   
+    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><br><br>![](https://img.shields.io/badge/Due:-d62728) Project 1
+    - <small>10/07</small>
+    - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
+    - <small>10/09</small>
+    - <small>10/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Matching</u></b>
+
+*   
+    - <small>10/13</small><br>🍂 <b>Fall break</b> 🍁
+    - <small>10/14</small><br>🍂 <b>Fall break</b> 🍁
+    - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b>
+    - <small>10/16</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 4
+    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
+
 :::
 
 <!--
 
-*   
-    - <small>02/10</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 2](ws2)
-    
-    - <small>02/11</small> <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1447880/mod_resource/content/1/lec03-potential-outcomes-ii-starter-updated.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1448069/mod_resource/content/1/lec03-potential-outcomes-ii.pdf)</li><li>[Activity 3](activity3)</li></ul>
-    ![](https://img.shields.io/badge/Released:-2ca02c) [WS 3](ws3)
-    
-    - <small>02/12</small>
-
-    - <small>02/13</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Estimation</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1448412/mod_resource/content/1/lec04-estimation-bootstrap-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1448754/mod_resource/content/2/lec04-estimation-bootstrap.pdf)</li><li>[[starter] plotting demo](plotting_demo)</li><li>[[complete] plotting demo](plotting_demo_complete)</li><li>[Activity 3 solutions](activity3_solution)</li></ul>
-
-    - <small>02/14</small>
-
-*   
-    - <small>02/17</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 3](ws3)
-
-    - <small>02/18</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1449635/mod_resource/content/1/lec05-causal-graphs-i-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1449731/mod_resource/content/1/lec05-causal-graphs-i.pdf)</li><li>[[starter] live code](lec5_live)</li><li>[[complete] live code](lec5_live_complete)</li><li>[Activity 4](https://docs.google.com/document/d/1M_8e4Zu2eC1Y53kHDDcK53gQfl-sAvcjb4UGGoVt_nM/edit?usp=sharing)</li></ul>
-    
-    - <small>02/19</small>
-
-    - <small>02/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II/Stratification</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1450240/mod_resource/content/1/lec06-causal-graphs-ii-stratification-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1450301/mod_resource/content/1/lec06-causal-graphs-ii-stratification.pdf)</li><li>[[starter] live code](lec6_live)</li><li>[[complete] live code](lec6_live_complete)</li><li>[Activity 5](https://docs.google.com/document/d/1J3rDQe0ZX8Xs7PAoFr2DEJO7MY4McnPx8waUP0UvfkQ/edit?usp=sharing)</li><li>[Activity 5 solutions](https://docs.google.com/document/d/1jMDA6sV91p0b_7zYWmw3ipWpRDXo5_SKRaDlknwOkSs/edit?tab=t.0)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Project 1](proj1)
-    - <small>02/21</small>
-
-*   
-    - <small>02/24</small>
-    
-    - <small>02/25</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b><ul style="margin-top:-1em;"><li>
-    [[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1451039/mod_resource/content/1/lec07-observational-studies-i-starter.pdf)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1451127/mod_resource/content/1/lec07-observational-studies-i.pdf)</li><li>[[starter] live code](lec7_live)</li><li>[[complete] live code](lec7_live_complete)</li><li>[Activity 6](https://docs.google.com/document/d/1VUJB-0X370URJtlPHF8Ws1i8zqEeSSeqodhQJFtQd08/edit?usp=sharing)</li><li>[Activity 6 solutions](https://docs.google.com/document/d/1uOpEg8j8d5w_TL0GXP_Jj4tcZjNcij7HV8314y-fyyM/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li></ul>
-
-    - <small>02/26</small>
-
-
-    - <small>02/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b><ul style="margin-top:-1em;"><li>
-    [[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1451616/mod_resource/content/1/lec08-observational-studies-ii-starter.pdf
-)</li><li>[[complete] slides](https://moodle.mtholyoke.edu/pluginfile.php/1451702/mod_resource/content/1/lec08-observational-studies-ii.pdf)</li></ul>
-    - <small>02/28</small>
 
 *   
     - <small>03/03</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 1](proj1)
