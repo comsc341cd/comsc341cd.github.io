@@ -37,13 +37,13 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/01</small>
     - <small>09/02</small>
     - <small>09/03</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 0](https://moodle.mtholyoke.edu/pluginfile.php/1496605/mod_resource/content/3/lec00-intro-starter.pdf)</li></ul>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Introduction</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 0](https://moodle.mtholyoke.edu/pluginfile.php/1496605/mod_resource/content/3/lec00-intro-starter.pdf)</li><li>[[complete] slides 0](https://moodle.mtholyoke.edu/pluginfile.php/1496606/mod_resource/content/2/lec00-intro.pdf)</li><li>[Activity 0](https://docs.google.com/document/d/1VsU01agKaytKF6HWlmQ41NODTCg0CQDfB8XryP7OM1s/edit?usp=sharing)</li></ul>
     ![](https://img.shields.io/badge/Released:-2ca02c) [WS 1](ws1)
     <br>![](https://img.shields.io/badge/Released:-2ca02c) [Survey 1](https://www.gradescope.com/courses/1101874/assignments/6657718)
 
     - <small>09/04</small>
     - <small>09/05</small>
-    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Coding setup</u></b>
+    <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Coding setup</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1506454/mod_resource/content/1/lab0.pdf)</li></ul>
 
 *   
     - <small>09/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Simpson's Paradox</u></b>
@@ -87,8 +87,8 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>10/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Matching</u></b>
 
 *   
-    - <small>10/13</small><br>🍂<b>Fall break</b>🍁
-    - <small>10/14</small><br>🍂<b>Fall break</b>🍁
+    - <small>10/13</small><br>🍂 <b>Fall break</b> 🍁
+    - <small>10/14</small><br>🍂 <b>Fall break</b> 🍁
     - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b>
     - <small>10/16</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 4
     - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2

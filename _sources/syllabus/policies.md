@@ -49,7 +49,9 @@ As discussed in the [Course Values](course_success) page, participation is a key
 - Completing feedback surveys, Over the course of the semester, I will check in to ask what is going well for you, what difficulties you are encountering, and what could be adjusted to improve your learning experience.
 
 ```{admonition} Attendance
-Attendance is required for this course, including the Friday fourth hour. However, I understand that unexpected situations may arise. If you are unable to attend a class, please let me know as soon as possible. Together, we can figure out a way to proceed.
+Attendance is required for this course, including the Friday fourth hour. You can miss up to **two classes** over the course of the semester without penalty. Attendance is worth roughly 1/3 of a point per class session. This does not apply during add/drop period while you are still confirming your schedule. 
+
+However, I also understand that unexpected situations may arise. If you are unable to attend a class, please let me know as soon as possible. Together, we can figure out a plan to proceed.
 ```
 
 ## Late Policy
