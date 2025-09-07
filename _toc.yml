@@ -17,9 +17,9 @@ parts:
       - file: resources/submit.md
   #    - file: resources/catalog.md
 
-  # - caption: Activities
-  #   chapters:
-  #   - file: activities/activities.md
+  - caption: Activities
+    chapters:
+    - file: activities/activities.md
 
   - caption: Worksheets
     chapters:
