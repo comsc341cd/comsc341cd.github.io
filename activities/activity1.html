@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 1: Jupyter and NumPy &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 1: Simpson’s Paradox &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
@@ -186,6 +186,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
 
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="activities.html">In-Class Activities</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
 <ul class="nav bd-sidenav">
@@ -365,7 +369,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 1: Jupyter and NumPy</h1>
+    <h1>Activity 1: Simpson’s Paradox</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,9 +392,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-1-jupyter-and-numpy">
-<span id="activity1"></span><h1>Activity 1: Jupyter and NumPy<a class="headerlink" href="#activity-1-jupyter-and-numpy" title="Link to this heading">#</a></h1>
-<p><strong>2025-01-30</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-1-simpson-s-paradox">
+<span id="activity1"></span><h1>Activity 1: Simpson’s Paradox<a class="headerlink" href="#activity-1-simpson-s-paradox" title="Link to this heading">#</a></h1>
+<p><strong>2025-09-08</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -403,12 +407,27 @@ document.write(`
 </div>
 <section id="replicating-the-combined-contingency-table">
 <h2>1. Replicating the combined contingency table<a class="headerlink" href="#replicating-the-combined-contingency-table" title="Link to this heading">#</a></h2>
+<p>We have the following definitions for our kidney stone surgery data:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T = \begin{cases}
+1 &amp; \text{open surgery} \\
+0 &amp; \text{small incision surgery}
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Y = \begin{cases}
+1 &amp; \text{successful kidney stone removal} \\
+0 &amp; \text{unsuccessful kidney stone removal}
+\end{cases}
+\end{split}\]</div>
 <p>We can replicate the calculations we previously did by hand using numpy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#                               Y=1  Y=0</span>
 <span class="n">contingency_overall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">273</span><span class="p">,</span> <span class="mi">77</span><span class="p">],</span>  <span class="c1"># T=1</span>
-                               <span class="p">[</span><span class="mi">289</span><span class="p">,</span> <span class="mi">61</span><span class="p">]])</span> <span class="c1"># T=0</span>
+                                <span class="p">[</span><span class="mi">289</span><span class="p">,</span> <span class="mi">61</span><span class="p">]])</span> <span class="c1"># T=0</span>
 </pre></div>
 </div>
 </div>
@@ -471,12 +490,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contingency table for C=0, large stones</span>
 <span class="c1">#                          Y=1  Y=0</span>
 <span class="n">contingency_C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">192</span><span class="p">,</span> <span class="mi">71</span><span class="p">],</span> <span class="c1"># T=1</span>
-                          <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">25</span><span class="p">]])</span> <span class="c1"># T=0</span>
+                           <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">25</span><span class="p">]])</span> <span class="c1"># T=0</span>
 
 <span class="c1"># contingency table for C=1, small stones</span>
 <span class="c1">#                          Y=1  Y=0</span>
 <span class="n">contingency_C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">81</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="c1"># T=1</span>
-                          <span class="p">[</span><span class="mi">234</span><span class="p">,</span> <span class="mi">36</span><span class="p">]])</span> <span class="c1"># T=0</span>
+                           <span class="p">[</span><span class="mi">234</span><span class="p">,</span> <span class="mi">36</span><span class="p">]])</span> <span class="c1"># T=0</span>
 
 <span class="c1"># prints (number of rows, number of columns)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">contingency_C0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
