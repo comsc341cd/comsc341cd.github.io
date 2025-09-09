@@ -46,7 +46,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab: Coding setup</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1506454/mod_resource/content/1/lab0.pdf)</li></ul>
 
 *   
-    - <small>09/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Simpson's Paradox</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 1](https://moodle.mtholyoke.edu/pluginfile.php/1496611/mod_resource/content/2/lec01-simpsons-starter.pdf)</li><li>[Activity 1](activity1)</li></ul>
+    - <small>09/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Simpson's Paradox</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 1](https://moodle.mtholyoke.edu/pluginfile.php/1496611/mod_resource/content/2/lec01-simpsons-starter.pdf)</li><li>[[complete] slides 1](https://moodle.mtholyoke.edu/pluginfile.php/1496612/mod_resource/content/2/lec01-simpsons.pdf)</li><li>[Activity 1](activity1)</li><li>[Activity 1 solutions](activity1_solution)</li></ul>
     ![](https://img.shields.io/badge/Due:-d62728) [Survey 1](https://www.gradescope.com/courses/1101874/assignments/6657718)
     - <small>09/09</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 1](ws1)
     - <small>09/10</small>
