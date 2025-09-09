@@ -3,11 +3,12 @@
 
 ### Bhargavi (she/her): Kendade 304
 
-- To be announced!
+- Mon 6-7pm
+- Tue 6-7pm
 
 ### Tony (he/him): Clapp 207
 
-- To be announced!
+- To be announced after OH poll!
 
 These times may be subject to change, please check the [schedule](schedule) and [Ed](https://edstem.org/us/courses/71545/discussion) for the most up-to-date information.
 
