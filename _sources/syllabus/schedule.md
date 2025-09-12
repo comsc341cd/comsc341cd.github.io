@@ -53,7 +53,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     <br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 2](https://moodle.mtholyoke.edu/pluginfile.php/1496614/mod_resource/content/3/lec02-potential-outcomes-starter.pdf)</li><li>[[complete] slides 2](https://moodle.mtholyoke.edu/pluginfile.php/1496615/mod_resource/content/2/lec02-potential-outcomes.pdf)</li><li>[activity 2](https://docs.google.com/document/d/1fhEc_W5_iP3dEkRWAjXDtqpiYtT0weuat4XEimmvl98/edit?usp=sharing)</li><li>[activity 2 solutions](https://docs.google.com/document/d/1gveRAlt1RMndnSy9LZD_fWSUdtX5A2KRfcBZS3rr5-s/edit?usp=sharing)</li></ul>
     ![](https://img.shields.io/badge/Released:-2ca02c) [WS 2](ws2)
     - <small>09/11</small>
-    - <small>09/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b>
+    - <small>09/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1509297/mod_resource/content/1/lab1.pdf)</li><li>[activity 3](https://docs.google.com/document/d/1QdfDZ8tJOnlJMWyttFEN1x4DDPzPMZ47lamNazXQGXM/edit?usp=sharing)</li></ul>
 
 *   
     - <small>09/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b>
