@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'resources/catalog';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="In-Class Activities" href="../activities/activities.html" />
+    <link rel="prev" title="How to Run and Submit" href="submit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,14 +180,26 @@
 <li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="submit.html">How to Run and Submit</a></li>
 
 
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../activities/activities.html">In-Class Activities</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
 
 
 
@@ -342,20 +354,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#study-designs">Study Designs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-cons">Pros/cons</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observational-studies">Observational Studies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables">Instrumental Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-discontinuity">Regression Discontinuity</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sharp-rdd">Sharp RDD</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-rdd">Fuzzy RDD</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pros/cons</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences">Difference-in-differences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a></li>
 </ul>
 </li>
 </ul>
@@ -376,212 +377,14 @@ document.write(`
 :depth: 1
 ``` 
 -->
+<section id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">#</a></h2>
+</section>
 <section id="study-designs">
 <h2>Study Designs<a class="headerlink" href="#study-designs" title="Link to this heading">#</a></h2>
 <section id="randomized-experiments">
 <h3>Randomized Experiments<a class="headerlink" href="#randomized-experiments" title="Link to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Assumptions needed</strong></p></td>
-<td><ul><li>Consistency</li><li>No interference</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Assumptions ensured</strong></p></td>
-<td><ul><li>Exchangeability</li></ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Average treatment effect (ATE)</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<section id="pros-cons">
-<h4>Pros/cons<a class="headerlink" href="#pros-cons" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Advantages</p></th>
-<th class="head"><p>Disadvantages</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><ul><li>Not having to worry about confounders</li><li>Ability to make causal inferences!</li><li>No bias due to confounding</li><li>Exchangeability is guaranteed</li><li>Easier to generalize results</li></ul>
-</td>
-<td><ul><li>Expensive 💰and time consuming ⏰</li><li>Giving people a placebo :(</li><li>Hard to maintain randomness completely</li><li>Ethical constraints</li><li>May be difficult to get a large number of participants</li><li>Compliance/human aspect of reacting to treatment</li><li>Not feasible in a lot of scenarios</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<hr class="docutils" />
-<section id="observational-studies">
-<h3>Observational Studies<a class="headerlink" href="#observational-studies" title="Link to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Assumptions needed</strong></p></td>
-<td><ul><li>Consistency</li><li>No interference</li><li>Conditional exchangeability / unconfoundedness</li><li>Positivity</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Assumptions ensured</strong></p></td>
-<td><ul><li>None 😞</li></ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Average treatment effect (ATE)</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<hr class="docutils" />
-<section id="instrumental-variables">
-<h3>Instrumental Variables<a class="headerlink" href="#instrumental-variables" title="Link to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Assumptions needed</strong></p></td>
-<td><ul><li>Consistency</li><li>No interference</li><li>Relevance</li><li>Exclusion restriction</li><li>Instrument unconfoundedness</li><li>Linear outcome <b>or</b> monotonicity</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Assumptions ensured by design</strong></p></td>
-<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Average treatment effect (ATE)</li><li>Local average treatment effect (LATE)</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<hr class="docutils" />
-<section id="regression-discontinuity">
-<h3>Regression Discontinuity<a class="headerlink" href="#regression-discontinuity" title="Link to this heading">#</a></h3>
-<section id="sharp-rdd">
-<h4>Sharp RDD<a class="headerlink" href="#sharp-rdd" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Description</strong></p></td>
-<td><ul><li>Treatment is completely deterministic based on the running variable</li><li>Treatment is "forced" once the running variable crosses the cutoff $c$</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Assumptions needed</strong></p></td>
-<td><ul><li>Consistency</li><li>No interference</li><li>Continuity</li></ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><strong>Assumptions ensured by design</strong></p></td>
-<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Average treatment effect (ATE) at the cutoff</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="fuzzy-rdd">
-<h4>Fuzzy RDD<a class="headerlink" href="#fuzzy-rdd" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Description</strong></p></td>
-<td><ul><li>Treatment is not deterministically forced, but it is discontinuous</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Assumptions needed</strong></p></td>
-<td><ul><li>Consistency</li><li>No interference</li><li>Continuity</li><li>Monotonicity (no defiers)</li></ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><strong>Assumptions ensured by design</strong></p></td>
-<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Local average treatment effect (LATE) at the cutoff</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="id1">
-<h4>Pros/cons<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Advantages</p></th>
-<th class="head"><p>Disadvantages</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><ul><li>Strong causal validity</li><li>Easy to implement and visually verify</li><li>Running variable can be confounded and still have valid inference</li><li>Can leverage naturally occurring cutoffs in data</li></ul>
-</td>
-<td><ul><li>Requires a very specific situation in order to be able to use this study design (not all studies have treatment cutoffs or running variables)</li><li>Can be difficult to identify what kind of person a complier is</li><li>Aren't as useful for other causal quantities like the ATT or ATU</li><li>Hard to determine a good cutoff for many situations</li><li>Conclusions will depend on what you choose for the bandwidth, which seems difficult to try to balance</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<hr class="docutils" />
-<section id="difference-in-differences">
-<h3>Difference-in-differences<a class="headerlink" href="#difference-in-differences" title="Link to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Description</strong></p></td>
-<td><ul><li>Compares the change in outcomes over time between a treatment group and a control group</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Assumptions needed</strong></p></td>
-<td><ul><li>Consistency</li><li>No interference: also known as <b>no spillover</b></li><li>Parallel trends</li></ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><strong>Assumptions ensured by design</strong></p></td>
-<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><strong>Causal quantities identified</strong></p></td>
-<td><ul><li>Average treatment effect on the treated: (ATT)</li></ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>More designs to come!</p>
 </section>
 </section>
 </section>
@@ -616,6 +419,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="submit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">How to Run and Submit</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../activities/activities.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">In-Class Activities</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -632,20 +453,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#study-designs">Study Designs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-cons">Pros/cons</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observational-studies">Observational Studies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables">Instrumental Variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-discontinuity">Regression Discontinuity</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sharp-rdd">Sharp RDD</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-rdd">Fuzzy RDD</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pros/cons</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences">Difference-in-differences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomized-experiments">Randomized Experiments</a></li>
 </ul>
 </li>
 </ul>

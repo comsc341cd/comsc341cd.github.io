@@ -56,7 +56,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1509297/mod_resource/content/1/lab1.pdf)</li><li>[activity 3](https://docs.google.com/document/d/1QdfDZ8tJOnlJMWyttFEN1x4DDPzPMZ47lamNazXQGXM/edit?usp=sharing)</li></ul>
 
 *   
-    - <small>09/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b>
+    - <small>09/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Potential Outcomes II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 3](https://moodle.mtholyoke.edu/pluginfile.php/1496621/mod_resource/content/2/lec03-potential-outcomes-ii-starter.pdf)</li></ul>
     - <small>09/16</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 2
     - <small>09/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Estimation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 3
     - <small>09/18</small>
