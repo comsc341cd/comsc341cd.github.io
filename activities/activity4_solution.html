@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 3 Solution: Randomized Experiment Balance in Gerber et al. 2008 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 4: Randomized Experiment Balance and Estimation in Gerber et al. 2008 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity3_solution';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity4_solution';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -270,7 +270,7 @@
       
       
       
-      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity3_solution.ipynb&branch=main" target="_blank"
+      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity4_solution.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -301,7 +301,7 @@
       
       
       
-      <li><a href="../_sources/activities/activity3_solution.ipynb" target="_blank"
+      <li><a href="../_sources/activities/activity4_solution.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +385,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 3 Solution: Randomized Experiment Balance in Gerber et al. 2008</h1>
+    <h1>Activity 4: Randomized Experiment Balance and Estimation in Gerber et al. 2008</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,7 +395,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 3 Solution: Randomized Experiment Balance in Gerber et al. 2008</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 4: Randomized Experiment Balance and Estimation in Gerber et al. 2008</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">1. Data cleaning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balance-check">2. Balance check</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-effect-estimation">3. Causal effect estimation</a></li>
@@ -414,9 +414,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-3-solution-randomized-experiment-balance-in-gerber-et-al-2008">
-<span id="activity3-solution"></span><h1>Activity 3 Solution: Randomized Experiment Balance in Gerber et al. 2008<a class="headerlink" href="#activity-3-solution-randomized-experiment-balance-in-gerber-et-al-2008" title="Link to this heading">#</a></h1>
-<p><strong>2025-02-11</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-4-randomized-experiment-balance-and-estimation-in-gerber-et-al-2008">
+<span id="activity4-solution"></span><h1>Activity 4: Randomized Experiment Balance and Estimation in Gerber et al. 2008<a class="headerlink" href="#activity-4-randomized-experiment-balance-and-estimation-in-gerber-et-al-2008" title="Link to this heading">#</a></h1>
+<p><strong>2025-09-15</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -427,10 +427,18 @@ document.write(`
 </div>
 </div>
 </div>
-<p>One way we can check whether exchangeability is plausible is to check whether the distribution of data characteristics are the same between the treatment and control groups. First, let’s load in the data at <code class="docutils literal notranslate"><span class="pre">~/COMSC-341CD/data/gerber2008_activity3.csv</span></code> and take a look at the first few rows via <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">DataFrame.head()</a>.</p>
+<p>First, let’s load in the data at <code class="docutils literal notranslate"><span class="pre">~/COMSC-341CD/data/gerber2008.csv</span></code> and take a look at the first few rows via <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">DataFrame.head()</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../COMSC-341CD/data/gerber2008.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO uncomment to load data</span>
+<span class="n">vote_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/gerber2008.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO examining the top and bottom of the dataframe</span>
 <span class="n">vote_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -544,13 +552,96 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get all of the unique values for column treatment</span>
+<span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Civic Duty&#39;, &#39;Hawthorne&#39;, &#39;Control&#39;, &#39;Self&#39;, &#39;Neighbors&#39;],
       dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO giving a summary of the dataframe</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 344084 entries, 0 to 344083
+Data columns (total 11 columns):
+ #   Column     Non-Null Count   Dtype 
+---  ------     --------------   ----- 
+ 0   sex        344084 non-null  object
+ 1   yob        344084 non-null  int64 
+ 2   treatment  344084 non-null  object
+ 3   voted      344084 non-null  object
+ 4   hh_size    344084 non-null  int64 
+ 5   g2000      344084 non-null  object
+ 6   g2002      344084 non-null  object
+ 7   g2004      344084 non-null  object
+ 8   p2000      344084 non-null  object
+ 9   p2002      344084 non-null  object
+ 10  p2004      344084 non-null  object
+dtypes: int64(2), object(9)
+memory usage: 28.9+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO get the column names</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;sex&#39;, &#39;yob&#39;, &#39;treatment&#39;, &#39;voted&#39;, &#39;hh_size&#39;, &#39;g2000&#39;, &#39;g2002&#39;,
+       &#39;g2004&#39;, &#39;p2000&#39;, &#39;p2002&#39;, &#39;p2004&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO get the number of rows and columns</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(344084, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO return the data types of each column</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sex          object
+yob           int64
+treatment    object
+voted        object
+hh_size       int64
+g2000        object
+g2002        object
+g2004        object
+p2000        object
+p2002        object
+p2004        object
+dtype: object
 </pre></div>
 </div>
 </div>
@@ -583,41 +674,7 @@ T = \begin{cases}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here selecting the &#39;Civic Duty&#39; and &#39;Neighbors&#39; rows</span>
-<span class="c1"># selecting rows with &#39;Civic Duty&#39; or &#39;Neighbors&#39;, and selecting all the columns with :</span>
-<span class="n">vote_df</span> <span class="o">=</span> <span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Civic Duty&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Neighbors&#39;</span><span class="p">),</span> <span class="p">:]</span>
-<span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Civic Duty&#39;, &#39;Neighbors&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s generate an additional column that corresponds to the respondent’s age in 2006.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO generate the &#39;age&#39; column</span>
-<span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2006</span> <span class="o">-</span> <span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;yob&#39;</span><span class="p">]</span> 
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="balance-check">
-<h2>2. Balance check<a class="headerlink" href="#balance-check" title="Link to this heading">#</a></h2>
-<p>Let’s now check the balance of the various characteristics between the <span class="math notranslate nohighlight">\(T=1\)</span> (<code class="docutils literal notranslate"><span class="pre">'Neighbors'</span></code>) and <span class="math notranslate nohighlight">\(T=0\)</span> (<code class="docutils literal notranslate"><span class="pre">'Civic</span> <span class="pre">Duty'</span></code>) groups.</p>
-<p>For the continuous variables of <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">hh_size</span></code>, let’s compute the mean for each group:</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You may find the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html">pandas.DataFrame.groupby()</a> method from worksheet 2 useful here, or you can compute the means by slicing the dataframe using <code class="docutils literal notranslate"><span class="pre">.loc</span></code>.</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code for continuous variables</span>
-<span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;hh_size&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;yob&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1950</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -640,29 +697,368 @@ T = \begin{cases}
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>age</th>
-      <th>hh_size</th>
-    </tr>
-    <tr>
+      <th>sex</th>
+      <th>yob</th>
       <th>treatment</th>
-      <th></th>
-      <th></th>
+      <th>voted</th>
+      <th>hh_size</th>
+      <th>g2000</th>
+      <th>g2002</th>
+      <th>g2004</th>
+      <th>p2000</th>
+      <th>p2002</th>
+      <th>p2004</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Civic Duty</th>
-      <td>49.659035</td>
-      <td>2.189126</td>
+      <th>0</th>
+      <td>male</td>
+      <td>1941</td>
+      <td>Civic Duty</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
     </tr>
     <tr>
-      <th>Neighbors</th>
-      <td>49.852936</td>
-      <td>2.187770</td>
+      <th>1</th>
+      <td>female</td>
+      <td>1947</td>
+      <td>Civic Duty</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>male</td>
+      <td>1941</td>
+      <td>Control</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>male</td>
+      <td>1945</td>
+      <td>Hawthorne</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>female</td>
+      <td>1949</td>
+      <td>Hawthorne</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>344077</th>
+      <td>male</td>
+      <td>1942</td>
+      <td>Neighbors</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>344078</th>
+      <td>female</td>
+      <td>1944</td>
+      <td>Control</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>344079</th>
+      <td>male</td>
+      <td>1943</td>
+      <td>Control</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>344082</th>
+      <td>male</td>
+      <td>1937</td>
+      <td>Control</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>344083</th>
+      <td>female</td>
+      <td>1949</td>
+      <td>Control</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>106259 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here selecting the &#39;Civic Duty&#39; and &#39;Neighbors&#39; rows</span>
+<span class="n">vote_df</span> <span class="o">=</span> <span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Civic Duty&#39;</span><span class="p">,</span> <span class="s1">&#39;Neighbors&#39;</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s generate an additional column that corresponds to the respondent’s age in 2006.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO generate the &#39;age&#39; column</span>
+<span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2006</span> <span class="o">-</span> <span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;yob&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>yob</th>
+      <th>treatment</th>
+      <th>voted</th>
+      <th>hh_size</th>
+      <th>g2000</th>
+      <th>g2002</th>
+      <th>g2004</th>
+      <th>p2000</th>
+      <th>p2002</th>
+      <th>p2004</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>male</td>
+      <td>1941</td>
+      <td>Civic Duty</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>female</td>
+      <td>1947</td>
+      <td>Civic Duty</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>male</td>
+      <td>1939</td>
+      <td>Neighbors</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>male</td>
+      <td>1965</td>
+      <td>Civic Duty</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>No</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>female</td>
+      <td>1965</td>
+      <td>Civic Duty</td>
+      <td>No</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>No</td>
+      <td>41</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+</section>
+<section id="balance-check">
+<h2>2. Balance check<a class="headerlink" href="#balance-check" title="Link to this heading">#</a></h2>
+<p>One way we can check whether exchangeability is plausible is to check whether the distribution of data characteristics are the same between the treatment and control groups.</p>
+<p>Let’s now check the balance of the various characteristics between the <span class="math notranslate nohighlight">\(T=1\)</span> (<code class="docutils literal notranslate"><span class="pre">'Neighbors'</span></code>) and <span class="math notranslate nohighlight">\(T=0\)</span> (<code class="docutils literal notranslate"><span class="pre">'Civic</span> <span class="pre">Duty'</span></code>) groups.</p>
+<p>For the continuous variables of <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">hh_size</span></code>, let’s compute the mean for each group:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may find the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html">pandas.DataFrame.groupby()</a> method from worksheet 2 useful here, or you can compute the means by slicing the dataframe using <code class="docutils literal notranslate"><span class="pre">.loc</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># approach 1</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">T</span><span class="o">=</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># approach 2</span>
+<span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+    <span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax. Maybe you meant &#39;==&#39; or &#39;:=&#39; instead of &#39;=&#39;?
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code for continuous variables</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[</span><span class="s1">&#39;hh_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment
+Civic Duty    49.659035
+Neighbors     49.852936
+Name: age, dtype: float64
+treatment
+Civic Duty    2.189126
+Neighbors     2.187770
+Name: hh_size, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>For the each of the categorical variables of <code class="docutils literal notranslate"><span class="pre">['sex',</span> <span class="pre">'g2000',</span> <span class="pre">'g2002',</span> <span class="pre">'g2004',</span> <span class="pre">'p2000',</span> <span class="pre">'p2002',</span> <span class="pre">'p2004']</span></code>, let’s compute the proportion of respondents who have the characteristic for each <code class="docutils literal notranslate"><span class="pre">treatment</span></code> group:</p>
 <div class="admonition tip">
@@ -671,62 +1067,67 @@ T = \begin{cases}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code for categorical variable comparison</span>
-<span class="n">categorical_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;g2000&#39;</span><span class="p">,</span> <span class="s1">&#39;g2002&#39;</span><span class="p">,</span> <span class="s1">&#39;g2004&#39;</span><span class="p">,</span> <span class="s1">&#39;p2000&#39;</span><span class="p">,</span> <span class="s1">&#39;p2002&#39;</span><span class="p">,</span> <span class="s1">&#39;p2004&#39;</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_vars</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO, group or select by T=1 and T=0</span>
+<span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;g2000&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   sex   
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>g2000
+yes    0.841689
+no     0.158311
+Name: proportion, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code for categorical variable comparison</span>
+<span class="n">categorical_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;g2000&#39;</span><span class="p">,</span> <span class="s1">&#39;g2002&#39;</span><span class="p">,</span> <span class="s1">&#39;g2004&#39;</span><span class="p">,</span> <span class="s1">&#39;p2000&#39;</span><span class="p">,</span> <span class="s1">&#39;p2002&#39;</span><span class="p">,</span> <span class="s1">&#39;p2004&#39;</span><span class="p">]</span>
+
+<span class="c1"># we might need a for loop here</span>
+<span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">categorical_vars</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[</span><span class="n">category</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   sex   
 Civic Duty  female    0.500183
             male      0.499817
 Neighbors   female    0.500065
             male      0.499935
 Name: proportion, dtype: float64
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   g2000
+treatment   g2000
 Civic Duty  yes      0.841724
             no       0.158276
 Neighbors   yes      0.841653
             no       0.158347
 Name: proportion, dtype: float64
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   g2002
+treatment   g2002
 Civic Duty  yes      0.81111
             no       0.18889
 Neighbors   yes      0.81134
             no       0.18866
 Name: proportion, dtype: float64
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   g2004
+treatment   g2004
 Civic Duty  yes      1.0
 Neighbors   yes      1.0
 Name: proportion, dtype: float64
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   p2000
+treatment   p2000
 Civic Duty  no       0.746428
             yes      0.253572
 Neighbors   no       0.748802
             yes      0.251198
 Name: proportion, dtype: float64
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   p2002
+treatment   p2002
 Civic Duty  no       0.611152
             yes      0.388848
 Neighbors   no       0.613413
             yes      0.386587
 Name: proportion, dtype: float64
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   p2004
+treatment   p2004
 Civic Duty  No       0.600555
             Yes      0.399445
 Neighbors   No       0.593335
@@ -757,37 +1158,51 @@ E[Y | T=1] - E[Y | T=0] \; \xrightarrow[]{\text{Estimation}} \; &amp;\hat{E}[Y |
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code for estimating the ATE</span>
-<span class="n">display</span><span class="p">(</span><span class="n">vote_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;treatment&#39;</span><span class="p">)[</span><span class="s1">&#39;voted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ATE solution from class: </span><span class="si">{</span><span class="mf">.377948</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">.314538</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------&quot;</span><span class="p">)</span>
-
-<span class="c1"># Can also be extracted via indexing on the &#39;Yes&#39; category</span>
-<span class="n">EY_neighbors</span> <span class="o">=</span> <span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Neighbors&#39;</span><span class="p">][</span><span class="s1">&#39;voted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;Yes&#39;</span><span class="p">]</span> 
-<span class="n">EY_civic</span> <span class="o">=</span> <span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Civic Duty&#39;</span><span class="p">][</span><span class="s1">&#39;voted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;Yes&#39;</span><span class="p">]</span>
-<span class="n">ATE</span> <span class="o">=</span> <span class="n">EY_neighbors</span> <span class="o">-</span> <span class="n">EY_civic</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Another way to compute ATE via .loc indexing: </span><span class="si">{</span><span class="n">ATE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Neighbors&#39;</span><span class="p">][</span><span class="s1">&#39;voted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>treatment   voted
-Civic Duty  No       0.685462
-            Yes      0.314538
-Neighbors   No       0.622052
-            Yes      0.377948
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>voted
+No     0.622052
+Yes    0.377948
 Name: proportion, dtype: float64
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE solution from class: 0.06341000000000002
-----------------
-Another way to compute ATE via .loc indexing: 0.06341056883566026
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vote_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vote_df</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Civic Duty&#39;</span><span class="p">][</span><span class="s1">&#39;voted&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>voted
+No     0.685462
+Yes    0.314538
+Name: proportion, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code for estimating the ATE</span>
+<span class="c1">#               vote=yes, T=1    vote=yes, T=0</span>
+<span class="n">estimated_ATE</span> <span class="o">=</span> <span class="mf">0.377948</span>      <span class="o">-</span>  <span class="mf">0.314538</span>
+<span class="n">estimated_ATE</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06341000000000002
 </pre></div>
 </div>
 </div>
 </div>
 <p>Write down an interpretation of this estimate as a causal quantity.</p>
-<p><strong>Your response</strong>: Applying social pressure through the mail increases voter turnout on average by 6.3% over mail that reminds them that voting is a civic duty.</p>
+<p><strong>Your response</strong>: Applying social pressure through the mail causally increases voter turnout on average by 6.3% over mail that reminds them that voting is a civic duty.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="references">
@@ -844,7 +1259,7 @@ Another way to compute ATE via .loc indexing: 0.06341056883566026
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 3 Solution: Randomized Experiment Balance in Gerber et al. 2008</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 4: Randomized Experiment Balance and Estimation in Gerber et al. 2008</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">1. Data cleaning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balance-check">2. Balance check</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-effect-estimation">3. Causal effect estimation</a></li>
