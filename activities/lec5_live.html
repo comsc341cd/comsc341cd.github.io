@@ -567,10 +567,23 @@ Name: count, dtype: int64
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An estimator of the expected value E[ ] of the population.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        sample (np.array): a sample from the population</span>
+
 <span class="sd">    Returns: </span>
 <span class="sd">        float: the mean of the sample</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>  
+<span class="n">true_goose_weight</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># in reality, we never know what the distribution actually is</span>
+<span class="c1"># goose_weights = rng.normal(loc=true_goose_weight, scale=2, size=n_samples)</span>
 </pre></div>
 </div>
 </div>
@@ -597,10 +610,7 @@ Name: count, dtype: int64
 <h3>Plotting our bootstrap estimates<a class="headerlink" href="#plotting-our-bootstrap-estimates" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the vertical line for the estimated mean</span>
-<span class="c1"># plt.axvline(goose_mean, color=&quot;red&quot;)</span>
-
-<span class="c1"># as our n_bootstraps increase, we&#39;re able to see the spread of the estimate</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># as our n_bootstraps increase, we&#39;re able to see the spread of the estimate</span>
 <span class="c1"># sns.histplot(bootstrap_means)</span>
 <span class="c1"># fix the xaxis to be between 8 and 12</span>
 <span class="c1"># plt.xlim(8, 12);</span>
@@ -612,15 +622,6 @@ Name: count, dtype: int64
 </section>
 <section id="why-we-care-about-uncertainty-to-confidence-intervals">
 <h2>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals<a class="headerlink" href="#why-we-care-about-uncertainty-to-confidence-intervals" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>  
-<span class="n">true_goose_weight</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">goose_weights</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_goose_weight</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lower_ci = np.percentile(bootstrap_means, 2.5)</span>
@@ -680,6 +681,9 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">first_ten_estimator</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A (not very good) estimator of the expected value E[ ] of the population.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sample (np.array): a sample from the population</span>
 
 <span class="sd">    Returns: </span>
 <span class="sd">        float: the mean of the first 10 elements of the sample</span>
