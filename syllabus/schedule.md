@@ -60,11 +60,11 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/16</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 2](ws2)
     - <small>09/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Estimation</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 4](https://moodle.mtholyoke.edu/pluginfile.php/1496625/mod_resource/content/2/lec04-estimation-bootstrap-starter.pdf)</li><li>[[complete] slides 4](https://moodle.mtholyoke.edu/pluginfile.php/1496626/mod_resource/content/3/lec04-estimation-bootstrap.pdf)</li><li>[activity 4 solutions](activity4_solution)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [WS 3](ws3)
     - <small>09/18</small>
-    - <small>09/19</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
+    - <small>09/19</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1511308/mod_resource/content/1/lab2.pdf)</li><li>[activity 5](https://docs.google.com/document/d/1qywzYScHvo0vf9fNNZlOjQauXr1Sm8wYtPWzVkCI4LE/edit?usp=sharing)</li></ul>
 
 
 *   
-    - <small>09/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b>
+    - <small>09/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 5](https://moodle.mtholyoke.edu/pluginfile.php/1496630/mod_resource/content/2/lec05-causal-graphs-i-starter.pdf)</li><li>[activity 6](https://docs.google.com/document/d/1wFTimlv8bJHg7B2e2UBVGpICNq08781I4tBzaehyxJE/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li></ul>
 
     - <small>09/23</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 3](ws3)
     - <small>09/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II</u></b>
