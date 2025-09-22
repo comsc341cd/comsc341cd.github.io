@@ -208,6 +208,14 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
 </ul>
 
     </div>
@@ -387,14 +395,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lecture 5 live coding</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-reassignment">Pandas reassignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-collected-sample-as-a-substitute-for-the-population">Using a collected sample as a substitute for the population</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-plotting">Bootstrap plotting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The normal distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-our-bootstrap-estimates">Plotting our bootstrap estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-comparing-estimators">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> comparing estimators</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -407,7 +424,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-5-live-coding">
 <span id="lec5-live"></span><h1>Lecture 5 live coding<a class="headerlink" href="#lecture-5-live-coding" title="Link to this heading">#</a></h1>
-<p><strong>2025-02-18</strong></p>
+<p><strong>2025-09-22</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -416,7 +433,6 @@ document.write(`
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 
 <span class="kn">from</span> <span class="nn">nhanes.load</span> <span class="kn">import</span> <span class="n">load_NHANES_data</span>
 </pre></div>
@@ -435,8 +451,8 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhanes_df</span> <span class="o">=</span> <span class="n">load_NHANES_data</span><span class="p">()</span>
 
-<span class="n">sel_df</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="p">[</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;AgeInYearsAtScreening&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">]</span>
-<span class="n">sel_df</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="p">[(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Excellent&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Very good&#39;</span><span class="p">)]</span>
+<span class="c1"># sel_df = nhanes_df[nhanes_df[&#39;AgeInYearsAtScreening&#39;] &gt;= 18]</span>
+<span class="c1"># sel_df = nhanes_df[(nhanes_df[&#39;GeneralHealthCondition&#39;] == &#39;Excellent&#39;) | (nhanes_df[&#39;GeneralHealthCondition&#39;] == &#39;Very good&#39;)]</span>
 </pre></div>
 </div>
 </div>
@@ -476,7 +492,6 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;SmokedAtLeast100CigarettesInLife&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
 <span class="c1">#nhanes_df.fillna(0)</span>
-
 <span class="c1">#nhanes_df[&#39;GeneralHealthCondition&#39;].replace({&#39;Poor?&#39;: &#39;Poor&#39;, &#39;Fair or&#39;: &#39;Fair&#39;})</span>
 </pre></div>
 </div>
@@ -492,58 +507,60 @@ Name: count, dtype: int64
 <p>To be safe, I generally recommend explicitly re-assigning the dataframe whenever you’re modifying portions of it.</p>
 </div>
 </section>
-<section id="bootstrap">
-<h2>Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h2>
-<section id="using-a-collected-sample-as-a-substitute-for-the-population">
-<h3>Using a collected sample as a substitute for the population<a class="headerlink" href="#using-a-collected-sample-as-a-substitute-for-the-population" title="Link to this heading">#</a></h3>
-<p>Bootstrap sampling “works” because we assume our collected sample is representative of the population.</p>
-<p>Suppose we have a distribution of class colors:</p>
-<div class="math notranslate nohighlight">
-\[X \sim \text{Categorical}(p)\]</div>
-<p>Where <span class="math notranslate nohighlight">\(p=\{\frac{1}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4}\}\)</span> is the probability of each class:</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bootstrap-plotting">
+<h1>Bootstrap plotting<a class="headerlink" href="#bootstrap-plotting" title="Link to this heading">#</a></h1>
+<section id="the-normal-distribution">
+<h2>The normal distribution<a class="headerlink" href="#the-normal-distribution" title="Link to this heading">#</a></h2>
+<p>A probability distribution that we will frequently encounter in addition to the categorical distributions we saw in worksheet 1 is the <strong>normal distribution</strong>. The normal distribution has the following properties:</p>
 <ul class="simple">
-<li><p>Blue Lion</p></li>
-<li><p>Green Griffin</p></li>
-<li><p>Red Pegasus</p></li>
-<li><p>Yellow Sphinx</p></li>
+<li><p>centered and symmetric about the <strong>mean</strong> <span class="math notranslate nohighlight">\(\mu\)</span> (or <span class="math notranslate nohighlight">\(E[X]\)</span>)</p></li>
+<li><p>spread by the <strong>standard deviation</strong> <span class="math notranslate nohighlight">\(\sigma\)</span></p>
+<ul>
+<li><p>the <strong>variance</strong> is <span class="math notranslate nohighlight">\(\sigma^2\)</span> (or <span class="math notranslate nohighlight">\(V[X]\)</span>)</p></li>
 </ul>
-<p>A sample of adequate size should be representative of the population.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="n">class_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Blue Lion&#39;</span><span class="p">,</span> <span class="s1">&#39;Green Griffin&#39;</span><span class="p">,</span> <span class="s1">&#39;Red Pegasus&#39;</span><span class="p">,</span> <span class="s1">&#39;Yellow Sphinx&#39;</span><span class="p">]</span>
-<span class="n">class_probs</span> <span class="o">=</span>  <span class="p">[</span>        <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>             <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>           <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>             <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span>
-
-<span class="c1"># class_sample = rng.choice(class_colors, size=n_samples, p=class_probs)</span>
-<span class="c1"># pd.Series(class_sample).value_counts(normalize=True)</span>
-</pre></div>
-</div>
-</div>
-</div>
+</li>
+</ul>
+<p>We write a random variable as <span class="math notranslate nohighlight">\(X\)</span> that follows a normal distribution as <span class="math notranslate nohighlight">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>As long as the proportions are about right, the sample is representative, regardless of the size!</p>
+<p>Watch whether the software you are using takes the variance or the standard deviation as input. In <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, it is the standard deviation, which is different than how we write the distribution above.</p>
 </div>
-</section>
-<section id="why-we-care-about-uncertainty-to-confidence-intervals">
-<h3>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals<a class="headerlink" href="#why-we-care-about-uncertainty-to-confidence-intervals" title="Link to this heading">#</a></h3>
+<p>We can draw random samples from the normal distribution using <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html"><code class="docutils literal notranslate"><span class="pre">numpy.random.Generator.normal()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>  
-<span class="n">true_goose_weight</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">goose_weights</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_goose_weight</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This creates a generator with a fixed seed, so we can generate the same random numbers</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># generate 50000 samples from a normal distribution with E[X]=10 and standard deviation 2</span>
+<span class="c1"># n_samples = 50000</span>
+<span class="c1"># goose_samples = rng.normal(loc=10, scale=2, size=n_samples)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use seaborn to create a histogram of the samples</span>
+<span class="c1"># sns.histplot(goose_samples);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a sample of 10 from the normal distribution</span>
+<span class="c1"># sample = goose_samples[:10]</span>
+<span class="c1"># goose_mean = np.mean(sample)</span>
+
+<span class="c1"># in reality, we don&#39;t have access to the &quot;true&quot; distribution, which is why it&#39;s commented out</span>
+<span class="c1">#sns.histplot(goose_samples)</span>
+<span class="c1"># plt.axvline(x=goose_mean, color=&#39;red&#39;);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For bootstrap samples, we can use <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html">random.Generator.choice()</a> with replacement to draw samples from our dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_estimator</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
@@ -576,6 +593,34 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
+<section id="plotting-our-bootstrap-estimates">
+<h3>Plotting our bootstrap estimates<a class="headerlink" href="#plotting-our-bootstrap-estimates" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the vertical line for the estimated mean</span>
+<span class="c1"># plt.axvline(goose_mean, color=&quot;red&quot;)</span>
+
+<span class="c1"># as our n_bootstraps increase, we&#39;re able to see the spread of the estimate</span>
+<span class="c1"># sns.histplot(bootstrap_means)</span>
+<span class="c1"># fix the xaxis to be between 8 and 12</span>
+<span class="c1"># plt.xlim(8, 12);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="why-we-care-about-uncertainty-to-confidence-intervals">
+<h2>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals<a class="headerlink" href="#why-we-care-about-uncertainty-to-confidence-intervals" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>  
+<span class="n">true_goose_weight</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">goose_weights</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_goose_weight</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lower_ci = np.percentile(bootstrap_means, 2.5)</span>
@@ -592,8 +637,7 @@ Name: count, dtype: int64
 <span class="c1"># plt.gca().spines[&#39;top&#39;].set_visible(False)</span>
 <span class="c1"># plt.gca().spines[&#39;right&#39;].set_visible(False)</span>
 <span class="c1"># plt.legend()</span>
-<span class="c1">#plt.show()</span>
-<span class="c1">#plt.savefig(&#39;../lectures/s25/slidev/assets/lec05_bootstrap_mean_ci.png&#39;, transparent=True, dpi=300)</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -629,7 +673,6 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
-</section>
 <section id="why-we-care-about-uncertainty-to-comparing-estimators">
 <h3>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> comparing estimators<a class="headerlink" href="#why-we-care-about-uncertainty-to-comparing-estimators" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -677,7 +720,7 @@ Name: count, dtype: int64
 <span class="c1"># plt.gca().spines[&#39;top&#39;].set_visible(False)</span>
 <span class="c1"># plt.gca().spines[&#39;right&#39;].set_visible(False)</span>
 <span class="c1"># plt.legend()</span>
-<span class="c1">#plt.show()</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -732,14 +775,23 @@ Name: count, dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lecture 5 live coding</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-reassignment">Pandas reassignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-collected-sample-as-a-substitute-for-the-population">Using a collected sample as a substitute for the population</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-plotting">Bootstrap plotting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The normal distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-our-bootstrap-estimates">Plotting our bootstrap estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-comparing-estimators">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> comparing estimators</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
