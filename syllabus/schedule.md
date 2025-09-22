@@ -64,7 +64,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 
 *   
-    - <small>09/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 5](https://moodle.mtholyoke.edu/pluginfile.php/1496630/mod_resource/content/2/lec05-causal-graphs-i-starter.pdf)</li><li>[activity 6](https://docs.google.com/document/d/1wFTimlv8bJHg7B2e2UBVGpICNq08781I4tBzaehyxJE/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li></ul>
+    - <small>09/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 5](https://moodle.mtholyoke.edu/pluginfile.php/1496630/mod_resource/content/2/lec05-causal-graphs-i-starter.pdf)</li><li>[lecture 5 live coding](lec5_live)</li><li>[activity 6](https://docs.google.com/document/d/1wFTimlv8bJHg7B2e2UBVGpICNq08781I4tBzaehyxJE/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li></ul>
 
     - <small>09/23</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 3](ws3)
     - <small>09/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II</u></b>
