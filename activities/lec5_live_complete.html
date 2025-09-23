@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>[complete] Lecture 5 live coding &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Lecture 5 live coding complete &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
@@ -385,7 +385,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>[complete] Lecture 5 live coding</h1>
+    <h1>Lecture 5 live coding complete</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,14 +395,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-reassignment">Pandas reassignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-collected-sample-as-a-substitute-for-the-population">Using a collected sample as a substitute for the population</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lecture 5 live coding complete</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-reassignment">Pandas reassignment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-plotting">Bootstrap plotting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The normal distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-our-bootstrap-estimates">Plotting our bootstrap estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-comparing-estimators">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> comparing estimators</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -413,9 +420,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="complete-lecture-5-live-coding">
-<span id="lec5-live-complete"></span><h1>[complete] Lecture 5 live coding<a class="headerlink" href="#complete-lecture-5-live-coding" title="Link to this heading">#</a></h1>
-<p><strong>2025-02-18</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-5-live-coding-complete">
+<span id="lec5-live-complete"></span><h1>Lecture 5 live coding complete<a class="headerlink" href="#lecture-5-live-coding-complete" title="Link to this heading">#</a></h1>
+<p><strong>2025-09-22</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -424,15 +431,15 @@ document.write(`
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 
 <span class="kn">from</span> <span class="nn">nhanes.load</span> <span class="kn">import</span> <span class="n">load_NHANES_data</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="pandas-reassignment">
-<h2>Pandas reassignment<a class="headerlink" href="#pandas-reassignment" title="Link to this heading">#</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pandas-reassignment">
+<h1>Pandas reassignment<a class="headerlink" href="#pandas-reassignment" title="Link to this heading">#</a></h1>
 <p>If we’re chaining together operations, we need to be careful about which dataframe we’re modifying.</p>
 <p>Select respondents who:</p>
 <ul class="simple">
@@ -443,11 +450,24 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhanes_df</span> <span class="o">=</span> <span class="n">load_NHANES_data</span><span class="p">()</span>
 
-<span class="c1"># this could be a good strategy</span>
-<span class="n">modified_df</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nhanes_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
+<span class="c1">#sel_df = nhanes_df[nhanes_df[&#39;AgeInYearsAtScreening&#39;] &gt;= 18]</span>
+<span class="c1">#print(sel_df[sel_df[&#39;GeneralHealthCondition&#39;].isin([&#39;Excellent&#39;, &#39;Very good&#39;]]))</span>
+<span class="c1">#sel_df = sel_df[sel_df[&#39;GeneralHealthCondition&#39;].isin([&#39;Excellent&#39;, &#39;Very good&#39;])]</span>
+<span class="c1">#print(sel_df.shape)</span>
+<span class="c1">#sel_df[(sel_df[&#39;GeneralHealthCondition&#39;] == &#39;Excellent&#39;) | (sel_df[&#39;GeneralHealthCondition&#39;] == &#39;Very good&#39;])]</span>
+
+<span class="c1"># this is a bug, we want to use sel_df in the second line of code</span>
 <span class="n">sel_df</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="p">[</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;AgeInYearsAtScreening&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">]</span>
-<span class="n">sel_df</span> <span class="o">=</span> <span class="n">sel_df</span><span class="p">[(</span><span class="n">sel_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Excellent&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">sel_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Very good&#39;</span><span class="p">)]</span>
+<span class="n">sel_df</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="p">[(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Excellent&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Very good&#39;</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sel_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8366, 197)
+(2163, 197)
 </pre></div>
 </div>
 </div>
@@ -457,10 +477,8 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;SmokedAtLeast100CigarettesInLife&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 
-<span class="c1"># this modifies the &#39;smokedatleast100&#39; column to be 0, for those who report excellent health</span>
 <span class="n">nhanes_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;GeneralHealthCondition&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Excellent&#39;</span><span class="p">,</span> <span class="s1">&#39;SmokedAtLeast100CigarettesInLife&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;SmokedAtLeast100CigarettesInLife&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -470,7 +488,6 @@ document.write(`
 0.0    3301
 1.0    2232
 Name: count, dtype: int64
-------------
 SmokedAtLeast100CigarettesInLife
 0.0    3588
 1.0    2106
@@ -495,11 +512,7 @@ Name: count, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;SmokedAtLeast100CigarettesInLife&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
-<span class="c1"># explicit reassignment needed</span>
-<span class="c1">#nhanes_df = nhanes_df.fillna(0)</span>
-
-<span class="n">nhanes_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
+<span class="n">nhanes_df_cleaned</span> <span class="o">=</span> <span class="n">nhanes_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># return a copy of the updated dataframe</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nhanes_df</span><span class="p">[</span><span class="s1">&#39;SmokedAtLeast100CigarettesInLife&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
 <span class="c1">#nhanes_df[&#39;GeneralHealthCondition&#39;].replace({&#39;Poor?&#39;: &#39;Poor&#39;, &#39;Fair or&#39;: &#39;Fair&#39;})</span>
@@ -508,7 +521,7 @@ Name: count, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2672
-0
+2672
 </pre></div>
 </div>
 </div>
@@ -518,59 +531,88 @@ Name: count, dtype: int64
 <p>To be safe, I generally recommend explicitly re-assigning the dataframe whenever you’re modifying portions of it.</p>
 </div>
 </section>
-<section id="bootstrap">
-<h2>Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h2>
-<section id="using-a-collected-sample-as-a-substitute-for-the-population">
-<h3>Using a collected sample as a substitute for the population<a class="headerlink" href="#using-a-collected-sample-as-a-substitute-for-the-population" title="Link to this heading">#</a></h3>
-<p>Bootstrap sampling “works” because we assume our collected sample is representative of the population.</p>
-<p>Suppose we have a distribution of class colors:</p>
-<div class="math notranslate nohighlight">
-\[X \sim \text{Categorical}(p)\]</div>
-<p>Where <span class="math notranslate nohighlight">\(p=\{\frac{1}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4}\}\)</span> is the probability of each class:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="bootstrap-plotting">
+<h1>Bootstrap plotting<a class="headerlink" href="#bootstrap-plotting" title="Link to this heading">#</a></h1>
+<section id="the-normal-distribution">
+<h2>The normal distribution<a class="headerlink" href="#the-normal-distribution" title="Link to this heading">#</a></h2>
+<p>A probability distribution that we will frequently encounter in addition to the categorical distributions we saw in worksheet 1 is the <strong>normal distribution</strong>. The normal distribution has the following properties:</p>
 <ul class="simple">
-<li><p>Blue Lion</p></li>
-<li><p>Green Griffin</p></li>
-<li><p>Red Pegasus</p></li>
-<li><p>Yellow Sphinx</p></li>
+<li><p>centered and symmetric about the <strong>mean</strong> <span class="math notranslate nohighlight">\(\mu\)</span> (or <span class="math notranslate nohighlight">\(E[X]\)</span>)</p></li>
+<li><p>spread by the <strong>standard deviation</strong> <span class="math notranslate nohighlight">\(\sigma\)</span></p>
+<ul>
+<li><p>the <strong>variance</strong> is <span class="math notranslate nohighlight">\(\sigma^2\)</span> (or <span class="math notranslate nohighlight">\(V[X]\)</span>)</p></li>
 </ul>
-<p>A sample of adequate size should be representative of the population.</p>
+</li>
+</ul>
+<p>We write a random variable as <span class="math notranslate nohighlight">\(X\)</span> that follows a normal distribution as <span class="math notranslate nohighlight">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Watch whether the software you are using takes the variance or the standard deviation as input. In <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, it is the standard deviation, which is different than how we write the distribution above.</p>
+</div>
+<p>We can draw random samples from the normal distribution using <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html"><code class="docutils literal notranslate"><span class="pre">numpy.random.Generator.normal()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This creates a generator with a fixed seed, so we can generate the same random numbers</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="n">class_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Blue Lion&#39;</span><span class="p">,</span> <span class="s1">&#39;Green Griffin&#39;</span><span class="p">,</span> <span class="s1">&#39;Red Pegasus&#39;</span><span class="p">,</span> <span class="s1">&#39;Yellow Sphinx&#39;</span><span class="p">]</span>
-<span class="n">class_probs</span> <span class="o">=</span>  <span class="p">[</span>        <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>             <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>           <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>             <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span>
-
-<span class="n">class_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">class_colors</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">class_probs</span><span class="p">)</span>
-<span class="c1">#class_sample.shape</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">class_sample</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># generate 50000 samples from a normal distribution with E[X]=10 and standard deviation 2</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">50000</span>
+<span class="n">goose_samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="n">goose_samples</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Yellow Sphinx    0.262
-Blue Lion        0.260
-Red Pegasus      0.256
-Green Griffin    0.222
-Name: proportion, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(50000,)
 </pre></div>
 </div>
 </div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>As long as the proportions are about right, the sample is representative, regardless of the size!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use seaborn to create a histogram of the samples</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">goose_samples</span><span class="p">);</span>
+</pre></div>
 </div>
-</section>
-<section id="why-we-care-about-uncertainty-to-confidence-intervals">
-<h3>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals<a class="headerlink" href="#why-we-care-about-uncertainty-to-confidence-intervals" title="Link to this heading">#</a></h3>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/32bcfe26d02d7b6a6f4397358950f3a295ad2bbf563835d869d4eda0ecd3f82e.png" src="../_images/32bcfe26d02d7b6a6f4397358950f3a295ad2bbf563835d869d4eda0ecd3f82e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a sample of 10 from the normal distribution</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">goose_samples</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">goose_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+
+<span class="c1"># in reality, we don&#39;t have access to the &quot;true&quot; distribution, which is why it&#39;s commented out</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">goose_samples</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">goose_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c08f6b99bcafae9e3b91dc4ce03979a001e47276e107d1a695f22c42d5288ae8.png" src="../_images/c08f6b99bcafae9e3b91dc4ce03979a001e47276e107d1a695f22c42d5288ae8.png" />
+</div>
+</div>
+<p>For bootstrap samples, we can use <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html">random.Generator.choice()</a> with replacement to draw samples from our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_estimator</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An estimator of the expected value E[ ] of the population.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sample (np.array): a sample from the population</span>
+
+<span class="sd">    Returns: </span>
+<span class="sd">        float: the mean of the sample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>  
@@ -583,23 +625,20 @@ Name: proportion, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_estimator</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An estimator of the expected value E[ ] of the population.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bootstrap_means_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n_bootstraps</span> <span class="o">=</span> <span class="mi">50000</span>
 
-<span class="sd">    Returns: </span>
-<span class="sd">        float: the mean of the sample</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bootstrap_means</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">n_bootstraps</span> <span class="o">=</span> <span class="mi">5000</span>
-
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bootstraps</span><span class="p">):</span>
+    <span class="c1"># compute bootstrap sample</span>
+    <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">goose_weights</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># compute our mean</span>
+    <span class="n">bootstrap_mean</span> <span class="o">=</span> <span class="n">mean_estimator</span><span class="p">(</span><span class="n">bootstrap_sample</span><span class="p">)</span>
+    <span class="c1">#print(bootstrap_sample.shape)</span>
+    <span class="c1">#print(bootstrap_mean)</span>
+    <span class="c1"># add our bootstrap_mean to a list</span>
+    <span class="n">bootstrap_means_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bootstrap_mean</span><span class="p">)</span>
+<span class="c1">#len(bootstrap_means_list)</span>
 <span class="c1"># for i in range(n_bootstraps):</span>
 <span class="c1">#     # 1. draw a bootstrap sample</span>
 <span class="c1">#     bootstrap_sample = rng.choice(goose_weights, size=100, replace=True)</span>
@@ -613,88 +652,93 @@ Name: proportion, dtype: float64
 </div>
 </div>
 </div>
+<section id="plotting-our-bootstrap-estimates">
+<h3>Plotting our bootstrap estimates<a class="headerlink" href="#plotting-our-bootstrap-estimates" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lower_ci = np.percentile(bootstrap_means, 2.5)</span>
-<span class="c1"># upper_ci = np.percentile(bootstrap_means, 97.5)</span>
-
-<span class="c1"># print(f&quot;Our estimate of average goose weight: {mean_estimator(goose_weights):.1f} lbs&quot;)</span>
-<span class="c1"># print(f&quot;95% Confidence Interval: [{lower_ci:.1f}, {upper_ci:.1f}] lbs&quot;)</span>
-
-<span class="c1"># sns.histplot(bootstrap_means)</span>
-<span class="c1"># plt.axvline(true_goose_weight, color=&#39;black&#39;, linestyle=&#39;--&#39;, label=&#39;True average goose weight&#39;)</span>
-<span class="c1"># plt.axvline(lower_ci, color=&#39;red&#39;, linestyle=&#39;--&#39;)</span>
-<span class="c1"># plt.axvline(upper_ci, color=&#39;red&#39;, linestyle=&#39;--&#39;, label=&#39;95% CI&#39;)</span>
-<span class="c1"># plt.xlabel(&#39;Bootstrap mean estimates of goose weight (lbs)&#39;)</span>
-<span class="c1"># plt.gca().spines[&#39;top&#39;].set_visible(False)</span>
-<span class="c1"># plt.gca().spines[&#39;right&#39;].set_visible(False)</span>
-<span class="c1"># plt.legend()</span>
-<span class="c1">#plt.show()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># as our n_bootstraps increase, we&#39;re able to see the spread of the estimate</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">bootstrap_means_list</span><span class="p">)</span>
+<span class="c1"># fix the xaxis to be between 8 and 12</span>
+<span class="c1"># plt.xlim(8, 12);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/604842de83a0af5373e096d3da94cd095289262a9980dbee90fe8e4d9e2b0172.png" src="../_images/604842de83a0af5373e096d3da94cd095289262a9980dbee90fe8e4d9e2b0172.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="why-we-care-about-uncertainty-to-confidence-intervals">
+<h2>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals<a class="headerlink" href="#why-we-care-about-uncertainty-to-confidence-intervals" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrap_means_list</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">upper_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrap_means_list</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Our estimate of average goose weight: </span><span class="si">{</span><span class="n">mean_estimator</span><span class="p">(</span><span class="n">goose_weights</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> lbs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% Confidence Interval: [</span><span class="si">{</span><span class="n">lower_ci</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">upper_ci</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">] lbs&quot;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">bootstrap_means_list</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">true_goose_weight</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True average goose weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">lower_ci</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">upper_ci</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95% CI&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Bootstrap mean estimates of goose weight (lbs)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Our estimate of average goose weight: 9.9 lbs
+95% Confidence Interval: [9.4, 10.3] lbs
+</pre></div>
+</div>
+<img alt="../_images/93e48fc3c361f086006f6b776fd85f45fe92197b00c5a5da594f340703edb261.png" src="../_images/93e48fc3c361f086006f6b776fd85f45fe92197b00c5a5da594f340703edb261.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_bootstraps</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">n_intervals</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">n_intervals</span> <span class="o">=</span> <span class="mi">1000</span>
 
 <span class="n">count_missed</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="c1"># we&#39;re going to repeat the process of building intervals many times</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_intervals</span><span class="p">):</span>
-    <span class="c1"># first, draw a new sample from the true distribution</span>
-    <span class="n">goose_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_goose_weight</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
-
-    <span class="c1"># build a bootstrapped confidence interval</span>
+    <span class="c1"># First draw a new sample from the true distribution</span>
+    <span class="n">goose_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_goose_weight</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    
     <span class="n">bootstrap_means</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bootstraps</span><span class="p">):</span>
-        <span class="c1"># draw bootstrap samples from this sample</span>
-        <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">goose_sample</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Draw bootstrap samples from this sample</span>
+        <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">goose_sample</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">bootstrap_mean</span> <span class="o">=</span> <span class="n">mean_estimator</span><span class="p">(</span><span class="n">bootstrap_sample</span><span class="p">)</span>
         <span class="n">bootstrap_means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bootstrap_mean</span><span class="p">)</span>
 
-    <span class="c1"># compute the CI</span>
+    <span class="c1"># Compute CI for this sample</span>
     <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrap_means</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
     <span class="n">upper_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrap_means</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)</span>
 
-    <span class="c1"># we&#39;re going to check how many times we miss the interval</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">true_goose_weight</span> <span class="o">&lt;</span> <span class="n">lower_ci</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">true_goose_weight</span> <span class="o">&gt;</span> <span class="n">upper_ci</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">true_goose_weight</span> <span class="o">&lt;</span> <span class="n">lower_ci</span> <span class="ow">or</span> <span class="n">true_goose_weight</span> <span class="o">&gt;</span> <span class="n">upper_ci</span><span class="p">:</span>
         <span class="n">count_missed</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">count_missed</span> <span class="o">/</span> <span class="n">n_intervals</span><span class="p">)</span>
-
-
-<span class="c1"># for j in range(n_intervals):</span>
-<span class="c1">#     # First draw a new sample from the true distribution</span>
-<span class="c1">#     goose_sample = rng.normal(loc=true_goose_weight, scale=2, size=100)</span>
-    
-<span class="c1">#     bootstrap_means = []</span>
-<span class="c1">#     for i in range(n_bootstraps):</span>
-<span class="c1">#         # Draw bootstrap samples from this sample</span>
-<span class="c1">#         bootstrap_sample = rng.choice(goose_sample, size=100, replace=True)</span>
-<span class="c1">#         bootstrap_mean = mean_estimator(bootstrap_sample)</span>
-<span class="c1">#         bootstrap_means.append(bootstrap_mean)</span>
-
-<span class="c1">#     # Compute CI for this sample</span>
-<span class="c1">#     lower_ci = np.percentile(bootstrap_means, 2.5)</span>
-<span class="c1">#     upper_ci = np.percentile(bootstrap_means, 97.5)</span>
-
-<span class="c1">#     if true_goose_weight &lt; lower_ci or true_goose_weight &gt; upper_ci:</span>
-<span class="c1">#         count_missed += 1</span>
-
-<span class="c1"># print(f&quot;Number of intervals that missed the true mean: {count_missed}&quot;)</span>
-<span class="c1"># print(f&quot;Proportion of intervals that missed the true mean: {count_missed / n_intervals:.3f}&quot;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of intervals that missed the true mean: </span><span class="si">{</span><span class="n">count_missed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proportion of intervals that missed the true mean: </span><span class="si">{</span><span class="n">count_missed</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n_intervals</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.068
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of intervals that missed the true mean: 55
+Proportion of intervals that missed the true mean: 0.055
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 <section id="why-we-care-about-uncertainty-to-comparing-estimators">
 <h3>Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> comparing estimators<a class="headerlink" href="#why-we-care-about-uncertainty-to-comparing-estimators" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -702,6 +746,9 @@ Name: proportion, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">first_ten_estimator</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A (not very good) estimator of the expected value E[ ] of the population.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sample (np.array): a sample from the population</span>
 
 <span class="sd">    Returns: </span>
 <span class="sd">        float: the mean of the first 10 elements of the sample</span>
@@ -742,7 +789,7 @@ Name: proportion, dtype: float64
 <span class="c1"># plt.gca().spines[&#39;top&#39;].set_visible(False)</span>
 <span class="c1"># plt.gca().spines[&#39;right&#39;].set_visible(False)</span>
 <span class="c1"># plt.legend()</span>
-<span class="c1">#plt.show()</span>
+<span class="c1"># plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -797,14 +844,21 @@ Name: proportion, dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-reassignment">Pandas reassignment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-collected-sample-as-a-substitute-for-the-population">Using a collected sample as a substitute for the population</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lecture 5 live coding complete</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-reassignment">Pandas reassignment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-plotting">Bootstrap plotting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">The normal distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-our-bootstrap-estimates">Plotting our bootstrap estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-confidence-intervals">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> confidence intervals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-care-about-uncertainty-to-comparing-estimators">Why we care about uncertainty <span class="math notranslate nohighlight">\(\to\)</span> comparing estimators</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

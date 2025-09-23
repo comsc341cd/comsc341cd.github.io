@@ -528,46 +528,14 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">proj2_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="n">File</span> <span class="o">~/</span><span class="n">Github</span><span class="o">/</span><span class="n">comsc341</span><span class="o">-</span><span class="n">cd</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">statsmodels</span><span class="o">/</span><span class="n">formula</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">statsmodels.regression.linear_model</span> <span class="k">as</span> <span class="nn">lm_</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">statsmodels.discrete.discrete_model</span> <span class="k">as</span> <span class="nn">dm_</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">statsmodels.discrete.conditional_models</span> <span class="k">as</span> <span class="nn">dcm_</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">Github</span><span class="o">/</span><span class="n">comsc341</span><span class="o">-</span><span class="n">cd</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">statsmodels</span><span class="o">/</span><span class="n">regression</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.linear_model</span> <span class="kn">import</span> <span class="n">yule_walker</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">statsmodels.tools._test_runner</span> <span class="kn">import</span> <span class="n">PytestTester</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yule_walker&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">Github</span><span class="o">/</span><span class="n">comsc341</span><span class="o">-</span><span class="n">cd</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">statsmodels</span><span class="o">/</span><span class="n">regression</span><span class="o">/</span><span class="n">linear_model</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">49</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="kn">import</span> <span class="nn">statsmodels.base.model</span> <span class="k">as</span> <span class="nn">base</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="kn">import</span> <span class="nn">statsmodels.base.wrapper</span> <span class="k">as</span> <span class="nn">wrap</span>
-<span class="ne">---&gt; </span><span class="mi">49</span> <span class="kn">from</span> <span class="nn">statsmodels.emplike.elregress</span> <span class="kn">import</span> <span class="n">_ELRegOpts</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="c1"># need import in module instead of lazily to copy `__doc__`</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="kn">from</span> <span class="nn">statsmodels.regression._prediction</span> <span class="kn">import</span> <span class="n">PredictionResults</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1176,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1138,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1078,</span> in <span class="ni">_find_spec</span><span class="nt">(name, path, target)</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap_external&gt;:1507,</span> in <span class="ni">find_spec</span><span class="nt">(cls, fullname, path, target)</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap_external&gt;:1479,</span> in <span class="ni">_get_spec</span><span class="nt">(cls, fullname, path, target)</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap_external&gt;:1619,</span> in <span class="ni">find_spec</span><span class="nt">(self, fullname, target)</span>
-
-<span class="nn">File &lt;frozen importlib._bootstrap_external&gt;:1662,</span> in <span class="ni">_fill_cache</span><span class="nt">(self)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;proj2_functions&#39;
 </pre></div>
 </div>
 </div>
