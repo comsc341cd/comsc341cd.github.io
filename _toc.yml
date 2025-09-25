@@ -37,9 +37,12 @@ parts:
   #     - file: worksheets/ws3_solution.ipynb 
   #     - file: worksheets/ws4_solution.ipynb
   #     - file: worksheets/ws5_solution.ipynb
-  # - caption: Projects
-  #   chapters:
-  #     - file: projects/proj1.ipynb
+  - caption: Projects
+    chapters:
+      - file: projects/proj1.md
+        sections:
+        - file: projects/proj1_functions.ipynb
+        - file: projects/proj1_analysis.ipynb
   #     - file: projects/proj2.md
   #       sections:
   #       - file: projects/proj2_functions.ipynb
