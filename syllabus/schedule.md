@@ -69,21 +69,21 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/23</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 3](ws3)
     - <small>09/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Causal Graphs II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 6](https://moodle.mtholyoke.edu/pluginfile.php/1496633/mod_resource/content/2/lec06-causal-graphs-ii-starter.pdf)</li><li>[[complete] slides 6](https://moodle.mtholyoke.edu/pluginfile.php/1496634/mod_resource/content/2/lec06-causal-graphs-ii.pdf)</li><li>[activity 6](https://docs.google.com/document/d/1wFTimlv8bJHg7B2e2UBVGpICNq08781I4tBzaehyxJE/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li></ul>
     - <small>09/25</small>
-    - <small>09/26</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 1
+    - <small>09/26</small><br><b><u>🏔️ Mountain Day 🏔️</u></b><br><br><s>![](https://img.shields.io/badge/Released:-2ca02c) Proj 1</s>
 
 
 *   
-    - <small>09/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b>
+    - <small>09/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 7](https://moodle.mtholyoke.edu/pluginfile.php/1496638/mod_resource/content/3/lec07-observational-studies-i-starter.pdf)</li><li>[Activity 7](https://docs.google.com/document/d/1J1dsiy6X8IgJMfva_CEMklsDLVO8OChXBRn9cPTIEsE/edit?usp=sharing)</li></ul> ![](https://img.shields.io/badge/Released:-2ca02c) Proj 1
     - <small>09/30</small>
     - <small>10/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b>
     - <small>10/02</small>
     - <small>10/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
 
 *   
-    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><br><br>![](https://img.shields.io/badge/Due:-d62728) Project 1
+    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><br><br><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
     - <small>10/07</small>
     - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
-    - <small>10/09</small>
+    - <small>10/09</small><br><br>![](https://img.shields.io/badge/Due:-d62728) Proj 1
     - <small>10/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
 
 *   

@@ -28,7 +28,7 @@ I recommend that you test your functions in Part 1 both with your own assertions
 - Exercise your data manipulation and visualization skills with real and simulated data.
 
 :::{note}
-This project is due **Monday 10/6 at 11:59pm.**
+This project is due **Thursday 10/9 at 11:59pm.**
 :::
 
 :::{admonition} Grading guidelines
