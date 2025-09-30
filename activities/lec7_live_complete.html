@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>[complete] Lecture 7 live coding &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Lecture 7 live coding complete &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -394,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>[complete] Lecture 7 live coding</h1>
+    <h1>Lecture 7 live coding complete</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,9 +417,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="complete-lecture-7-live-coding">
-<span id="lec7-live-complete"></span><h1>[complete] Lecture 7 live coding<a class="headerlink" href="#complete-lecture-7-live-coding" title="Link to this heading">#</a></h1>
-<p><strong>2025-02-25</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-7-live-coding-complete">
+<span id="lec7-live-complete"></span><h1>Lecture 7 live coding complete<a class="headerlink" href="#lecture-7-live-coding-complete" title="Link to this heading">#</a></h1>
+<p><strong>2025-09-29</strong></p>
 <hr class="docutils" />
 <section id="law-of-total-expectation">
 <h2>Law of Total Expectation<a class="headerlink" href="#law-of-total-expectation" title="Link to this heading">#</a></h2>
@@ -455,7 +455,7 @@ X = \begin{cases}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # generate a random variable X with 80% arabica and 20% robusta</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -479,19 +479,24 @@ Y \sim \begin{cases}
 \)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#help(np.where)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Y from two normal distributions</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">X</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span>
-             <span class="c1"># select from this if X == 1</span>
-             <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">),</span>
-             <span class="c1"># select if X == 0</span>
-            <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">))</span>
-
-<span class="n">Y</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="n">X</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="c1"># condition</span>
+    <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">),</span> <span class="c1"># if condition is true</span>
+    <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="p">)</span>
 
 <span class="c1"># Create dataframe</span>
 <span class="n">coffee_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;is_arabica&#39;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span>
-    <span class="s1">&#39;price $/lb&#39;</span><span class="p">:</span> <span class="n">Y</span>
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">Y</span>
 <span class="p">})</span>
 
 <span class="n">coffee_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -518,7 +523,7 @@ Y \sim \begin{cases}
     <tr style="text-align: right;">
       <th></th>
       <th>is_arabica</th>
-      <th>price $/lb</th>
+      <th>price</th>
     </tr>
   </thead>
   <tbody>
@@ -529,8 +534,8 @@ Y \sim \begin{cases}
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>3.656110</td>
+      <td>0</td>
+      <td>2.401831</td>
     </tr>
     <tr>
       <th>2</th>
@@ -544,8 +549,8 @@ Y \sim \begin{cases}
     </tr>
     <tr>
       <th>4</th>
-      <td>0</td>
-      <td>2.108594</td>
+      <td>1</td>
+      <td>5.334476</td>
     </tr>
   </tbody>
 </table>
@@ -597,17 +602,16 @@ E[Y] = E[Y|X=1]P(X=1) + E[Y|X=0]P(X=0)
 <span class="n">actual_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="c1"># compute the conditional means</span>
-<span class="n">Y_X1</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">Y_X0</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1"># we want to select the rows where is_arabica is 1</span>
+<span class="n">mean_price_arabica</span> <span class="o">=</span> <span class="n">coffee_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coffee_df</span><span class="p">[</span><span class="s1">&#39;is_arabica&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price_robusta</span> <span class="o">=</span> <span class="n">coffee_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coffee_df</span><span class="p">[</span><span class="s1">&#39;is_arabica&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="c1"># mean of a binary variable is equivalent to the probability it is equal to 1</span>
-<span class="c1"># P(X=1) = E[X], when X is binary</span>
-<span class="n">prob_is_arabica</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">p_arabica</span> <span class="o">=</span> <span class="n">coffee_df</span><span class="p">[</span><span class="s1">&#39;is_arabica&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
+<span class="c1">#coffee_df[&#39;is_arabica&#39;].isin([1])</span>
 
 <span class="c1"># calculate the weighted average of conditional means</span>
-<span class="c1"># E[Y∣ X=1]P(X=1)+ E[Y∣ X=0]P(X=0)</span>
-<span class="n">law_of_total_expectation</span> <span class="o">=</span> <span class="n">Y_X1</span> <span class="o">*</span> <span class="n">prob_is_arabica</span> <span class="o">+</span> <span class="n">Y_X0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob_is_arabica</span><span class="p">)</span>
+<span class="n">law_of_total_expectation</span> <span class="o">=</span> <span class="n">mean_price_arabica</span><span class="o">*</span><span class="n">p_arabica</span> <span class="o">+</span> <span class="n">mean_price_robusta</span><span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_arabica</span><span class="p">)</span>
 
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual mean price: $</span><span class="si">{:.2f}</span><span class="s2">/lb&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">actual_mean</span><span class="p">))</span>
@@ -616,8 +620,8 @@ E[Y] = E[Y|X=1]P(X=1) + E[Y|X=0]P(X=0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual mean price: $3.99/lb
-Law of total expectation: $3.99/lb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual mean price: $4.12/lb
+Law of total expectation: $4.12/lb
 </pre></div>
 </div>
 </div>
@@ -645,23 +649,6 @@ Law of total expectation: $3.99/lb
 </div>
 </div>
 <p>We can also visualize the distribution of the prices by species:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">coffee_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;price $/lb&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;is_arabica&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Y_X1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean: arabica&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Y_X0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean: robusta&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">actual_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;overall mean&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x32e7cc190&gt;
-</pre></div>
-</div>
-<img alt="../_images/e6b9ba057f2a81a01c5bab68bf93806596bb0860efd9be5ad30e423ccd6696f6.png" src="../_images/e6b9ba057f2a81a01c5bab68bf93806596bb0860efd9be5ad30e423ccd6696f6.png" />
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COMPLETED CELL</span>
