@@ -73,7 +73,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 
 *   
-    - <small>09/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 7](https://moodle.mtholyoke.edu/pluginfile.php/1496638/mod_resource/content/3/lec07-observational-studies-i-starter.pdf)</li><li>[Activity 7](https://docs.google.com/document/d/1J1dsiy6X8IgJMfva_CEMklsDLVO8OChXBRn9cPTIEsE/edit?usp=sharing)</li></ul> ![](https://img.shields.io/badge/Released:-2ca02c) Proj 1
+    - <small>09/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 7](https://moodle.mtholyoke.edu/pluginfile.php/1496638/mod_resource/content/3/lec07-observational-studies-i-starter.pdf)</li><li>[[complete] slides 7](https://moodle.mtholyoke.edu/pluginfile.php/1496639/mod_resource/content/2/lec07-observational-studies-i.pdf)</li><li>[Activity 7](https://docs.google.com/document/d/1J1dsiy6X8IgJMfva_CEMklsDLVO8OChXBRn9cPTIEsE/edit?usp=sharing)</li><li>[Activity 7 solutions](https://docs.google.com/document/d/1i2cnDj3yRJ2gr3r3V3BzJtltj9lxbMyHLg_vZu47qsI/edit?usp=sharing)</li><li>[[starter] lecture 7 live coding](lec7_live)</li><li>[[complete] lecture 7 live coding](lec7_live_complete)</li></ul> ![](https://img.shields.io/badge/Released:-2ca02c) [Proj 1](proj1)
     - <small>09/30</small>
     - <small>10/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b>
     - <small>10/02</small>
@@ -83,7 +83,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><br><br><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
     - <small>10/07</small>
     - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
-    - <small>10/09</small><br><br>![](https://img.shields.io/badge/Due:-d62728) Proj 1
+    - <small>10/09</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Proj 1](proj1)
     - <small>10/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
 
 *   
