@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 9: Other causal quantities and matching &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 9: Positivity in Yeager et al. 2019 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -58,8 +58,6 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity9';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -394,7 +392,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 9: Other causal quantities and matching</h1>
+    <h1>Activity 9: Positivity in Yeager et al. 2019</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,10 +402,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 9: Other causal quantities and matching</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-computing-causal-quantities-from-the-ground-truth-table">Part 1: Computing causal quantities from the “ground truth” table</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-matching-on-one-covariate">Part 2: Matching on one covariate</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-score-matching">Part 3: Propensity score matching</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 9: Positivity in Yeager et al. 2019</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-imbalance-in-covariates">Part 1: Imbalance in covariates</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-examining-positivity">Part 2: Examining positivity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.3</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extra">Optional extra</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 
             </nav>
@@ -420,97 +427,27 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-9-other-causal-quantities-and-matching">
-<span id="activity9"></span><h1>Activity 9: Other causal quantities and matching<a class="headerlink" href="#activity-9-other-causal-quantities-and-matching" title="Link to this heading">#</a></h1>
-<p><strong>2025-03-11</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-9-positivity-in-yeager-et-al-2019">
+<span id="activity9"></span><h1>Activity 9: Positivity in Yeager et al. 2019<a class="headerlink" href="#activity-9-positivity-in-yeager-et-al-2019" title="Link to this heading">#</a></h1>
+<p><strong>2025-10-03</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-1-computing-causal-quantities-from-the-ground-truth-table">
-<h1>Part 1: Computing causal quantities from the “ground truth” table<a class="headerlink" href="#part-1-computing-causal-quantities-from-the-ground-truth-table" title="Link to this heading">#</a></h1>
-<p>A healthcare provider implemented a voluntary smoking cessation program for patients who smoke. The program included counseling, nicotine replacement therapy, and support groups. The healthcare provider wants to evaluate the program’s effectiveness. The variables are as follows:</p>
-<ul class="simple">
-<li><p>T: Participation in the smoking cessation program (1 = participated, 0 = did not participate)</p></li>
-<li><p>Y: Lung function score (higher is better) measured one year after the program finished</p></li>
-</ul>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Unit</p></th>
-<th class="head"><p>T</p></th>
-<th class="head"><p>Y(1)</p></th>
-<th class="head"><p>Y(0)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0</p></td>
-<td><p>1</p></td>
-<td><p>80</p></td>
-<td><p>60</p></td>
-</tr>
-<tr class="row-odd"><td><p>1</p></td>
-<td><p>1</p></td>
-<td><p>80</p></td>
-<td><p>70</p></td>
-</tr>
-<tr class="row-even"><td><p>2</p></td>
-<td><p>1</p></td>
-<td><p>60</p></td>
-<td><p>10</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>1</p></td>
-<td><p>30</p></td>
-<td><p>30</p></td>
-</tr>
-<tr class="row-even"><td><p>4</p></td>
-<td><p>0</p></td>
-<td><p>50</p></td>
-<td><p>40</p></td>
-</tr>
-<tr class="row-odd"><td><p>5</p></td>
-<td><p>0</p></td>
-<td><p>30</p></td>
-<td><p>40</p></td>
-</tr>
-<tr class="row-even"><td><p>6</p></td>
-<td><p>0</p></td>
-<td><p>70</p></td>
-<td><p>70</p></td>
-</tr>
-<tr class="row-odd"><td><p>7</p></td>
-<td><p>0</p></td>
-<td><p>60</p></td>
-<td><p>50</p></td>
-</tr>
-<tr class="row-even"><td><p>8</p></td>
-<td><p>0</p></td>
-<td><p>50</p></td>
-<td><p>20</p></td>
-</tr>
-<tr class="row-odd"><td><p>9</p></td>
-<td><p>0</p></td>
-<td><p>50</p></td>
-<td><p>10</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Suppose we are omniscient or in possession of a time machine giving us access to the ground truth table above, where we can see the potential outcomes for each unit. The code below generates a dataframe with this table:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">part1_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="s1">&#39;Y1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
-    <span class="s1">&#39;Y0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="p">})</span>
-<span class="n">part1_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load and examine the data</span>
+<span class="n">learning_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/learning_mindset.csv&quot;</span><span class="p">)</span>
+<span class="n">learning_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -533,382 +470,252 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>T</th>
-      <th>Y1</th>
-      <th>Y0</th>
+      <th>schoolid</th>
+      <th>intervention</th>
+      <th>achievement_score</th>
+      <th>success_expect</th>
+      <th>ethnicity</th>
+      <th>gender</th>
+      <th>frst_in_family</th>
+      <th>school_urbanicity</th>
+      <th>school_mindset</th>
+      <th>school_achievement</th>
+      <th>school_ethnic_minority</th>
+      <th>school_poverty</th>
+      <th>school_size</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>76</td>
       <td>1</td>
-      <td>80</td>
-      <td>60</td>
+      <td>0.277359</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>76</td>
       <td>1</td>
-      <td>80</td>
-      <td>70</td>
+      <td>-0.449646</td>
+      <td>4</td>
+      <td>12</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>76</td>
       <td>1</td>
-      <td>60</td>
-      <td>10</td>
+      <td>0.769703</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>76</td>
       <td>1</td>
-      <td>30</td>
-      <td>30</td>
+      <td>-0.121763</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>76</td>
+      <td>1</td>
+      <td>1.526147</td>
+      <td>6</td>
+      <td>4</td>
+      <td>1</td>
       <td>0</td>
-      <td>50</td>
-      <td>40</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0</td>
-      <td>30</td>
-      <td>40</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>70</td>
-      <td>70</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0</td>
-      <td>60</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0</td>
-      <td>50</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0</td>
-      <td>50</td>
-      <td>10</td>
+      <td>4</td>
+      <td>0.334544</td>
+      <td>0.648586</td>
+      <td>-1.310927</td>
+      <td>0.224077</td>
+      <td>-0.426757</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>What is the estimated average treatment effect (ATE)? Recall that the ATE is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-ATE = E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]
-\]</div>
+<p>This selected portion of the National Study of Learning Mindsets dataset is not truly randomized, so we’ll need to adjust for confounding.</p>
+<p>The columns we will look at are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: student prior mindset about their ability to succeed in school (higher values indicate a stronger belief in their ability to succeed)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>: whether the student would be the first in their family to attend college (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>: student’s self-reported gender</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>: categorical variable corresponding to the urbanicity of the school the student attends, e.g. urban, suburban, rural</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">achievement_score</span></code>: the student’s future grade achievement, standardized such that 0 is the mean and it has a standard deviation of 1</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-imbalance-in-covariates">
+<h1>Part 1: Imbalance in covariates<a class="headerlink" href="#part-1-imbalance-in-covariates" title="Link to this heading">#</a></h1>
+<p>In this vesrion of the dataset we are anlayzing, there appear to be some differences in the distribution of covariates between the treatment and control groups where participants have different probabilities of receiving the intervention.</p>
+<section id="id1">
+<h2>1.1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Perform two separate <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operations to compute the mean of <code class="docutils literal notranslate"><span class="pre">intervention</span></code>, grouping by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code></p></li>
+</ul>
+<p>What do you observe? Are certain groups of students more or less likely to receive the growth mindset video? Keep in mind that <code class="docutils literal notranslate"><span class="pre">intervention=1</span></code> corresponds to the growth mindset video intervention.</p>
 <p><strong>Your response</strong>: TODO</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Next, estimate the ATT and ATU.</p>
-<p>The ATT is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-ATT = E[Y(1) - Y(0) | T = 1] = E[Y(1) | T = 1] - E[Y(0) | T = 1]
-\]</div>
-<p>The ATU is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-ATU = E[Y(1) - Y(0) | T = 0] = E[Y(1) | T = 0] - E[Y(0) | T = 0]
-\]</div>
-<p>Send your ATT estimate to PollEverywhere:</p>
-<p><strong>Your ATT estimate</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
-<p><strong>Your ATU estimate</strong>: TODO</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO perform two separate groupby operations</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-2-matching-on-one-covariate">
-<h1>Part 2: Matching on one covariate<a class="headerlink" href="#part-2-matching-on-one-covariate" title="Link to this heading">#</a></h1>
-<p>Now suppose we only have access to the observed data table, and we want to estimate the ATT by matching on one covariate, smoking frequency:</p>
-<ul class="simple">
-<li><p>X: smoking frequency (# cigarettes per day)</p></li>
-</ul>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Unit</p></th>
-<th class="head"><p>T</p></th>
-<th class="head"><p>Y</p></th>
-<th class="head"><p>X</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0</p></td>
-<td><p>1</p></td>
-<td><p>80</p></td>
-<td><p>5</p></td>
-</tr>
-<tr class="row-odd"><td><p>1</p></td>
-<td><p>1</p></td>
-<td><p>80</p></td>
-<td><p>10</p></td>
-</tr>
-<tr class="row-even"><td><p>2</p></td>
-<td><p>1</p></td>
-<td><p>60</p></td>
-<td><p>8</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>1</p></td>
-<td><p>30</p></td>
-<td><p>1</p></td>
-</tr>
-<tr class="row-even"><td><p>4</p></td>
-<td><p>0</p></td>
-<td><p>40</p></td>
-<td><p>5</p></td>
-</tr>
-<tr class="row-odd"><td><p>5</p></td>
-<td><p>0</p></td>
-<td><p>40</p></td>
-<td><p>1</p></td>
-</tr>
-<tr class="row-even"><td><p>6</p></td>
-<td><p>0</p></td>
-<td><p>70</p></td>
-<td><p>8</p></td>
-</tr>
-<tr class="row-odd"><td><p>7</p></td>
-<td><p>0</p></td>
-<td><p>50</p></td>
-<td><p>13</p></td>
-</tr>
-<tr class="row-even"><td><p>8</p></td>
-<td><p>0</p></td>
-<td><p>20</p></td>
-<td><p>10</p></td>
-</tr>
-<tr class="row-odd"><td><p>9</p></td>
-<td><p>0</p></td>
-<td><p>10</p></td>
-<td><p>16</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Below is the dataframe for the observed data:</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-examining-positivity">
+<h1>Part 2: Examining positivity<a class="headerlink" href="#part-2-examining-positivity" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">part2_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-    <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
-<span class="p">})</span>
-<span class="n">part2_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h2>2.1<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Now that we’ve seeen some potential confounding in <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>, let’s try to control for them. If we take the same strategy as we have done before with stratification, we’ll need to bin on the confounders and compute treatment effects for each bin.</p>
+<p>However, we also need to be careful about positivity violations. First, let’s compute the total number of bins we need to create if we want to control for these two covariates.</p>
+<p>We can do this by using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.nunique.html">pd.Series.nunique</a> to get the number of unique values for each covariate and then multiplying them together. This is like counting the number of possible bins over the all possible combinations of each variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO calculate the total number of bins </span>
+<span class="n">total_bins</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total number of bins: </span><span class="si">{</span><span class="n">total_bins</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>T</th>
-      <th>Y</th>
-      <th>X</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>80</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>80</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>60</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>30</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>40</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0</td>
-      <td>40</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0</td>
-      <td>70</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0</td>
-      <td>50</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0</td>
-      <td>20</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0</td>
-      <td>10</td>
-      <td>16</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Match all the treated units to the control units that have the same smoking frequency by filling out the list of units manually below:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">treated_units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">control_units</span> <span class="o">=</span> <span class="p">[</span>          <span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Next, compute the ATT estimate through the difference-in-means for the treated units and control units.</p>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">df.loc[row_indices,</span> <span class="pre">column]</span></code> to select based on the row indices and column name.</p>
-<p>For example, <code class="docutils literal notranslate"><span class="pre">part2_df.loc[[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">'Y']</span></code> will select the rows 0, 1, 2 and the column ‘Y’.</p>
-<p><strong>Your ATT estimate</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO compute difference-in-means for outcome Y between treated and control units</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total number of bins: 0
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="part-3-propensity-score-matching">
-<h1>Part 3: Propensity score matching<a class="headerlink" href="#part-3-propensity-score-matching" title="Link to this heading">#</a></h1>
-<p>Suppose we want to instead match on the propensity score <span class="math notranslate nohighlight">\(e_i(X)\)</span>, which is the estimated probability of treatment for unit <span class="math notranslate nohighlight">\(i\)</span> given other covariates <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Unit</p></th>
-<th class="head"><p>T</p></th>
-<th class="head"><p>Y</p></th>
-<th class="head"><p>e(X)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0</p></td>
-<td><p>1</p></td>
-<td><p>80</p></td>
-<td><p>0.88</p></td>
-</tr>
-<tr class="row-odd"><td><p>1</p></td>
-<td><p>1</p></td>
-<td><p>80</p></td>
-<td><p>0.6</p></td>
-</tr>
-<tr class="row-even"><td><p>2</p></td>
-<td><p>1</p></td>
-<td><p>60</p></td>
-<td><p>0.2</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>1</p></td>
-<td><p>30</p></td>
-<td><p>0.8</p></td>
-</tr>
-<tr class="row-even"><td><p>4</p></td>
-<td><p>0</p></td>
-<td><p>40</p></td>
-<td><p>0.2</p></td>
-</tr>
-<tr class="row-odd"><td><p>5</p></td>
-<td><p>0</p></td>
-<td><p>40</p></td>
-<td><p>0.82</p></td>
-</tr>
-<tr class="row-even"><td><p>6</p></td>
-<td><p>0</p></td>
-<td><p>70</p></td>
-<td><p>0.58</p></td>
-</tr>
-<tr class="row-odd"><td><p>7</p></td>
-<td><p>0</p></td>
-<td><p>50</p></td>
-<td><p>0.1</p></td>
-</tr>
-<tr class="row-even"><td><p>8</p></td>
-<td><p>0</p></td>
-<td><p>20</p></td>
-<td><p>0.05</p></td>
-</tr>
-<tr class="row-odd"><td><p>9</p></td>
-<td><p>0</p></td>
-<td><p>10</p></td>
-<td><p>0.72</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Let’s again match all the treated units to the control units that have the closest propensity score by filling out the list of units manually below.</p>
-<ol class="arabic simple">
-<li><p>Begin with the first treated unit (unit 0), and match it to the control unit with the closest propensity score.</p></li>
-<li><p>Remove the matched control unit from further consideration. Aside: you can cross out in Markdown using double tildes: <code class="docutils literal notranslate"><span class="pre">~~crossed</span> <span class="pre">out~~</span></code>.</p></li>
-<li><p>Repeat until all treated units are matched.</p></li>
-</ol>
+<section id="id3">
+<h2>2.2<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Next, let’s check if positivity holds. We can do this by grouping over the covariates plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
+<p>To generate the per-bin counts, we perform a <code class="docutils literal notranslate"><span class="pre">groupby(all_cols,</span> <span class="pre">as_index=False)</span></code> over the intervention and all combinations of the other columns, and the check the <code class="docutils literal notranslate"><span class="pre">ngroups</span></code> attribute of the resulting groupby object. How many groups are there?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">treated_units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">control_units</span> <span class="o">=</span> <span class="p">[</span>          <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by the intervention column and the two covariates</span>
+<span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;group_count&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
-<p>Suppose that we had instead began matching in reverse order, starting with the last treated unit 3. What control unit would be matched to unit 3 instead?</p>
-<p><strong>Your response</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<p>Since we need each bin to have both control and treatment units in order to have a valid comparison, the total number of groups should be equal to <strong>2 times the total number of bins possible</strong> for there to be no positivity violations.</p>
+<p>Does the number of groups you found in 2.1 match this?</p>
+<p><strong>Your response</strong>: TODO</p>
+</section>
+<section id="id4">
+<h2>2.3<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Ideally we’d like to control for as many confounders as possible to make conditional exchangeability more plausible. Let’s now add <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> to our list of covariates, making a total of 4 confounders.</p>
+<p>Repeat the analysis above with the new set of covariates. Do we see positivity violations with the new set of covariates?</p>
+<p><strong>Your response</strong>: TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here </span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-extra">
+<h1>Optional extra<a class="headerlink" href="#optional-extra" title="Link to this heading">#</a></h1>
+<p>if we actually want to see the bins that are missing, we can generate a <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html">pivot_table</a> of the counts, and then identify the bins that are missing in either the control or treatment group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_df</span> <span class="o">=</span> <span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">all_cols</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+<span class="c1"># Create a pivot table to show counts by intervention and bins</span>
+<span class="n">bin_pivot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">count_df</span><span class="p">,</span> 
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">,</span> <span class="s1">&#39;school_urbanicity&#39;</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;intervention&#39;</span><span class="p">],</span>
+    <span class="n">values</span><span class="o">=</span><span class="s1">&#39;intervention&#39;</span><span class="p">,</span>
+    <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Display information about the pivot table</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bins with no control units:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bin_pivot</span><span class="p">[</span><span class="n">bin_pivot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bins with no treatment units:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">bin_pivot</span><span class="p">[</span><span class="n">bin_pivot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Yeager, D. S. et al. (2019). A national experiment reveals where a growth mindset improves achievement. Nature.</p></li>
+<li><p>Athey, S., &amp; Wager, S. (2019). Estimating treatment effects with causal forests: An application. Observational studies.</p></li>
+<li><p>Facure, M. (2023). Causal Inference for the Brave and the True.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -957,10 +764,19 @@ ATU = E[Y(1) - Y(0) | T = 0] = E[Y(1) | T = 0] - E[Y(0) | T = 0]
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 9: Other causal quantities and matching</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-computing-causal-quantities-from-the-ground-truth-table">Part 1: Computing causal quantities from the “ground truth” table</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-matching-on-one-covariate">Part 2: Matching on one covariate</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-score-matching">Part 3: Propensity score matching</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 9: Positivity in Yeager et al. 2019</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-imbalance-in-covariates">Part 1: Imbalance in covariates</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-examining-positivity">Part 2: Examining positivity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.3</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-extra">Optional extra</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 
   </nav></div>

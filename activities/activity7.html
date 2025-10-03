@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 7: Positivity and regression in Yeager et al. 2019 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 9: Positivity and regression in Yeager et al. 2019 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -392,7 +392,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 7: Positivity and regression in Yeager et al. 2019</h1>
+    <h1>Activity 9: Positivity and regression in Yeager et al. 2019</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -402,7 +402,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity and regression in Yeager et al. 2019</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 9: Positivity and regression in Yeager et al. 2019</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-imbalance-in-covariates">Part 1: Imbalance in covariates</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
 </ul>
@@ -432,9 +432,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-7-positivity-and-regression-in-yeager-et-al-2019">
-<span id="activity7"></span><h1>Activity 7: Positivity and regression in Yeager et al. 2019<a class="headerlink" href="#activity-7-positivity-and-regression-in-yeager-et-al-2019" title="Link to this heading">#</a></h1>
-<p><strong>2025-03-04</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-9-positivity-and-regression-in-yeager-et-al-2019">
+<span id="activity9"></span><h1>Activity 9: Positivity and regression in Yeager et al. 2019<a class="headerlink" href="#activity-9-positivity-and-regression-in-yeager-et-al-2019" title="Link to this heading">#</a></h1>
+<p><strong>2025-10-03</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,7 +621,7 @@ document.write(`
 <h2>2.1<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>Now that we’ve seeen some potential confounding in <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>, let’s try to control for them. If we take the same strategy as we have done before with stratification, we’ll need to bin on the confounders and compute treatment effects for each bin.</p>
 <p>However, we also need to be careful about positivity violations. First, let’s compute the total number of bins we need to create if we want to control for these two covariates.</p>
-<p>We can do this by using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.nunique.html">pd.Series.nunique</a> to get the number of unique values for each covariate and then multiplying them together. This is like taking a cross product over the all possible values of each variable.</p>
+<p>We can do this by using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.nunique.html">pd.Series.nunique</a> to get the number of unique values for each covariate and then multiplying them together. This is like counting the number of possible bins over the all possible combinations of each variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO calculate the total number of bins </span>
@@ -640,7 +640,7 @@ document.write(`
 </section>
 <section id="id3">
 <h2>2.2<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>Next, let’s check if positivity holds. We can do this by grouping over the covariiats plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
+<p>Next, let’s check if positivity holds. We can do this by grouping over the covariates plus the intervention, and then counting the number of unique groups are actually present in the data.</p>
 <p>To generate the per-bin counts, we perform a <code class="docutils literal notranslate"><span class="pre">groupby(all_cols,</span> <span class="pre">as_index=False)</span></code> over the intervention and all combinations of the other columns, and the check the <code class="docutils literal notranslate"><span class="pre">ngroups</span></code> attribute of the resulting groupby object. How many groups are there?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -828,7 +828,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 7: Positivity and regression in Yeager et al. 2019</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 9: Positivity and regression in Yeager et al. 2019</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-imbalance-in-covariates">Part 1: Imbalance in covariates</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
 </ul>
