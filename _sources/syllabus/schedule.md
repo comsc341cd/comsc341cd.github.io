@@ -77,10 +77,10 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>09/30</small>
     - <small>10/01</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Observational Studies II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 8](https://moodle.mtholyoke.edu/pluginfile.php/1496643/mod_resource/content/2/lec08-observational-studies-ii-starter.pdf)</li><li>[[complete] slides 8](https://moodle.mtholyoke.edu/pluginfile.php/1496644/mod_resource/content/2/lec08-observational-studies-ii.pdf)</li><li>[Activity 8](https://docs.google.com/document/d/1CuEtdCRXCjwIo0Q-M5zii_b_iJWgaoXVQOBfxDTsrdA/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li><li>[Activity 8 solutions](https://docs.google.com/document/d/1wXOXM30_ipZlbI8F_yrRnp9_6xR7tdyn3RX0a67UNBk/edit?tab=t.0#heading=h.x6szsl4jkr1q)</li></ul>
     - <small>10/02</small>
-    - <small>10/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1513886/mod_resource/content/1/lab4.pdf)</li><li>[activity 9](activity9)</li></ul>
+    - <small>10/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1513886/mod_resource/content/1/lab4.pdf)</li><li>[Activity 9](activity9)</li></ul>
 
 *   
-    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><br><br><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
+    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1496646/mod_resource/content/2/lec09-regression-starter.pdf)</li><li>[Activity 9](activity9)</li></ul><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
     - <small>10/07</small>
     - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
     - <small>10/09</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Proj 1](proj1)
