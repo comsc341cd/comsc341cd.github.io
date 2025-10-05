@@ -80,7 +80,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>10/03</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1513886/mod_resource/content/1/lab4.pdf)</li><li>[Activity 9](activity9)</li></ul>
 
 *   
-    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><ul style="margin-top:-1em;"><li>[[starter] slides](https://moodle.mtholyoke.edu/pluginfile.php/1496646/mod_resource/content/2/lec09-regression-starter.pdf)</li><li>[Activity 9](activity9)</li></ul><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
+    - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 9](https://moodle.mtholyoke.edu/pluginfile.php/1496646/mod_resource/content/2/lec09-regression-starter.pdf)</li><li>[Activity 9](activity9)</li></ul><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
     - <small>10/07</small>
     - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
     - <small>10/09</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Proj 1](proj1)
