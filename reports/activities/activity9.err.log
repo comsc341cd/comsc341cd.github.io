@@ -19,7 +19,7 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 # Group by the intervention column and the two covariates
-all_cols = []
+all_cols = ['intervention', 'success_expect', 'frst_in_family']
 #group_count = learning_df.groupby(all_cols, as_index=False).ngroups
 
 
@@ -30,7 +30,7 @@ print(f"Number actual groups among the bins for {all_cols}: {group_count}")
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
 Cell [0;32mIn[6], line 6[0m
-[1;32m      2[0m all_cols [38;5;241m=[39m []
+[1;32m      2[0m all_cols [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mintervention[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msuccess_expect[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mfrst_in_family[39m[38;5;124m'[39m]
 [1;32m      3[0m [38;5;66;03m#group_count = learning_df.groupby(all_cols, as_index=False).ngroups[39;00m
 [0;32m----> 6[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mNumber actual groups among the bins for [39m[38;5;132;01m{[39;00mall_cols[38;5;132;01m}[39;00m[38;5;124m: [39m[38;5;132;01m{[39;00m[43mgroup_count[49m[38;5;132;01m}[39;00m[38;5;124m"[39m)
 

@@ -645,7 +645,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by the intervention column and the two covariates</span>
-<span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intervention&#39;</span><span class="p">,</span> <span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">]</span>
 <span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
 
 
@@ -657,7 +657,7 @@ document.write(`
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">all_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intervention&#39;</span><span class="p">,</span> <span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -677,8 +677,14 @@ document.write(`
 <p><strong>Your response</strong>: TODO</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO update all_cols to include gender and school_urbanicity</span>
+<span class="n">all_cols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#group_count = learning_df.groupby(all_cols, as_index=False).ngroups</span>
 
+<span class="c1"># TODO calculate the total number of bins using the new set of covariates using the nunique method</span>
+<span class="n">total_bins</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total number of bins: </span><span class="si">{</span><span class="n">total_bins</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number actual groups among the bins for </span><span class="si">{</span><span class="n">all_cols</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">group_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
