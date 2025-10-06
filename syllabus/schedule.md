@@ -90,8 +90,8 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>10/13</small><br>🍂 <b>Fall break</b> 🍁
     - <small>10/14</small><br>🍂 <b>Fall break</b> 🍁
     - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b>
-    - <small>10/16</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 4
-    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2
+    - <small>10/16</small>
+    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2<br>![](https://img.shields.io/badge/Due:-d62728) WS 4
 
 :::
 
