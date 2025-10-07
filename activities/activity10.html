@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 10: Vectorization &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 10: Propensity Scores for Overlap and Balancing &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
@@ -394,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 10: Vectorization</h1>
+    <h1>Activity 10: Propensity Scores for Overlap and Balancing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,12 +404,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Vectorization</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-indexing-and-vectorization">Logical indexing and vectorization</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-with-loop">1.1: code with loop</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorized-code">1.2 vectorized code</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Propensity Scores for Overlap and Balancing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-distribution-of-covariates-under-true-randomization">Part 1: Distribution of covariates under true randomization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-a-propensity-score">Part 2: Fitting a Propensity Score</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-scores-for-exploring-covariate-distribution">Part 3: Propensity scores for exploring covariate distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-propensity-scores-as-a-balancer">Part 4: Propensity scores as a balancer</a></li>
 </ul>
 
             </nav>
@@ -422,14 +421,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-10-vectorization">
-<span id="activity10"></span><h1>Activity 10: Vectorization<a class="headerlink" href="#activity-10-vectorization" title="Link to this heading">#</a></h1>
-<p><strong>2025-03-25</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-10-propensity-scores-for-overlap-and-balancing">
+<span id="activity10"></span><h1>Activity 10: Propensity Scores for Overlap and Balancing<a class="headerlink" href="#activity-10-propensity-scores-for-overlap-and-balancing" title="Link to this heading">#</a></h1>
+<p><strong>2025-10-08</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
 
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
@@ -437,162 +444,208 @@ document.write(`
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="logical-indexing-and-vectorization">
-<h1>Logical indexing and vectorization<a class="headerlink" href="#logical-indexing-and-vectorization" title="Link to this heading">#</a></h1>
-<p>Let’s briefly explore the benefits of “vectorization” in NumPy and Pandas, which is the practice of performing operations on entire arrays at once, rather than element-by-element via a loop.</p>
-<p>We’ll compute the <strong>numerator</strong> of the <a class="reference external" href="https://comsc341cd.github.io/projects/proj2_functions.html#love-plots-for-visualizing-covariate-balance">standardized difference calculation</a> <span class="math notranslate nohighlight">\(d_X\)</span> for Project 2, which is essentially the difference-in-means estimator for covariate <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-distribution-of-covariates-under-true-randomization">
+<h1>Part 1: Distribution of covariates under true randomization<a class="headerlink" href="#part-1-distribution-of-covariates-under-true-randomization" title="Link to this heading">#</a></h1>
+<p>For the growth mindset intervention, we saw that the <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> covariate was associated with the intervention. What should the distribution of <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> look like under true randomization (coin flips)? And does it matter if the coin flips are “biased” (not 50% heads, 50% tails)?</p>
+<p>First, let’s simulate a distribution of <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> under true randomization. Begin by generating some data that represents <code class="docutils literal notranslate"><span class="pre">success_expect</span></code>, which takes on integer values between 1 and 7. Use the <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html">rng.choice</a> function to generate 10,000 samples from a uniform distribution over the integers 1 through 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># sim_success_expect = TODO call rng.choice with the a and size parameters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, generate random treatment assignments for each sample using the <code class="docutils literal notranslate"><span class="pre">rng.choice</span></code> function. For now, assume the probability of treatment is 0.5, that is:</p>
 <div class="math notranslate nohighlight">
-\[
-d_X = \frac{\hat{E}[X \mid T=1] - \hat{E}[X \mid T=0]} { \large \sqrt{\frac{\hat{V}[X \mid T=1] + \hat{V}[X \mid T=0]} {2}}}
+\[ 
+P(T=1) = 0.5 
 \]</div>
-<p>Recall that <span class="math notranslate nohighlight">\(\hat{E}[X \mid T=t]\)</span> is the estimated mean of <span class="math notranslate nohighlight">\(X\)</span> given that <span class="math notranslate nohighlight">\(T=t\)</span>.</p>
-<p>Each code cell below has a <code class="docutils literal notranslate"><span class="pre">%%time</span></code> <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">magic command</a> that times the execution of the cell. You can use this to compare the performance of vectorized and looped code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="c1"># short demo of the time magic command</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 21 μs, sys: 1 μs, total: 22 μs
-Wall time: 22.9 μs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_treat</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># p needs to be a list of probabilities for each outcome: [0, 1]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p_treat</span><span class="p">,</span> <span class="n">p_treat</span><span class="p">]</span>
+<span class="c1"># sim_coin_flips = TODO call rng.choice with the a, size, and p parameters</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Let’s now plot the distribution of treatment for each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level. We’ll do this by creating a dataframe with the two columns <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code>, and then using sns.barplot to plot the distribution of <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code> for each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level.</p>
+<p>Call <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.barplot.html">sns.barplot</a> with the x and y parameters set to <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code>, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load in a simulated dataset with 50000 rows and T, X columns</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/activity10_sim_data.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;sim_success_expect&#39;</span><span class="p">:</span> <span class="n">sim_success_expect</span><span class="p">,</span> 
+    <span class="s1">&#39;sim_treat&#39;</span><span class="p">:</span> <span class="n">sim_treat</span>
+<span class="p">})</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>T</th>
-      <th>X</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>10.468910</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>0.250017</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>10.110894</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>9.958819</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1</td>
-      <td>10.287618</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<section id="code-with-loop">
-<h2>1.1: code with loop<a class="headerlink" href="#code-with-loop" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%time </span>
-<span class="c1"># TODO uncomment the above line once you have the code working to see how long it takes to run.</span>
-
-<span class="c1"># TODO implement the code using the loop and .loc indexing.</span>
-<span class="n">T1_sum</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">T0_sum</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># sum up the values of X for each treatment group by iterating over the rows of the DataFrame</span>
-<span class="c1"># Python note: &quot;_&quot; is a convention for a variable that is not used in the loop</span>
-<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="c1"># TODO your code here</span>
-    <span class="k">pass</span>
-
-<span class="c1"># calculate the mean of X for each treatment group</span>
-<span class="n">T1_mean</span> <span class="o">=</span> <span class="n">T1_sum</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">T0_mean</span> <span class="o">=</span> <span class="n">T0_sum</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="c1"># the difference should be close to 10 for the simulated data</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">T1_mean</span> <span class="o">-</span> <span class="n">T0_mean</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="c1"># TODO sns.barplot</span>
+<span class="c1"># TODO horizontal line corresponding to p_treat</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">19</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">T0_mean</span> <span class="o">=</span> <span class="n">T0_sum</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># the difference should be close to 10 for the simulated data</span>
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">T1_mean</span> <span class="o">-</span> <span class="n">T0_mean</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">sim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="s1">&#39;sim_success_expect&#39;</span><span class="p">:</span> <span class="n">sim_success_expect</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s1">&#39;sim_treat&#39;</span><span class="p">:</span> <span class="n">sim_treat</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">})</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># TODO sns.barplot</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># TODO horizontal line corresponding to p_treat</span>
 
-<span class="ne">AssertionError</span>: 
+<span class="ne">NameError</span>: name &#39;sim_success_expect&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
-<p>What is the wall clock time it takes for your code to run?</p>
-<p><strong>Your response</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
-</section>
-<section id="vectorized-code">
-<h2>1.2 vectorized code<a class="headerlink" href="#vectorized-code" title="Link to this heading">#</a></h2>
+<p>The black vertical lines on each bar represnt a bootstrapped confidence interval for the proportion of treatment in each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level. On your plot above, add a horizontal line using <code class="docutils literal notranslate"><span class="pre">plt.axhline</span></code> at <code class="docutils literal notranslate"><span class="pre">y=p_treat</span></code> to represent the true probability of treatment. The observed probability of treatment shouldn’t deviate significantly from the true probability of treatment for any of the <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> values.</p>
+<p>Finally, let’s explore different different probabilities of treatment. Copy your code from the above three cells that created your barplot into the <code class="docutils literal notranslate"><span class="pre">plot_treatment_distribution</span></code> function below, and add an <code class="docutils literal notranslate"><span class="pre">interact_manual</span></code> decorator that lets you change <code class="docutils literal notranslate"><span class="pre">p_treat</span></code>.</p>
+<p>Does the probability of treatment change the distribution of treated units among the <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> values?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%time </span>
-<span class="c1"># TODO uncomment the above line once you have the code working to see how long it takes to run.</span>
-
-<span class="c1"># TODO implement the code with no loops, using logical indexing and the mean() function. It should be much shorter than the code with the loop.</span>
-<span class="n">T1_mean</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">T0_mean</span> <span class="o">=</span> <span class="mi">0</span>
-
-
-<span class="c1"># the difference should be close to 10</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">T1_mean</span> <span class="o">-</span> <span class="n">T0_mean</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO an interact_manual</span>
+<span class="k">def</span> <span class="nf">plot_treatment_distribution</span><span class="p">(</span><span class="n">p_treat</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>What is the wall clock time it takes for your code to run?</p>
-<p><strong>Your response</strong>: <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
-<div class="admonition-takeaway admonition">
-<p class="admonition-title">Takeaway</p>
-<p>If you’re writing code processing NumPy arrays or pandas DataFrames and you find yourself writing a loop over the length of an array or DataFrame, try to think about whether you can vectorize the operation. Unless the operation explicitly calls for iterating over the rows in a DataFrame (like we do in implementing greedy pair matching for Project 2), it is likely that you can achieve the same result without the loop, resulting in both faster and more concise code.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-fitting-a-propensity-score">
+<h1>Part 2: Fitting a Propensity Score<a class="headerlink" href="#part-2-fitting-a-propensity-score" title="Link to this heading">#</a></h1>
+<p>Let’s now estimate a propensity score for the learning mindsets data. As a reminder from Tuesday’s lecture, the columns we’ll look at are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: student prior mindset about their ability to succeed in school (higher values indicate a stronger belief in their ability to succeed)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>: whether the student would be the first in their family to attend college (1) or not (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gender</span></code>: student’s self-reported gender</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>: categorical variable corresponding to the urbanicity of the school the student attends, e.g. urban, suburban, rural</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">achievement_score</span></code>: the student’s future grade achievement, standardized such that 0 is the mean and it has a standard deviation of 1</p></li>
+</ul>
+<p>The way we’ll do this is by fitting a logistic regression model, which allows us estimate the following:</p>
+<div class="math notranslate nohighlight">
+\[
+P(T=1 \mid X) = E[T \mid X] = e(X)
+\]</div>
+<p>Like with linear regression, this can extend to multiple covariates, such as:</p>
+<div class="math notranslate nohighlight">
+\[
+P(T=1 \mid X_1, X_2, X_3, X_4) = E[T \mid X_1, X_2, X_3, X_4]
+\]</div>
+<p>In statmodels, we just need to specify the formula string <code class="docutils literal notranslate"><span class="pre">'T</span> <span class="pre">~1</span> <span class="pre">+</span> <span class="pre">X1</span> <span class="pre">+</span> <span class="pre">X2</span> <span class="pre">+</span> <span class="pre">X3</span> <span class="pre">+</span> <span class="pre">X4'</span></code> and pass the dataframe to <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> instead of <code class="docutils literal notranslate"><span class="pre">smf.ols</span></code> to fit a logistic regression model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;T ~ 1 + X1 + X2 + X3 + X4&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Fit a propensity score model predicting <code class="docutils literal notranslate"><span class="pre">intervention</span></code> and our four covariates from Tuesday’s lecture (<code class="docutils literal notranslate"><span class="pre">success_expect</span></code>, <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">frst_in_family</span></code>, <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code>).</p>
+<p>One additional consideration is that <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">school_urbanicity</span></code> are categorical variables. We can indicate to <code class="docutils literal notranslate"><span class="pre">smf.logit</span></code> that these variables are categorical by wrapping the variables in <code class="docutils literal notranslate"><span class="pre">C()</span></code> in the formula string. For example, if we wanted to fit a model with <code class="docutils literal notranslate"><span class="pre">X1</span></code> and <code class="docutils literal notranslate"><span class="pre">X2</span></code> as categorical variables, we would write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;T ~ 1 + C(X1) + C(X2) + X3 + X4&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the learning_mindset data again</span>
+<span class="n">learning_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/learning_mindset.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO fit a propensity score model</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="c1">#propensity_model = smf.logit(formula=formula, data=learning_df).fit()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then add the predicted propensity scores as a column to analyze along with the rest of the data. Run the cell below to generate predicted propensity scores and add them to the learning_df:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_propensity_scores</span> <span class="o">=</span> <span class="n">propensity_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">learning_df</span><span class="p">)</span>
+<span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_propensity_scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A quick check for whether we’ve fit the propensity score correctly is to verify that the average propensity score is equal to the probability of treatment in the dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_treat</span> <span class="o">=</span> <span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;intervention&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">p_treat</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="s2">&quot;The average propensity score is not equal to the probability of treatment&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Propensity score give us a lot of flexibility in visualizing confounding issues. For example, we can generate the same barplot we made in part 1 with <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> on the x-axis, but with the <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code> on the y-axis for our <code class="docutils literal notranslate"><span class="pre">learning_df</span></code> dataset.</p>
+<p>What do you observe about the relationship between <code class="docutils literal notranslate"><span class="pre">success_expect</span></code> and <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code>?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO a barplot of x=success_expect vs y=propensity_score</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-propensity-scores-for-exploring-covariate-distribution">
+<h1>Part 3: Propensity scores for exploring covariate distribution<a class="headerlink" href="#part-3-propensity-scores-for-exploring-covariate-distribution" title="Link to this heading">#</a></h1>
+<p>In Project 1, we plotted the distribution of covariates of treated and control units to visually verify that the covariates were balanced between the two groups.</p>
+<p>The propensity score is a convenient way check whether <strong>all</strong> the covariates we want to control for are balanced between the two groups.</p>
+<p>Run the cell below to fit a propensity score model for our simulated data from Part 1. Then plot the distribution of propensity scores for the treated and control units by creating a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html">sns.kdeplot</a> with the x-axis as the <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code> and the hue as the <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code> variable – optionally setting <code class="docutils literal notranslate"><span class="pre">cumulative=True</span></code> to plot the cumulative distribution. The distributions should approximately match since we simulated a randomized experiment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_propensity_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;sim_treat ~ 1 + sim_success_expect&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">sim_df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">sim_propensity_scores</span> <span class="o">=</span> <span class="n">sim_propensity_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sim_df</span><span class="p">)</span>
+<span class="n">sim_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim_propensity_scores</span>
+
+<span class="c1"># TODO kdeplot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, create the same plot for our <code class="docutils literal notranslate"><span class="pre">learning_df</span></code> dataset, setting the hue to <code class="docutils literal notranslate"><span class="pre">intervention</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code>.</p>
+<p>Differences in the distributions suggest that the covariates are not balanced between the two groups – in other words, there is confounding among the covariates we’ve included in the propensity score model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">learning_df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;intervention&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This type of density plot of the propensity score also allows us to check positivity – if there are regions of the propensity score where there are only treated or only control units, then there is a positivity violation.</p>
+<p>Does there appear to be any obvious regions where there are only treated or only control units? What about regions where there are few treated or control units?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-4-propensity-scores-as-a-balancer">
+<h1>Part 4: Propensity scores as a balancer<a class="headerlink" href="#part-4-propensity-scores-as-a-balancer" title="Link to this heading">#</a></h1>
+<p>Now that we have the propensity score distilling high-dimensional covariates into a single number, binning the data by the propensity score becomes a viable strategy for balancing the covariates.</p>
+<p>Run the cell below to bin the data by the propensity score using the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">pd.cut</a> function, producing a new column <code class="docutils literal notranslate"><span class="pre">propensity_score_bin</span></code> in the <code class="docutils literal notranslate"><span class="pre">learning_df</span></code> dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_bins</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score_bin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">)</span>
+
+<span class="c1"># view the bins created by pd.cut</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">learning_df</span><span class="p">[</span><span class="s1">&#39;propensity_score_bin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, perform a groupby with <code class="docutils literal notranslate"><span class="pre">by='[propensity_score_bin',</span> <span class="pre">'intervention']</span></code>, and calculate the mean of the given columns on the grouped data.</p>
+<p>Are there any of the columns that are significantly different between the <span class="math notranslate nohighlight">\(T=1\)</span> and <span class="math notranslate nohighlight">\(T=0\)</span> groups for each propensity score bin? If so, how do you interpret this?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO group by propensity score bin and intervention, and calculate the mean of the columns on the grouped data</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">,</span> <span class="s1">&#39;school_urbanicity&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;achievement_score&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -641,12 +694,11 @@ Wall time: 22.9 μs
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Vectorization</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-indexing-and-vectorization">Logical indexing and vectorization</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-with-loop">1.1: code with loop</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorized-code">1.2 vectorized code</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Propensity Scores for Overlap and Balancing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-distribution-of-covariates-under-true-randomization">Part 1: Distribution of covariates under true randomization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-a-propensity-score">Part 2: Fitting a Propensity Score</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-scores-for-exploring-covariate-distribution">Part 3: Propensity scores for exploring covariate distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-propensity-scores-as-a-balancer">Part 4: Propensity scores as a balancer</a></li>
 </ul>
 
   </nav></div>
