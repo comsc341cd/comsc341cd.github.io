@@ -82,7 +82,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 *   
     - <small>10/06</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Regression</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 9](https://moodle.mtholyoke.edu/pluginfile.php/1496646/mod_resource/content/2/lec09-regression-starter.pdf)</li><li>[[complete] slides 9](https://moodle.mtholyoke.edu/pluginfile.php/1496647/mod_resource/content/2/lec09-regression.pdf)</li><li>[Activity 9](activity9)</li><li>[Activity 9 solutions](activity9_solution)</li></ul><s>![](https://img.shields.io/badge/Due:-d62728) Proj 1</s> now due 10/09
     - <small>10/07</small>
-    - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 10](https://moodle.mtholyoke.edu/pluginfile.php/1496649/mod_resource/content/2/lec10-propensity-scores-starter.pdf)</li><li>[Activity 10](activity10)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) WS 4
+    - <small>10/08</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Propensity Scores</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 10](https://moodle.mtholyoke.edu/pluginfile.php/1496649/mod_resource/content/2/lec10-propensity-scores-starter.pdf)</li><li>[Activity 10](activity10)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [WS 4](ws4)
     - <small>10/09</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Proj 1](proj1)
     - <small>10/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
 
@@ -91,7 +91,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>10/14</small><br>🍂 <b>Fall break</b> 🍁
     - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b>
     - <small>10/16</small>
-    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2<br>![](https://img.shields.io/badge/Due:-d62728) WS 4
+    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2<br>![](https://img.shields.io/badge/Due:-d62728) [WS 4](ws4)
 
 :::
 
