@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
@@ -209,6 +209,14 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
 
 
 
@@ -516,7 +524,7 @@ P(T=1) = 0.5
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="part-2-fitting-a-propensity-score">
 <h1>Part 2: Fitting a Propensity Score<a class="headerlink" href="#part-2-fitting-a-propensity-score" title="Link to this heading">#</a></h1>
-<p>Let’s now estimate a propensity score for the learning mindsets data. As a reminder from Tuesday’s lecture, the columns we’ll look at are:</p>
+<p>Let’s now estimate a propensity score for the learning mindsets data. As a reminder from Monday’s lecture, the columns we’ll look at are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: student prior mindset about their ability to succeed in school (higher values indicate a stronger belief in their ability to succeed)</p></li>
@@ -593,7 +601,7 @@ P(T=1 \mid X_1, X_2, X_3, X_4) = E[T \mid X_1, X_2, X_3, X_4]
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="part-3-propensity-scores-for-exploring-covariate-distribution">
 <h1>Part 3: Propensity scores for exploring covariate distribution<a class="headerlink" href="#part-3-propensity-scores-for-exploring-covariate-distribution" title="Link to this heading">#</a></h1>
-<p>In Project 1, we plotted the distribution of covariates of treated and control units to visually verify that the covariates were balanced between the two groups.</p>
+<p>In Project 1, we’re plotting the distribution of covariates of treated and control units to visually verify that the covariates were balanced between the two groups.</p>
 <p>The propensity score is a convenient way check whether <strong>all</strong> the covariates we want to control for are balanced between the two groups.</p>
 <p>Run the cell below to fit a propensity score model for our simulated data from Part 1. Then plot the distribution of propensity scores for the treated and control units by creating a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html">sns.kdeplot</a> with the x-axis as the <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code> and the hue as the <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code> variable – optionally setting <code class="docutils literal notranslate"><span class="pre">cumulative=True</span></code> to plot the cumulative distribution. The distributions should approximately match since we simulated a randomized experiment:</p>
 <div class="cell docutils container">
