@@ -26,7 +26,7 @@ parts:
       - file: worksheets/ws1.ipynb
       - file: worksheets/ws2.ipynb
       - file: worksheets/ws3.ipynb
-  #     - file: worksheets/ws4.ipynb
+      - file: worksheets/ws4.ipynb
   #     - file: worksheets/ws5.ipynb
   #     - file: worksheets/ws6.ipynb
       
