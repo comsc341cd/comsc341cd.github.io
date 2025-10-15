@@ -5,6 +5,13 @@
 - [Activity 2: Potential Outcomes](https://docs.google.com/document/d/1fhEc_W5_iP3dEkRWAjXDtqpiYtT0weuat4XEimmvl98/edit?tab=t.0#heading=h.x6szsl4jkr1q)
 - [Activity 3: Consistency Examples](https://docs.google.com/document/d/1QdfDZ8tJOnlJMWyttFEN1x4DDPzPMZ47lamNazXQGXM/edit?tab=t.0#heading=h.gejlrg3foxa1)
 - [Activity 4: Randomized Experiment Balance and Estimation in Gerber et al. 2008](activity4)
+- [Activity 5: Randomized Experiment Ethics](https://docs.google.com/document/d/1qywzYScHvo0vf9fNNZlOjQauXr1Sm8wYtPWzVkCI4LE/edit?tab=t.0#heading=h.cl8e9kml7cnl)
+- [Activity 6: Causal Graphs](https://docs.google.com/document/d/1wFTimlv8bJHg7B2e2UBVGpICNq08781I4tBzaehyxJE/edit?tab=t.0#heading=h.x6szsl4jkr1q)
+- [Activity 7: Stratified Experiments](https://docs.google.com/document/d/1J3rDQe0ZX8Xs7PAoFr2DEJO7MY4McnPx8waUP0UvfkQ/edit?tab=t.0#heading=h.x6szsl4jkr1q)
+- [Activity 8: Backdoor criterion](https://docs.google.com/document/d/1CuEtdCRXCjwIo0Q-M5zii_b_iJWgaoXVQOBfxDTsrdA/edit?tab=t.0#heading=h.x6szsl4jkr1q)
+- [Activity 9: Positivity in Yeager et al. 2019](activity9)
+- [Activity 10: Propensity Scores for Ovelap and Balancing](activity10)
+- [Activity 11: Other causal quantities and matching](activity11)
 <!--
 - [Activity 4: Causal Graphs](https://docs.google.com/document/d/1M_8e4Zu2eC1Y53kHDDcK53gQfl-sAvcjb4UGGoVt_nM/edit?usp=sharing)
 - [Activity 5: Stratified Experiments](https://docs.google.com/document/d/1J3rDQe0ZX8Xs7PAoFr2DEJO7MY4McnPx8waUP0UvfkQ/edit?usp=sharing)

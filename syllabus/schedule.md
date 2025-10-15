@@ -89,9 +89,77 @@ A list of topics we will cover can be found below. Note that topics may be subje
 *   
     - <small>10/13</small><br>🍂 <b>Fall break</b> 🍁
     - <small>10/14</small><br>🍂 <b>Fall break</b> 🍁
-    - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b>
+    - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) [Course survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
     - <small>10/16</small>
-    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Recitation</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2<br>![](https://img.shields.io/badge/Due:-d62728) [WS 4](ws4)
+    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Obs study wrap-up</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2<br>![](https://img.shields.io/badge/Due:-d62728) [WS 4](ws4)
+
+
+*   
+    - <small>10/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments I</u></b>
+    - <small>10/21</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Course survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
+    - <small>10/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments II</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Final project
+    - <small>10/23</small>
+    - <small>10/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>LEAP, no class</u></b><br>
+
+
+*   
+    - <small>10/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b>
+    - <small>10/28</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2
+    - <small>10/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
+    - <small>10/30</small>
+    - <small>10/31</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br>
+
+*   
+    - <small>11/3</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>RDDs I</u></b>
+    - <small>11/4</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 5
+    - <small>11/5</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>RDDs II</u></b>
+    - <small>11/6</small>
+    - <small>11/7</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 3
+
+*   
+    - <small>11/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff I
+    - <small>11/11</small><br>![](https://img.shields.io/badge/Due:-d62728) Final proj proposal
+    - <small>11/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff II</u></b>
+    - <small>11/13</small>
+    - <small>11/14</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
+
+*   
+    - <small>11/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Synthetic control I</u></b>
+    - <small>11/18</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 3
+    - <small>11/19</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Synthetic control II </u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 6
+    - <small>11/20</small>
+    - <small>11/21</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
+
+*   
+    - <small>11/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Special topic: causal ML</u></b>
+    - <small>11/25</small><br>![](https://img.shields.io/badge/Due:-d62728) WS 6
+    - <small>11/26</small><br> 🦃 <b>November break</b> 🦃
+    - <small>11/27</small>
+    - <small>11/28</small><br> 🦃 <b>November break</b> 🦃
+
+*   
+    - <small>12/1</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Buffer day</u></b>
+    - <small>12/2</small><br>![](https://img.shields.io/badge/Due:-d62728) Final proj checkpoint
+    - <small>12/3</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations I</u></b>
+    - <small>12/4</small>
+    - <small>12/5</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations II</u></b>
+
+*   
+    - <small>12/8</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Wrap-up</u></b>
+    - <small>12/9</small>
+    - <small>12/10</small>
+    - <small>12/11</small>
+    - <small>12/12</small>
+
+
+*   
+    - <small>12/15</small>
+    - <small>12/16</small><br><b>Last day of exams</b><br><br>![](https://img.shields.io/badge/Due:-d62728) Final proj
+    - <small>12/17</small>
+    - <small>12/18</small>
+    - <small>12/19</small>
+
+
 
 :::
 
