@@ -104,7 +104,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>10/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b>
-    - <small>10/28</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2
+    - <small>10/28</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 2](proj2)
     - <small>10/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
     - <small>10/30</small>
     - <small>10/31</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br>
