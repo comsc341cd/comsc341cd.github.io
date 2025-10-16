@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Activity 10: Propensity Scores for Overlap and Balancing Live &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 10: Propensity Scores for Overlap and Balancing &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="application/vnd.jupyter.widget-state+json">{"state": {"7bcefeb4ee9a4fc087243ccc4351986f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e020130aa25c4d668943eb63fd88de82": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_a973aa70f7c74838936618f2c863b4ef", "IPY_MODEL_eaad96d3e5d94fcdbedb691a1ab88ece", "IPY_MODEL_34599851fbe14a37a7521b8a4775738a"], "layout": "IPY_MODEL_7bcefeb4ee9a4fc087243ccc4351986f", "tabbable": null, "tooltip": null}}, "e628ce1ef1d04094b4718e31b492cfca": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "da4efd982b7741dcb52cc0c3d7f2ef73": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": ""}}, "a973aa70f7c74838936618f2c863b4ef": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DropdownModel", "_options_labels": ["0.0", "0.1", "0.2", "0.30000000000000004", "0.4", "0.5", "0.6000000000000001", "0.7000000000000001", "0.8", "0.9"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "DropdownView", "description": "p_treat", "description_allow_html": false, "disabled": false, "index": 0, "layout": "IPY_MODEL_e628ce1ef1d04094b4718e31b492cfca", "style": "IPY_MODEL_da4efd982b7741dcb52cc0c3d7f2ef73", "tabbable": null, "tooltip": null}}, "d4451ede95e246909417c4f8e539cb66": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c305adc9d2a24d018b44861ceca170c1": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "eaad96d3e5d94fcdbedb691a1ab88ece": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Interact", "disabled": false, "icon": "", "layout": "IPY_MODEL_d4451ede95e246909417c4f8e539cb66", "style": "IPY_MODEL_c305adc9d2a24d018b44861ceca170c1", "tabbable": null, "tooltip": null}}, "2efb870f7c574a5ebbf861d4395cef16": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "34599851fbe14a37a7521b8a4775738a": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_2efb870f7c574a5ebbf861d4395cef16", "msg_id": "", "outputs": [], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"a06739e53d0e416180c53b44e8f5684b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "17c5f96d8ac64eb8b9c81fa71a04e87b": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_c313988321394c7792e93e452244c932", "IPY_MODEL_2d826ec68c234cfea758effbc01fee5b", "IPY_MODEL_a7bb01a3618f4b1a941c55f1e62ba1f8"], "layout": "IPY_MODEL_a06739e53d0e416180c53b44e8f5684b", "tabbable": null, "tooltip": null}}, "c22082961f0741beaf4529d988a38686": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "60a895ae429f4925b6db36092090ebb7": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": ""}}, "c313988321394c7792e93e452244c932": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DropdownModel", "_options_labels": ["0.0", "0.1", "0.2", "0.30000000000000004", "0.4", "0.5", "0.6000000000000001", "0.7000000000000001", "0.8", "0.9"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "DropdownView", "description": "p_treat", "description_allow_html": false, "disabled": false, "index": 0, "layout": "IPY_MODEL_c22082961f0741beaf4529d988a38686", "style": "IPY_MODEL_60a895ae429f4925b6db36092090ebb7", "tabbable": null, "tooltip": null}}, "4e8460f4b07a48d49a5dc1e49734e252": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1ec80c7599e54902847ceb4bbc2e30b5": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "2d826ec68c234cfea758effbc01fee5b": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "", "description": "Run Interact", "disabled": false, "icon": "", "layout": "IPY_MODEL_4e8460f4b07a48d49a5dc1e49734e252", "style": "IPY_MODEL_1ec80c7599e54902847ceb4bbc2e30b5", "tabbable": null, "tooltip": null}}, "0e48ac0b0fa64a19ba78e93bda5b85c8": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a7bb01a3618f4b1a941c55f1e62ba1f8": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_0e48ac0b0fa64a19ba78e93bda5b85c8", "msg_id": "", "outputs": [], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity10_solution';</script>
@@ -405,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Activity 10: Propensity Scores for Overlap and Balancing Live</h1>
+    <h1>Activity 10: Propensity Scores for Overlap and Balancing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -415,7 +415,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Propensity Scores for Overlap and Balancing Live</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Propensity Scores for Overlap and Balancing</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-distribution-of-covariates-under-true-randomization">Part 1: Distribution of covariates under true randomization</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-a-propensity-score">Part 2: Fitting a Propensity Score</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-scores-for-exploring-covariate-distribution">Part 3: Propensity scores for exploring covariate distribution</a></li>
@@ -432,8 +432,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="activity-10-propensity-scores-for-overlap-and-balancing-live">
-<span id="activity10-solution"></span><h1>Activity 10: Propensity Scores for Overlap and Balancing Live<a class="headerlink" href="#activity-10-propensity-scores-for-overlap-and-balancing-live" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-10-propensity-scores-for-overlap-and-balancing">
+<span id="activity10"></span><h1>Activity 10: Propensity Scores for Overlap and Balancing<a class="headerlink" href="#activity-10-propensity-scores-for-overlap-and-balancing" title="Link to this heading">#</a></h1>
 <p><strong>2025-10-08</strong></p>
 <hr class="docutils" />
 <div class="cell docutils container">
@@ -609,10 +609,10 @@ P(T=1) = 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x340d4d010&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x33b2f7410&gt;
 </pre></div>
 </div>
-<img alt="../_images/ce356d48524afe6545b15f2a64075a1ac8e1e5969058f88b9adc501e945e8a8f.png" src="../_images/ce356d48524afe6545b15f2a64075a1ac8e1e5969058f88b9adc501e945e8a8f.png" />
+<img alt="../_images/13f5fdd92d5010ab45e862a9baae715571aaa929c6a098bb1916e99ab5437740.png" src="../_images/13f5fdd92d5010ab45e862a9baae715571aaa929c6a098bb1916e99ab5437740.png" />
 </div>
 </div>
 <p>The black vertical lines on each bar represnt a bootstrapped confidence interval for the proportion of treatment in each <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> level. On your plot above, add a horizontal line using <code class="docutils literal notranslate"><span class="pre">plt.axhline</span></code> at <code class="docutils literal notranslate"><span class="pre">y=p_treat</span></code> to represent the true probability of treatment. The observed probability of treatment shouldn’t deviate significantly from the true probability of treatment for any of the <code class="docutils literal notranslate"><span class="pre">sim_success_expect</span></code> values.</p>
@@ -642,12 +642,12 @@ P(T=1) = 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e020130aa25c4d668943eb63fd88de82"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "17c5f96d8ac64eb8b9c81fa71a04e87b"}</script></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="part-2-fitting-a-propensity-score">
 <h1>Part 2: Fitting a Propensity Score<a class="headerlink" href="#part-2-fitting-a-propensity-score" title="Link to this heading">#</a></h1>
-<p>Let’s now estimate a propensity score for the learning mindsets data. As a reminder from Tuesday’s lecture, the columns we’ll look at are:</p>
+<p>Let’s now estimate a propensity score for the learning mindsets data. As a reminder from Monday’s lecture, the columns we’ll look at are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intervention</span></code>: whether the student received the intervention (1) or not (0)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">success_expect</span></code>: student prior mindset about their ability to succeed in school (higher values indicate a stronger belief in their ability to succeed)</p></li>
@@ -733,13 +733,13 @@ P(T=1 \mid X_1, X_2, X_3, X_4) = E[T \mid X_1, X_2, X_3, X_4]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;success_expect&#39;, ylabel=&#39;propensity_score&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/9c39aed35cd65e879439376628551b355b34d3435f81d69048f9af83d7685bc8.png" src="../_images/9c39aed35cd65e879439376628551b355b34d3435f81d69048f9af83d7685bc8.png" />
+<img alt="../_images/7c29b8918bc5478045198acd817ccbb9de599e9720913e8c3f87b08824f76c8e.png" src="../_images/7c29b8918bc5478045198acd817ccbb9de599e9720913e8c3f87b08824f76c8e.png" />
 </div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="part-3-propensity-scores-for-exploring-covariate-distribution">
 <h1>Part 3: Propensity scores for exploring covariate distribution<a class="headerlink" href="#part-3-propensity-scores-for-exploring-covariate-distribution" title="Link to this heading">#</a></h1>
-<p>In Project 1, we plotted the distribution of covariates of treated and control units to visually verify that the covariates were balanced between the two groups.</p>
+<p>In Project 1, we’re plotting the distribution of covariates of treated and control units to visually verify that the covariates were balanced between the two groups.</p>
 <p>The propensity score is a convenient way check whether <strong>all</strong> the covariates we want to control for are balanced between the two groups.</p>
 <p>Run the cell below to fit a propensity score model for our simulated data from Part 1. Then plot the distribution of propensity scores for the treated and control units by creating a <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html">sns.kdeplot</a> with the x-axis as the <code class="docutils literal notranslate"><span class="pre">propensity_score</span></code> and the hue as the <code class="docutils literal notranslate"><span class="pre">sim_treat</span></code> variable – optionally setting <code class="docutils literal notranslate"><span class="pre">cumulative=True</span></code> to plot the cumulative distribution. The distributions should approximately match since we simulated a randomized experiment:</p>
 <div class="cell docutils container">
@@ -825,9 +825,139 @@ Categories (5, interval[float64, right]): [(0.203, 0.245] &lt; (0.245, 0.287] &l
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO group by propensity score bin and intervention, and calculate the mean of the columns on the grouped data</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;success_expect&#39;</span><span class="p">,</span> <span class="s1">&#39;frst_in_family&#39;</span><span class="p">,</span> <span class="s1">&#39;school_urbanicity&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;achievement_score&#39;</span><span class="p">]</span>
+<span class="n">learning_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;propensity_score_bin&#39;</span><span class="p">,</span> <span class="s1">&#39;intervention&#39;</span><span class="p">])[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/92/j4ms2q355sv0n3q55bgv_hwm0000gn/T/ipykernel_76377/648158888.py:3: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  learning_df.groupby(by=[&#39;propensity_score_bin&#39;, &#39;intervention&#39;])[columns].mean()
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>success_expect</th>
+      <th>frst_in_family</th>
+      <th>school_urbanicity</th>
+      <th>gender</th>
+      <th>achievement_score</th>
+    </tr>
+    <tr>
+      <th>propensity_score_bin</th>
+      <th>intervention</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">(0.203, 0.245]</th>
+      <th>0</th>
+      <td>1.966667</td>
+      <td>0.988889</td>
+      <td>2.294444</td>
+      <td>1.766667</td>
+      <td>-0.855587</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.950000</td>
+      <td>0.983333</td>
+      <td>2.516667</td>
+      <td>1.816667</td>
+      <td>-0.671004</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.245, 0.287]</th>
+      <th>0</th>
+      <td>4.013749</td>
+      <td>0.957837</td>
+      <td>2.274977</td>
+      <td>1.726856</td>
+      <td>-0.766884</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.984694</td>
+      <td>0.954082</td>
+      <td>2.283163</td>
+      <td>1.709184</td>
+      <td>-0.434164</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.287, 0.329]</th>
+      <th>0</th>
+      <td>5.213038</td>
+      <td>0.876008</td>
+      <td>2.446909</td>
+      <td>1.530242</td>
+      <td>-0.258401</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.270698</td>
+      <td>0.883369</td>
+      <td>2.436285</td>
+      <td>1.521238</td>
+      <td>0.164735</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.329, 0.371]</th>
+      <th>0</th>
+      <td>5.704668</td>
+      <td>0.278133</td>
+      <td>2.444226</td>
+      <td>1.445209</td>
+      <td>0.077631</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.706571</td>
+      <td>0.274527</td>
+      <td>2.454545</td>
+      <td>1.452745</td>
+      <td>0.489200</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(0.371, 0.412]</th>
+      <th>0</th>
+      <td>6.533793</td>
+      <td>0.180690</td>
+      <td>2.706207</td>
+      <td>1.110345</td>
+      <td>0.722760</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6.500000</td>
+      <td>0.148148</td>
+      <td>2.696759</td>
+      <td>1.097222</td>
+      <td>1.194055</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 
@@ -877,7 +1007,7 @@ Categories (5, interval[float64, right]): [(0.203, 0.245] &lt; (0.245, 0.287] &l
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Propensity Scores for Overlap and Balancing Live</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 10: Propensity Scores for Overlap and Balancing</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-distribution-of-covariates-under-true-randomization">Part 1: Distribution of covariates under true randomization</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-a-propensity-score">Part 2: Fitting a Propensity Score</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-propensity-scores-for-exploring-covariate-distribution">Part 3: Propensity scores for exploring covariate distribution</a></li>
