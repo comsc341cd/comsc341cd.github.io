@@ -103,9 +103,8 @@
 *
     - **Mathematical definition**
     - For all values of covariates $x \in X$: 
-    $$
-    0 < P(T = 1 \mid X = x) < 1
-    $$
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    $0 < P(T = 1 \mid X = x) < 1$
 
 *
     - **Intuition/Examples**
