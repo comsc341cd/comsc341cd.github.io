@@ -89,22 +89,22 @@ A list of topics we will cover can be found below. Note that topics may be subje
 *   
     - <small>10/13</small><br>🍂 <b>Fall break</b> 🍁
     - <small>10/14</small><br>🍂 <b>Fall break</b> 🍁
-    - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 11](https://moodle.mtholyoke.edu/pluginfile.php/1496652/mod_resource/content/2/lec11-matching-starter.pdf)</li><li>[Activity 11](activity11)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Course survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
+    - <small>10/15</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Matching</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 11](https://moodle.mtholyoke.edu/pluginfile.php/1496652/mod_resource/content/2/lec11-matching-starter.pdf)</li><li>[[complete] slides 11](https://moodle.mtholyoke.edu/pluginfile.php/1496653/mod_resource/content/2/lec11-matching.pdf)</li><li>[Activity 11](activity11)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
     - <small>10/16</small>
-    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Obs study wrap-up</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) Project 2<br>![](https://img.shields.io/badge/Due:-d62728) [WS 4](ws4)
+    - <small>10/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Obs study wrap-up</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 12](https://moodle.mtholyoke.edu/pluginfile.php/1496655/mod_resource/content/2/lec12-obs-study-wrap-up-starter.pdf)</li><li>[[complete] slides 12](https://moodle.mtholyoke.edu/pluginfile.php/1496656/mod_resource/content/2/lec12-obs-study-wrap-up.pdf)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Project 2](proj2)<br>![](https://img.shields.io/badge/Due:-d62728) [WS 4](ws4)
 
 
 *   
-    - <small>10/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments I</u></b>
-    - <small>10/21</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Course survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
-    - <small>10/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments II</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Final project
+    - <small>10/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 13](https://moodle.mtholyoke.edu/pluginfile.php/1496661/mod_resource/content/2/lec13-quasiexperiments-i-starter.pdf)</li><li>[[complete] slides 13](https://moodle.mtholyoke.edu/pluginfile.php/1496662/mod_resource/content/2/lec13-quasiexperiments-i.pdf)</li></ul>
+    - <small>10/21</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
+    - <small>10/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 14](https://moodle.mtholyoke.edu/pluginfile.php/1496658/mod_resource/content/3/lec14-quasiexperiments-ii-starter.pdf)</li><li>[Activity 12](activity12)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Final project](final_proj)
     - <small>10/23</small>
     - <small>10/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>LEAP, no class</u></b><br>
 
 
 *   
     - <small>10/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b>
-    - <small>10/28</small><br>![](https://img.shields.io/badge/Due:-d62728) Project 2
+    - <small>10/28</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 2](proj2)
     - <small>10/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) WS 5
     - <small>10/30</small>
     - <small>10/31</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br>
