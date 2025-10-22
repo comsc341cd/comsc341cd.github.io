@@ -95,9 +95,9 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 
 *   
-    - <small>10/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 13](https://moodle.mtholyoke.edu/pluginfile.php/1496661/mod_resource/content/2/lec13-quasiexperiments-i-starter.pdf)</li></ul>
+    - <small>10/20</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 13](https://moodle.mtholyoke.edu/pluginfile.php/1496661/mod_resource/content/2/lec13-quasiexperiments-i-starter.pdf)</li><li>[[complete] slides 13](https://moodle.mtholyoke.edu/pluginfile.php/1496662/mod_resource/content/2/lec13-quasiexperiments-i.pdf)</li></ul>
     - <small>10/21</small><br><br>![](https://img.shields.io/badge/Due:-d62728) [Survey 2](https://www.gradescope.com/courses/1101874/assignments/6975943)
-    - <small>10/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments II</u></b><br>![](https://img.shields.io/badge/Released:-2ca02c) Final project
+    - <small>10/22</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Quasi-experiments II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 14](https://moodle.mtholyoke.edu/pluginfile.php/1496658/mod_resource/content/3/lec14-quasiexperiments-ii-starter.pdf)</li><li>[Activity 12](activity12)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [Final project](final_proj)
     - <small>10/23</small>
     - <small>10/24</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>LEAP, no class</u></b><br>
 
