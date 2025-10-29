@@ -1,0 +1,1464 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Worksheet 5 🌱 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'worksheets/ws5';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project 1 👶" href="../projects/proj1.html" />
+    <link rel="prev" title="Worksheet 4 📈" href="ws4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../activities/activities.html">In-Class Activities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../projects/proj1_functions.html">Project 1 Part 1: Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projects/proj1_analysis.html">Project 1 Part 2: Analysis</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/final_project.html">Final Project 🌍</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/worksheets/ws5.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/worksheets/ws5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Worksheet 5 🌱</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 5 🌱</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-causal-systems-0-5-pts">1. Simulating causal systems [0.5 pts]</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-single-confounder-0-5-pt">1.1 Simulating a single confounder [0.5 pt]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables-1-5-pts">2. Instrumental variables [1.5 pts]</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-an-iv-study-0-5-pts">2.1 Simulating an IV study [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-causal-effects-with-an-iv-0-5-pts">2.2 Estimating causal effects with an IV [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-study-discussion-0-5-pts">2.3 IV study discussion [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-discontinuities">3. Regression discontinuities</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-regression-discontinuity-0-5-pts">3.1 Simulating a regression discontinuity [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-linear-regressions-for-rdd-0-5-pts">3.2 Local linear regressions for RDD [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rdd-discussion-0-5-pt">3.2 RDD discussion [0.5 pt]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences">4. Difference-in-differences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-simulation-0-5-pts">4.1 Difference-in-differences simulation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-parallel-trends-widget-0-5-pts">4.2 Difference-in-differences parallel trends widget [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-quasi-experiments">Limitations of quasi-experiments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-need-to-take-causality-seriously">We need to take causality seriously</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-0-5-pts">5. Reflection [0.5 pts]</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="worksheet-5">
+<span id="ws5"></span><h1>Worksheet 5 🌱<a class="headerlink" href="#worksheet-5" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Quasi/natural experiments</p>
+<p class="attribution">—TODO your name here</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here</p></li>
+</ul>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="learning-objectives">
+<h1>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Practice building simulations of causal systems</p></li>
+<li><p>Explore the ideas behind different quasi/natural experiment designs:</p>
+<ul>
+<li><p>Instrumental variables</p></li>
+<li><p>Regression discontinuities</p></li>
+<li><p>Difference-in-differences</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-reading-note admonition">
+<p class="admonition-title">Reading Note</p>
+<p>For this worksheet, the research paper reading will be embedded alongside the coding exercises. I’ve adapted the text from my paper <a class="reference external" href="https://tliutony.github.io/assets/pdf/liu2021quantifying.pdf">Liu et al. 2021: Quantifying causality in data science with quasi-experiments</a> to match the mathematical notation we have been using this semester. There is a section at the end of the original article on the intersection between causal inference and machine learning that isn’t included in this worksheet, so if you are interested in that I encourage you to check it out. I’m also happy to answer any follow-up questions you might have about the paper!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span>  <span class="n">interact_manual</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="simulating-causal-systems-0-5-pts">
+<h1>1. Simulating causal systems [0.5 pts]<a class="headerlink" href="#simulating-causal-systems-0-5-pts" title="Link to this heading">#</a></h1>
+<p>We’ve seen examples throughout the semester of how to simulate causal systems, such as in <a class="reference external" href="https://comsc341cd.github.io/projects/proj1.html#interactive-widget">Project 1</a>, which can help us understand different study designs and DAGs.</p>
+<p><img alt="" src="../_images/ws5_random_exp.png" /></p>
+<p>For example, here is a simulation of a randomized experiment corresponding to the DAG above, which is similar to the setup we saw in Project 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_randomized_experiment</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">covariate_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate a randomized experiment with a binary treatment, binary covariate, and continuous outcome.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): The number of samples to simulate</span>
+<span class="sd">        treatment_effect (float): The effect of the treatment on the outcome</span>
+<span class="sd">        covariate_effect (float): The effect of the covariate on the outcome</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A pandas DataFrame with the simulated data:</span>
+<span class="sd">            - T: The treatment variable</span>
+<span class="sd">            - X: The covariate variable</span>
+<span class="sd">            - Y: The outcome variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># generate binary covariate</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="c1"># generate binary treatment</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="c1"># generate outcome dependent on T and X plus noise</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">treatment_effect</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">covariate_effect</span> <span class="o">*</span> <span class="n">X</span> <span class="p">)</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice in the above code that <span class="math notranslate nohighlight">\(T\)</span> “causes” <span class="math notranslate nohighlight">\(Y\)</span> because the value of <span class="math notranslate nohighlight">\(Y\)</span> depends on the value of <span class="math notranslate nohighlight">\(T\)</span>. We can think of <span class="math notranslate nohighlight">\(T\)</span> as fully randomized because it doesn’t depend on any other variables in the system.</p>
+<section id="simulating-a-single-confounder-0-5-pt">
+<h2>1.1 Simulating a single confounder [0.5 pt]<a class="headerlink" href="#simulating-a-single-confounder-0-5-pt" title="Link to this heading">#</a></h2>
+<p>Let’s begin by building a simulation of a 3 variable DAG with a single confounder:</p>
+<p><img alt="" src="../_images/ws5_confounder.png" /></p>
+<p>This simulation will look very similar to the randomized experiment simulation code above, except that we will make <span class="math notranslate nohighlight">\(T\)</span> dependent on <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>This can be done by determining the value of <span class="math notranslate nohighlight">\(T\)</span> based on the value of <span class="math notranslate nohighlight">\(X\)</span> and some noise <span class="math notranslate nohighlight">\(\epsilon \sim \mathcal{N}(0, 1)\)</span>, binarized at a threshold of 0.5:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T = \begin{cases} 
+    1 &amp; \text{if } (X + \epsilon) &gt; 0.5 \\
+    0 &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_confounder</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">confounder_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate a confounded treatment and outcome with a single confounder.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): The number of samples to simulate</span>
+<span class="sd">        treatment_effect (float): The effect of the treatment on the outcome</span>
+<span class="sd">        confounder_effect (float): The effect of the confounder on the outcome</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A pandas DataFrame with the simulated data:</span>
+<span class="sd">            - T: The treatment variable</span>
+<span class="sd">            - X: The confounder variable</span>
+<span class="sd">            - Y: The outcome variable</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO generate binary confounder in the same way as sim_randomized_experiment</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># TODO generate treatment dependent on X and noise</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO generate outcome in the same way as sim_randomized_experiment</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Return dataframe with the 3 variables as columns</span>
+    <span class="c1">#return pd.DataFrame({&#39;T&#39;: T, &#39;X&#39;: X, &#39;Y&#39;: Y})</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">confound_df</span> <span class="o">=</span> <span class="n">sim_confounder</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">confound_df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;The DataFrame should have 3 columns&quot;</span>
+    <span class="k">assert</span> <span class="n">confound_df</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The treatment should be binary&quot;</span>
+    <span class="k">assert</span> <span class="n">confound_df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The confounder should be binary&quot;</span>
+
+    <span class="c1"># Feel free to add more tests here!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">33</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">confound_df</span> <span class="o">=</span> <span class="n">sim_confounder</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">33</span>     <span class="k">assert</span> <span class="n">confound_df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;The DataFrame should have 3 columns&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">assert</span> <span class="n">confound_df</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The treatment should be binary&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="k">assert</span> <span class="n">confound_df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The confounder should be binary&quot;</span>
+
+<span class="ne">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;shape&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Outside of typical observational studies where we have to control for confounders, another framework of causality called <em>quasi-experiments</em>, primarily developed in the field of economics, leverages randomness naturally occurring in observed data to estimate causal effects. After undergoing a “credibility revolution” over the past few decades (<a class="reference external" href="https://www.jstor.org/stable/1803924">Leamer 1983</a>, <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3">Angrist and Pischke 2010</a>), economists have increasingly employed quasi-experimental techniques to estimate causal effects in real-world problems. These methods also rely on assumptions about the causal structure of the data, but these assumptions can be more plausible than conditional exchangeability/unconfoundedness. The following techniques we review leverage naturally occurring randomness to estimate causal effects.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="instrumental-variables-1-5-pts">
+<h1>2. Instrumental variables [1.5 pts]<a class="headerlink" href="#instrumental-variables-1-5-pts" title="Link to this heading">#</a></h1>
+<p>The first technique we will examine that uses quasi-experimental randomness is the instrumental variable (IV). The goal is to identify observable variables, <em>instruments</em> <span class="math notranslate nohighlight">\(Z\)</span>, that affect our system only through their influence on the treatment of interest <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<p><img alt="" src="../_images/ws5_iv.png" /></p>
+<section id="simulating-an-iv-study-0-5-pts">
+<h2>2.1 Simulating an IV study [0.5 pts]<a class="headerlink" href="#simulating-an-iv-study-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Complete the code below to simulate an IV study with a binary instrument <span class="math notranslate nohighlight">\(Z\)</span>. It should again be very similar to the confounded simulation code above, but now we will make <span class="math notranslate nohighlight">\(T\)</span> dependent on both <span class="math notranslate nohighlight">\(Z\)</span> and <span class="math notranslate nohighlight">\(X\)</span> as well as some noise <span class="math notranslate nohighlight">\(\epsilon \sim \mathcal{N}(0, 1)\)</span>, binarized at a threshold of 1:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T = \begin{cases} 
+    1 &amp; \text{if } (Z + X + \epsilon) &gt; 1\\
+    0 &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>Additionally, the returned dataframe should omit the confounder <span class="math notranslate nohighlight">\(X\)</span> to indicate that it is not observed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_iv</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">confounder_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate an IV study with a binary instrument and confounded treatment and outcome.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): The number of samples to simulate, defaults to 10000</span>
+<span class="sd">        treatment_effect (float): The effect of the treatment on the outcome, defaults to 1</span>
+<span class="sd">        confounder_effect (float): The effect of the confounder on the outcome, defaults to 3</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A pandas DataFrame with the simulated data:</span>
+<span class="sd">            - T: The treatment variable</span>
+<span class="sd">            - Z: The instrument variable</span>
+<span class="sd">            - Y: The outcome variable</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO generate binary instrument</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO generate binary confounder in the same way as sim_randomized_experiment</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># TODO generate treatment dependent on Z, X, and noise</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO generate outcome in the same way as sim_randomized_experiment</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO omit the confounder X from the returned dataframe</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        
+    <span class="p">})</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">iv_df</span> <span class="o">=</span> <span class="n">sim_iv</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">iv_df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;The DataFrame should have 3 columns&quot;</span>
+    <span class="k">assert</span> <span class="n">iv_df</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The treatment should be binary&quot;</span>
+    <span class="k">assert</span> <span class="n">iv_df</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The instrument should be binary&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;X&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">iv_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">&quot;The confounder should not be observed&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A famous example of IV analysis in economics (<a class="reference external" href="https://www.jstor.org/stable/2937954?seq=1">Angrist and Krueger 1991</a>) considers the effect of the amount of required schooling <span class="math notranslate nohighlight">\(T\)</span> on an individual’s future wages <span class="math notranslate nohighlight">\(Y\)</span>, using birth season <span class="math notranslate nohighlight">\(Z\)</span> as an instrument. In many U.S. states, children are required to enter school the calendar year they are age six, so individuals born later in the year are young for their school grade. Because state laws require school attendance until a particular age, e.g. 16 years old, individuals are required to be in school for different amounts of time because of their birth season. As long as we can assume that birth season is effectively random and only affects an individual’s future wages through the amount of required schooling they receive, birth season can be used as an instrument to estimate causal effects.</p>
+<p>To obtain causal estimates using IV analysis, the treatment (required schooling), outcome (future wages), and instrument (birth season) must be identified, with the assumption that the instrument only affects the outcome through its effect on the treatment. We then commonly perform what is known as <em>two-stage least squares</em>, regressing the treatment on the instrument in the first stage:</p>
+<div class="math notranslate nohighlight">
+\[
+T = \alpha_0 + \alpha_1 Z
+\]</div>
+<p>Then regressing the outcome on the <em>estimate</em> of the treatment from the first stage:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_1 \hat{T}
+\]</div>
+<p>The first stage extracts the “unconfounded component” of the treatment due to the effect of the instrument and uses that component in our second stage regression to estimate the causal effect, controlling for confounding in the process. The coefficient <span class="math notranslate nohighlight">\(\beta_1\)</span> is the causal effect of the treatment on the outcome.</p>
+</section>
+<section id="estimating-causal-effects-with-an-iv-0-5-pts">
+<h2>2.2 Estimating causal effects with an IV [0.5 pts]<a class="headerlink" href="#estimating-causal-effects-with-an-iv-0-5-pts" title="Link to this heading">#</a></h2>
+<p>We provide the code for a “naive” regression on the treatment that is incorrect due to the missing confounder.
+Complete the <code class="docutils literal notranslate"><span class="pre">two_stage_least_squares</span></code> function using the statsmodels formula API we’ve been using:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">naive_regression</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform a regression on the treatment, which is incorrect due to the missing confounder.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">naive_formula</span> <span class="o">=</span> <span class="s1">&#39;Y ~ 1 + T&#39;</span>
+    <span class="n">naive_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">naive_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">naive_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">two_stage_least_squares</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform two-stage least squares estimation for instrumental variables.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the data</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The causal effect of the treatment on the outcome</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO first stage regression</span>
+    <span class="n">first_stage_formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">first_stage</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">first_stage_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+    <span class="c1"># Add the predicted treatment values to the dataframe</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;T_hat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_stage</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="c1"># TODO second stage regression</span>
+    <span class="n">second_stage_formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">second_stage</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">second_stage_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+    <span class="c1"># TODO return the causal effect from the second stage regression</span>
+    <span class="k">return</span> <span class="kc">None</span>
+    
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">iv_df</span> <span class="o">=</span> <span class="n">sim_iv</span><span class="p">()</span>
+    <span class="n">estimate</span> <span class="o">=</span> <span class="n">two_stage_least_squares</span><span class="p">(</span><span class="n">iv_df</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">estimate</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span> <span class="s2">&quot;The estimate should be a float&quot;</span>
+    <span class="c1"># Feel free to add more tests here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, complete the simulation method below to plot the distribution of the causal effect estimates from the naive regression and the two-stage least squares estimator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_iv_estimates</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the distribution of the causal effect estimates from the naive regression and the two-stage least squares estimator.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): The number of samples to simulate</span>
+<span class="sd">        treatment_effect (float): The effect of the treatment on the outcome</span>
+<span class="sd">        confounder_effect (float): The effect of the confounder on the outcome</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># simulate 1000 iv datasets</span>
+    <span class="n">n_datasets</span> <span class="o">=</span> <span class="mi">1000</span>
+
+    <span class="n">iv_estimates</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">naive_estimates</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_datasets</span><span class="p">):</span>
+        <span class="c1"># Simulate an IV dataset with the default parameters</span>
+        <span class="n">iv_df</span> <span class="o">=</span> <span class="n">sim_iv</span><span class="p">()</span>
+
+        <span class="c1"># TODO compute the causal effect estimate from the naive regression</span>
+        <span class="n">naive_estimates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span>
+
+        <span class="c1"># TODO compute the causal effect estimate from the two-stage least squares estimator</span>
+        <span class="n">iv_estimates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span>
+
+    <span class="c1"># The true effect is 1 for the default parameters</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Effect&#39;</span><span class="p">)</span>
+
+    <span class="c1"># TODO plot histograms of IV estimates and naive estimates</span>
+
+    
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">plot_iv_estimates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click this once you’ve completed the plot)</p>
+<p>You should find that the IV estimate is unbiased – though likely with higher variance – while the regression estimate is more precise but biased.</p>
+</div>
+<p>There are a number of assumptions and considerations to be made when performing IV analysis to ensure valid estimation. We need to assume <strong>instrument unconfoundedness</strong> – in other words, there is no confounding variable influencing both the instrument itself and the outcome Y. The diagram below shows an example of a violation of instrument unconfoundedness:</p>
+<p><img alt="" src="../_images/ws5_iv_unconfoundedness.png" /></p>
+<p>Though this can be a strong assumption, it often more justifiable than the typical unconfoundedness assumption because the instrument is chosen to be random: it is more plausible to argue that birth season is unconfounded with future wages than it is to argue that our treatment T schooling is unconfounded with future wages. We also need to ensure the instrument only affects the outcome through its effect on the treatment, known as the <strong>exclusion restriction</strong>. A violation of the exclusion restriction occurs if there are other paths from the instrument to the outcome other than through the treatment. For example, in the diagram below, the instrument Z affects the outcome Y through the treatment T as well as a direct effect on Y:</p>
+<p><img alt="" src="../_images/ws5_iv_exclusion.png" /></p>
+<p>Furthermore, successful instruments must be <strong>relevant</strong> and correlate strongly with the treatment, as weakly correlated instruments lack the statistical efficiency to produce practically useful estimates. It is important to ensure that these assumptions are met, as violations of any of these assumptions could threaten the validity of the results.</p>
+<p>For example, though weather is a popular instrument considered for IV analysis because changes in weather in a region are plausibly random, it may not be appropriate depending on the specific causal question being asked. Consider a behavioral scientist who wishes to study the effect of exercise on mental wellbeing and plans to use temperature as an instrument on the amount of exercise individuals get. Though it tells an intuitive story where temperature “randomizes” the amount of exercise individuals get, temperature may in fact be only weakly correlated with exercise depending on the type of activity (e.g. indoor exercises are not affected as much by temperature), or more concerningly, may violate the exclusion restriction (temperature may also influence mental health outside of exercise, such as through seasonal affective disorder). In this situation, though it seems that weather is a good candidate for IV analysis, a closer consideration of all the assumptions reveal flaws in the study design.</p>
+<p>Provided that we find an appropriate instrument such that these assumptions are plausible, IV analysis can be used broadly across many disciplines to estimate causal effects in nonexperimental data by leveraging observable sources of randomness.</p>
+</section>
+<section id="iv-study-discussion-0-5-pts">
+<h2>2.3 IV study discussion [0.5 pts]<a class="headerlink" href="#iv-study-discussion-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Below is a table of instrumental variable studies across different domains:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paper and Domain</p></th>
+<th class="head"><p>Question</p></th>
+<th class="head"><p>Treatment (T)</p></th>
+<th class="head"><p>Instrument (Z)</p></th>
+<th class="head"><p>Outcome (Y)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://academic.oup.com/ije/article/48/5/1478/5531250">Zhao et al. 2021</a> (Medicine)</p></td>
+<td><p>Using genome-wide association study data, what is the relationship between cholesterol and cardiovascular disease?</p></td>
+<td><p>High-density lipoprotein (HDL) cholesterol levels</p></td>
+<td><p>Variation in genes that affect HDL cholesterol levels</p></td>
+<td><p>Coronary artery disease and heart attack risk</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://dl.acm.org/doi/10.1145/2764468.2764488">Sharma et al. 2015</a> (Tech industry)</p></td>
+<td><p>How do product recommendations affect what products customers view?</p></td>
+<td><p>Product recommendation</p></td>
+<td><p>Shock in popularity to product displayed next to recommended product</p></td>
+<td><p>Click-through rate on the recommended product</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S002243751000112X">Huan and Levinson 2010</a> (Public Safety)</p></td>
+<td><p>Does sleep deprivation result in more car accidents?</p></td>
+<td><p>Sleep amount</p></td>
+<td><p>Daylight savings time</p></td>
+<td><p>Vehicle crash statistics</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.biorxiv.org/content/10.1101/463760v4">Lepperød et al. 2018</a> (Neuroscience)</p></td>
+<td><p>Are neurons A and B causally connected to each other?</p></td>
+<td><p>Optogenetic stimulation of neuron A</p></td>
+<td><p>Random refractory periods of other neurons</p></td>
+<td><p>Whether neuron B fires</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.jstor.org/stable/3211619?seq=1">Zimmerman 2003</a> (Education)</p></td>
+<td><p>How do peer effects impact academic achievement?</p></td>
+<td><p>Peer effects (e.g., studying, socializing together)</p></td>
+<td><p>Random assignment of first-year roommates</p></td>
+<td><p>Academic achievement (GPA)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Choose one of the studies above and briefly discuss the validity of the instrument in terms of the <strong>instrument unconfoundedness</strong> and <strong>exclusion restriction</strong> assumptions. In your assessment, does the instrument seem to be in line with the necessary assumptions?</p>
+<p><strong>Your Response</strong>: TODO</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="regression-discontinuities">
+<h1>3. Regression discontinuities<a class="headerlink" href="#regression-discontinuities" title="Link to this heading">#</a></h1>
+<p>Another method of leveraging naturally occurring randomness to estimate causality is the regression discontinuity design (RDD). In RDDs, our treatment of interest <span class="math notranslate nohighlight">\(T\)</span> is assigned according to a sharp cutoff of a continuous running variable <span class="math notranslate nohighlight">\(R\)</span>, such as age, a standardized test score, or a blood pressure reading. Because the cutoff is sharp (e.g., if age 50 or above, patients get screened for cancer, otherwise they do not), the treatment assignment <span class="math notranslate nohighlight">\(T\)</span> is “as good as random” (quasi-random) for individuals near the cutoff <span class="math notranslate nohighlight">\(Z\)</span>, allowing for the estimation of the causal effect of treatment <span class="math notranslate nohighlight">\(T\)</span> on the outcome <span class="math notranslate nohighlight">\(Y\)</span>:</p>
+<p><img alt="" src="../_images/ws5_rdd.png" /></p>
+<p>The classic RDD example (<a class="reference external" href="https://psycnet.apa.org/fulltext/1962-00061-001.pdf">Thistlewaite and Campbell 1960</a>) concerns high school academic recognition <span class="math notranslate nohighlight">\(T\)</span> and their effect on subsequent academic achievement such as receiving college scholarships<span class="math notranslate nohighlight">\(Y\)</span>. U.S. high school students take a standardized exam called the National Merit Scholarship Qualifying Test (NMSQT®), with students who meet a minimum score cutoff being nationally recognized with a Certificate of Merit <span class="math notranslate nohighlight">\(T\)</span>, increasing their chances of receiving college scholarships. Here, the continuous running variable is the NMSQT test score <span class="math notranslate nohighlight">\(R\)</span>. Students who just meet the cutoff <span class="math notranslate nohighlight">\(Z=1\)</span> are not materially different from students who just miss the cutoff <span class="math notranslate nohighlight">\(Z=0\)</span>, essentially randomizing assignment of the Certificate of Merit <strong>near the cutoff score</strong>. This quasi-randomization design allows estimation of the causal relationship between the Certificate of Merit and future academic achievement for students around the threshold.</p>
+<section id="simulating-a-regression-discontinuity-0-5-pts">
+<h2>3.1 Simulating a regression discontinuity [0.5 pts]<a class="headerlink" href="#simulating-a-regression-discontinuity-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Complete the code below to simulate a simple RDD study, without confounding. We’ll generate a continuous running variable <span class="math notranslate nohighlight">\(R\)</span> with a uniform distribution between 0 and 1:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The cutoff indicator <span class="math notranslate nohighlight">\(Z\)</span> should be binarized at a threshold of <span class="math notranslate nohighlight">\(R\gt0.5\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Z = \begin{cases} 
+    1 &amp; \text{if } R &gt; 0.5\\
+    0 &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>The treatment <span class="math notranslate nohighlight">\(T\)</span> should then be completely determined by the cutoff indicator <span class="math notranslate nohighlight">\(Z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T = \begin{cases} 
+    1 &amp; \text{if } Z = 1\\
+    0 &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>This indicates that a unit above the threshold will always receive the treatment, while a unit below the threshold will never receive the treatment.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>You might wonder why we have the “above the cutoff” indicator <span class="math notranslate nohighlight">\(Z\)</span> when <span class="math notranslate nohighlight">\(T\)</span> is simply equal to <span class="math notranslate nohighlight">\(Z\)</span>. This is because we want to logically separate out the treatment assignment from the cutoff indicator to handle more general cases when <span class="math notranslate nohighlight">\(T\)</span> is determined by other factors in addition to <span class="math notranslate nohighlight">\(Z\)</span>. Our simple simulation produces a “sharp” RDD, where the treatment is completely determined by the cutoff indicator. In practice, there are also “fuzzy” RDDs, where the probability of treatment is influenced by the cutoff indicator but not completely determined by it. It is these “fuzzy” cases where the cutoff indicator <span class="math notranslate nohighlight">\(Z\)</span> becomes important, which we’ll discuss when we get to implementation details of RDDs.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_rdd</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">running_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate an RDD study with a continuous running variable, a cutoff indicator, and confounded treatment and outcome.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): The number of samples to simulate</span>
+<span class="sd">        treatment_effect (float): The effect of the treatment on the outcome, defaults to 1</span>
+<span class="sd">        running_effect (float): The effect of the running variable on the outcome, defaults to 1</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A pandas DataFrame with the simulated data:</span>
+<span class="sd">            - T: The treatment variable</span>
+<span class="sd">            - Z: The cutoff indicator variable</span>
+<span class="sd">            - R: The running variable</span>
+<span class="sd">            - Y: The outcome variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO generate the running variable with a uniform distribution between 0 and 1</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO generate the cutoff indicator with a threshold of R &gt; 0.5</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># TODO generate treatment, completely determined by Z</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Generate the outcome</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">treatment_effect</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="n">running_effect</span> <span class="o">*</span> <span class="n">R</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="n">Z</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="n">R</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="p">})</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">rdd_df</span> <span class="o">=</span> <span class="n">sim_rdd</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">rdd_df</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The treatment should be binary&quot;</span>
+    <span class="k">assert</span> <span class="n">rdd_df</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;The cutoff indicator should be binary&quot;</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">rdd_df</span><span class="p">[</span><span class="n">rdd_df</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">][</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;The cutoff indicator should be 1 for all running variables greater than 0.5&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A common method to obtain causal estimates using RDD is to fit two linear regressions of the running variable <span class="math notranslate nohighlight">\(R\)</span> (test score) on the outcome <span class="math notranslate nohighlight">\(Y\)</span> (scholarship amount) both below and above the threshold, called <em>local linear regression</em>. The causal effect of the treatment <span class="math notranslate nohighlight">\(T\)</span> (Certificate of Merit) at the threshold is the difference in the two fitted regressions’ predicted value at the threshold. A practical consideration of implementing RDDs concerns bandwidth size: how far from the threshold can an individual be and still have effectively random treatment? Smaller bandwidths make it more plausible for treatment to be quasi-random but also reduce the sample size of the regressions fitted. On the other hand, larger bandwidths may introduce bias into our estimates, particularly if the relationship between the running variable <span class="math notranslate nohighlight">\(R\)</span> and the outcome <span class="math notranslate nohighlight">\(Y\)</span> is nonlinear.</p>
+</section>
+<section id="local-linear-regressions-for-rdd-0-5-pts">
+<h2>3.2 Local linear regressions for RDD [0.5 pts]<a class="headerlink" href="#local-linear-regressions-for-rdd-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Complete the code below to fit local linear regressions below and above the threshold of <span class="math notranslate nohighlight">\(R=0.5\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{\text{below}} = \alpha_0 + \alpha_1 R, \quad \text{ for data where } R \leq 0.5
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Y_{\text{above}} = \beta_0 + \beta_1 R, \quad \text{ for data where } R &gt; 0.5
+\]</div>
+<p>The causal effect of the treatment <span class="math notranslate nohighlight">\(T\)</span> the difference in the two fitted regressions’ predicted value exactly at the threshold value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_local_linear_regressions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fit local linear regressions to the left and right of the threshold.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the data</span>
+<span class="sd">        threshold (float): The threshold value of the running variable, defaults to 0.5</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple (below, above): the fitted regressions below and above the threshold</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO select the dataframe rows for data below the threshold</span>
+    <span class="n">below_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO fit a linear regression of Y on R below the threshold</span>
+    <span class="n">below_regression</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO select the dataframe rows for the data above the threshold</span>
+    <span class="n">above_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO fit a linear regression of Y on R above the threshold</span>
+    <span class="n">above_regression</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="k">return</span> <span class="n">below_regression</span><span class="p">,</span> <span class="n">above_regression</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">rdd_df</span> <span class="o">=</span> <span class="n">sim_rdd</span><span class="p">()</span>
+    <span class="n">below</span><span class="p">,</span> <span class="n">above</span>  <span class="o">=</span> <span class="n">fit_local_linear_regressions</span><span class="p">(</span><span class="n">rdd_df</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="s1">&#39;R&#39;</span> <span class="ow">in</span> <span class="n">below</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;The running variable should be in the regression&quot;</span>
+    <span class="k">assert</span> <span class="s1">&#39;R&#39;</span> <span class="ow">in</span> <span class="n">above</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;The running variable should be in the regression&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then plot these two regressions against the data to visualize the discontinuity at the threshold:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_rdd</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">below_regression</span><span class="p">,</span> <span class="n">above_regression</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the RDD data and the fitted regressions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO draw a scatter plot of df[&#39;R&#39;] on the x-axis vs df[&#39;Y&#39;] on the y-axis</span>
+    <span class="c1"># Use alpha=0.1 to reduce transparency and make the plot more readable</span>
+
+    <span class="c1"># Generate a dataframe with R values from 0 to 0.5</span>
+    <span class="n">below_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)})</span>
+
+    <span class="c1"># Generate a dataframe with R values from 0.5 to 1</span>
+    <span class="n">above_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)})</span>
+
+    <span class="c1"># TODO predict the outcomes for the below and above dataframes</span>
+    <span class="n">below_predictions</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">above_predictions</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO plot lineplots of below_predictions and above_predictions </span>
+    
+    <span class="c1"># Plot the threshold as a vertical line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Threshold&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">rdd_df</span> <span class="o">=</span> <span class="n">sim_rdd</span><span class="p">(</span><span class="n">treatment_effect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">below_regression</span><span class="p">,</span> <span class="n">above_regression</span> <span class="o">=</span> <span class="n">fit_local_linear_regressions</span><span class="p">(</span><span class="n">rdd_df</span><span class="p">)</span>
+    <span class="n">plot_rdd</span><span class="p">(</span><span class="n">rdd_df</span><span class="p">,</span> <span class="n">below_regression</span><span class="p">,</span> <span class="n">above_regression</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click this once you’ve completed the plot)</p>
+<p>You should be able to visually see that the difference between the two regressions at the threshold is the causal effect of the treatment – which in the case of this simulation should be about 2.</p>
+</div>
+<p>There are several assumptions needed when performing RDD analysis to ensure valid estimation. We assume that only the running variable <span class="math notranslate nohighlight">\(R\)</span> has a discontinuous jump that drives the causal relationship between the treatment and the outcome. This assumption can be falsified in practice by verifying the continuity of other measured covariates at the cutoff value of <span class="math notranslate nohighlight">\(R\)</span>.  Another critical assumption requires that individuals cannot perfectly manipulate the running variable, as this could make the groups above and below the threshold incomparable. In our above example, if some students can precisely control their test score such that they do <em>just enough</em> studying to achieve the Certificate of Merit cutoff, that would violate the quasi-randomization of treatment. Economists have developed tests for this form of running variable manipulation enabling falsification of the assumption. Notably, the running variable does not need to be unconfounded to make valid causal estimates. It is almost certainly the case that a student’s test score <span class="math notranslate nohighlight">\(R\)</span> is generally confounded with their subsequent academic achievement <span class="math notranslate nohighlight">\(Y\)</span> – however the claim of the RDD is that close to the score cutoff, the treatment assignment <span class="math notranslate nohighlight">\(T\)</span> is as good as random. Because of its relatively weak and often falsifiable assumptions, RDD is known as one of the most credible quasi-experimental designs for estimating causality without a randomized experiment.</p>
+<p>However, though it is tempting to try and apply RDD analysis whenever there is a threshold determining treatment assignment, there are plausible situations where these assumptions do not hold. The assumption that units just above and below the threshold are comparable needs to be carefully considered in practice, as violations often arise when individuals in the study know the cutoff and the score. For example, one may study the effect of grant awards on future academic success of young scientists, utilizing NIH payline cutoffs for fellowship and grant fundings for an RDD analysis. However, since payline cutoffs are made public, it is likely that scientists who know they just missed the cutoff are further motivated to work harder than scientists that just barely made the cutoff, potentially biasing estimates of future success because the scientists just above and below the cutoff differ in motivation.</p>
+<p>Provided that the assumptions can be justified, RDD analysis has the potential to be widely applicable in estimating causal effects as thresholds exist in many domains (see the table below), even in unconventional settings such as geographic boundaries.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paper and Domain</p></th>
+<th class="head"><p>Question</p></th>
+<th class="head"><p>Treatment <span class="math notranslate nohighlight">\(T\)</span></p></th>
+<th class="head"><p>Running Variable <span class="math notranslate nohighlight">\(R\)</span> &amp; Threshold <span class="math notranslate nohighlight">\(Z\)</span></p></th>
+<th class="head"><p>Outcome <span class="math notranslate nohighlight">\(Y\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/25061922/">Bor et al. 2014</a> (Medicine)</p></td>
+<td><p>When should HIV patients get started on antiretroviral therapy?</p></td>
+<td><p>Antiretroviral therapy</p></td>
+<td><p>CD4 T-cell count and threshold for treatment administration</p></td>
+<td><p>Mortality</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.pnas.org/doi/10.1073/pnas.1300018110">Chen et al. 2013</a> (Climate Science)</p></td>
+<td><p>How does air pollution influence life expectancy?</p></td>
+<td><p>Air pollutants from burning coal</p></td>
+<td><p>Distance from river and subsidized coal policy north of the river</p></td>
+<td><p>Life expectancy</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.degruyter.com/document/doi/10.1515/fhep-2014-0014/html">Kadiyala and Strumpf 2016</a> (Public Health)</p></td>
+<td><p>How effective is early breast cancer screening in reducing mortality?</p></td>
+<td><p>Breast cancer screening</p></td>
+<td><p>Age and recommended screening age guidelines</p></td>
+<td><p>Mortality</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011005">Lansdell and Kording 2023</a> (Neuroscience)</p></td>
+<td><p>How do neurons learn to optimize their activity?</p></td>
+<td><p>Neuron spiking</p></td>
+<td><p>Input neural drive and spiking threshold</p></td>
+<td><p>Observed reward for neuron</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="rdd-discussion-0-5-pt">
+<h2>3.2 RDD discussion [0.5 pt]<a class="headerlink" href="#rdd-discussion-0-5-pt" title="Link to this heading">#</a></h2>
+<p>Think of a real-world setting where a decision or “treatment” is assigned based on exceeding (or falling below) a specific threshold value. Describe how you could apply an RDD to study a causal outcome in this setting by identifying:</p>
+<ul class="simple">
+<li><p>Running variable <span class="math notranslate nohighlight">\(R\)</span>: TODO</p></li>
+<li><p>Cutoff <span class="math notranslate nohighlight">\(Z\)</span>: <span class="math notranslate nohighlight">\(R\)</span> &gt; ? or <span class="math notranslate nohighlight">\(R\)</span> &lt; ?</p></li>
+<li><p>Treatment <span class="math notranslate nohighlight">\(T\)</span>: TODO</p></li>
+<li><p>Outcome <span class="math notranslate nohighlight">\(Y\)</span>: TODO</p></li>
+</ul>
+<p>Briefly discuss why this scenario could be appropriate for RDD analysis.</p>
+<p><strong>Your Response</strong>: TODO</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="difference-in-differences">
+<h1>4. Difference-in-differences<a class="headerlink" href="#difference-in-differences" title="Link to this heading">#</a></h1>
+<p>A third standard econometric approach called difference-in-differences (DiD) addresses confounding in observational data by looking at a treated and a control group and comparing their outcome trends over time. We have measurements of outcome <span class="math notranslate nohighlight">\(Y\)</span> in time periods before (<span class="math notranslate nohighlight">\(Y_{\text{pre}}\)</span>) and after (<span class="math notranslate nohighlight">\(Y_{\text{post}}\)</span>) treatment <span class="math notranslate nohighlight">\(T\)</span> for both a treated group that receives the treatment and a control group that does not receive treatment. The simple difference <span class="math notranslate nohighlight">\(\delta_{\text{treat}} = Y_{\text{treat, post}} - Y_{\text{treat, pre}}\)</span> of the treated group could serve as an estimate of the causal effect of <span class="math notranslate nohighlight">\(T\)</span>, but it may be confounded by unobserved factors or time effects. The idea of the DiD is to use the difference <span class="math notranslate nohighlight">\(\delta_{\text{control}} = Y_{\text{control, post}} - Y_{\text{control, pre}}\)</span> of the control group as an estimate of confounding affecting the treated group, correcting for this effect by subtracting this second difference.</p>
+<p>The classic example of DiD in economics concerns the effect of raising the minimum wage <span class="math notranslate nohighlight">\(T\)</span> on employment <span class="math notranslate nohighlight">\(Y\)</span> (<a class="reference external" href="https://www.nber.org/system/files/working_papers/w4509/w4509.pdf">Card and Krueger 1993</a>). New Jersey raised the minimum wage in 1992, while the bordering state of Pennsylvania did not. The study compared fast food restaurant employment numbers from both states before and after the policy change. Changes in employment when looking only at New Jersey could have been confounded by other factors, such as a national recession. However, by subtracting the difference in employment observed in Pennsylvania, which did not see a minimum wage increase but is plausibly equally affected by confounders due to geographic and demographic similarities, the authors could control for potential confounding.</p>
+<p>To perform DiD analysis, we use longitudinal data to make estimates of <span class="math notranslate nohighlight">\(Y_{\text{pre}}\)</span> and <span class="math notranslate nohighlight">\(Y_{\text{post}}\)</span> (for example, pre- and post-minimum wage increase) for both the control and treated groups. The estimates can be single expectations computed over the pre and post time periods or, if the practitioner wishes to include multiple time points and control for other covariates, the estimates can be made with a time series regression. We then take a difference between the estimated differences of the outcome values between the treated and control groups <span class="math notranslate nohighlight">\(\delta_{\text{treat}} - \delta_{\text{control}}\)</span>, which yields a valid estimate of the effect treatment <span class="math notranslate nohighlight">\(T\)</span> has on outcome <span class="math notranslate nohighlight">\(Y\)</span> by subtracting out confounding factors that influence both the control and treated group equally. We note here that DiD analyses are a particular regression method for estimating causality from time series, with variations of DiD available for nonparametric and nonlinear settings. The <strong>synthetic control</strong>, related to DiD, is another technique developed in economics to estimate causal effects from time series data (<a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/jel.20191450">Abadie 2021</a>).</p>
+<p>Like the other quasi-experimental designs, DiD analysis requires assumptions to ensure valid causal estimates. The most important assumption is the presence of <strong>parallel trends</strong>: we require that the treated and control groups are not differentially affected by confounding factors over time. In our minimum wage example, the parallel trends assumption would be violated if the Pennsylvania labor market reacted differently from the one in New Jersey to the ongoing recession. If the longitudinal data contains multiple time points, the parallel trends assumption can be tested by examining the outcome <span class="math notranslate nohighlight">\(Y\)</span> in the two groups before the treatment <span class="math notranslate nohighlight">\(X\)</span> is applied. Another assumption required is the absence of <strong>spillover effects</strong>, where intervention itself results in a change in the composition of the control and treated groups. This would be violated if the new minimum wage in New Jersey resulted in different individuals to re-enter the job market or for individuals from Pennsylvania to move to New Jersey.  For DiD analyses to be valid, we need evidence to support both parallel trends and the absence of spillover effects.</p>
+<section id="difference-in-differences-simulation-0-5-pts">
+<h2>4.1 Difference-in-differences simulation [0.5 pts]<a class="headerlink" href="#difference-in-differences-simulation-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Below is a simple simulation of a linear difference-in-differences study. It generates four total time periods, with three pre-treatment (<span class="math notranslate nohighlight">\(t=0, 1, 2\)</span>) and one post-treatment (<span class="math notranslate nohighlight">\(t=3\)</span>). We can assume that the treatment event occurred at time period <span class="math notranslate nohighlight">\(t=2.5\)</span>.</p>
+<p>Complete the <code class="docutils literal notranslate"><span class="pre">estimate_did</span></code> function to compute the diff-in-diff estimate between time periods 2 and 3:</p>
+<div class="math notranslate nohighlight">
+\[
+\delta_{\text{treat}} = Y_{\text{treat, } t=3} - Y_{\text{treat, } t=2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\delta_{\text{control}} = Y_{\text{control, } t=3} - Y_{\text{control, } t=2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\delta_{DiD} = \delta_{\text{treat}} - \delta_{\text{control}}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Depending on your implementation, you may need to extract individual floats from the pandas columns. You can do this by first converting the column to a numpy array using <code class="docutils literal notranslate"><span class="pre">df[col].values</span></code> and then selecting the first element. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Y_treat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>would return the float of <span class="math notranslate nohighlight">\(Y_{\text{treat, } t=0}\)</span> from the dataframe <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_did</span><span class="p">(</span><span class="n">control_slope</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">treated_slope</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate a difference-in-differences study with adjustable slopes and treatment effect.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        control_slope (float): Slope of the control group trend</span>
+<span class="sd">        treated_slope (float): Slope of the treated group trend (pre-treatment)</span>
+<span class="sd">        treatment_effect (float): Effect of treatment in the post-period</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">periods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+    <span class="c1"># Have the treated and control groups follow their trends with different intercepts</span>
+    <span class="n">control_outcomes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">control_slope</span> <span class="o">*</span> <span class="n">periods</span>
+    <span class="n">treated_outcomes</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">treated_slope</span> <span class="o">*</span> <span class="n">periods</span>
+
+    <span class="c1"># Apply the treatment effect to the treated group at time period 3</span>
+    <span class="n">treated_outcomes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+=</span> <span class="n">treatment_effect</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Y_treat&#39;</span><span class="p">:</span> <span class="n">treated_outcomes</span><span class="p">,</span>
+        <span class="s1">&#39;Y_control&#39;</span><span class="p">:</span> <span class="n">control_outcomes</span><span class="p">,</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">periods</span>
+    <span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">estimate_did</span><span class="p">(</span><span class="n">did_df</span><span class="p">,</span> <span class="n">pre_period</span><span class="p">,</span> <span class="n">post_period</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estimate the difference-in-differences (DiD) between the treated and control groups for the given pre- and post-periods.</span>
+<span class="sd">    </span>
+<span class="sd">    Assumes the following columns in did_df:</span>
+<span class="sd">        - time</span>
+<span class="sd">        - Y_treat</span>
+<span class="sd">        - Y_control</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        did_df (pd.DataFrame): DataFrame containing the data</span>
+<span class="sd">        pre_period (int): The pre-treatment period</span>
+<span class="sd">        post_period (int): The post-treatment period</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The difference-in-differences estimate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="n">delta_treat</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">delta_control</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">did_estimate</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">did_estimate</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+
+    <span class="n">did_df</span> <span class="o">=</span> <span class="n">sim_did</span><span class="p">(</span><span class="n">treatment_effect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">did_df</span><span class="p">)</span>
+
+    <span class="n">did_effect</span> <span class="o">=</span> <span class="n">estimate_did</span><span class="p">(</span><span class="n">did_df</span><span class="p">,</span> <span class="n">pre_period</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">post_period</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">did_effect</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span> <span class="s2">&quot;The estimate should be a float&quot;</span>
+    <span class="k">assert</span> <span class="n">did_effect</span> <span class="o">==</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;The DiD estimate should be 2.0&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="difference-in-differences-parallel-trends-widget-0-5-pts">
+<h2>4.2 Difference-in-differences parallel trends widget [0.5 pts]<a class="headerlink" href="#difference-in-differences-parallel-trends-widget-0-5-pts" title="Link to this heading">#</a></h2>
+<p>Complete the widget below plotting the DiD data by filling in the TODOs and plotting a vertical line segment corresponding to the DiD estimate, where the first coordinate is <span class="math notranslate nohighlight">\((3, \;Y_{\text{treat, } t=3})\)</span> and the second coordinate is <span class="math notranslate nohighlight">\((3, \;Y_{\text{treat, } t=3} - \delta_{DiD} )\)</span>.</p>
+<p>To plot arbitrary line segments, we can use <code class="docutils literal notranslate"><span class="pre">plt.plot((x1,</span> <span class="pre">x2),</span> <span class="pre">(y1,</span> <span class="pre">y2))</span></code> to show a line segment between the points <span class="math notranslate nohighlight">\((x1, y1)\)</span> and <span class="math notranslate nohighlight">\((x2, y2)\)</span>. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line segment from (1, 3) to (1, 4)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Additionally, plot the counterfactual trend for the treated group, which represents the hypothetical scenario where the treatment effect is not applied. This is the treated group trend minus the treatment effect for the post-treatment period <span class="math notranslate nohighlight">\(t=3\)</span> within the <code class="docutils literal notranslate"><span class="pre">show_counterfactual</span></code> conditional statement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact_manual</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">plot_did</span><span class="p">(</span><span class="n">control_slope</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">treated_slope</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">show_counterfactual</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Linear DiD visualization with adjustable parameters to explore the effects of parallel trends.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        control_slope (float): Slope of the control group trend</span>
+<span class="sd">        treated_slope (float): Slope of the treated group trend (pre-treatment)</span>
+<span class="sd">        treatment_effect (float): Effect of treatment in the post-period</span>
+<span class="sd">        show_counterfactual (bool): Toggle whether to show the counterfactual trend</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Clear previous plots</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+
+    <span class="c1"># Generate the data using sim_did with a fixed treatment effect=2</span>
+    <span class="n">treatment_effect</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">did_df</span> <span class="o">=</span> <span class="n">sim_did</span><span class="p">(</span><span class="n">control_slope</span><span class="p">,</span> <span class="n">treated_slope</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="n">treatment_effect</span><span class="p">)</span>
+
+    <span class="c1"># TODO compute the diff-in-diff estimate using estimate_did</span>
+    <span class="n">did_effect</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO plot Y_treat and Y_control against time using sns.lineplot</span>
+    <span class="c1"># use markers=&#39;o&#39; to plot markers at each time period</span>
+    
+
+    
+    <span class="k">if</span> <span class="n">show_counterfactual</span><span class="p">:</span>
+        <span class="n">Y_counterfactual</span> <span class="o">=</span> <span class="n">did_df</span><span class="p">[</span><span class="s1">&#39;Y_treat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1"># Creates the ounterfactual trend by subtracting the treatment effect at t=3</span>
+        <span class="n">Y_counterfactual</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-=</span> <span class="n">treatment_effect</span>
+
+        <span class="c1"># TODO plot Y_counterfactual against time using markers=&#39;o&#39; and ls=&#39;--&#39; for dotted lines</span>
+
+    
+    <span class="c1"># TODO plot the specified line segment at t=3, labelled &quot;DiD estimate&quot;</span>
+    <span class="c1"># plt.plot((3, 3), (TODO, TODO), label=&#39;DiD estimate&#39;)</span>
+
+    <span class="c1"># Plots the treatment event as a vertical line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DiD Estimate: </span><span class="si">{</span><span class="n">did_effect</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">   (True Effect: </span><span class="si">{</span><span class="n">treatment_effect</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Explore the effects different slopes for the control and treated groups have on the DiD estimate by changing the sliders and toggling the counterfactual plot. What do you observe about the DiD estimate and counterfactual trend when the slopes are the same?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p>The parallel trends assumption is violated if the control and treated groups have different slopes. Does the DiD estimate over or underestimate the true effect when the treated group slope is greater than the control group slope?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Takeaway (click once you’ve completed this section)</p>
+<p>In the case where the parallel trends assumption holds, we should expect the DiD estimate to correspond exactly to the difference between the actual treated outcome and the counterfactual treated outcome in the post-treatment period <span class="math notranslate nohighlight">\(t=3\)</span>.</p>
+</div>
+<p>The transparency and flexibility of the DiD analysis make it an attractive technique for causal inference provided that appropriate controls are selected and that the DiD assumptions are plausible. As many data science problems involve time series, DiD has the potential to be used across a wide range of domains to estimate causal effects from observational data (see the table below for some examples).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paper and Domain</p></th>
+<th class="head"><p>Question</p></th>
+<th class="head"><p>Treatment <span class="math notranslate nohighlight">\(T\)</span></p></th>
+<th class="head"><p>Parallel Groups</p></th>
+<th class="head"><p>Outcome <span class="math notranslate nohighlight">\(Y\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/25490327/">Patel et al. 2014</a> (Medicine)</p></td>
+<td><p>How does limiting hospital work hours affect surgical outcomes?</p></td>
+<td><p>Limiting resident duty hours to 80 hours a week</p></td>
+<td><p>Teaching and non-teaching hospitals, with/without residents</p></td>
+<td><p>Patient mortality, re-admission after duty hours limit</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://pubsonline.informs.org/doi/10.1287/isre.1120.0460">Rishika et al. 2012</a> (Business)</p></td>
+<td><p>How does social media presence influence company profitability?</p></td>
+<td><p>Company launch of social media site</p></td>
+<td><p>Participating and non-participating customers</p></td>
+<td><p>Customer site visit frequency and profitability after social media site launch</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S1439179116301323">Butsic et al. 2017</a> (Ecology)</p></td>
+<td><p>How do wildfires affect plant species diversity?</p></td>
+<td><p>Wildfires burning plots of land</p></td>
+<td><p>Burned and unburned geographically similar land plots</p></td>
+<td><p>Measurements of plant species richness</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://onlinelibrary.wiley.com/doi/full/10.1111/ajps.12177">Holbein and Hillygus 2015</a> (Political science)</p></td>
+<td><p>How does pre-registration impact youth voter turnout?</p></td>
+<td><p>Pre-registration of young voters</p></td>
+<td><p>Similar U.S. states with/without pre-registration laws</p></td>
+<td><p>Voter turnout</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="discussion">
+<h1>Discussion<a class="headerlink" href="#discussion" title="Link to this heading">#</a></h1>
+<section id="limitations-of-quasi-experiments">
+<h2>Limitations of quasi-experiments<a class="headerlink" href="#limitations-of-quasi-experiments" title="Link to this heading">#</a></h2>
+<p>There are limitations to the generalizability of causal estimates made using quasi-experimental techniques. All of the methods we have reviewed estimate causal effects for specific populations. IVs estimate the causal effect for the individuals affected by the instrument. RDD estimates the causal effect of individuals at the threshold, though extrapolation of causal effects away from the threshold is possible under stronger assumptions. DiD estimates the causal effect for the selected treated group. However, we note that generalizability concerns extend to even randomized experiments, where participant demographics could limit causal findings to a specific population. When applying quasi-experimental methods, like all causal analyses, we must be mindful of which populations the estimates are valid for.</p>
+<p>A practical consideration is that quasi-experiments require a specific data generating process or specific type of variable observed in order to be applied, such as an instrument strongly correlated with the treatment (IV), the presence of a threshold determining treatment (RDD), or the existence of an appropriate control group to compare to the treated group over time (DiD). Thus, the estimation of causal effects using quasi-experimental methods depends on whether the data fits into these frameworks, as one cannot usually retrofit existing data into one of these methods: “[study] design trumps analysis” (<a class="reference external" href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-2/issue-3/For-objective-causal-inference-design-trumps-analysis/10.1214/08-AOAS187.full">Rubin 2018</a>). Additionally, there is some danger in looking for data that fit these designs without properly considering the assumptions underlying the techniques, which could invalidate analysis if not met. Data that may seem appropriate at face value for the application of these methods may not work when closely examining the assumptions.</p>
+</section>
+<section id="we-need-to-take-causality-seriously">
+<h2>We need to take causality seriously<a class="headerlink" href="#we-need-to-take-causality-seriously" title="Link to this heading">#</a></h2>
+<p>There needs to be wider acknowledgement that many data science questions are causal in nature. We advocate for data scientists to view the questions they are working on through a causal lens: can the question be answered through correlation or prediction, or is there an underlying causal mechanism that one is seeking to understand? If the goal is to understand decision making, actions, or interventions, a data scientist needs to carefully consider their data: is it observational or experimental, are there concerns about unobserved confounding variables, and what strategies can be taken to address confounding? The quasi-experiments we have presented here are one set of methods that can successfully identify causal effects in the presence of confounding, and should be part of data scientists’ toolkit much like how they have become part of economists’ toolkits.</p>
+<p>Causality needs to play a larger role in data science, and quasi-experiments provide practical methods for measuring causality in observational data. At the same time, innovations from machine learning and data science are being used in economics, and the continued application of these ideas to complex data domains can increase the scope of questions economists and other social scientists can ask. We envision a future where more data science endeavors explicitly center around causality, and where other fields such as economics can leverage advances in data science techniques to help answer their own causal questions.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reflection-0-5-pts">
+<h1>5. Reflection [0.5 pts]<a class="headerlink" href="#reflection-0-5-pts" title="Link to this heading">#</a></h1>
+<p><strong>5.1</strong> How much time did it take you to complete this worksheet?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>5.2</strong> What is one thing you have a better understanding of after completing this worksheet and going through the class content this week? This could be about the concepts, the reading, or the code.</p>
+<p><strong>Your Response</strong>: TODO</p>
+<p><strong>5.3</strong> What questions or points of confusion do you have about the material covered covered in the past week of class?</p>
+<p><strong>Your Response</strong>: TODO</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don’t forget to check that all of the TODOs are filled in before you submit!</p>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./worksheets"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ws4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Worksheet 4 📈</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../projects/proj1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Project 1 👶</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Worksheet 5 🌱</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-causal-systems-0-5-pts">1. Simulating causal systems [0.5 pts]</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-single-confounder-0-5-pt">1.1 Simulating a single confounder [0.5 pt]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables-1-5-pts">2. Instrumental variables [1.5 pts]</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-an-iv-study-0-5-pts">2.1 Simulating an IV study [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-causal-effects-with-an-iv-0-5-pts">2.2 Estimating causal effects with an IV [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-study-discussion-0-5-pts">2.3 IV study discussion [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-discontinuities">3. Regression discontinuities</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-a-regression-discontinuity-0-5-pts">3.1 Simulating a regression discontinuity [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-linear-regressions-for-rdd-0-5-pts">3.2 Local linear regressions for RDD [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rdd-discussion-0-5-pt">3.2 RDD discussion [0.5 pt]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences">4. Difference-in-differences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-simulation-0-5-pts">4.1 Difference-in-differences simulation [0.5 pts]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-in-differences-parallel-trends-widget-0-5-pts">4.2 Difference-in-differences parallel trends widget [0.5 pts]</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-quasi-experiments">Limitations of quasi-experiments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-need-to-take-causality-seriously">We need to take causality seriously</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-0-5-pts">5. Reflection [0.5 pts]</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

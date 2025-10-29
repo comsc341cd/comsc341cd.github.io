@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Project 2 👥 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+    <title>Activity 14: Compliance status and local average treatment effects &#8212; COMSC341-CD: Causal Inference for Data Science</title>
   
   
   
@@ -60,11 +60,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/proj2';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity14';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Project 2 Part 1: Functions" href="proj2_functions.html" />
-    <link rel="prev" title="Project 1 Part 2: Analysis" href="proj1_analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -126,6 +124,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -190,7 +190,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../activities/activities.html">In-Class Activities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="activities.html">In-Class Activities</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
 <ul class="nav bd-sidenav">
@@ -234,16 +234,16 @@
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="proj1.html">Project 1 👶</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="proj1_functions.html">Project 1 Part 1: Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="proj1_analysis.html">Project 1 Part 2: Analysis</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../projects/proj1_functions.html">Project 1 Part 1: Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projects/proj1_analysis.html">Project 1 Part 2: Analysis</a></li>
 
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 2 👥</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj2.html">Project 2 👥</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="final_project.html">Final Project 🌍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/final_project.html">Final Project 🌍</a></li>
 
 
 
@@ -295,6 +295,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity14.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -303,7 +334,7 @@
       
       
       
-      <li><a href="../_sources/projects/proj2.md" target="_blank"
+      <li><a href="../_sources/activities/activity14.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -313,7 +344,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -387,7 +418,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Project 2 👥</h1>
+    <h1>Activity 14: Compliance status and local average treatment effects</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -397,8 +428,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 2 👥</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 14: Compliance status and local average treatment effects</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-monotonicity-violation">Part 1: Monotonicity violation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-calculating-compliance-types-and-late">Part 2: Calculating compliance types and LATE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -411,62 +448,196 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="project-2">
-<span id="proj2"></span><h1>Project 2 👥<a class="headerlink" href="#project-2" title="Link to this heading">#</a></h1>
-<blockquote class="epigraph">
-<div><p>Observational Studies</p>
-</div></blockquote>
-<p>In this project, we will implement and explore various estimation methods for observational studies and build visualization tools to assess covariate balance. We will then follow the causal roadmap for a dataset analyzing the effectiveness of a U.S. job training program ran in the 1970s for individuals who had trouble finding employment.</p>
-<p>This project is split into two notebooks to make it easier to manage the code:</p>
-<ul class="simple">
-<li><p>Part 1 is focused on implementing the functions and visualization plots and will be primarily autograded.</p></li>
-<li><p>Part 2 is focused on using the functions you implemented in Part 1 to analyze simulated and real observational studies.</p></li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>I recommend that you test your functions in Part 1 both with your own assertions and with the autograder before moving on to Part 2. That way you’ll have more certainty that your functions are correct for the analysis you’ll do in Part 2.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-14-compliance-status-and-local-average-treatment-effects">
+<span id="activity14"></span><h1>Activity 14: Compliance status and local average treatment effects<a class="headerlink" href="#activity-14-compliance-status-and-local-average-treatment-effects" title="Link to this heading">#</a></h1>
+<p><strong>2025-10-29</strong></p>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="learning-objectives">
-<h1>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-monotonicity-violation">
+<h1>Part 1: Monotonicity violation<a class="headerlink" href="#part-1-monotonicity-violation" title="Link to this heading">#</a></h1>
+<p>Here are the four compliance types in a study:</p>
 <ul class="simple">
-<li><p>Practice following the causal roadmap, now with observational data instead of randomized experiments</p></li>
-<li><p>Implement visualization tools for assessing covariate balance</p></li>
-<li><p>Work with a different causal estimand: the average treatment effect on the treated (ATT)</p></li>
-<li><p>Examine the effectiveness of two estimation methods for observational studies:</p>
-<ul>
-<li><p>propensity score matching</p></li>
-<li><p>inverse probability weighting (IPW)</p></li>
+<li><p>Always-taker: takes treatment regardless of the instrument encouragement</p></li>
+<li><p>Never-taker: does not take treatment regardless of the instrument encouragement</p></li>
+<li><p>Complier: takes treatment only when the instrument encourages it</p></li>
+<li><p>Defier: takes treatment only when NOT encouraged by the instrument</p></li>
 </ul>
-</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Grading guidelines</p>
-<p>The course projects offer an opportunity to practice the full causal inference workflow, from building estimators and formulating questions to conducting analyses and communicating your findings effectively. Here are some guidelines on how to approach the project:</p>
+<p>Discuss with folks around you which scenario corresponds to a likely violation of the monotonicity assumption (no defiers):</p>
+<p>A. Some patients offered a new medication (Z=1) refuse to take it (T=0), while others not offered the medication obtain it through alternative means.</p>
+<p>B. Some consumers who see repeated targeted ads for a streaming service (Z=1) become annoyed by the aggressive marketing and decide not to subscribe (T=0), whereas they might have subscribed if they hadn’t been bombarded with ads.</p>
+<p>C. Some homeowners given rebates for energy-efficient appliances (Z=1) still choose not to upgrade (T=0), while others upgrade their appliances even without rebates.</p>
+<p>D. Some employees who aren’t offered a retirement savings workshop (Z=0) contribute to their 401(k) plan (T=1), while some who are offered the workshop still don’t contribute.</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-calculating-compliance-types-and-late">
+<h1>Part 2: Calculating compliance types and LATE<a class="headerlink" href="#part-2-calculating-compliance-types-and-late" title="Link to this heading">#</a></h1>
+<p>Suppose for our smart thermostat study, we have the following data:</p>
 <ul class="simple">
-<li><p>Like the worksheets, a portion of points will be autograded – feel free to submit as many times as you want to check your code’s correctness!</p></li>
-<li><p>For visualizations:</p>
-<ul>
-<li><p>Help your reader understand your findings through visually clear figures</p></li>
-<li><p>Label your axes, provide legends when appropriate, and add figure titles to provide context</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z\)</span>: household was given a smart thermostat</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span>: used energy-efficient thermostat settings</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span>: household energy consumption</p></li>
 </ul>
-</li>
-<li><p>For written responses:</p>
-<ul>
-<li><p>Support your ideas with specific evidence from your analysis or prior knowledge</p></li>
-<li><p>Write concisely but clearly – one-word/one-phrase answers usually don’t give enough space to show what you’ve learned</p></li>
-</ul>
-</li>
-</ul>
-<p>If you’re uncertain about any portion of the project, please do come to office hours, TA hours, or reach out on Ed!</p>
+<p>We collected data on 1000 households:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Group</p></th>
+<th class="head"><p>Z=1</p></th>
+<th class="head"><p>Z=0</p></th>
+<th class="head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>T=1</p></td>
+<td><p>300</p></td>
+<td><p>100</p></td>
+<td><p>400</p></td>
+</tr>
+<tr class="row-odd"><td><p>T=0</p></td>
+<td><p>200</p></td>
+<td><p>400</p></td>
+<td><p>600</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>500</p></td>
+<td><p>500</p></td>
+<td><p>1000</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<ul class="simple">
-<li><p><a class="reference internal" href="proj2_functions.html#proj2-functions"><span class="std std-ref"><strong>Part 1: Functions</strong></span></a></p></li>
-<li><p><a class="reference internal" href="proj2_analysis.html#proj2-analysis"><span class="std std-ref"><strong>Part 2: Analysis</strong></span></a></p></li>
-</ul>
-<div class="toctree-wrapper compound">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thermo_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Z=1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+    <span class="s1">&#39;Z=0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">400</span><span class="p">],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;T=1&#39;</span><span class="p">,</span> <span class="s1">&#39;T=0&#39;</span><span class="p">])</span>
+
+<span class="n">thermo_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Z=1</th>
+      <th>Z=0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>T=1</th>
+      <td>300</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>T=0</th>
+      <td>200</td>
+      <td>400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="id1">
+<h2>2.1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We assume that monotonicity holds, so there are no defiers.</p>
+<p>We can calculate the proportions of each compliance type as follows:</p>
+<ul class="simple">
+<li><p>Always-takers are people who take treatment even without encouragement:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(\text{Always-taker}) = P(T=1|Z=0)\]</div>
+<ul class="simple">
+<li><p>Never-takers are people who don’t take treatment even with encouragement:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(\text{Never-taker}) = P(T=0|Z=1)\]</div>
+<ul class="simple">
+<li><p>Defiers: 0, based on monotonicity</p></li>
+</ul>
+<p>Since all of the probabilities need to sum to 1, we can therefore calculate the proportion of compliers as follows:</p>
+<div class="math notranslate nohighlight">
+\[P(\text{Complier}) = 1 - P(\text{Always-taker}) - P(\text{Never-taker})\]</div>
+<p>The proportion of compliers is also equivalent to:</p>
+<div class="math notranslate nohighlight">
+\[P(\text{Complier}) = E[T=1|Z=1] - E[T=1|Z=0]\]</div>
+<p>Compute, either manually or by using the <code class="docutils literal notranslate"><span class="pre">thermo_df</span></code> dataframe, the proportions of each compliance type in our data:</p>
+<ul class="simple">
+<li><p>Always-takers: <strong>TODO</strong></p></li>
+<li><p>Never-takers: <strong>TODO</strong></p></li>
+<li><p>Compliers: <strong>TODO</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your calculations here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>2.2<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>We saw earlier that the intent-to-treat (ITT) effect is as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{ITT} = E[Y|Z=1] - E[Y|Z=0]
+\]</div>
+<p>And we have just defined the local average treatment effect (LATE) as:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{LATE} = \frac{E[Y|Z=1] - E[Y|Z=0]}{E[T|Z=1] - E[T|Z=0]}
+\]</div>
+<p>Suppose that the intent-to-treat effect is -10 kilowatt-hours (kWh). What is the local average treatment effect (LATE)?</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your calculations here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>2.3<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>From the beginning of lecture, we saw that under linear outcomes, the ATE is identified in the <strong>exact</strong> same way as the LATE:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{ATE} = \frac{E[Y|Z=1] - E[Y|Z=0]}{E[T|Z=1] - E[T|Z=0]}
+\]</div>
+<p>Researchers often choose whether to interpret their instrumental variable results as a LATE or ATE. Give an interpretation of the ATE and the LATE you computed in 2.2 within the context of the smart thermostat study:</p>
+<ul class="simple">
+<li><p>ATE: <span class="math notranslate nohighlight">\(E[Y(1)] - E[Y(0)]\)</span>: <strong>TODO</strong></p></li>
+<li><p>LATE: <span class="math notranslate nohighlight">\(E[Y(1) - Y(0) | \text{compliers}]\)</span>: <strong>TODO</strong></p></li>
+</ul>
+<p>Which causal quantity seems more useful? Feel free to discuss with folks around you.</p>
+<p><strong>Your response:</strong> <a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -482,7 +653,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./projects"
+            path: "./activities"
         },
         predefinedOutput: true
     }
@@ -499,24 +670,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="proj1_analysis.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Project 1 Part 2: Analysis</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="proj2_functions.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Project 2 Part 1: Functions</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -533,8 +686,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 2 👥</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 14: Compliance status and local average treatment effects</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-monotonicity-violation">Part 1: Monotonicity violation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-calculating-compliance-types-and-late">Part 2: Calculating compliance types and LATE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
