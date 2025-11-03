@@ -105,9 +105,9 @@ A list of topics we will cover can be found below. Note that topics may be subje
 *   
     - <small>10/27</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 15](https://moodle.mtholyoke.edu/pluginfile.php/1496664/mod_resource/content/3/lec15-instrumental-variables-i-starter.pdf)</li><li>[[complete] slides 15](https://moodle.mtholyoke.edu/pluginfile.php/1496665/mod_resource/content/2/lec15-instrumental-variables-i.pdf)</li><li>[Activity 13](https://docs.google.com/document/d/1y5fmSBzZb0QISt-d6-CVFDUiShENz0lJGgcR26pyUZc/edit?usp=sharing)</li></ul>
     - <small>10/28</small><br>![](https://img.shields.io/badge/Due:-d62728) [Project 2](proj2)
-    - <small>10/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><br><br>![](https://img.shields.io/badge/Released:-2ca02c) [WS 5](ws5)
+    - <small>10/29</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Instrumental Variables II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 16](https://moodle.mtholyoke.edu/pluginfile.php/1496667/mod_resource/content/2/lec16-instrumental-variables-ii-starter.pdf)</li><li>[[complete] slides 16](https://moodle.mtholyoke.edu/pluginfile.php/1496668/mod_resource/content/2/lec16-instrumental-variables-ii.pdf)</li><li>[Activity 14](activity14)</li></ul>![](https://img.shields.io/badge/Released:-2ca02c) [WS 5](ws5)
     - <small>10/30</small>
-    - <small>10/31</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br>
+    - <small>10/31</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br> <ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1518690/mod_resource/content/2/lab6.pdf)</li></ul>
 
 *   
     - <small>11/3</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>RDDs I</u></b>
