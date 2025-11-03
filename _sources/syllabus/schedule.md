@@ -110,7 +110,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>10/31</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><br> <ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1518690/mod_resource/content/2/lab6.pdf)</li></ul>
 
 *   
-    - <small>11/3</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>RDDs I</u></b>
+    - <small>11/3</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>RDDs I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 17](https://moodle.mtholyoke.edu/pluginfile.php/1496670/mod_resource/content/2/lec17-regression-discontinuities-starter.pdf)</li><li>[Activity 15](activity15)</li></ul>
     - <small>11/4</small><br>![](https://img.shields.io/badge/Due:-d62728) [WS 5](ws5)
     - <small>11/5</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>RDDs II</u></b>
     - <small>11/6</small>
