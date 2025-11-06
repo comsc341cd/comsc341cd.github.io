@@ -48,10 +48,11 @@ parts:
         sections:
         - file: projects/proj2_functions.ipynb
         - file: projects/proj2_analysis.ipynb
-      - file: projects/final_project.md
-  #     - file: projects/proj3.md
-  #       sections:
-  #       - file: projects/proj3_functions.ipynb
-  
+      - file: projects/proj3.md
+        sections:
+        - file: projects/proj3_functions.ipynb
+        - file: projects/proj3_analysis.ipynb
+        
+      - file: projects/final_project.md  
 
   

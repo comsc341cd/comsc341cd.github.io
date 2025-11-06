@@ -1,0 +1,9 @@
+version: 1
+project:
+  authors:
+    - name: TODO
+  toc:
+    - file: proj3_analysis.ipynb
+
+site:
+  template: article-theme
