@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 3 Part 2: Analysis 💉 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/proj3_analysis';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Final Project 🌍" href="final_project.html" />
+    <link rel="prev" title="Project 3 Part 1: Functions 💉" href="proj3_functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../activities/activities.html">In-Class Activities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws5.html">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="proj1.html">Project 1 👶</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="proj1_functions.html">Project 1 Part 1: Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj1_analysis.html">Project 1 Part 2: Analysis</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="proj3.html">Project 3 💉</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="final_project.html">Final Project 🌍</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/projects/proj3_analysis.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/projects/proj3_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 3 Part 2: Analysis 💉</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 3 Part 2: Analysis 💉</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-rubric">Part 2 Rubric</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-and-function-imports">Notebook and function imports</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mcdonald-et-al-vaccine-study">McDonald et al. Vaccine Study</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-knowledge">Prior Knowledge</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#question-and-design">1. Question and Design</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">2. Estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline-descriptive-statistics">2.1 Baseline descriptive statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intent-to-treat-itt-estimate">2.2 Intent-to-treat (ITT) estimate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variable-estimates">2.3 Instrumental variable estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariates-by-compliance-status">2.5 Covariates by compliance status</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">3. Interpretation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">4. Reflection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#typesetting-and-submission">5. Typesetting and submission</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-3-part-2-analysis">
+<span id="proj3-analysis"></span><h1>Project 3 Part 2: Analysis 💉<a class="headerlink" href="#project-3-part-2-analysis" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Instrumental Variables</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here</p></li>
+</ul>
+</div>
+<section id="part-2-rubric">
+<h2>Part 2 Rubric<a class="headerlink" href="#part-2-rubric" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Points</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Question and Design: McDonald et al.</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estimation</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretation</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reflection and Typesetting</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>3.5 pts</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="notebook-and-function-imports">
+<h1>Notebook and function imports<a class="headerlink" href="#notebook-and-function-imports" title="Link to this heading">#</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you click on the vertical blue bar on the left of a cell, you can collapse the code which can help organize the notebook as you work through the project.</p>
+</div>
+<p>If you have tested your implementation in Part 1 against the autograder, you would have generated a file called <code class="docutils literal notranslate"><span class="pre">proj3_functions.py</span></code>. Let’s now import those functions into this notebook for use in Part 2.</p>
+<p>If you are running this notebook on the JupyterHub allocated for the course:</p>
+<ol class="arabic simple">
+<li><p>Open the file browser by going to the menu bar “View -&gt; File Browser”</p></li>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">comsc341cd.github.io/projects/</span></code>, you should see your <code class="docutils literal notranslate"><span class="pre">proj3_analysis.ipynb</span></code> file in that folder</p></li>
+<li><p>Click on the upload button in the upper right and upload the <code class="docutils literal notranslate"><span class="pre">proj3_functions.py</span></code> file to this directory</p></li>
+<li><p>Run the following cell to import the functions:</p></li>
+</ol>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+
+<span class="kn">from</span> <span class="nn">proj3_functions</span> <span class="kn">import</span> <span class="n">tsls_with_covariates</span><span class="p">,</span> <span class="n">complier_covariate_mean</span><span class="p">,</span> <span class="n">wald_estimator</span><span class="p">,</span> <span class="n">intent_to_treat</span><span class="p">,</span> <span class="n">prop_never_takers</span><span class="p">,</span> <span class="n">prop_always_takers</span><span class="p">,</span> <span class="n">prop_compliers</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If your widget from part 1 is rendering after you run the above cell, you can remove it by commenting out the <code class="docutils literal notranslate"><span class="pre">&#64;interact_manual</span></code> decorator in your <code class="docutils literal notranslate"><span class="pre">proj3_functions.py</span></code> file and restarting the kernel for this notebook.</p>
+</div>
+<p>Like Project 2, we have provided implementations of <code class="docutils literal notranslate"><span class="pre">bootstrap_ci</span></code>, <code class="docutils literal notranslate"><span class="pre">bootstrap_dfs</span></code> to estimate the confidence interval and bootstrap distribution of our IV estimators.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_ci</span><span class="p">(</span><span class="n">bootstrap_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the confidence interval using the percentile method.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        bootstrap_values (list[float]): the bootstrapped values</span>
+<span class="sd">        alpha (float): the significance level, defaults to 0.05</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[float]: the confidence interval [lower, upper]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrap_values</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bootstrap_values</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">bootstrap_dfs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_bootstraps</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bootstraps the dataframe `n_bootstraps` times.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): the dataframe to bootstrap</span>
+<span class="sd">        n_bootstraps (int): the number of bootstraps to generate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[pd.DataFrame]: a list of bootstrapped dataframes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bootstrap_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bootstraps</span><span class="p">):</span>
+        <span class="n">bootstrap_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">bootstrap_dfs</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mcdonald-et-al-vaccine-study">
+<h1>McDonald et al. Vaccine Study<a class="headerlink" href="#mcdonald-et-al-vaccine-study" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/1522792/">McDonald et al. (1992)</a> was an early “nudge” study that used computerized reminders sent to physicians to encourage them to give flu vaccines to their patients. It has since been frequently used to study the relationship between intent-to-treat (ITT) and complier-based effects.</p>
+<section id="prior-knowledge">
+<h2>Prior Knowledge<a class="headerlink" href="#prior-knowledge" title="Link to this heading">#</a></h2>
+<p>Below is a motivation and description of the study design adapted and sourced from <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/12933526/">Hirano et al. (2000)</a>:</p>
+<blockquote>
+<div><p>Because of epidemiologic evidence of increased morbidity related to influenza, experimental evidence of serologic efficacy (ie, antibody production) of the influenza vaccine, and observational studies suggesting improved outcomes in vaccinated patients, health officials in most countries recommend annual influenza vaccination for elderly persons and other people at high risk of influenza. However, no randomized controlled trials of the effects of the influenza vaccination on pulmonary (ie, lung and respiratory-related) morbidity in high-risk adults have been published (McDonald et al., 1992). One reason for this is that demonstrated efficacy for some subpopulations raises ethical barriers against performing randomized controlled trials on other subpopulations, which would require withholding vaccination from some subjects. One way around this impasse is to perform a randomized trial of an intervention that increases the use of influenza vaccine in one group of patients without affecting the use of influenza vaccine in another group. McDonald et al. (1992) exploited this idea to study influenza vaccine efficacy in reducing morbidity in high-risk adults, using a computer-generated reminder for flu shots. The study was conducted over a 3-year period (1978–1980) in an academic primary-care practice affiliated with a large urban public teaching hospital. Physicians in the practice were randomly assigned to either an intervention or a control group at the beginning of the study. Since physicians at the clinic each cared for a fixed group of patients, their patients were similarly classified. During the study period, physicians in the intervention group received a computer-generated reminder when a patient with a scheduled appointment was eligible for the influenza vaccine under U.S. Public Health Service Criteria.</p>
+<p>We analyse this study using 2861 individuals observed in 1980, a particularly severe flu epidemic season. For each person <span class="math notranslate nohighlight">\(i\)</span> we observe: a binary variable <span class="math notranslate nohighlight">\(Z_i\)</span> , the ‘assignment’ or ‘encouragement’, equal to one if patient <span class="math notranslate nohighlight">\(i\)</span>’s physician received a reminder letter indicating that the patient was eligible to receive the influenza vaccine under U.S. Public Health Service Criteria and zero otherwise; a binary variable <span class="math notranslate nohighlight">\(T_i\)</span> , the ‘treatment’, equal to 1 if person <span class="math notranslate nohighlight">\(i\)</span> received the vaccine and 0 otherwise; a binary outcome <span class="math notranslate nohighlight">\(Y_i\)</span> , equal to 1 if person <span class="math notranslate nohighlight">\(i\)</span> subsequently experienced a flu-related hospitalization during the winter, which we define as being hospitalized for respiratory problems, and 0 otherwise.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flu_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;~/COMSC-341CD/data/flu_iv.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The primary variables of interest in the dataset are as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Z\)</span> <code class="docutils literal notranslate"><span class="pre">assign</span></code>: 1 if physician was randomly assigned to the intervention group, 0 if control</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> <code class="docutils literal notranslate"><span class="pre">receive</span></code>: 1 if a patient received the flu shot, 0 if not</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> <code class="docutils literal notranslate"><span class="pre">outcome</span></code>: 1 if patient was hospitalized for with flu-related complications, 0 if not</p></li>
+</ul>
+<p>We additionally have the following set of covariates:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code>: age of the patient</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">female</span></code>: 1 if patient is female, 0 if male</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">copd</span></code>: 1 if patient has a chronic obstructive pulmonary disease (COPD) like emphysema or chronic bronchitis, 0 if not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">white</span></code>: 1 if patient is white, 0 if not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">renal</span></code>: 1 if patient has renal disease, 0 if not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dm</span></code>: 1 if patient has diabetes, 0 if not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">heartd</span></code>: 1 if patient has heart disease, 0 if not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">liverd</span></code>: 1 if patient has liver disease, 0 if not</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="question-and-design">
+<h1>1. Question and Design<a class="headerlink" href="#question-and-design" title="Link to this heading">#</a></h1>
+<p>In the markdown cell below, provide a description of the “question” and “design” steps of the causal roadmap for this study (~1-2 brief paragraphs). You may format your response however you like, but make sure to include the following:</p>
+<ul class="simple">
+<li><p>1.1: An interpretation of the three causal quantities that we could potentially estimate from this study design</p></li>
+<li><p>1.2: A brief discussion of the covariates of <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">copd</span></code>, and why they may be relevant confounders of the <strong>treatment</strong> and <strong>outcome</strong> variables in the study</p></li>
+<li><p>1.3: An assessment of the validity of the IV assumptions of relevance, exclusion restriction, and instrument unconfoundedness</p></li>
+<li><p>1.4: A DAG of the study design embedded as an image using markdown syntax<code class="docutils literal notranslate"><span class="pre">![](image.png)</span></code>, including the covariates of <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">copd</span></code></p></li>
+</ul>
+<p>Our study design choice is an <strong>instrumental variable design</strong>. In an encouragement study analyzed as an IV design, we have potentially multiple causal quantities of interest that we can estimate:</p>
+<ul class="simple">
+<li><p>Intent-to-treat (ITT)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(E[Y|Z=1] - E[Y|Z=0]\)</span></p></li>
+<li><p>Interpretation in the context of the study:  <strong>TODO</strong></p></li>
+</ul>
+</li>
+<li><p>Average treatment effect (ATE)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(E[Y(1) - Y(0)]\)</span></p></li>
+<li><p>Interpretation in the context of the study:  <strong>TODO</strong></p></li>
+</ul>
+</li>
+<li><p>Local average treatment effect (LATE)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(E[Y(1) - Y(0) \mid \text{complier}]\)</span></p></li>
+<li><p>Interpretation in the context of the study:  <strong>TODO</strong></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>TODO</strong> 1.2 confounding discussion</p>
+<p><strong>TODO</strong> 1.3 IV assumption assessment</p>
+<p><img alt="TODO 1.4 DAG image" src="../_images/projects" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="estimation">
+<h1>2. Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h1>
+<p>Next, perform analysis and estimation of causal quantities of the flu dataset. Your analysis should include the following:</p>
+<ul class="simple">
+<li><p>2.1: A table of descriptive statistics for <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">copd</span></code>, <code class="docutils literal notranslate"><span class="pre">female</span></code> and <code class="docutils literal notranslate"><span class="pre">white</span></code> grouped by <strong>actual treatment</strong> <code class="docutils literal notranslate"><span class="pre">receive</span></code>, along with a brief discussion of what you observe.</p></li>
+<li><p>2.2: A point estimate of the intent-to-treat effect of <code class="docutils literal notranslate"><span class="pre">assign</span></code> on <code class="docutils literal notranslate"><span class="pre">outcome</span></code> using your <code class="docutils literal notranslate"><span class="pre">intent_to_treat</span></code> function, along with a bootstrapped confidence interval with 1,000 bootstraps (which is the default number of bootstraps in the <code class="docutils literal notranslate"><span class="pre">bootstrap_dfs</span></code> function).</p></li>
+<li><p>2.3: A point estimate of the ATE/LATE (recall that the ATE and LATE in an IV design are the same) using your <code class="docutils literal notranslate"><span class="pre">tsls_with_covariates</span></code> function, along with a bootstrapped confidence interval for the following covariate sets:</p>
+<ul>
+<li><p>no covariates</p></li>
+<li><p>all covariates</p></li>
+</ul>
+</li>
+<li><p>2.4: the proportion of compliers, never takers, and always takers in the sample</p></li>
+<li><p>2.5: A table of mean/percentages for <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">female</span></code>, <code class="docutils literal notranslate"><span class="pre">copd</span></code>, and <code class="docutils literal notranslate"><span class="pre">white</span></code> among:</p>
+<ul>
+<li><p>the entire sample</p></li>
+<li><p>compliers, by using your <code class="docutils literal notranslate"><span class="pre">complier_covariate_mean</span></code> function</p></li>
+<li><p>always takers, by selecting the subset of units that are always takers</p></li>
+<li><p>never takers, by selecting the subset of units that are never takers</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can refer back to the way we formatted tables and confidence intervals in Project 1, as well as how you computed bootstrap confidence intervals in both Projects 1 and Project 2.</p>
+<p>Remember that the point estimate (treatment effect) should be estimated using the <strong>original dataset</strong>, while the confidence interval should be estimated using the bootstrapped distribution.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here for 2.1-2.3 estimation and analysis</span>
+
+<span class="n">covariate_subset</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;copd&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">]</span>
+<span class="n">all_covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;copd&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;renal&#39;</span><span class="p">,</span> <span class="s1">&#39;dm&#39;</span><span class="p">,</span> <span class="s1">&#39;heartd&#39;</span><span class="p">,</span> <span class="s1">&#39;liverd&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here for 2.4-2.5 compliance status proportions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="baseline-descriptive-statistics">
+<h2>2.1 Baseline descriptive statistics<a class="headerlink" href="#baseline-descriptive-statistics" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Covariate</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(T=1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(T=0\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>mean <code class="docutils literal notranslate"><span class="pre">age</span></code></p></td>
+<td><p>TODO</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>% <code class="docutils literal notranslate"><span class="pre">female</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>% <code class="docutils literal notranslate"><span class="pre">copd</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>% <code class="docutils literal notranslate"><span class="pre">white</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="intent-to-treat-itt-estimate">
+<h2>2.2 Intent-to-treat (ITT) estimate<a class="headerlink" href="#intent-to-treat-itt-estimate" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estimate</p></th>
+<th class="head"><p>95% CI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TODO</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="instrumental-variable-estimates">
+<h2>2.3 Instrumental variable estimates<a class="headerlink" href="#instrumental-variable-estimates" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Estimate</p></th>
+<th class="head"><p>95% CI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>No covariates</p></td>
+<td><p>TODO</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>All covariates</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>TODO 2.3 ATE/LATE with and without covariates</strong></p>
+<p><strong>TODO 2.4 compliance status proportions</strong></p>
+<ul class="simple">
+<li><p>always takers</p></li>
+<li><p>never takers</p></li>
+<li><p>compliers</p></li>
+</ul>
+</section>
+<section id="covariates-by-compliance-status">
+<h2>2.5 Covariates by compliance status<a class="headerlink" href="#covariates-by-compliance-status" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Covariate</p></th>
+<th class="head"><p>Overall</p></th>
+<th class="head"><p>Complier</p></th>
+<th class="head"><p>Always Taker</p></th>
+<th class="head"><p>Never Taker</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>mean <code class="docutils literal notranslate"><span class="pre">age</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>% <code class="docutils literal notranslate"><span class="pre">female</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>% <code class="docutils literal notranslate"><span class="pre">copd</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>% <code class="docutils literal notranslate"><span class="pre">white</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="interpretation">
+<h1>3. Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading">#</a></h1>
+<p>Interpret your estimation results from part 2:</p>
+<ul class="simple">
+<li><p>3.1: Compare the ITT and IV point estimates (ignoring confidence intervals for now). How do they differ in terms of sign and magnitude? Why might this difference exist (think about what <span class="math notranslate nohighlight">\(Z\)</span> and <span class="math notranslate nohighlight">\(T\)</span> are for this study)?</p></li>
+<li><p>3.2: You should find that both IV estimates have confidence intervals that include 0. What does this tell us about the flu vaccine’s effect on hospitalizations in this study? How should we interpret these results, and what are the limitations of drawing strong conclusions from this single study? Some things you can consider:</p>
+<ul>
+<li><p>the sample size and sample representativeness</p></li>
+<li><p>the choice to define the outcome as flu-related hospitalization</p></li>
+<li><p>the choice of instrument and covariates</p></li>
+</ul>
+</li>
+<li><p>3.3: Looking at your table of covariate means among different compliance types (compliers, always-takers, never-takers), select one covariate and compliance type that shows a notable difference from the overall mean and speculate on why we might observe this difference. For example, “The mean age of compliers is higher/lower than the overall mean, which could be due to to xyz.”</p></li>
+<li><p>3.4: Read the excerpt from <a class="reference external" href="https://projecteuclid.org/journals/statistical-science/volume-29/issue-3/Instrumental-Variables-An-Econometricians-Perspective/10.1214/14-STS480.full">Imbens (2014)</a> below on interpreting the LATE. Discuss whether the LATE seems to be a useful quantity to report for this study. Some things you can consider:</p>
+<ul>
+<li><p>whether healthcare systems should care about effects specifically for compliers versus the general population</p></li>
+<li><p>how the difference between compliers and non-compliers might inform future intervention design</p></li>
+<li><p>what ethical considerations arise when we focus on treatment effects for only a subset of the population (see the proportion of compliers in the sample in 2.4)</p></li>
+<li><p>how you might communicate these results and limitations to non-technical decision makers and the general public</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Do We Care About the Local Average Treatment Effect?</strong></p>
+<p>The local average treatment effect is an unusual [causal quantity]. It is an average effect of the treatment for a subpopulation that cannot be identified in the sense that there are no units whom we know for sure to belong to this subpopulation, although there are some units whom we know do not belong to it. A more conventional approach is to start an analysis by clearly articulating the object of interest, say the average effect of a treatment for a well-defined population. There may be challenges in obtaining credible estimates of this object of interest, and along the way one may make more or less credible assumptions, but typically the focus remains squarely on the originally specified object of interest.</p>
+<p>Here, the approach appears to be quite different. We did not articulate explicitly what the target [causal quantity] was. In the McDonald et al. influenza-vaccine application a natural quantity might be the [average treatment effect] of the vaccine. Then, apparently more or less by accident, the definition of the compliance types led us to focus on the average effects for compliers. In this example, the compliers were defined by the response in terms of the receipt of the vaccine to the receipt of the letter. It appears difficult to argue that this is a substantially interesting group, and in fact no attempt was made to do so.</p>
+<p>This type of example has led distinguished researchers both in economics and in statistics to question whether and why one should care about the local average treatment effect. The economist Angus Deaton writes “I find it hard to make any sense of the LATE [local average treatment effect]”. Judea Pearl similarly wonders “Realizing that the population averaged treatment effect (ATE) is not identifiable in experiments marred by noncompliance, they have shifted attention to a specific response type (i.e., compliers) for which the causal effect was identifiable, and presented the latter [the local average treatment] as an approximation for ATE. However, most authors in this category do not state explicitly whether their focus on a specific stratum (the compliers) is motivated by mathematical convenience, mathematical necessity (to achieve identification) or a genuine interest in the [group] under analysis”…Let me attempt to clear up this confusion. An instrumental variables analysis is an analysis in a second-best setting. It would have been preferable if one had been able to carry out a well-designed randomized experiment. However, such an experiment was not carried out, and we have noncompliance. As a result, we cannot answer all the questions we might have wanted to ask. Specifically, if the noncompliance is substantial, we are limited in the questions we can answer credibly and precisely. Ultimately, there is only one subpopulation we can credibly (point-)identify the average effect of the treatment for, namely, the compliers.</p>
+<p>It may be useful to draw an analogy. Suppose a researcher is interested in evaluating a medical treatment and suppose a randomized experiment had been carried out to estimate the average effect of this new treatment. However, the population of the randomized experiment included only [college students], and the researcher is interested in the average effect for the entire population…What should the researcher do? I would argue that the researcher should report the results for the [college students], and acknowledge the limitation of the results for the original question of interest. Similarly, in the instrumental variables I see the limitation of the results to the compliers as one that was unintended, but driven by the lack of identification for other subpopulations given the design of the study. This limitation should be acknowledged, but one should not drop the analysis simply because the original [causal quantity] cannot be identified. Note that our case with instrumental variables is slightly worse than in the given example, because we cannot actually identify all individuals with certainty as compliers.</p>
+</div></blockquote>
+<p><strong>TODO your responses</strong>:</p>
+<p>3.1:</p>
+<p>3.2:</p>
+<p>3.3:</p>
+<p>3.4:</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reflection">
+<h1>4. Reflection<a class="headerlink" href="#reflection" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>4.1. How much time did you spend on this assignment?</p></li>
+<li><p>4.2. Were there any parts of the assignment that you found particularly challenging?</p></li>
+<li><p>4.3. What is one thing you have a better understanding of after completing this assignment and going through the class content?</p></li>
+<li><p>4.4. Do you have any follow-up questions about concepts that you’d like to explore further?</p></li>
+</ul>
+<p><strong>TODO your responses</strong>:</p>
+<p>4.1:</p>
+<p>4.2:</p>
+<p>4.3:</p>
+<p>4.4:</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="typesetting-and-submission">
+<h1>5. Typesetting and submission<a class="headerlink" href="#typesetting-and-submission" title="Link to this heading">#</a></h1>
+<p>In addition to the usual <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file submission, we’ll also typeset this notebook using <a class="reference external" href="https://mystmd.org/guide">Myst Markdown</a>, which will create a static HTML site that you can view locally or upload to GitHub Pages. The site is configured through the <code class="docutils literal notranslate"><span class="pre">myst.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">project</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">authors</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TODO</span>
+<span class="w">  </span><span class="nt">toc</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">proj3_analysis.ipynb</span>
+
+<span class="nt">site</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Project</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">Analysis</span><span class="nv"> </span><span class="s">💉&#39;</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">article-theme</span>
+</pre></div>
+</div>
+<p>Open this file by going to the menu bar “View -&gt; File Browser” and navigating to the <code class="docutils literal notranslate"><span class="pre">comsc341cd.github.io/projects/</span></code> directory. Then open the <code class="docutils literal notranslate"><span class="pre">myst.yml</span></code> and add your name to the <code class="docutils literal notranslate"><span class="pre">name</span></code> field.</p>
+<p>Then, open a terminal by navigating to the File Browser and clicking “New -&gt; Terminal”. Run the following commands to build the site:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change directory to the projects folder</span>
+<span class="nb">cd</span><span class="w"> </span>~/comsc341cd.github.io/projects/
+
+<span class="c1"># sets up the correct URL on Jupyterhub for viewing your project as a webpage</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BASE_URL</span><span class="o">=</span><span class="s2">&quot;/user/</span><span class="nv">$JUPYTERHUB_USER</span><span class="s2">/proxy/8000&quot;</span>
+
+<span class="c1"># builds the site, may take ~30-50 seconds to run since it&#39;s re-running all the cells</span>
+<span class="c1"># you may be prompted to install Node the first time you run this command, please do so</span>
+myst<span class="w"> </span>build<span class="w"> </span>--html
+</pre></div>
+</div>
+<p>Next, in the same terminal run the following command to set up an http server to view your project as a website on JupyterHub. The http server should then be running, so do not exit this terminal tab while you want to view your website:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start a simple python http server to serve your project webpage</span>
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span>-d<span class="w"> </span>_build/html/<span class="w"> </span><span class="m">8000</span>
+</pre></div>
+</div>
+<p>Then, navigate to this URL to view your typeset project:</p>
+<p><a class="reference external" href="https://comsc341cd-fa-hub.mtholyoke.edu/user-redirect/proxy/8000/index.html">https://comsc341cd-fa-hub.mtholyoke.edu/user-redirect/proxy/8000/index.html</a></p>
+<p>You should see a nice webpage with the following header and your name underneath the title:</p>
+<p><img alt="" src="../_images/proj3_website.png" /></p>
+<p>Finally, run the following commands in a terminal to package your website up into a <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change directory to the projects folder</span>
+<span class="nb">cd</span><span class="w"> </span>~/comsc341cd.github.io/projects/
+
+<span class="c1"># packages the site into a zip file</span>
+zip<span class="w"> </span>-r<span class="w"> </span>project3_analysis.zip<span class="w"> </span>_build/
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">How to submit</p>
+<p>Once you’ve confirmed that your notebook is being rendered as a static site correctly, submit <strong>both</strong> your <code class="docutils literal notranslate"><span class="pre">proj3_analysis.ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">proj3_analysis.zip</span></code> files to Gradescope.</p>
+</div>
+<div class="admonition-optional-explorations admonition">
+<p class="admonition-title">Optional explorations</p>
+<p>To clean up your rendered notebook website, feel free to delete the questions and prompts after you’ve completed the assignment.</p>
+<p>The Myst MD syntax is quite powerful, and allows for some cool embedded interactions such as “rabbit-hole” links and footnotes in your rendered website. I encourage you to experiment with these different typesetting content options: <a class="reference external" href="https://mystmd.org/guide/quickstart-myst-markdown">https://mystmd.org/guide/quickstart-myst-markdown</a></p>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="proj3_functions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project 3 Part 1: Functions 💉</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="final_project.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Final Project 🌍</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 3 Part 2: Analysis 💉</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-rubric">Part 2 Rubric</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-and-function-imports">Notebook and function imports</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mcdonald-et-al-vaccine-study">McDonald et al. Vaccine Study</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-knowledge">Prior Knowledge</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#question-and-design">1. Question and Design</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">2. Estimation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline-descriptive-statistics">2.1 Baseline descriptive statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intent-to-treat-itt-estimate">2.2 Intent-to-treat (ITT) estimate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variable-estimates">2.3 Instrumental variable estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariates-by-compliance-status">2.5 Covariates by compliance status</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">3. Interpretation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">4. Reflection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#typesetting-and-submission">5. Typesetting and submission</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

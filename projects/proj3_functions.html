@@ -1,0 +1,1330 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 3 Part 1: Functions 💉 &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/proj3_functions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project 3 Part 2: Analysis 💉" href="proj3_analysis.html" />
+    <link rel="prev" title="Project 3 💉" href="proj3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../activities/activities.html">In-Class Activities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws5.html">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="proj1.html">Project 1 👶</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="proj1_functions.html">Project 1 Part 1: Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj1_analysis.html">Project 1 Part 2: Analysis</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="proj3.html">Project 3 💉</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="final_project.html">Final Project 🌍</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/projects/proj3_functions.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/projects/proj3_functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 3 Part 1: Functions 💉</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 3 Part 1: Functions 💉</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-rubric">Part 1 Rubric</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variable-estimators">1. Instrumental Variable Estimators</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wald-estimator">1.1 Wald Estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-tsls-estimator-with-covariates">1.2 Two-Stage Least Squares (TSLS) estimator with covariates</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-compliers">2. Characterizing Compliers</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-study-of-iv-assumption-violations">3. Simulation study of IV assumption violations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-simulation">3.1 Building the simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrument-unconfoundedness">Instrument Unconfoundedness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance">Relevance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exclusion-restriction">Exclusion Restriction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-the-bias-and-variance-of-treatment-effect-estimates">3.2 Quantifying the bias and variance of treatment effect estimates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias">Bias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-violation-simulation-widget">4. Assumption violation simulation widget</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-3-part-1-functions">
+<h1>Project 3 Part 1: Functions 💉<a class="headerlink" href="#project-3-part-1-functions" title="Link to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Instrumental Variables</p>
+<p class="attribution">—TODO your name here</p>
+</div></blockquote>
+<div class="admonition-collaboration-statement admonition">
+<p class="admonition-title">Collaboration Statement</p>
+<ul class="simple">
+<li><p>TODO brief statement on the nature of your collaboration.</p></li>
+<li><p>TODO your collaborator’s names here</p></li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You’ll notice that the non-function cells of this notebook are contained in a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block. This indicates to Jupyter that the code should only be run when the file is executed directly, not when it is imported as a module. If you write additional tests or cells that are not functions, make sure to add them within a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block as well.</p>
+</div>
+<section id="part-1-rubric">
+<h2>Part 1 Rubric<a class="headerlink" href="#part-1-rubric" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Points</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Instrumental variable estimators</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Characterizing compliers</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Assumption violation simulation</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Assumption violation widget</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>6.5 pts</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="instrumental-variable-estimators">
+<h1>1. Instrumental Variable Estimators<a class="headerlink" href="#instrumental-variable-estimators" title="Link to this heading">#</a></h1>
+<p>We’ll begin by implementing two instrumental variable estimators: the Wald estimator and the two-stage least squares (TSLS) estimator, with covariates.</p>
+<section id="wald-estimator">
+<h2>1.1 Wald Estimator<a class="headerlink" href="#wald-estimator" title="Link to this heading">#</a></h2>
+<p>We saw in class that the Wald estimator is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{E[Y | Z = 1] - E[Y | Z = 0]}{E[T | Z = 1] - E[T | Z = 0]}
+\]</div>
+<p>This quantity can be interpreted as the ATE under the linear outcome assumption, or the LATE under the monotonicity assumption. It can also be expressed as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{E[Y | Z = 1] - E[Y | Z = 0]}{E[T | Z = 1] - E[T | Z = 0]} = \frac{ITT}{P(\text{compliers})}
+\]</div>
+<p>where the ITT is the intent-to-treat effect of the instrument on the outcome:</p>
+<div class="math notranslate nohighlight">
+\[
+ITT = E[Y | Z = 1] - E[Y | Z = 0]
+\]</div>
+<p>and the <span class="math notranslate nohighlight">\(P(\text{compliers})\)</span> is the proportion of compliers in the sample. See <a class="reference external" href="https://comsc341cd.github.io/activities/activity14.html#activity14">Activity 14</a> for additional references on how we computed the proportion of compliers, never takers, and always takers:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\text{never takers}) = E[T=0 | Z = 1]
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{always takers}) = E[T=1 | Z = 0]
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{compliers}) = 1 - P(\text{never takers}) - P(\text{always takers})
+\]</div>
+<p>Complete the functions below to implement the Wald estimator and related quantities.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>With pandas and numpy logical indexing, the implementation of these functions should be brief and not need any for loops.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intent_to_treat</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">iv_col</span><span class="p">,</span> <span class="n">outcome_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the intent-to-treat (ITT) estimate of iv_col on outcome_col.</span>
+
+<span class="sd">    This should look very similar to our diff_in_means function from Project 1, but with a slightly different function signature.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment and outcome variables.</span>
+<span class="sd">        iv_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">        outcome_col (str): The name of the outcome variable in the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The ITT estimate of iv_col on outcome_col.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+
+  
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">intent_to_treat</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;ITT estimate is incorrect&quot;</span>
+    
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for intent_to_treat passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prop_never_takers</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">instrument_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the proportion of never takers in the dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment, outcome, and instrument variables.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable in the dataframe.</span>
+<span class="sd">        instrument_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The proportion of never takers in the dataset.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">prop_always_takers</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">instrument_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the proportion of always takers in the dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment and instrument variables.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable in the dataframe.</span>
+<span class="sd">        instrument_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The proportion of always takers in the dataset.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+    
+
+<span class="k">def</span> <span class="nf">prop_compliers</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">instrument_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the proportion of compliers in the dataset.</span>
+
+<span class="sd">    This can be computed either as:</span>
+
+<span class="sd">    E[T | Z=1] - E[T | Z=0]</span>
+<span class="sd">    or</span>
+<span class="sd">    1 - P(never takers) - P(always takers)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment and instrument variables.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable in the dataframe.</span>
+<span class="sd">        instrument_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The proportion of compliers in the dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">prop_always_takers</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;prop_always_takers should be 0&quot;</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">prop_never_takers</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;prop_never_takers should be 1/3&quot;</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">prop_compliers</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;prop_compliers should be 2/3&quot;</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for compliance status proportions passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wald_estimator</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treat_col</span><span class="o">=</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">outcome_col</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">instrument_col</span><span class="o">=</span><span class="s1">&#39;Z&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the Wald estimator for the given dataset.</span>
+
+<span class="sd">    Can be implemented in a number of different ways, including:</span>
+<span class="sd">    - direct calculation</span>
+<span class="sd">    - using the intent_to_treat and prop_compliers functions</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment, outcome, and instrument variables.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable in the dataframe.</span>
+<span class="sd">        outcome_col (str): The name of the outcome variable in the dataframe.</span>
+<span class="sd">        instrument_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The Wald estimator for the given dataset.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+    <span class="k">pass</span>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">wald_estimator</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">),</span>  <span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)),</span> <span class="s2">&quot;wald_estimator is incorrect&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for wald_estimator passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stage-least-squares-tsls-estimator-with-covariates">
+<h2>1.2 Two-Stage Least Squares (TSLS) estimator with covariates<a class="headerlink" href="#two-stage-least-squares-tsls-estimator-with-covariates" title="Link to this heading">#</a></h2>
+<p>The two-stage least squares estimate that we implemented in <a class="reference external" href="https://comsc341cd.github.io/worksheets/worksheet5.html">Worksheet 5</a> will produce the same estimate as the Wald estimator.</p>
+<p>However, the advantage of the TSLS estimator is that it can be extended to include covariates, which is critical for the case when the instrument unconfoundedness assumption is satisfied only when conditioning on covariates. This is a so-called “conditional instrument” as shown on slide 15 of <a class="reference external" href="https://moodle.mtholyoke.edu/pluginfile.php/1496665/mod_resource/content/2/lec15-instrumental-variables-i.pdf">Lecture 15</a>.</p>
+<p>Specifically, we can fit the following models for the first and second stages:</p>
+<div class="math notranslate nohighlight">
+\[
+T = \alpha_0 + \alpha_1 Z + \alpha_2 X
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_1 \hat{T} + \beta_2 X
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\hat{T}\)</span> being the predicted treatment from the first stage, and <span class="math notranslate nohighlight">\(\beta_1\)</span> being the causal effect of interest. Similar to our regression implementations for observational studies, the covariates <span class="math notranslate nohighlight">\(X\)</span> are confounders between the instrument and the outcome, and we can include multiple covariates in the model.</p>
+<p>Even in the case where the instrument is completely randomized, the inclusion of covariates can still improve the precision of the causal effect estimate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tsls_with_covariates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treat_col</span><span class="o">=</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">outcome_col</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">instrument_col</span><span class="o">=</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">covariates</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the two-stage least squares estimate for the given dataset, optionally conditioning on covariates.</span>
+
+<span class="sd">    This function is an extension of the two-stage least squares estimator implemented in WS 5, so </span>
+<span class="sd">    you can use that implementation as a starting point.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment, outcome, and instrument variables.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable in the dataframe.</span>
+<span class="sd">        outcome_col (str): The name of the outcome variable in the dataframe.</span>
+<span class="sd">        instrument_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">        covariates (list[str]): The covariates to condition on, defaults to None.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The two-stage least squares estimate for the given dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO fit the first stage model, optionally conditioning on covariates</span>
+
+    <span class="c1"># TODO add the predicted treatment values to the dataframe</span>
+
+    <span class="c1"># TODO fit the second stage model, optionally conditioning on covariates</span>
+
+    <span class="c1"># TODO return the causal effect estimate from the second stage model</span>
+    <span class="k">pass</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Test the function with a simple dataset</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Test without covariates, should be the same as the Wald estimator</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">tsls_with_covariates</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">wald_estimator</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="s2">&quot;tsls should be the same as wald_estimator&quot;</span>
+
+    <span class="c1"># Test with including a constant covariate</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">tsls_with_covariates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for tsls_with_covariates passed!&quot;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="characterizing-compliers">
+<h1>2. Characterizing Compliers<a class="headerlink" href="#characterizing-compliers" title="Link to this heading">#</a></h1>
+<p>A fundamental challenge in instrumental variable estimation is that we do not know whether an individual unit is a complier or not. That is because of how <strong>potential</strong> treatment status corresponds to the <strong>observed</strong> treatment status in IV studies.</p>
+<p>We have the following table for the observed instrument and treatment status, assuming monotonicity (no defiers):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Z</p></th>
+<th class="head"><p>T</p></th>
+<th class="head"><p>Compliance status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>Never taker or complier</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>Always taker</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>Never taker</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>Always taker or complier</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>In the case where <span class="math notranslate nohighlight">\(Z=0\)</span> and <span class="math notranslate nohighlight">\(T=0\)</span>, we can’t tell whether the unit is a complier, or a never taker who just happened to be in the <span class="math notranslate nohighlight">\(Z=0\)</span> group.</p></li>
+<li><p>In the case where <span class="math notranslate nohighlight">\(Z=1\)</span> and <span class="math notranslate nohighlight">\(T=1\)</span>, we can’t tell whether the unit is a complier, or an always taker who just happened to be in the <span class="math notranslate nohighlight">\(Z=1\)</span> group.</p></li>
+</ul>
+<p>Instead, we have to rely on summary statistics to characterize compliers in the sample. For example, if age is a covariate in our study, there are ways to estimate the average age of compliers in the sample, which we can then compare to the average age of all units in the sample.</p>
+<p>We will use the following formula from <a class="reference external" href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/0E2AA51F9BD436A5DB5A84462732A9C3/S1047198719000482a.pdf/profiling-compliers-and-noncompliers-for-instrumental-variable-analysis.pdf">Marbach and Hangartner 2020</a> to estimate <span class="math notranslate nohighlight">\(E[X \mid \text{complier}]\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> is a covariate of interest:</p>
+<div class="math notranslate nohighlight">
+\[
+E[X \mid \text{complier}] = \frac{1}{P(\text{complier})} E[X] - \frac{P(\text{never taker})}{P(\text{complier})} E[X \mid \text{never taker}] - \frac{P(\text{always taker})}{P(\text{complier})} E[X \mid \text{always taker}]
+\]</div>
+<p>This quantity can be understood as a “weighted average” of the covariate <span class="math notranslate nohighlight">\(X\)</span> across the three compliance statuses, where the weights are inversely proportional to the compliance status proportions.</p>
+<p>The conditional means in the expression above can be estimated by:</p>
+<ol class="arabic simple">
+<li><p>selecting the subset of a dataframe that are never takers (<span class="math notranslate nohighlight">\(T=0\)</span> AND <span class="math notranslate nohighlight">\(Z=1\)</span>) or always takers (<span class="math notranslate nohighlight">\(T=1\)</span> AND <span class="math notranslate nohighlight">\(Z=0\)</span>)</p></li>
+<li><p>calculating the mean of <span class="math notranslate nohighlight">\(X\)</span> in the selected subset</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complier_covariate_mean</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">covariate_col</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">instrument_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the mean of a covariate among compliers in the dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The input dataframe containing the treatment, instrument, and covariate variables.</span>
+<span class="sd">        covariate_col (str): The name of the covariate variable in the dataframe.</span>
+<span class="sd">        treat_col (str): The name of the treatment variable in the dataframe.</span>
+<span class="sd">        instrument_col (str): The name of the instrument variable in the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The mean of the covariate among compliers in the dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="c1"># TODO select the subset of units that are never takers (nt) or always takers (at)</span>
+    <span class="n">nt_df</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">at_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO calculate the mean of the covariate in the selected subsets</span>
+    <span class="n">nt_mean</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">at_mean</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO calculate the overall mean</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO calculate the compliance status proportions</span>
+    <span class="n">prop_nt</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prop_at</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prop_co</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO calculate the complier mean</span>
+    <span class="n">complier_mean</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">complier_mean</span>
+    
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Test the function with a simple dataset</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,],</span>
+        <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,],</span>
+        <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,],</span>
+        <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,]</span>        
+    <span class="p">})</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">complier_covariate_mean</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;complier_covariate_mean should be 5&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="simulation-study-of-iv-assumption-violations">
+<h1>3. Simulation study of IV assumption violations<a class="headerlink" href="#simulation-study-of-iv-assumption-violations" title="Link to this heading">#</a></h1>
+<p>We’ll now extend the simulation study that generates <span class="math notranslate nohighlight">\(Z\)</span>, <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(T\)</span>, and <span class="math notranslate nohighlight">\(Y\)</span> from Worksheet 5 to include violations of the following 3 IV assumptions:</p>
+<ul class="simple">
+<li><p>instrument unconfoundedness</p></li>
+<li><p>relevance</p></li>
+<li><p>exclusion restriction</p></li>
+</ul>
+<p>Additionally, we’ll quantify the bias and variance for such violations.</p>
+<section id="building-the-simulation">
+<h2>3.1 Building the simulation<a class="headerlink" href="#building-the-simulation" title="Link to this heading">#</a></h2>
+<p>The first variable we’ll generate is a binary unobserved confounder <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+X \sim \text{Bernoulli}(0.5)
+\]</div>
+<p>This corresponds to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this simulation, we’ll make the confounder <span class="math notranslate nohighlight">\(X\)</span> observable so that we can include it as a covariate in the two-stage least squares estimation.</p>
+</div>
+<section id="instrument-unconfoundedness">
+<h3>Instrument Unconfoundedness<a class="headerlink" href="#instrument-unconfoundedness" title="Link to this heading">#</a></h3>
+<p>We’ll next generate a binary instrument <span class="math notranslate nohighlight">\(Z\)</span> in the same way as <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+Z \sim \text{Bernoulli}(0.5)
+\]</div>
+<p>To enable a violation of the instrument unconfoundedness assumption, we include a boolean <code class="docutils literal notranslate"><span class="pre">unconfoundedness_violation</span></code> parameter, with the following effect on the simulation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Z = \begin{cases} 
+    Z + X &gt; 1 &amp; \text{if } \text{unconfoundedness violation = True} \\
+    Z &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>Thus, if <code class="docutils literal notranslate"><span class="pre">unconfoundedness_violation</span> <span class="pre">=</span> <span class="pre">True</span></code>, the instrument <span class="math notranslate nohighlight">\(Z\)</span> is affected by the confounder <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</section>
+<section id="relevance">
+<h3>Relevance<a class="headerlink" href="#relevance" title="Link to this heading">#</a></h3>
+<p>To strengthen or weaken the relevance assumption, we can manipulate the <strong>strength</strong> of the relationship between the instrument and the treatment, which we call <span class="math notranslate nohighlight">\(\pi\)</span> below. Specifically, <span class="math notranslate nohighlight">\(\pi\)</span> will take on values from 0 to 1, where 0 is a total violation of the relevance assumption and 1 is a “fully relevant” relationship. Modify the simulation from <a class="reference external" href="https://comsc341cd.github.io/worksheets/ws5.html#simulating-an-iv-study-0-5-pts">Worksheet 5</a> to include this parameter as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T = \begin{cases} 
+    1 &amp; \text{if } \pi Z + X + \epsilon &gt; 1\\
+    0 &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pi\)</span> is the strength of the relationship between the instrument and the treatment, <code class="docutils literal notranslate"><span class="pre">instrument_strength</span></code> in the function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon \sim \text{N}(0, 1)\)</span> is the noise term, sampled from a normal distribution with mean 0 and standard deviation 1</p></li>
+</ul>
+</section>
+<section id="exclusion-restriction">
+<h3>Exclusion Restriction<a class="headerlink" href="#exclusion-restriction" title="Link to this heading">#</a></h3>
+<p>Finally, to enable a violation of the exclusion restriction, we include a boolean <code class="docutils literal notranslate"><span class="pre">exclusion_restriction_violation</span></code> parameter, with the following effect on the simulation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Y = \begin{cases} 
+    \tau T + \gamma X + Z + \epsilon &amp; \text{if } \text{exclusion restriction violation = True} \\
+    \tau T + \gamma X + \epsilon &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span> is the treatment effect, <code class="docutils literal notranslate"><span class="pre">treatment_effect</span></code> in the function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> is the effect of the confounder <span class="math notranslate nohighlight">\(X\)</span> on the outcome, <code class="docutils literal notranslate"><span class="pre">confounder_effect</span></code> in the function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon \sim \text{N}(0, 1)\)</span> is the noise term, sampled from a normal distribution with mean 0 and standard deviation 1</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim_iv_assumptions</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">confounder_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+                       <span class="n">instrument_strength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">exclusion_restriction_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                       <span class="n">unconfoundedness_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate an IV study with a binary instrument and confounded treatment and outcome, </span>
+<span class="sd">    with potential violations of the relevance, exclusion restriction, and unconfoundedness assumptions.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_samples (int): The number of samples to simulate, defaults to 10000</span>
+<span class="sd">        treatment_effect (float): The effect of the treatment on the outcome, defaults to 1</span>
+<span class="sd">        confounder_effect (float): The effect of the confounder on the outcome, defaults to 3</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A pandas DataFrame with the simulated data:</span>
+<span class="sd">            - T: The treatment variable</span>
+<span class="sd">            - Z: The instrument variable</span>
+<span class="sd">            - Y: The outcome variable</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO generate binary confounder </span>
+    <span class="n">X</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO generate binary instrument</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO update Z based on unconfoundedness_violation</span>
+
+    <span class="c1"># TODO generate treatment dependent on Z, X, and noise, incorporating instrument_strength</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO generate outcome dependent on T, X, Z, and noise, incorporating treatment_effect and confounder_effect</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># TODO update Y based on exclusion_restriction_violation</span>
+    <span class="c1">#return pd.DataFrame({&#39;X&#39;: X, &#39;Z&#39;: Z, &#39;T&#39;: T, &#39;Y&#39;: Y})</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Test the function with no violations</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">sim_iv_assumptions</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">confounder_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">instrument_strength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclusion_restriction_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unconfoundedness_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;X and Z should be relatively uncorrelated with no instrument unconfoundedness violation&quot;</span>
+    
+    <span class="c1"># make sure Z and T are integers</span>
+    <span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;Z should be an integer&quot;</span>
+    <span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;T should be an integer&quot;</span>
+
+    <span class="c1"># Test the function with instrument unconfoundedness violation</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">sim_iv_assumptions</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">confounder_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">instrument_strength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclusion_restriction_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unconfoundedness_violation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s2">&quot;X and Z should be positively correlated with instrument unconfoundedness violation&quot;</span>
+    
+    <span class="c1"># Test the function with relevance violation</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">sim_iv_assumptions</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">treatment_effect</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">confounder_effect</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">instrument_strength</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">exclusion_restriction_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unconfoundedness_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;T and Z should be relatively uncorrelated with instrument_strength = 0&quot;</span>
+    
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for sim_iv_assumptions passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="quantifying-the-bias-and-variance-of-treatment-effect-estimates">
+<h2>3.2 Quantifying the bias and variance of treatment effect estimates<a class="headerlink" href="#quantifying-the-bias-and-variance-of-treatment-effect-estimates" title="Link to this heading">#</a></h2>
+<p>In addition to visually inspecting the bias and variance of the treatment effect estimate as we’ve done throughout the semester, we can also quantify the bias and variance of the treatment effect estimate.</p>
+<section id="bias">
+<h3>Bias<a class="headerlink" href="#bias" title="Link to this heading">#</a></h3>
+<p>The bias of a treatment effect estimate can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Bias} = E[\hat{\tau}] - \tau
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\tau\)</span> is the true treatment effect and <span class="math notranslate nohighlight">\(E[\hat{\tau}]\)</span> is the expected value (mean) of the treatment effect estimate.</p>
+</section>
+<section id="variance">
+<h3>Variance<a class="headerlink" href="#variance" title="Link to this heading">#</a></h3>
+<p>The variance of a treatment effect estimate can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var} = E[(\hat{\tau} - E[\hat{\tau}])^2]
+\]</div>
+<p>This can be conveniently calculated using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.var.html">np.var</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">estimated_effects_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bias</span><span class="p">(</span><span class="n">estimated_effects_list</span><span class="p">,</span> <span class="n">true_effect</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the bias of a treatment effect estimate.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        estimated_effects_list (list): A list of estimated treatment effect estimates</span>
+<span class="sd">        true_effect (float): The true treatment effect</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The bias of the treatment effect estimate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO your code here</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">true_effect</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">estimated_effects_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">bias</span><span class="p">(</span><span class="n">estimated_effects_list</span><span class="p">,</span> <span class="n">true_effect</span><span class="p">),</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="s2">&quot;Bias should be -0.5&quot;</span>
+
+    <span class="c1"># these tests are not exhaustive, so adding additional asserts is recommended</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All asserts for bias passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="assumption-violation-simulation-widget">
+<h1>4. Assumption violation simulation widget<a class="headerlink" href="#assumption-violation-simulation-widget" title="Link to this heading">#</a></h1>
+<p>Finally, we’ll extend the <code class="docutils literal notranslate"><span class="pre">plot_iv_estimates</span></code> function from <a class="reference external" href="https://comsc341cd.github.io/worksheets/ws5.html#estimating-causal-effects-with-an-iv-0-5-pts">Worksheet 5</a> where we compared naive regression to IV estimation.
+The widget should have interactive sliders for the strength of the instrument, as well as toggles for the violations of the instrument unconfoundedness and exclusion restriction assumptions. Additionally, the widget should have a toggle for whether to include the confounder <span class="math notranslate nohighlight">\(X\)</span> as a covariate in the two-stage least squares estimation.</p>
+<p><strong>Make sure to limit the range of the instrument strength slider to 0 to 1 with step size of 0.1.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">naive_regression</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform a regression on the treatment, which is incorrect due to the missing confounder.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): The dataframe containing the data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">naive_formula</span> <span class="o">=</span> <span class="s1">&#39;Y ~ 1 + T&#39;</span>
+    <span class="n">naive_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">naive_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">naive_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO add interact_manual decorator, with iv_strength slider of range 0 to 1 and step size of 0.1</span>
+<span class="k">def</span> <span class="nf">plot_iv_estimate_assumptions</span><span class="p">(</span><span class="n">iv_strength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">unconfoundedness_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">exclusion_restriction_violation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_confounder</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the distribution of the IV and naive estimates of the treatment effect for the given assumptions.</span>
+<span class="sd">    Additionally displays the bias and variance of the IV and naive estimates.</span>
+
+<span class="sd">    Holds the treatment effect constant at 1, and the confounder effect at 5.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        iv_strength (float): The strength of the instrument, defaults to 0.5</span>
+<span class="sd">        unconfoundedness_violation (bool): Whether to include a violation of the instrument unconfoundedness assumption, defaults to False</span>
+<span class="sd">        exclusion_restriction_violation (bool): Whether to include a violation of the exclusion restriction assumption, defaults to False</span>
+<span class="sd">        include_confounder (bool): Whether to include the confounder X as a covariate in the two-stage least squares estimation, defaults to False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">treatment_effect</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">confounder_effect</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">n_datasets</span> <span class="o">=</span> <span class="mi">1000</span>
+
+    <span class="n">iv_estimates</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">naive_estimates</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_datasets</span><span class="p">):</span>
+        <span class="c1"># Simulate an IV dataset with the given assumptions</span>
+        <span class="n">iv_df</span> <span class="o">=</span> <span class="n">sim_iv_assumptions</span><span class="p">(</span><span class="n">treatment_effect</span><span class="o">=</span><span class="n">treatment_effect</span><span class="p">,</span> 
+                                   <span class="n">confounder_effect</span><span class="o">=</span><span class="n">confounder_effect</span><span class="p">,</span> 
+                                   <span class="n">instrument_strength</span><span class="o">=</span><span class="n">iv_strength</span><span class="p">,</span> 
+                                   <span class="n">exclusion_restriction_violation</span><span class="o">=</span><span class="n">exclusion_restriction_violation</span><span class="p">,</span> 
+                                   <span class="n">unconfoundedness_violation</span><span class="o">=</span><span class="n">unconfoundedness_violation</span><span class="p">)</span>
+
+        <span class="c1"># TODO compute the causal effect estimate from the naive regression</span>
+        <span class="n">naive_estimates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span>
+
+        <span class="c1"># TODO compute the causal effect estimate using tsls, optionally including the confounder X as a covariate if include_confounder      </span>
+        <span class="n">covariates</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">iv_estimates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot the true effect</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">treatment_effect</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Effect&#39;</span><span class="p">)</span>
+
+    <span class="c1"># TODO plot kdeplots of IV estimates and naive estimates</span>
+    
+
+
+    <span class="c1"># TODO annotate the title with the bias and variance of the IV and naive estimates</span>
+    <span class="n">iv_bias</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">iv_variance</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">regression_bias</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">regression_variance</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;IV Bias: </span><span class="si">{</span><span class="n">iv_bias</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, IV Variance: </span><span class="si">{</span><span class="n">iv_variance</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s1"> Regression Bias: </span><span class="si">{</span><span class="n">regression_bias</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, Regression Variance: </span><span class="si">{</span><span class="n">regression_variance</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It may be helpful to refer to the instrumental variable DAG when thinking about why you see certain changes in the bias and variance in the widget.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Begin by using the default values for the widget, where <code class="docutils literal notranslate"><span class="pre">instrument_strength</span> <span class="pre">=</span> <span class="pre">0.5</span></code>, <code class="docutils literal notranslate"><span class="pre">unconfoundedness_violation</span> <span class="pre">=</span> <span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">exclusion_restriction_violation</span> <span class="pre">=</span> <span class="pre">False</span></code>, and <code class="docutils literal notranslate"><span class="pre">include_confounder</span> <span class="pre">=</span> <span class="pre">False</span></code>. Compare the bias and variance of the IV and regression estimates and briefly describe what you observe.</p></li>
+<li><p>Now vary the <code class="docutils literal notranslate"><span class="pre">instrument_strength</span></code> slider. Describe what you observe in terms of bias and variance when you:</p></li>
+</ol>
+<ul class="simple">
+<li><p>increase the strength of the instrument</p></li>
+<li><p>decrease the strength of the instrument</p></li>
+<li><p>set the strength of the instrument to the extremes of 0 and 1</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Next, set the <code class="docutils literal notranslate"><span class="pre">instrument_strength</span></code> to 0.5 and toggle the <code class="docutils literal notranslate"><span class="pre">exclusion_restriction_violation</span></code> checkbox. When this assumption is violated, does it primarily affect the bias or the variance of the treatment effect estimate?</p></li>
+<li><p>Similarly, reset the <code class="docutils literal notranslate"><span class="pre">instrument_strength</span></code> to 0.5 and toggle the <code class="docutils literal notranslate"><span class="pre">unconfoundedness_violation</span></code> checkbox. When this assumption is violated, does it primarily affect the bias or the variance of the treatment effect estimate? What do you observe when you introduce <code class="docutils literal notranslate"><span class="pre">include_confounder</span> <span class="pre">=</span> <span class="pre">True</span></code>, and why does this occur?</p></li>
+<li><p>Finally, consider a valid IV setting where there is no violation of the instrument unconfoundedness or exclusion restriction assumptions, and the instrument is strong (highly relevant to the treatment). Describe what happens to the variance of the IV estimate when you set <code class="docutils literal notranslate"><span class="pre">include_confounder</span> <span class="pre">=</span> <span class="pre">True</span></code>, and briefly discuss why you think this occurs.</p></li>
+</ol>
+<p><strong>TODO your responses below:</strong></p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="proj3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project 3 💉</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="proj3_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Project 3 Part 2: Analysis 💉</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project 3 Part 1: Functions 💉</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-rubric">Part 1 Rubric</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variable-estimators">1. Instrumental Variable Estimators</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wald-estimator">1.1 Wald Estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-tsls-estimator-with-covariates">1.2 Two-Stage Least Squares (TSLS) estimator with covariates</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-compliers">2. Characterizing Compliers</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-study-of-iv-assumption-violations">3. Simulation study of IV assumption violations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-simulation">3.1 Building the simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrument-unconfoundedness">Instrument Unconfoundedness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance">Relevance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exclusion-restriction">Exclusion Restriction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-the-bias-and-variance-of-treatment-effect-estimates">3.2 Quantifying the bias and variance of treatment effect estimates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias">Bias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-violation-simulation-widget">4. Assumption violation simulation widget</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
