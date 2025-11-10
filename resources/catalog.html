@@ -224,6 +224,14 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws5.html">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -234,6 +242,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../projects/proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj3.html">Project 3 💉</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/final_project.html">Final Project 🌍</a></li>
+
+
+
+
 
 </ul>
 
@@ -396,6 +412,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observational-studies">Observational Studies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables">Instrumental Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-discontinuity">Regression Discontinuity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sharp-rdd">Sharp RDD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-rdd">Fuzzy RDD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Pros/cons</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -580,6 +603,116 @@ document.write(`
 </table>
 </div>
 </section>
+<hr class="docutils" />
+<section id="instrumental-variables">
+<h3>Instrumental Variables<a class="headerlink" href="#instrumental-variables" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Assumptions needed</strong></p></td>
+<td><ul><li>Consistency</li><li>No interference</li><li>Relevance</li><li>Exclusion restriction</li><li>Instrument unconfoundedness</li><li>Linear outcome <b>or</b> monotonicity</li></ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Assumptions ensured by design</strong></p></td>
+<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Causal quantities identified</strong></p></td>
+<td><ul><li>Average treatment effect (ATE)</li><li>Local average treatment effect (LATE)</li></ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition-case-studies admonition">
+<p class="admonition-title">Case studies</p>
+<p>See <a class="reference external" href="https://docs.google.com/document/d/1y5fmSBzZb0QISt-d6-CVFDUiShENz0lJGgcR26pyUZc/edit?tab=t.0#heading=h.x6szsl4jkr1q">Activity 13</a> and <a class="reference external" href="https://moodle.mtholyoke.edu/pluginfile.php/1496665/mod_resource/content/2/lec15-instrumental-variables-i.pdf">slide 16 of Lecture 15</a> for our case studies!</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="regression-discontinuity">
+<h3>Regression Discontinuity<a class="headerlink" href="#regression-discontinuity" title="Link to this heading">#</a></h3>
+<section id="sharp-rdd">
+<h4>Sharp RDD<a class="headerlink" href="#sharp-rdd" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Description</strong></p></td>
+<td><ul><li>Treatment is completely deterministic based on the running variable</li><li>Treatment is "forced" once the running variable crosses the cutoff c</li></ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Assumptions needed</strong></p></td>
+<td><ul><li>Consistency</li><li>No interference</li><li>Continuity</li></ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Assumptions ensured by design</strong></p></td>
+<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Causal quantities identified</strong></p></td>
+<td><ul><li>Average treatment effect (ATE) at the cutoff</li></ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="fuzzy-rdd">
+<h4>Fuzzy RDD<a class="headerlink" href="#fuzzy-rdd" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Description</strong></p></td>
+<td><ul><li>Treatment is not deterministically forced, but it is discontinuous</li></ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Assumptions needed</strong></p></td>
+<td><ul><li>Consistency</li><li>No interference</li><li>Continuity</li><li>Monotonicity (no defiers)</li></ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>Assumptions ensured by design</strong></p></td>
+<td><ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Causal quantities identified</strong></p></td>
+<td><ul><li>Local average treatment effect (LATE) at the cutoff</li></ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id5">
+<h4>Pros/cons<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Advantages</p></th>
+<th class="head"><p>Disadvantages</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul><li>Useful when randomization is not possible</li><li>Helps examine specific trends surrounding the cutoff of interest</li><li>Can visually see the assumption needed for both types of RDDs</li><li>We can check for manipulation by doing the histogram against the threshold, and identify any spots that would make our RDD invalid</li></ul>
+</td>
+<td><ul><li>Data inefficent (we need a lot of data), there isn't a guaranteed sweet spot for the bandwidth value b</li><li>Participants may change their behavior based on knowledge of the cutoff</li><li>Have to assume/guess who is a complier (same problem as with IVs)</li><li>Can only look at the effects at the cutoff</li><li>The choice of the bandwidth really matters</li></ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
 </section>
 </section>
 
@@ -660,6 +793,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observational-studies">Observational Studies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumental-variables">Instrumental Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-discontinuity">Regression Discontinuity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sharp-rdd">Sharp RDD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-rdd">Fuzzy RDD</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Pros/cons</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

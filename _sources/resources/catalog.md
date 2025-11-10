@@ -180,3 +180,112 @@
     - <ul><li>Average treatment effect (ATE)</li><li>Average treatment effect on the treated (ATT)</li><li>Average treatment effect on the untreated (ATU)</li></ul>
 
 :::
+
+---
+
+### Instrumental Variables
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+*
+    -
+    -
+
+*   
+    - **Assumptions needed**
+    - <ul><li>Consistency</li><li>No interference</li><li>Relevance</li><li>Exclusion restriction</li><li>Instrument unconfoundedness</li><li>Linear outcome <b>or</b> monotonicity</li></ul>
+
+*
+    - **Assumptions ensured by design**
+    - <ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
+
+*
+    - **Causal quantities identified**
+    - <ul><li>Average treatment effect (ATE)</li><li>Local average treatment effect (LATE)</li></ul>
+
+:::
+
+
+:::{admonition} Case studies
+
+See [Activity 13](https://docs.google.com/document/d/1y5fmSBzZb0QISt-d6-CVFDUiShENz0lJGgcR26pyUZc/edit?tab=t.0#heading=h.x6szsl4jkr1q) and [slide 16 of Lecture 15](https://moodle.mtholyoke.edu/pluginfile.php/1496665/mod_resource/content/2/lec15-instrumental-variables-i.pdf) for our case studies! 
+
+:::
+
+---
+
+### Regression Discontinuity
+
+
+#### Sharp RDD
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+*
+    -
+    -
+
+*   
+    - **Description**
+    - <ul><li>Treatment is completely deterministic based on the running variable</li><li>Treatment is "forced" once the running variable crosses the cutoff c</li></ul>
+
+*   
+    - **Assumptions needed**
+    - <ul><li>Consistency</li><li>No interference</li><li>Continuity</li></ul>
+
+*
+    - **Assumptions ensured by design**
+    - <ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
+
+*
+    - **Causal quantities identified**
+    - <ul><li>Average treatment effect (ATE) at the cutoff</li></ul>
+
+:::
+
+#### Fuzzy RDD
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+*
+    -
+    -
+
+*   
+    - **Description**
+    - <ul><li>Treatment is not deterministically forced, but it is discontinuous</li></ul>
+
+*   
+    - **Assumptions needed**
+    - <ul><li>Consistency</li><li>No interference</li><li>Continuity</li><li>Monotonicity (no defiers)</li></ul>
+
+*
+    - **Assumptions ensured by design**
+    - <ul><li>None, but <b>does not</b> need conditional exchangeability / unconfoundedness</li></ul>
+
+*
+    - **Causal quantities identified**
+    - <ul><li>Local average treatment effect (LATE) at the cutoff</li></ul>
+
+:::
+
+#### Pros/cons
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+*
+    - Advantages
+    - Disadvantages
+
+*   
+    - <ul><li>Useful when randomization is not possible</li><li>Helps examine specific trends surrounding the cutoff of interest</li><li>Can visually see the assumption needed for both types of RDDs</li><li>We can check for manipulation by doing the histogram against the threshold, and identify any spots that would make our RDD invalid</li></ul>
+    - <ul><li>Data inefficent (we need a lot of data), there isn't a guaranteed sweet spot for the bandwidth value b</li><li>Participants may change their behavior based on knowledge of the cutoff</li><li>Have to assume/guess who is a complier (same problem as with IVs)</li><li>Can only look at the effects at the cutoff</li><li>The choice of the bandwidth really matters</li></ul>
+:::
