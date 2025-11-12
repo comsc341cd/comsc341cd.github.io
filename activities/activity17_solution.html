@@ -1,0 +1,1241 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Activity 17: Panel data Solutions &#8212; COMSC341-CD: Causal Inference for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=56f12780" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'activities/activity17_solution';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">COMSC341-CD: Causal Inference for Data Science</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Causal Inference for Data Science
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/values.html">Goals and Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/policies.html">Course Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/office_hours.html">Office Hours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../resources/submit.html">How to Run and Submit</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../resources/catalog.html">Causal Catalog</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Activities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="activities.html">In-Class Activities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Worksheets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws1.html">Worksheet 1 🎲</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws2.html">Worksheet 2 🐼</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws3.html">Worksheet 3 📊</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws4.html">Worksheet 4 📈</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../worksheets/ws5.html">Worksheet 5 🌱</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/proj1.html">Project 1 👶</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../projects/proj1_functions.html">Project 1 Part 1: Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projects/proj1_analysis.html">Project 1 Part 2: Analysis</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj2.html">Project 2 👥</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/proj3.html">Project 3 💉</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../projects/final_project.html">Final Project 🌍</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://comsc341cd-fa-hub.mtholyoke.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/comsc341cd/comsc341cd.github.io&urlpath=tree/comsc341cd.github.io/activities/activity17_solution.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/activities/activity17_solution.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Activity 17: Panel data Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 17: Panel data Solutions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="activity-17-panel-data-solutions">
+<span id="activity17-solution"></span><h1>Activity 17: Panel data Solutions<a class="headerlink" href="#activity-17-panel-data-solutions" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1">
+<h1>Part 1<a class="headerlink" href="#part-1" title="Link to this heading">#</a></h1>
+<p><img alt="" src="../_images/lec19_panel.png" /></p>
+<p>With panel data, instead of having a single row per unit in our dataframes, we have potentially multiple datapoints per unit across time. Given that:</p>
+<ul class="simple">
+<li><p>December: <span class="math notranslate nohighlight">\(t=1\)</span></p></li>
+<li><p>March: <span class="math notranslate nohighlight">\(t=2\)</span></p></li>
+<li><p>June: <span class="math notranslate nohighlight">\(t=3\)</span></p></li>
+</ul>
+<p>We have 3 datapoints for each town. The “Post-treatment period?” column is a binary variable that is 1 if the datapoint is in the post-treatment period and 0 otherwise.</p>
+<p>Finish populating the markdown table below with the correct values:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Unit</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>Outcome</p></th>
+<th class="head"><p>Post-treatment period?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>South Hadley</p></td>
+<td><p>1</p></td>
+<td><p>100</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>South Hadley</p></td>
+<td><p>2</p></td>
+<td><p>90</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>South Hadley</p></td>
+<td><p>3</p></td>
+<td><p>70</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hadley</p></td>
+<td><p>1</p></td>
+<td><p>80</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Hadley</p></td>
+<td><p>2</p></td>
+<td><p>70</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hadley</p></td>
+<td><p>3</p></td>
+<td><p>60</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can use pandas <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/advanced.html">MultiIndex</a> to represent the multiple indices needed for panel data. The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html">pd.set_index()</a> can take a list of columns to use as the new index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traffic_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;town&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;South Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;Hadley&#39;</span><span class="p">,</span> <span class="s1">&#39;Hadley&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="s1">&#39;outcome&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+        <span class="s2">&quot;post_treatment&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># TODO set the index to be the[&#39;town&#39;, &#39;time&#39;] columns</span>
+<span class="n">traffic_df</span> <span class="o">=</span> <span class="n">traffic_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;town&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">])</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">traffic_df</span><span class="p">)</span>
+
+<span class="c1"># note that time and town are no longer columns</span>
+<span class="n">display</span><span class="p">(</span><span class="n">traffic_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>outcome</th>
+      <th>post_treatment</th>
+    </tr>
+    <tr>
+      <th>town</th>
+      <th>time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">South Hadley</th>
+      <th>1</th>
+      <td>100</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>90</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>70</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Hadley</th>
+      <th>1</th>
+      <td>80</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>70</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;outcome&#39;, &#39;post_treatment&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The multi-index is now, where the first level (<code class="docutils literal notranslate"><span class="pre">level=0</span></code>) is the town and the second level (<code class="docutils literal notranslate"><span class="pre">level=1</span></code>) is the time.</p>
+<p>With a multi-index, the <code class="docutils literal notranslate"><span class="pre">.loc</span></code> method can take a tuple that specifies an index to retrieve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selects all the South Hadley datapoints</span>
+<span class="n">display</span><span class="p">(</span><span class="n">traffic_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;South Hadley&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>outcome</th>
+      <th>post_treatment</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>100</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>90</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>70</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selects the row for South Hadley at time 1</span>
+<span class="n">display</span><span class="p">(</span><span class="n">traffic_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;South Hadley&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="c1">#display(traffic_df.loc[(&quot;South Hadley&quot;, 1)])</span>
+
+<span class="c1"># equivalently, we can chain the `.loc` method to filter different levels of the multi-index</span>
+<span class="n">display</span><span class="p">(</span><span class="n">traffic_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;South Hadley&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">#display(traffic_df.loc[&quot;South Hadley&quot;].loc[1])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>outcome           100
+post_treatment      0
+Name: (South Hadley, 1), dtype: int64
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>outcome           100
+post_treatment      0
+Name: 1, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>To select rows based on the second level of the multi-index, we can use <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html">pd.xs</a>, which takes a cross-section of the DataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select all rows where the second level of the multi-index (time) equals 1</span>
+<span class="n">traffic_df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>outcome</th>
+      <th>post_treatment</th>
+    </tr>
+    <tr>
+      <th>town</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>South Hadley</th>
+      <td>100</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Hadley</th>
+      <td>80</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Write a line of code to select the Hadley datapoint at time 3, and submit your answer to pollEverywhere:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">traffic_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;Hadley&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>outcome           60
+post_treatment     1
+Name: (Hadley, 3), dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2">
+<h1>Part 2<a class="headerlink" href="#part-2" title="Link to this heading">#</a></h1>
+<p>Run the cell below to load the organ donation data. The dataframe has the following columns:</p>
+<ul class="simple">
+<li><p>State: the state name</p></li>
+<li><p>Quarter: the quarter of data</p></li>
+<li><p>Quarter_Num: the quarter number</p></li>
+<li><p>Rate: the organ donation registration rate</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">organ_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;~/COMSC-341CD/data/organ_donations.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">organ_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Quarter</th>
+      <th>Rate</th>
+      <th>Quarter_Num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alaska</td>
+      <td>Q42010</td>
+      <td>0.7500</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>Q12011</td>
+      <td>0.7700</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alaska</td>
+      <td>Q22011</td>
+      <td>0.7700</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Alaska</td>
+      <td>Q32011</td>
+      <td>0.7800</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alaska</td>
+      <td>Q42011</td>
+      <td>0.7800</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Alaska</td>
+      <td>Q12012</td>
+      <td>0.7900</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Arizona</td>
+      <td>Q42010</td>
+      <td>0.2634</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Arizona</td>
+      <td>Q12011</td>
+      <td>0.2092</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Arizona</td>
+      <td>Q22011</td>
+      <td>0.2261</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Arizona</td>
+      <td>Q32011</td>
+      <td>0.2503</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Since the data is quarterly and begins in 2010 Q4, the first post-treatment period (after July 2011) is 2011 Q3, which corresponds to Quarter_Num = 4. Create the following columns to prepare the data for a difference-in-differences analysis:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">is_california</span></code>: a binary variable indicating whether the state is California</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">post_treatment</span></code>: a binary variable indicating whether the quarter is after 2011 Q3 (Quarter_Num &gt;= 4)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_treated</span></code>: a binary variable indicating whether the state is California <strong>AND</strong> the quarter is after 2011 Q3</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#organ_df[[&#39;State&#39;, &#39;is_california&#39;]].head(20)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Create the columns</span>
+<span class="n">organ_df</span><span class="p">[</span><span class="s1">&#39;is_california&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">organ_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;California&#39;</span>
+<span class="n">organ_df</span><span class="p">[</span><span class="s1">&#39;post_treatment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">organ_df</span><span class="p">[</span><span class="s1">&#39;Quarter_Num&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+<span class="n">organ_df</span><span class="p">[</span><span class="s1">&#39;is_treated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">organ_df</span><span class="p">[</span><span class="s1">&#39;is_california&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">organ_df</span><span class="p">[</span><span class="s1">&#39;post_treatment&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">organ_df</span><span class="p">[[</span><span class="s1">&#39;Quarter_Num&#39;</span><span class="p">,</span> <span class="s1">&#39;post_treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;is_treated&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Quarter_Num</th>
+      <th>post_treatment</th>
+      <th>State</th>
+      <th>is_treated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>False</td>
+      <td>Alaska</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>False</td>
+      <td>Alaska</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>False</td>
+      <td>Alaska</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>True</td>
+      <td>Alaska</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>True</td>
+      <td>Alaska</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>True</td>
+      <td>Alaska</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>False</td>
+      <td>Arizona</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>False</td>
+      <td>Arizona</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>3</td>
+      <td>False</td>
+      <td>Arizona</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4</td>
+      <td>True</td>
+      <td>Arizona</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>5</td>
+      <td>True</td>
+      <td>Arizona</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>6</td>
+      <td>True</td>
+      <td>Arizona</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+      <td>False</td>
+      <td>California</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2</td>
+      <td>False</td>
+      <td>California</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3</td>
+      <td>False</td>
+      <td>California</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>4</td>
+      <td>True</td>
+      <td>California</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>5</td>
+      <td>True</td>
+      <td>California</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>6</td>
+      <td>True</td>
+      <td>California</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1</td>
+      <td>False</td>
+      <td>Colorado</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2</td>
+      <td>False</td>
+      <td>Colorado</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Like we did in part 1, set the index to be the <code class="docutils literal notranslate"><span class="pre">['State',</span> <span class="pre">'Quarter_Num']</span></code> columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO set the multi-index</span>
+<span class="c1">#organ_df.set_index(TODO)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, let’s visually evaluate the parallel trends assumption by plotting the rate against the quarter number in the pre-treatment period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO select the dataframe for the pre-treatment period</span>
+<span class="n">organ_df_pre</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="c1"># TODO plot an sns.pointplot using organ_df_pre of &#39;Rate&#39; against &#39;Quarter_Num&#39;, with &#39;is_california&#39; as the hue</span>
+<span class="c1"># sns.pointplot()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Does there appear to be any clear violations of the parallel trends assumption?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-3">
+<h1>Part 3<a class="headerlink" href="#part-3" title="Link to this heading">#</a></h1>
+<p>We just discussed the following formula for using regression to compute a difference-in-differences estimate:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = \beta_0 + \beta_1 (\text{treated group}) + \beta_2 (\text{after treatment}) + \beta_3 (\text{treated group} \times \text{after treatment}) + \epsilon
+\]</div>
+<p>Write the formula in terms of the variables in the <code class="docutils literal notranslate"><span class="pre">organ_df</span></code> dataframe we created in part 2. The outcome of interest is <code class="docutils literal notranslate"><span class="pre">Rate</span></code>, while the treated group is California.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO your code here</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># did_model = smf.ols(TODO)</span>
+<span class="c1"># did_results = did_model.fit()</span>
+<span class="c1"># print(did_results.params)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is your ATT estimate of the effect of active choice vs opt-in on California organ donation rates?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pollev.com/tliu">pollev.com/tliu</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<p>This activity is derived from Nick Huntington-Klein’s analysis of Kessler and Roth (2014) in Chapter 18 of <a class="reference external" href="https://theeffectbook.net/">The Effect</a>.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./activities"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Activity 17: Panel data Solutions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+  Causal Inference for Data Science is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
