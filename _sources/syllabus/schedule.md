@@ -119,7 +119,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 *   
     - <small>11/10</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff I</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 19](https://moodle.mtholyoke.edu/pluginfile.php/1496676/mod_resource/content/2/lec19-diff-in-diff-i-starter.pdf)</li><li>[[complete] slides 19](https://moodle.mtholyoke.edu/pluginfile.php/1496677/mod_resource/content/2/lec19-diff-in-diff-i.pdf)</li><li>[Activity 17](activity17)</li><li>[Activity 17 solutions](activity17_solution)</li></ul>
     - <small>11/11</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final proj proposal](final_proposal)
-    - <small>11/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 20](https://moodle.mtholyoke.edu/pluginfile.php/1496679/mod_resource/content/3/lec20-diff-in-diff-ii-starter.pdf)</li></ul>
+    - <small>11/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 20](https://moodle.mtholyoke.edu/pluginfile.php/1496679/mod_resource/content/3/lec20-diff-in-diff-ii-starter.pdf)</li><li>[[complete] slides 20](https://moodle.mtholyoke.edu/pluginfile.php/1496680/mod_resource/content/2/lec20-diff-in-diff-ii.pdf)</li></ul>
     - <small>11/13</small>
     - <small>11/14</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
 
