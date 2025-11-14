@@ -139,7 +139,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>12/1</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Buffer day</u></b>
-    - <small>12/2</small><br>![](https://img.shields.io/badge/Due:-d62728) Final proj checkpoint
+    - <small>12/2</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final proj checkpoint](checkpoint)
     - <small>12/3</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations I</u></b>
     - <small>12/4</small>
     - <small>12/5</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Class presentations II</u></b>
@@ -154,7 +154,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
 
 *   
     - <small>12/15</small>
-    - <small>12/16</small><br><b>Last day of exams</b><br><br>![](https://img.shields.io/badge/Due:-d62728) Final proj
+    - <small>12/16</small><br><b>Last day of exams</b><br><br>![](https://img.shields.io/badge/Due:-d62728) [Final proj](final_template)
     - <small>12/17</small>
     - <small>12/18</small>
     - <small>12/19</small>

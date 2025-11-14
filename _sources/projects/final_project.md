@@ -17,9 +17,9 @@
 | Component | Points | Due Date |
 | --- | --- | --- |
 | [Proposal](final_proposal) | 3 | 11/11 |
-| Checkpoint | 5 | 12/2 |
-| Presentation and peer feedback | 5 | 12/3, 12/5 |
-| Final report and source code | 12 | 12/16 |
+| [Checkpoint](checkpoint) | 5 | 12/2 |
+| [Presentation and peer feedback](presentation) | 5 | 12/3, 12/5 |
+| [Final report and source code](final_template) | 12 | 12/16 **noon** |
 
 :::{admonition} Evaluation Guidelines
 :class: note
@@ -60,9 +60,7 @@ Each group should select among the following deliverables according to their siz
 
 ## Final report format
 
-The final report will be submitted in the form of a [Jupyter Book article](https://jupyterbook.org/en/stable/intro.html#built-with-jupyter-book), which is the same engine that formats the course website. Modern scientific communication is moving beyond static papers towards the "executable book" format, which combines text, math, visualizations, and executable code in a single document. Your report can even be hosted online and showcased as part of your project portfolio.
-
-Jupyter Books use [Myst Markdown](https://myst-parser.readthedocs.io/en/latest/), which is a variant of Markdown that allows for additional featues like references, call out boxes, and interactive widgets. Project 3 will give you initial experience with the Jupyter Book + Myst Markdown format, which you can then build on for your final project.
+The final report will be submitted in the form of a [Myst website](https://myst-parser.readthedocs.io/en/latest/), which is the same engine that formats the course website. Modern scientific communication is moving beyond static papers towards the "executable book" format, which combines text, math, visualizations, and executable code in a single document. Your report can even be hosted online and showcased as part of your project portfolio. Project 3 will give you initial experience with the Myst website format, which you can then build on for your final project.
 
 # Example resources
 
