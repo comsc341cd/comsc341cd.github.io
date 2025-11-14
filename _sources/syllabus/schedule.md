@@ -121,7 +121,7 @@ A list of topics we will cover can be found below. Note that topics may be subje
     - <small>11/11</small><br>![](https://img.shields.io/badge/Due:-d62728) [Final proj proposal](final_proposal)
     - <small>11/12</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Diff-in-diff II</u></b><ul style="margin-top:-1em;"><li>[[starter] slides 20](https://moodle.mtholyoke.edu/pluginfile.php/1496679/mod_resource/content/3/lec20-diff-in-diff-ii-starter.pdf)</li><li>[[complete] slides 20](https://moodle.mtholyoke.edu/pluginfile.php/1496680/mod_resource/content/2/lec20-diff-in-diff-ii.pdf)</li></ul>
     - <small>11/13</small>
-    - <small>11/14</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b>
+    - <small>11/14</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Lab</u></b><ul style="margin-top:-1em;"><li>[slides](https://moodle.mtholyoke.edu/pluginfile.php/1525353/mod_resource/content/1/lab7.pdf)</li></ul>
 
 *   
     - <small>11/17</small><br>![](https://img.shields.io/badge/Class:-1f77b4) <b><u>Synthetic control I</u></b>
